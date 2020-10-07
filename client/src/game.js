@@ -11,8 +11,8 @@ var game = new Phaser.Game({
     height: height
   },
   scene: [
-    candlegames.game1.client.scenes.Boot,
-    candlegames.game1.client.scenes.Loader,
-    candlegames.game1.client.scenes.MainMenu
+    candlegames.pestis.client.scenes.Boot,
+    candlegames.pestis.client.scenes.Loader,
+    candlegames.pestis.client.scenes.MainMenu
   ]
 });

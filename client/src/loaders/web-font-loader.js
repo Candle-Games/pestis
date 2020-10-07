@@ -43,4 +43,4 @@
   Phaser.Loader.FileTypesManager.register('googlefont', function(fonts) {
     return new GoogleFonts(this, fonts);
   });
-})(namespace('candlegames.game1.server.loader'));
+})(namespace('candlegames.pestis.server.loader'));

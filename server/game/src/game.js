@@ -1,6 +1,6 @@
 const config = {
   type: Phaser.HEADLESS,
-  parent: 'game1',
+  parent: 'container',
   width: 800,
   height: 600,
   autoFocus: false,
@@ -24,7 +24,7 @@ function create() {}
 
 function update() {}
 
-console.log(namespace('candlegames.game1.server.test'));
+console.log(namespace('candlegames.pestis.server.test'));
 
 const game = new Phaser.Game(config);
 phaserLoaded();

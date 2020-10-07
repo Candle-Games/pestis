@@ -4,8 +4,10 @@
    * @param properties
    * @constructor
    */
-  function MainMenu(properties) {
-    Phaser.Scene.call(this, properties);
+  function MainMenu() {
+    Phaser.Scene.call(this, {
+      key: 'MainMenu'
+    });
   }
 
   // Inheritance stuff
@@ -13,4 +15,4 @@
   MainMenu.prototype.constructor = MainMenu;
 
   ns.MainMenu = MainMenu;
-})(namespace('candlegames.game1.client.scenes'))
+})(namespace('candlegames.pestis.client.scenes'))

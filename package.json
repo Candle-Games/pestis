@@ -1,5 +1,6 @@
 {
-  "name": "game1",
+  "name": "pestis",
+  "description": "Medieval horror survival game",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/Candle-Games/game1.git",

@@ -1,6 +1,6 @@
 /**
  * Utility to generate namespaces
- * @param namespace_string  Namespace string as 'candlegames.game1.server.scenes'.
+ * @param namespace_string  Namespace string as 'candlegames.pestis.server.scenes'.
  * @return {Object} Generated namespace, can be new/empty or already existing, 'scenes' = {...} in the example.
  */
 function namespace(namespace_string) {

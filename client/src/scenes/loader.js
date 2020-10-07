@@ -4,8 +4,10 @@
    * @param properties
    * @constructor
    */
-  function Loader(properties) {
-    Phaser.Scene.call(this, properties);
+  function Loader() {
+    Phaser.Scene.call(this, {
+      key: 'Loader'
+    });
   }
 
   // Inheritance stuff
@@ -13,4 +15,4 @@
   Loader.prototype.constructor = Loader;
 
   ns.Loader = Loader;
-})(namespace('candlegames.game1.client.scenes'))
+})(namespace('candlegames.pestis.client.scenes'))
