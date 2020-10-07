@@ -1,0 +1,22 @@
+{
+  "name": "pestis",
+  "description": "Medieval horror survival game",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Candle-Games/game1.git",
+  "author": "Candle Games <social@candlegames.es>",
+  "license": "MIT",
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "express": "^4.17.1",
+    "jsdom": "^16.4.0",
+    "socket.io": "^2.3.0"
+  },
+  "scripts": {
+    "start-server": "node server/index.js",
+    "start-client": "http-server client/"
+  },
+  "devDependencies": {
+    "http-server": "^0.12.3"
+  }
+}
