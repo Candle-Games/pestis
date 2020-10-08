@@ -15,4 +15,4 @@
   Loader.prototype.constructor = Loader;
 
   ns.Loader = Loader;
-})(namespace('candlegames.pestis.client.scenes'))
+})(candlegamestools.namespace('candlegames.pestis.client.scenes'))

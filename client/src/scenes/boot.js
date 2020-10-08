@@ -40,4 +40,4 @@
   }
 
   ns.Boot = Boot;
-})(namespace('candlegames.pestis.client.scenes'))
+})(candlegamestools.namespace('candlegames.pestis.client.scenes'))

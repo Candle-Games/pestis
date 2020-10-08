@@ -16,3 +16,6 @@ function namespace(namespace_string) {
   }
   return parent;
 }
+
+var candlegamestools = candlegamestools || {}
+candlegamestools.namespace = namespace;

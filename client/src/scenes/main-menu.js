@@ -15,4 +15,4 @@
   MainMenu.prototype.constructor = MainMenu;
 
   ns.MainMenu = MainMenu;
-})(namespace('candlegames.pestis.client.scenes'))
+})(candlegamestools.namespace('candlegames.pestis.client.scenes'))
