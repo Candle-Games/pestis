@@ -14,5 +14,10 @@ var game = new Phaser.Game({
     candlegames.pestis.client.scenes.Boot,
     candlegames.pestis.client.scenes.Loader,
     candlegames.pestis.client.scenes.MainMenu
-  ]
+  ],
+  plugins: {
+    scene: [
+      { key: 'LoadingProgressBarPlugin', plugin: candlegames.pestis.client.plugins.LoadingProgressBar, mapping: 'loadingprogressbar' }
+    ]
+  }
 });

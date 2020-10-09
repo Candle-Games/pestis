@@ -1,7 +1,6 @@
 (function(ns) {
   /**
    * Main menú scene
-   * @param properties
    * @constructor
    */
   function MainMenu() {

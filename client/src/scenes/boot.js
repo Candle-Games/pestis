@@ -1,7 +1,6 @@
 (function(ns) {
   /**
    * Boot scene
-   * @param properties
    * @constructor
    */
   function Boot() {
@@ -37,6 +36,8 @@
     this.background = this.add.image(x, y, 'logo');
     this.background.setDisplaySize(sx, sy);
     this.background.setOrigin(0, 0);
+
+    this.scene.launch('Loader');
   }
 
   ns.Boot = Boot;
