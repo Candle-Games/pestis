@@ -4,6 +4,7 @@ var height = 720;
 var game = new Phaser.Game({
   type: Phaser.AUTO,
   parent: 'game-container',
+  debug: true,
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
@@ -17,7 +18,10 @@ var game = new Phaser.Game({
   ],
   plugins: {
     scene: [
-      { key: 'LoadingProgressBarPlugin', plugin: candlegames.pestis.client.plugins.LoadingProgressBar, mapping: 'loadingprogressbar' }
+      { key: 'LoadingProgressBarPlugin', plugin: candlegames.pestis.client.plugins.LoadingProgressBar, mapping: 'loadingprogressbar' },
+      { key: 'MenuPlugin', plugin: candlegames.pestis.client.plugins.Menu, mapping: 'menu' },
+      /* { key: 'DebugDrawPlugin', plugin: PhaserDebugDrawPlugin, mapping: 'debugDraw' } */
     ]
   }
 });
+

@@ -8,12 +8,17 @@
    * @constructor
    */
   var GoogleFonts = function(loader, fontNames) {
-    Phaser.Loader.File.call(this, loader, {
-      type: 'font',
-      key: fontNames.toString()
-    });
+    fontNames = Array.isArray(fontNames) ? fontNames : [ fontNames ];
 
-    this.fontNames = Array.isArray(fontNames) ? fontNames : [ fontNames ];
+    var fileConfig = {
+      type: 'webfont',
+      key: fontNames.toString(),
+      config: {
+        fontNames: fontNames
+      }
+    };
+
+    Phaser.Loader.File.call(this, loader, fileConfig);
   };
 
   GoogleFonts.prototype = Object.create(Phaser.Loader.File.prototype);
@@ -24,23 +29,28 @@
    */
   GoogleFonts.prototype.load = function() {
     var loaderConfig = {
-      fontactive: function(name) {
-        this.loader.nextFile(this, true);
-      },
-      fontinactive: function(name) {
-        this.loader.nextFile(this, false);
-      },
+      fontactive: this.fontActive.bind(this),
+      fontinactive: this.fontInactive.bind(this),
       google: {
-        families: this.fontNames
+        families: this.config.fontNames
       }
     };
 
     WebFont.load(loaderConfig);
   };
 
+  GoogleFonts.prototype.fontActive = function(name) {
+    this.loader.nextFile(this, true);
+  }
+
+  GoogleFonts.prototype.fontInactive = function(name) {
+    this.loader.nextFile(this, true);
+  }
+
   ns.WebFontLoader = GoogleFonts;
 
   Phaser.Loader.FileTypesManager.register('googlefont', function(fonts) {
-    return new GoogleFonts(this, fonts);
+    this.addFile(new GoogleFonts(this, fonts));
+    return this;
   });
 })(candlegamestools.namespace('candlegames.pestis.server.loader'));

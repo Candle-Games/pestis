@@ -39,7 +39,6 @@
 
   LoadingProgressBar.prototype.updateBar = function(pct) {
     var barwidth = (this.width - 6 - (this.hmargin * 2)) * pct;
-    // console.log('barwidth '+ barwidth);
     this.pctbar.clear();
     this.pctbar.beginPath();
     this.pctbar.lineStyle(2, 0xf429ac, 1);
@@ -78,11 +77,9 @@
   }
 
   LoadingProgressBar.prototype.onFileProgress = function(file) {
-    // console.log('loaded file ' + file.src);
   }
 
   LoadingProgressBar.prototype.onLoadComplete = function(value) {
-    // console.log('load complete ' + value);
   }
 
   ns.LoadingProgressBar = LoadingProgressBar;
