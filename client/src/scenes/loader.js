@@ -14,11 +14,17 @@
   Loader.prototype.constructor = Loader;
 
   Loader.prototype.preload = function() {
-    this.loadingprogressbar.show();
+    this.load.on('complete', this.onLoadComplete.bind(this));
+    this.loadingprogressbar.show({ dashStyle: [ 2, 3 ]});
 
-    for(var i=0; i < 100; ++i) {
-      this.load.image('logo' + i, 'resources/images/candle-games-logo.jpeg');
-    }
+    this.load.googlefont('Indie Flower');
+    this.load.googlefont('Oswald');
+    this.load.googlefont('Frijole');
+    this.load.googlefont('Luckiest Guy');
+  }
+
+  Loader.prototype.onLoadComplete = function(value) {
+    this.events.emit('loadcompleted');
   }
 
   ns.Loader = Loader;

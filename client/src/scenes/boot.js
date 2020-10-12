@@ -37,6 +37,13 @@
     this.background.setDisplaySize(sx, sy);
     this.background.setOrigin(0, 0);
 
+    var loaderScene = this.scene.get('Loader');
+
+    loaderScene.events.on('loadcompleted', function () {
+      this.scene.stop('Loader');
+      this.scene.start('MainMenu');
+    }, this);
+
     this.scene.launch('Loader');
   }
 
