@@ -41,7 +41,7 @@
 
     loaderScene.events.on('loadcompleted', function () {
       this.scene.stop('Loader');
-      this.scene.start('MainMenu');
+      this.scene.start('TestScene');
     }, this);
 
     this.scene.launch('Loader');
