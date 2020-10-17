@@ -14,7 +14,8 @@ var game = new Phaser.Game({
   scene: [
     candlegames.pestis.client.scenes.Boot,
     candlegames.pestis.client.scenes.Loader,
-    candlegames.pestis.client.scenes.MainMenu
+    candlegames.pestis.client.scenes.MainMenu,
+    candlegames.pestis.client.scenes.GameEngine,
   ],
   plugins: {
     scene: [

@@ -31,7 +31,7 @@
         option.setStyle(action==='select' ? { color: '#ffcda4'} : {color: '#fc7f03'});
       },
       options: [
-        { id: 'menu1', label: 'Texto menu 1',
+        { id: 'game-engine', label: 'Start Game',
           effect: function(option, action) {
             option.setStyle(action==='select' ? { color: '#fffe77'} : {color: '#fc7f03'});
           },
@@ -48,6 +48,10 @@
   MainMenu.prototype.handleMenu = function(optionSelected) {
     if(optionSelected._menuConfig.disabled) return;
     console.log(optionSelected.name + ' selected!!');
+    switch(optionSelected.name) {
+      case 'game-engine':
+        this.scene.start('GameEngine');
+    }
   }
 
   ns.MainMenu = MainMenu;
