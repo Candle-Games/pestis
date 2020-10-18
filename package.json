@@ -14,7 +14,7 @@
     "socket.io": "^2.3.0"
   },
   "scripts": {
-    "start-server": "node --inspect server/index.js",
+    "start-server": "node server/index.js",
     "start-client": "http-server client/"
   },
   "devDependencies": {
