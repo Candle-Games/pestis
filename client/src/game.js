@@ -17,6 +17,9 @@ var game = new Phaser.Game({
     candlegames.pestis.client.scenes.MainMenu
   ],
   plugins: {
+    global: [
+      { key: 'CommsSystemPlugin', plugin: candlegames.pestis.client.plugins.CommsSystem, mapping: 'comms', start: true }
+    ],
     scene: [
       { key: 'LoadingProgressBarPlugin', plugin: candlegames.pestis.client.plugins.LoadingProgressBar, mapping: 'loadingprogressbar' },
       { key: 'MenuPlugin', plugin: candlegames.pestis.client.plugins.Menu, mapping: 'menu' },

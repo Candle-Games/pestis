@@ -38,11 +38,32 @@ function create() {
 
   // Create layer
   const layer = map.createStaticLayer('TestLayer', tileset, 0, 200);
+
+  candlegamestools.socket.on('input', function(data) {
+    console.log("Received input");
+    candlegamestools.socket.emit('gamestate', data);
+  });
+
+  // Be careful here, some memory leaks have been reported
+  candlegamestools.socket.on('disconnect', function() {
+    console.log("Closing game instance");
+    window.close();
+  })
+
+  this.__timer = 0;
+  this.__last = 0;
 }
 
-function update() {}
+function update(time, delta) {
+  var current = parseInt(this.__timer / 1000);
+  if(current % 5 == 0 && current > this.__last) {
+    candlegamestools.socket.emit('gamestate', "timer: " + this.__timer);
+    console.log(parseInt(this.__timer / 1000));
+    this.__last = current;
+  }
 
-console.log(namespace('candlegames.pestis.server.test'));
+  this.__timer += delta;
+}
 
 const game = new Phaser.Game(config);
-phaserLoaded();
+candlegamestools.socket.emit('serverstatus', 'Connected to server!!')
