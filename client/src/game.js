@@ -14,15 +14,17 @@ var game = new Phaser.Game({
   scene: [
     candlegames.pestis.client.scenes.Boot,
     candlegames.pestis.client.scenes.Loader,
+    candlegames.pestis.client.scenes.TestScene,
     candlegames.pestis.client.scenes.MainMenu
   ],
   plugins: {
     global: [
-      { key: 'CommsSystemPlugin', plugin: candlegames.pestis.client.plugins.CommsSystem, mapping: 'comms', start: true }
+      //{ key: 'CommsSystemPlugin', plugin: candlegames.pestis.client.plugins.CommsSystem, mapping: 'comms', start: true }
     ],
     scene: [
       { key: 'LoadingProgressBarPlugin', plugin: candlegames.pestis.client.plugins.LoadingProgressBar, mapping: 'loadingprogressbar' },
       { key: 'MenuPlugin', plugin: candlegames.pestis.client.plugins.Menu, mapping: 'menu' },
+      { key: 'InputManager', plugin: candlegames.pestis.client.plugins.InputManager, mapping: 'inputmanager' },
       /* { key: 'DebugDrawPlugin', plugin: PhaserDebugDrawPlugin, mapping: 'debugDraw' } */
     ]
   }
