@@ -5,8 +5,8 @@
         Phaser.Plugins.ScenePlugin.call(this, scene, pluginManager);
 
         this.controllers ={
-            keyboard : new candlegames.pestis.client.plugins.inputs.Keyboard(),
-            virtualjoystick: null
+            keyboard : candlegames.pestis.client.plugins.inputs.Keyboard,
+            virtualjoystick: candlegames.pestis.client.plugins.inputs.VirtualJoystick
         }
 
         this.controller;
@@ -20,22 +20,8 @@
      * @param controller
      */
     InputManager.prototype.selectController = function(controller){
-        switch (controller){
-            case 'keyboard':
-                this.controller=this.controllers.keyboard;
-                this.controller.updateInputs({
-                    up:this.scene.input.keyboard.addKey("W"),
-                    left:this.scene.input.keyboard.addKey("A"),
-                    down:this.scene.input.keyboard.addKey("S"),
-                    right:this.scene.input.keyboard.addKey("D"),
-                    action1:this.scene.input.keyboard.addKey("Q"),
-                    action2:this.scene.input.keyboard.addKey("E"),
-                });
-                break;
-            case 'virtualjoystick':
-                this.controller=this.controllers.virtualjoystick;
-                break;
-        }
+        this.controller = new this.controllers[controller]();
+        this.controller.init(this.scene);
     }
 
     ns.InputManager=InputManager;

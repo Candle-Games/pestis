@@ -21,6 +21,9 @@
     this.load.googlefont('Oswald');
     this.load.googlefont('Frijole');
     this.load.googlefont('Luckiest Guy');
+
+    this.load.image('joystick', 'resources/sprites/virtual-joystick/joystick.png');
+    this.load.image('joystick-base', 'resources/sprites/virtual-joystick/base.png');
   }
 
   Loader.prototype.onLoadComplete = function(value) {

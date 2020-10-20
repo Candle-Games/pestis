@@ -14,22 +14,18 @@
 
     var text;
 
-    TestScene.prototype.preload=function() {};
+    TestScene.prototype.preload=function() {
+    };
 
     TestScene.prototype.create=function(){
-        text=this.add.text(0,0,"Not key pressed", "Luckiest Guy");
-        this.inputmanager.selectController('keyboard');
+        this.inputmanager.selectController('virtualjoystick');
+        text=this.add.text(0,0,"", 'Luckiest Guy');
     }
 
     TestScene.prototype.update = function(){
-        if(this.inputmanager.controller.isInputUp()){
-            text.setText("True");
-        }
-        else{
-            text.setText("false");
-        }
-
     }
+
+
 
     ns.TestScene=TestScene;
 })(candlegamestools.namespace('candlegames.pestis.client.scenes'))

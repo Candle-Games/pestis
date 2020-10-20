@@ -7,6 +7,9 @@
      * @constructor
      */
     function Keyboard(){
+        candlegames.pestis.client.plugins.inputs.Controller.call(this);
+
+        this.scene=null;
 
         this.inputs={
             up:null,
@@ -18,7 +21,19 @@
         }
     }
 
+    Keyboard.prototype = Object.create(candlegames.pestis.client.plugins.inputs.Controller.prototype);
     Keyboard.prototype.constructor=Keyboard;
+
+    Keyboard.prototype.init = function(scene){
+        this.scene=scene;
+
+        this.inputs.up=scene.input.keyboard.addKey("W");
+        this.inputs.left = scene.input.keyboard.addKey("A");
+        this.inputs.down = scene.input.keyboard.addKey("S");
+        this.inputs.right = scene.input.keyboard.addKey("D");
+        this.inputs.action1 = scene.input.keyboard.addKey("Q");
+        this.inputs.action2 = scene.input.keyboard.addKey("E");
+    }
 
     /**
      * Change the default inputs keys
