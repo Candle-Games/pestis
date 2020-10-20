@@ -12,12 +12,14 @@
         this.vjoystick={
             base:null,
             joystick:null,
-            angle:null
+            initPos: [0,0],
+            angle: 0,
+            currentDistance: 0,
+            maxDistance: 0,
+            offsetDistance: 15,
+            offsetDegrees: 35
         };
 
-        this.initPos = [0,0]
-
-        this.maxDisplacement = 0;
         this.buttonAction1=null;
         this.buttonAction2=null;
 
@@ -28,12 +30,12 @@
 
     VirtualJoystick.prototype.init = function(scene){
         this.scene = scene;
-        this.initPos = [200,200];
-        this.vjoystick.base = scene.add.sprite(this.initPos[0],this.initPos[1],'joystick-base');
+        this.vjoystick.initPos = [200,200];
+        this.vjoystick.base = scene.add.sprite(this.vjoystick.initPos[0],this.vjoystick.initPos[1],'joystick-base');
         this.vjoystick.base.anchor = [0.5,0.5];
-        this.maxDisplacement = this.vjoystick.base.width *0.5;
+        this.vjoystick.maxDistance = this.vjoystick.base.width *0.5;
 
-        this.vjoystick.joystick=scene.add.sprite(this.initPos[0],this.initPos[1],'joystick');
+        this.vjoystick.joystick=scene.add.sprite(this.vjoystick.initPos[0],this.vjoystick.initPos[1],'joystick');
         this.vjoystick.joystick.anchor = [0.5,0.5];
 
         /*
@@ -45,34 +47,107 @@
         this.scene.input.off('pointerup', this.stopDrag, this);
     }
 
+    /**
+     * init the joystick drag
+     * @param pointer
+     */
     VirtualJoystick.prototype.startDrag = function(pointer){
         this.vjoystick.joystick.setInteractive().off('pointerdown', this.startDrag,this);
         this.scene.input.on('pointermove', this.doDrag, this);
         this.scene.input.on('pointerup', this.stopDrag, this);
     }
 
+    /**
+     * Drag the joystick
+     * @param pointer
+     */
     VirtualJoystick.prototype.doDrag = function(pointer){
         var posX = pointer.x;
         var posY = pointer.y;
 
-        var mod = Math.sqrt((posX - this.initPos[0]) * (posX - this.initPos[0]) + (posY - this.initPos[1]) * (posY - this.initPos[1]))
+        var mod = Math.sqrt((posX - this.vjoystick.initPos[0]) * (posX - this.vjoystick.initPos[0]) + (posY - this.vjoystick.initPos[1]) * (posY - this.vjoystick.initPos[1]))
 
-        if(mod > this.maxDisplacement){
-            posX = (((pointer.x - this.initPos[0]) / mod) * this.maxDisplacement) + this.initPos[0];
-            posY = (((pointer.y - this.initPos[1]) / mod) * this.maxDisplacement) + this.initPos[1];
+        if(mod > this.vjoystick.maxDistance){
+            posX = (((pointer.x - this.vjoystick.initPos[0]) / mod) * this.vjoystick.maxDistance) + this.vjoystick.initPos[0];
+            posY = (((pointer.y - this.vjoystick.initPos[1]) / mod) * this.vjoystick.maxDistance) + this.vjoystick.initPos[1];
+            this.vjoystick.currentDistance = this.vjoystick.maxDistance;
         }
+        else{
+            this.vjoystick.currentDistance=mod;
+        }
+
+        this.joystickAngle();
 
         this.vjoystick.joystick.x = posX;
         this.vjoystick.joystick.y = posY;
     }
 
+    /**
+     * stop the joystick drag
+     * @param pointer
+     */
     VirtualJoystick.prototype.stopDrag = function(pointer){
-        this.vjoystick.joystick.x=this.initPos[0];
-        this.vjoystick.joystick.y=this.initPos[1];
+        this.vjoystick.joystick.x=this.vjoystick.initPos[0];
+        this.vjoystick.joystick.y=this.vjoystick.initPos[1];
+
+        this.vjoystick.currentDistance=0;
 
         this.vjoystick.joystick.setInteractive().on('pointerdown', this.startDrag,this);
         this.scene.input.off('pointermove', this.doDrag, this);
         this.scene.input.off('pointerup', this.stopDrag, this);
+    }
+
+    /**
+     * Calculate the joystick angle
+     */
+    VirtualJoystick.prototype.joystickAngle = function(){
+        var dx = this.vjoystick.joystick.x - this.vjoystick.initPos[0];
+        var dy = this.vjoystick.joystick.y - this.vjoystick.initPos[1];
+
+        var theta = Math.atan2(dy,dx); //range (-Pi, Pi]
+        theta *=180/Math.PI; //rads to degrees, range (-180, 180)
+        if(theta < 0) theta = 360 + theta // range [0, 360)
+        this.vjoystick.angle = theta;
+    }
+
+    /**
+     * Up input is activate
+     * @returns {boolean}
+     */
+    VirtualJoystick.prototype.isInputUp = function(){
+        //to be up, must be between 180 and 360 degrees
+        return ((this.vjoystick.currentDistance > this.vjoystick.offsetDistance) && (this.vjoystick.angle > 180 + this.vjoystick.offsetDegrees)
+            && (this.vjoystick.angle < 360 - this.vjoystick.offsetDegrees));
+    }
+
+    /**
+     * Down input is activate
+     * @returns {boolean}
+     */
+    VirtualJoystick.prototype.isInputDown = function(){
+        //to be down, must be between 0 and 180 degrees
+        return ((this.vjoystick.currentDistance > this.vjoystick.offsetDistance) && (this.vjoystick.angle > 0 + this.vjoystick.offsetDegrees)
+            && (this.vjoystick.angle < 180 - this.vjoystick.offsetDegrees));
+    }
+
+    /**
+     * Right input is activate
+     * @returns {boolean}
+     */
+    VirtualJoystick.prototype.isInputRight = function(){
+        //to be right, must be between 0 and 90 and between 270 and 360 degrees
+        return ((this.vjoystick.currentDistance > this.vjoystick.offsetDistance) && ((this.vjoystick.angle > 270 + this.vjoystick.offsetDegrees)
+            || (this.vjoystick.angle < 90 - this.vjoystick.offsetDegrees)));
+    }
+
+    /**
+     * Left input is activate
+     * @returns {boolean}
+     */
+    VirtualJoystick.prototype.isInputLeft = function(){
+        //to be left, must be between 90 and 270 degrees
+        return ((this.vjoystick.currentDistance > this.vjoystick.offsetDistance) && (this.vjoystick.angle > 90 + this.vjoystick.offsetDegrees)
+            && (this.vjoystick.angle < 270 - this.vjoystick.offsetDegrees));
     }
 
     ns.VirtualJoystick=VirtualJoystick;
