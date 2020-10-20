@@ -9,15 +9,22 @@
     function Keyboard(){
         candlegames.pestis.client.plugins.inputs.Controller.call(this);
 
-        this.scene=null;
+        this.keys = {
+            UP: "w",
+            LEFT:"a",
+            DOWN:"s",
+            RIGHT:"d",
+            ACTION1:"q",
+            ACTION2:"e"
+        }
 
         this.inputs={
-            up:null,
-            left:null,
-            down:null,
-            right:null,
-            action1:null,
-            action2:null
+            UP:false,
+            LEFT:false,
+            DOWN:false,
+            RIGHT:false,
+            ACTION1:false,
+            ACTION2:false
         }
     }
 
@@ -27,19 +34,61 @@
     Keyboard.prototype.init = function(scene){
         this.scene=scene;
 
-        this.inputs.up=scene.input.keyboard.addKey("W");
-        this.inputs.left = scene.input.keyboard.addKey("A");
-        this.inputs.down = scene.input.keyboard.addKey("S");
-        this.inputs.right = scene.input.keyboard.addKey("D");
-        this.inputs.action1 = scene.input.keyboard.addKey("Q");
-        this.inputs.action2 = scene.input.keyboard.addKey("E");
+        scene.input.keyboard.on('keydown', this.handleKeyDown, this);
+        scene.input.keyboard.on('keyup', this.handleKeyUp, this);
+    }
+
+    Keyboard.prototype.handleKeyDown = function(event){
+        switch (event.key){
+            case this.keys.UP:
+                this.inputs.UP = true;
+                break;
+            case this.keys.RIGHT:
+                this.inputs.RIGHT = true;
+                break;
+            case this.keys.DOWN:
+                this.inputs.DOWN = true;
+                break;
+            case this.keys.LEFT:
+                this.inputs.LEFT = true;
+                break;
+            case this.keys.ACTION1:
+                this.inputs.ACTION1 = true;
+                break;
+            case this.keys.ACTION2:
+                this.inputs.ACTION2 = true;
+                break;
+        }
+    }
+
+    Keyboard.prototype.handleKeyUp = function(event){
+        switch (event.key){
+            case this.keys.UP:
+                this.inputs.UP = false;
+                break;
+            case this.keys.RIGHT:
+                this.inputs.RIGHT = false;
+                break;
+            case this.keys.DOWN:
+                this.inputs.DOWN = false;
+                break;
+            case this.keys.LEFT:
+                this.inputs.LEFT = false;
+                break;
+            case this.keys.ACTION1:
+                this.inputs.ACTION1 = false;
+                break;
+            case this.keys.ACTION2:
+                this.inputs.ACTION2 = false;
+                break;
+        }
     }
 
     /**
      * Change the default inputs keys
      * @param inputs
      */
-    Keyboard.prototype.updateInputs = function(inputs){
+    Keyboard.prototype.updateKeys = function(inputs){
         this.inputs = _.assign(this.inputs, inputs);
     }
 
@@ -48,7 +97,7 @@
      * @returns {boolean}
      */
     Keyboard.prototype.isInputUp = function(){
-        return this.inputs.up.isDown;
+        return this.inputs.UP;
     }
 
     /**
@@ -56,7 +105,7 @@
      * @returns {boolean}
      */
     Keyboard.prototype.isInputLeft = function(){
-        return this.inputs.left.isDown;
+        return this.inputs.LEFT;
     }
 
     /**
@@ -64,7 +113,7 @@
      * @returns {boolean}
      */
     Keyboard.prototype.isInputDown = function(){
-        return this.inputs.down.isDown;
+        return this.inputs.DOWN;
     }
 
     /**
@@ -72,7 +121,7 @@
      * @returns {boolean}
      */
     Keyboard.prototype.isInputRight = function(){
-        return this.inputs.right.isDown;
+        return this.inputs.RIGHT;
     }
 
     /**
@@ -80,7 +129,7 @@
      * @returns {boolean}
      */
     Keyboard.prototype.isInputAction1 = function(){
-        return this.inputs.action1.isDown;
+        return this.inputs.ACTION1;
     }
 
     /**
@@ -88,7 +137,7 @@
      * @returns {boolean}
      */
     Keyboard.prototype.isInputAction2 = function(){
-        return this.inputs.action2.isDown;
+        return this.inputs.ACTION2;
     }
 
     ns.Keyboard=Keyboard;

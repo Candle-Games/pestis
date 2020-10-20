@@ -6,13 +6,12 @@
      * @constructor
      */
     function VirtualJoystick(){
-        candlegames.pestis.client.plugins.inputs.Controller.call(this)
-        this.scene = null;
+        candlegames.pestis.client.plugins.inputs.Controller.call(this);
 
         this.vjoystick={
             base:null,
             joystick:null,
-            initPos: [0,0],
+            initPos: [200,200],
             angle: 0,
             currentDistance: 0,
             maxDistance: 0,
@@ -20,8 +19,16 @@
             offsetDegrees: 35
         };
 
-        this.buttonAction1=null;
-        this.buttonAction2=null;
+        this.buttonAction1= {
+            sprite: null,
+            initPos: [400,500],
+            isActive: false
+        };
+        this.buttonAction2= {
+            sprite: null,
+            initPos: [700,500],
+            isActive: false
+        };
 
     }
 
@@ -30,7 +37,6 @@
 
     VirtualJoystick.prototype.init = function(scene){
         this.scene = scene;
-        this.vjoystick.initPos = [200,200];
         this.vjoystick.base = scene.add.sprite(this.vjoystick.initPos[0],this.vjoystick.initPos[1],'joystick-base');
         this.vjoystick.base.anchor = [0.5,0.5];
         this.vjoystick.maxDistance = this.vjoystick.base.width *0.5;
@@ -45,7 +51,54 @@
         this.vjoystick.joystick.setInteractive().on('pointerdown', this.startDrag,this);
         this.scene.input.off('pointermove', this.doDrag, this);
         this.scene.input.off('pointerup', this.stopDrag, this);
+
+        this.buttonAction1.sprite = scene.add.sprite(this.buttonAction1.initPos[0], this.buttonAction1.initPos[1], 'joystick-base');
+        this.buttonAction1.sprite.setInteractive().on('pointerdown', this.pressInputAction1, this);
+        this.buttonAction2.sprite = scene.add.sprite(this.buttonAction2.initPos[0], this.buttonAction2.initPos[1], 'joystick-base');
+        this.buttonAction2.sprite.setInteractive().on('pointerdown', this.pressInputAction2, this);
+
     }
+
+    /**
+     * Action1 isActive is true
+     */
+    VirtualJoystick.prototype.pressInputAction1 = function (){
+        this.buttonAction1.isActive = true;
+        this.buttonAction1.sprite.tint = 0xB1958F
+        this.buttonAction1.sprite.setInteractive().off('pointerdown', this.pressInputAction1, this);
+        this.buttonAction1.sprite.setInteractive().on('pointerup', this.upInputAction1, this);
+    }
+
+    /**
+     * Action1 isActive is false
+     */
+    VirtualJoystick.prototype.upInputAction1 = function (){
+        this.buttonAction1.isActive = false;
+        this.buttonAction1.sprite.clearTint();
+        this.buttonAction1.sprite.setInteractive().on('pointerdown', this.pressInputAction1, this);
+        this.buttonAction1.sprite.setInteractive().off('pointerup', this.upInputAction1, this);
+    }
+
+    /**
+     * Action2 isActive is true
+     */
+    VirtualJoystick.prototype.pressInputAction2 = function (){
+        this.buttonAction2.isActive = true;
+        this.buttonAction2.sprite.tint = 0xB1958F
+        this.buttonAction2.sprite.setInteractive().off('pointerdown', this.pressInputAction2, this);
+        this.buttonAction2.sprite.setInteractive().on('pointerup', this.upInputAction2, this);
+    }
+
+    /**
+     * Action2 isActive is false
+     */
+    VirtualJoystick.prototype.upInputAction2 = function (){
+        this.buttonAction2.isActive = false;
+        this.buttonAction2.sprite.clearTint();
+        this.buttonAction2.sprite.setInteractive().on('pointerdown', this.pressInputAction2, this);
+        this.buttonAction2.sprite.setInteractive().off('pointerup', this.upInputAction2, this);
+    }
+
 
     /**
      * init the joystick drag
@@ -148,6 +201,14 @@
         //to be left, must be between 90 and 270 degrees
         return ((this.vjoystick.currentDistance > this.vjoystick.offsetDistance) && (this.vjoystick.angle > 90 + this.vjoystick.offsetDegrees)
             && (this.vjoystick.angle < 270 - this.vjoystick.offsetDegrees));
+    }
+
+    VirtualJoystick.prototype.isInputAction1 = function(){
+        return this.buttonAction1.isActive;
+    }
+
+    VirtualJoystick.prototype.isInputAction2 = function(){
+        return this.buttonAction2.isActive;
     }
 
     ns.VirtualJoystick=VirtualJoystick;

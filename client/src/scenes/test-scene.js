@@ -12,34 +12,23 @@
     TestScene.prototype=Object.create(Phaser.Scene.prototype);
     TestScene.prototype.constructor=TestScene;
 
-    var text1;
-    var text2;
-
     TestScene.prototype.preload=function() {
     };
 
     TestScene.prototype.create=function(){
-        this.inputmanager.selectController('virtualjoystick');
+        this.inputmanager.selectController('keyboard');
         text1=this.add.text(0,0,"", 'Luckiest Guy');
         text2=this.add.text(100,0,"", 'Luckiest Guy');
+
+        // Registers listening for game state
+        this.comms.on('gamestate', function(data) {
+            //console.log('Input received ' + (data.server ? '[server] ' : '[local] ')  + ("0000000000000000" + data.data.toString(2)).substr(-16));
+            console.log('Gamestate received ' + (data.server ? '[server] ' : '[local] ')  + data.data);
+        }, this);
     }
 
     TestScene.prototype.update = function(){
-        if(this.inputmanager.controller.isInputUp()){
-            text1.setText("UP");
-        }else if(this.inputmanager.controller.isInputDown()){
-            text1.setText("DOWN");
-        }else{
-            text1.setText("");
-        }
-
-        if(this.inputmanager.controller.isInputRight()){
-            text2.setText("RIGHT");
-        }else if(this.inputmanager.controller.isInputLeft()){
-            text2.setText("LEFT");
-        }else{
-            text2.setText("");
-        }
+        this.inputmanager.controller.updateInputs();
     }
 
 
