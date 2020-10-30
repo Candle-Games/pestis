@@ -53,10 +53,21 @@
                 { id: 'back-menu', label: 'Back'}
             ]
         });
-        
+
+        this.events.on('menuselected', this.handleMenu, this);
     }
 
-
+    Lobby.prototype.handleMenu = function(optionSelected){
+        if(optionSelected._menuConfig.disabled) return;
+        switch (optionSelected.name){
+            case "start-game":
+                break;
+            case "back-menu":
+                this.comms.emit('leave game');
+                this.scene.start('MainMenu');
+                break;
+        }
+    }
 
     ns.Lobby = Lobby
 })(candlegamestools.namespace('candlegames.pestis.client.scenes'))

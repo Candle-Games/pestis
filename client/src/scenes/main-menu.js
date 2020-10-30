@@ -140,8 +140,7 @@
     switch(optionSelected.name){
       case "new-game":
         this.comms.emit('new game');
-        game.scene.stop('MainMenu');
-        game.scene.start('Lobby');
+        this.scene.start('Lobby');
         break;
       case "join-game":
         var keyRoom = prompt('Enter the Key Room');

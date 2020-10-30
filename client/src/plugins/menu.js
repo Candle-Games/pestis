@@ -7,6 +7,8 @@
   function Menu(scene) {
     Phaser.Scenes.ScenePlugin.call(this, scene);
 
+    scene.events.on('destroy', this.destroyScene, this);
+
     /**
      * Selected option
      * @type {Phaser.GameObjects.Text}
@@ -48,6 +50,14 @@
   Menu.prototype = Object.create(Phaser.Scenes.ScenePlugin.prototype);
   Menu.prototype.constructor = Menu;
 
+  Menu.prototype.destroyScene = function(){
+    console.log("destroy menu");
+    this.optionsGroup.destroy();
+    this.optionsContainer.destroy();
+    this.scene.input.removeAllListeners();
+    this.selectedOption = undefined;
+  }
+
   /**
    * Show a menu in current scene...
    * @param config Configuration object... {
@@ -77,6 +87,7 @@
   Menu.prototype.show = function(config) {
     this.config = _.assign(this.config, config);
 
+    this.selectedOption=undefined;
     this.drawMenu();
     this.setupMenu();
   }
