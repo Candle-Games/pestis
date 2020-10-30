@@ -16,7 +16,7 @@
     };
 
     TestScene.prototype.create=function(){
-        this.inputmanager.selectController('keyboard');
+        this.inputmanager.selectController('virtualjoystick');
         text1=this.add.text(0,0,"", 'Luckiest Guy');
         text2=this.add.text(100,0,"", 'Luckiest Guy');
 
