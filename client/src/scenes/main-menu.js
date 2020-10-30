@@ -24,7 +24,8 @@
   MainMenu.prototype = Object.create(Phaser.Scene.prototype);
   MainMenu.prototype.constructor = MainMenu;
 
-  MainMenu.prototype.preload = function() {}
+  MainMenu.prototype.preload = function() {
+  }
 
   MainMenu.prototype.create = function() {
     this.menu.show({
@@ -42,14 +43,14 @@
         option.setStyle(action==='select' ? { color: '#ffcda4'} : {color: '#fc7f03'});
       },
       options: [
-        { id: 'menu1', label: 'Texto menu 1',
+        { id: 'new-game', label: 'New Game',
           effect: function(option, action) {
             option.setStyle(action==='select' ? { color: '#fffe77'} : {color: '#fc7f03'});
           },
         },
-        { id: 'menu2', label: 'Texto menu 2', disabled: true },
-        { id: 'menu3', label: 'Texto menu 3' },
-        { id: 'menu4', label: 'Texto menu 4' },
+        { id: 'continue-game', label: 'Continue Game', disabled: true },
+        { id: 'join-game', label: 'Join Game' },
+        { id: 'contact', label: 'Contact' },
       ]
     });
 
@@ -63,6 +64,17 @@
       // console.log('Input received ' + (data.server ? '[server] ' : '[local] ')  + ("0000000000000000" + data.data.toString(2)).substr(-16));
       console.log('Gamestate received ' + (data.server ? '[server] ' : '[local] ')  + data.data);
     }, this);
+
+    this.comms.on('join success', function(data){
+      console.log("join success");
+      game.scene.stop('MainMenu');
+      game.scene.start('Lobby');
+    });
+
+    this.comms.on('join failed', function(data) {
+      alert("Failed to join the room");
+    })
+
   }
 
   MainMenu.prototype.handleKeyDown = function(event) {
@@ -125,6 +137,17 @@
 
   MainMenu.prototype.handleMenu = function(optionSelected) {
     if(optionSelected._menuConfig.disabled) return;
+    switch(optionSelected.name){
+      case "new-game":
+        this.comms.emit('new game');
+        game.scene.stop('MainMenu');
+        game.scene.start('Lobby');
+        break;
+      case "join-game":
+        var keyRoom = prompt('Enter the Key Room');
+        this.comms.emit('join game', { key:keyRoom });
+        break;
+    }
     console.log(optionSelected.name + ' selected!!');
   }
 

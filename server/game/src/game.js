@@ -18,6 +18,7 @@ const config = {
   }
 };
 
+
 function preload() {
   // Tiles image preload
   console.log('Loading: ' + candlegamestools.resource('maps/tilesets/platformPack_tilesheet.png'));
