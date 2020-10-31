@@ -54,7 +54,6 @@
     console.log("destroy menu");
     this.optionsGroup.destroy();
     this.optionsContainer.destroy();
-    this.scene.input.removeAllListeners();
     this.selectedOption = undefined;
   }
 
@@ -86,7 +85,6 @@
    */
   Menu.prototype.show = function(config) {
     this.config = _.assign(this.config, config);
-
     this.selectedOption=undefined;
     this.drawMenu();
     this.setupMenu();

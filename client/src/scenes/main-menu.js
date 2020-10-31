@@ -24,8 +24,7 @@
   MainMenu.prototype = Object.create(Phaser.Scene.prototype);
   MainMenu.prototype.constructor = MainMenu;
 
-  MainMenu.prototype.preload = function() {
-  }
+  MainMenu.prototype.preload = function() {}
 
   MainMenu.prototype.create = function() {
     this.menu.show({
@@ -54,6 +53,7 @@
       ]
     });
 
+    this.events.off('menuselected', this.handleMenu, this);
     this.events.on('menuselected', this.handleMenu, this);
 
     this.input.keyboard.on('keydown', this.handleKeyDown, this);
@@ -67,11 +67,18 @@
 
     this.comms.on('join success', function(data){
       console.log("join success");
-      game.scene.stop('MainMenu');
-      game.scene.start('Lobby');
+      game.scene.stop("MainMenu")
+      game.scene.start('Lobby', data);
     });
 
-    this.comms.on('join failed', function(data) {
+    this.comms.on('new game created', function(data){
+      console.log("new game created");
+      console.log(data);
+      game.scene.stop('MainMenu');
+      game.scene.start('Lobby',data);
+    })
+
+    this.comms.on('join failed', function() {
       alert("Failed to join the room");
     })
 
@@ -140,14 +147,12 @@
     switch(optionSelected.name){
       case "new-game":
         this.comms.emit('new game');
-        this.scene.start('Lobby');
         break;
       case "join-game":
         var keyRoom = prompt('Enter the Key Room');
         this.comms.emit('join game', { key:keyRoom });
         break;
     }
-    console.log(optionSelected.name + ' selected!!');
   }
 
   ns.MainMenu = MainMenu;

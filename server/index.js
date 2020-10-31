@@ -74,15 +74,14 @@ io.on('connection', (socket) => {
     var key = createKey();
     players[socket.id].keyRoom=key;
     games[key]= {players: [players[socket.id]] };
-  })
 
-  socket.on('need key', function (){
-    console.log("received Need Key");
-    socket.emit("take the key", players[socket.id].keyRoom)
+    socket.emit("new game created", {keyRoom: key} );
   })
 
   socket.on('leave game', function(){
+    console.log("received Leave Game");
     var keyRoom = players[socket.id].keyRoom;
+    players[socket.id].keyRoom=undefined;
     if(games[keyRoom].players.length === 1){
       delete games.keyRoom;
     }
@@ -100,11 +99,11 @@ io.on('connection', (socket) => {
 
     if(games[parserKeyRoom]){
       console.log("game exist")
-      if(games[parserKeyRoom].players.length ==1){
+      if(games[parserKeyRoom].players.length === 1){
         games[parserKeyRoom].players.push(players[socket.id]);
         players[socket.id].keyRoom=parserKeyRoom;
         console.log("included in game")
-        socket.emit("join success", parserKeyRoom);
+        socket.emit("join success", {keyRoom:parserKeyRoom});
       }else{
         socket.emit("join failed");
       }

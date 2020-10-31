@@ -18,17 +18,15 @@
     Lobby.prototype.constructor = Lobby;
 
     Lobby.prototype.preload = function(){};
+    Lobby.prototype.init = function(data){
+        console.log(data.data)
+        this.keyRoom=data.data.keyRoom
+        var style = {font:'50px Oswald', fill: '#a7a6a0', align: 'center'}
+        var textKeyRoom = this.add.text(20,this.game.canvas.height*3/4 ,"ROOM: \" "+ this.keyRoom + " \"", style)
+        textKeyRoom.anchor = [0,1];
+    }
 
     Lobby.prototype.create = function(){
-        this.comms.emit('need key');
-        var style = {font:'50px Oswald', fill: '#a7a6a0', align: 'center'}
-        var textKeyRoom = this.add.text(20,this.game.canvas.height*3/4 ,this.keyRoom, style)
-        textKeyRoom.anchor = [0,1];
-
-        this.comms.on("take the key", function(key){
-            this.keyRoom=key.data;
-            textKeyRoom.setText("Key Room: \" " + this.keyRoom +" \"");
-        })
 
         this.menu.show({
             x: this.game.canvas.width - 20,
@@ -54,6 +52,7 @@
             ]
         });
 
+        this.events.off('menuselected', this.handleMenu, this);
         this.events.on('menuselected', this.handleMenu, this);
     }
 
@@ -64,7 +63,8 @@
                 break;
             case "back-menu":
                 this.comms.emit('leave game');
-                this.scene.start('MainMenu');
+                game.scene.stop('Lobby');
+                game.scene.start('MainMenu');
                 break;
         }
     }
