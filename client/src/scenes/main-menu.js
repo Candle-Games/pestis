@@ -60,17 +60,20 @@
     this.input.keyboard.on('keyup', this.handleKeyUp, this);
 
     // Registers listening for game state
+    this.comms.off('gamestate');
     this.comms.on('gamestate', function(data) {
       // console.log('Input received ' + (data.server ? '[server] ' : '[local] ')  + ("0000000000000000" + data.data.toString(2)).substr(-16));
       console.log('Gamestate received ' + (data.server ? '[server] ' : '[local] ')  + data.data);
     }, this);
 
+    this.comms.off('join success');
     this.comms.on('join success', function(data){
       console.log("join success");
       game.scene.stop("MainMenu")
       game.scene.start('Lobby', data);
     });
 
+    this.comms.off('new game created');
     this.comms.on('new game created', function(data){
       console.log("new game created");
       console.log(data);
@@ -78,6 +81,7 @@
       game.scene.start('Lobby',data);
     })
 
+    this.comms.off('join failed');
     this.comms.on('join failed', function() {
       alert("Failed to join the room");
     })
