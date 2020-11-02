@@ -57,6 +57,8 @@ io.on('connection', (socket) => {
     console.log('player disconnected')
     if(players[socket.id].keyRoom){
       var keyRoom =players[socket.id].keyRoom;
+      socket.leave(keyRoom);
+      socket.to(keyRoom).emit('player leaved');
       if(games[keyRoom].players.length === 1){
         delete games.keyRoom;
       }
@@ -74,6 +76,7 @@ io.on('connection', (socket) => {
     var key = createKey();
     players[socket.id].keyRoom=key;
     games[key]= {players: [players[socket.id]] };
+    socket.join(key);
 
     socket.emit("new game created", {keyRoom: key} );
   })
@@ -81,15 +84,20 @@ io.on('connection', (socket) => {
   socket.on('leave game', function(){
     console.log("received Leave Game");
     var keyRoom = players[socket.id].keyRoom;
+    socket.leave(keyRoom);
     players[socket.id].keyRoom=undefined;
     if(games[keyRoom].players.length === 1){
       delete games.keyRoom;
     }
-    else if (games[keyRoom].players[0].id === socket.id){
-      games[keyRoom].players.shift();
-    }else{
-      games[keyRoom].players.pop();
+    else{
+      if (games[keyRoom].players[0].id === socket.id){
+        games[keyRoom].players.shift();
+      }else{
+        games[keyRoom].players.pop();
+      }
+      socket.to(keyRoom).emit('player leaved');
     }
+
   })
 
   socket.on('join game', function(data){
@@ -100,6 +108,8 @@ io.on('connection', (socket) => {
     if(games[parserKeyRoom]){
       console.log("game exist")
       if(games[parserKeyRoom].players.length === 1){
+        socket.to(parserKeyRoom).emit("player joined");
+        socket.join(parserKeyRoom);
         games[parserKeyRoom].players.push(players[socket.id]);
         players[socket.id].keyRoom=parserKeyRoom;
         console.log("included in game")
@@ -111,6 +121,13 @@ io.on('connection', (socket) => {
       socket.emit("join failed");
     }
 
+  })
+
+  socket.on('start game', function(){
+    console.log("Received start game");
+    var keyRoom = players[socket.id].keyRoom;
+    console.log(keyRoom);
+    socket.to(keyRoom).emit("game started");
   })
 })
 

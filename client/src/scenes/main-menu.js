@@ -69,16 +69,19 @@
     this.comms.off('join success');
     this.comms.on('join success', function(data){
       console.log("join success");
+      var info = {keyRoom: data.data.keyRoom, host: false}
       game.scene.stop("MainMenu")
-      game.scene.start('Lobby', data);
+      game.scene.start('Lobby', info);
     });
 
     this.comms.off('new game created');
     this.comms.on('new game created', function(data){
       console.log("new game created");
+      var info = {keyRoom: data.data.keyRoom, host: true}
+      console.log(info);
       console.log(data);
       game.scene.stop('MainMenu');
-      game.scene.start('Lobby',data);
+      game.scene.start('Lobby',info);
     })
 
     this.comms.off('join failed');
