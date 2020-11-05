@@ -21,6 +21,7 @@
     this.load.googlefont('Oswald');
     this.load.googlefont('Frijole');
     this.load.googlefont('Luckiest Guy');
+    
   }
 
   Loader.prototype.onLoadComplete = function(value) {
