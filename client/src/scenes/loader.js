@@ -21,7 +21,11 @@
     this.load.googlefont('Oswald');
     this.load.googlefont('Frijole');
     this.load.googlefont('Luckiest Guy');
-    
+
+    this.load.audio('InitChase', 'resources/music/run-or-die-init.mp3');
+    this.load.audio('LoopChase', 'resources/music/run-or-die-loop.mp3');
+    this.load.audio('EndChase', 'resources/music/run-or-die-end.mp3');
+
   }
 
   Loader.prototype.onLoadComplete = function(value) {
