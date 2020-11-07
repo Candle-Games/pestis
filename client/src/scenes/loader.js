@@ -22,10 +22,10 @@
     this.load.googlefont('Frijole');
     this.load.googlefont('Luckiest Guy');
 
-    this.load.audio('InitChase', 'resources/music/run-or-die-init.mp3');
-    this.load.audio('LoopChase', 'resources/music/run-or-die-loop.mp3');
-    this.load.audio('EndChase', 'resources/music/run-or-die-end.mp3');
-
+    this.load.audio('Run1', 'resources/music/run-or-die-1.ogg');
+    this.load.audio('Run2', 'resources/music/run-or-die-2.ogg');
+    this.load.audio('Run3', 'resources/music/run-or-die-3.ogg');
+    this.load.audio('Run3', 'resources/music/run-or-die-3.ogg');
   }
 
   Loader.prototype.onLoadComplete = function(value) {

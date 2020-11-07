@@ -27,7 +27,8 @@
   MainMenu.prototype.preload = function() {}
 
   MainMenu.prototype.create = function() {
-    this.music.chase();
+    this.music.init();
+    this.music.startChase();
     this.menu.show({
       x: this.game.canvas.width / 2,
       y: this.game.canvas.height / 2,
