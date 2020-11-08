@@ -27,8 +27,8 @@
   MainMenu.prototype.preload = function() {}
 
   MainMenu.prototype.create = function() {
-    this.music.init();
-    this.music.startChase();
+    this.music.init('BlackPlague');
+    this.music.playSoundEffect('RunOrDie1');
     this.menu.show({
       x: this.game.canvas.width / 2,
       y: this.game.canvas.height / 2,
@@ -128,7 +128,13 @@
   MainMenu.prototype.handleMenu = function(optionSelected) {
     if(optionSelected._menuConfig.disabled) return;
     console.log(optionSelected.name + ' selected!!');
-    this.music.finishChaseMusic();
+    if(optionSelected.name ==='menu1'){
+      this.music.startChase();
+    }
+    else{
+      this.music.playSoundEffect('RunOrDie2');
+      this.music.finishChaseMusic();
+    }
   }
 
   ns.MainMenu = MainMenu;
