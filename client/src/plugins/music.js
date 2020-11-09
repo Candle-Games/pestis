@@ -33,6 +33,7 @@
     MusicSystem.prototype.constructor = MusicSystem;
 
     MusicSystem.prototype.init = function (backgroundMusic){
+        console.log(this.scene);
         this.finishChase=false;
 
         this.counterLoop3=0;
@@ -102,7 +103,7 @@
 
     MusicSystem.prototype.startChase = function(){
         if(this.backgroundMusic){
-            this.backgroundMusic.pause();
+            this.backgroundMusic.stop();
         }
         this.chaseMusic.loop1.play();
     }
@@ -248,7 +249,7 @@
     function transitionFinish(){
         this.finishChase=false;
         if(this.backgroundMusic){
-            this.backgroundMusic.resume();
+            this.backgroundMusic.play();
         }
     }
 
