@@ -1,0 +1,19 @@
+{
+  "keyboard": {
+    "UP": "w",
+    "LEFT": "a",
+    "DOWN": "s",
+    "RIGHT": "d",
+    "ACTION1": "q",
+    "ACTION2": "e"
+  },
+  "music": {
+    "status": 1,
+    "volume": 1
+  },
+  "effects": {
+    "status": 1,
+    "volume": 1
+  },
+  "language": "es"
+}

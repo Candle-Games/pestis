@@ -1,5 +1,3 @@
-/*global Phaser*/
-
 (function(ns){
 
     /**
@@ -9,6 +7,12 @@
     function Keyboard(){
         candlegames.pestis.client.plugins.inputs.Controller.call(this);
 
+        this.type = 'keyboard';
+
+        /**
+         * Current keys configuration
+         * @type {{ACTION1: string, DOWN: string, LEFT: string, ACTION2: string, RIGHT: string, UP: string}}
+         */
         this.keys = {
             UP: "w",
             LEFT:"a",
@@ -18,7 +22,11 @@
             ACTION2:"e"
         }
 
-        this.inputs={
+        /**
+         * Actual inputs pressed
+         * @type {{ACTION1: boolean, DOWN: boolean, LEFT: boolean, ACTION2: boolean, RIGHT: boolean, UP: boolean}}
+         */
+        this.inputs = {
             UP:false,
             LEFT:false,
             DOWN:false,
@@ -86,10 +94,10 @@
 
     /**
      * Change the default inputs keys
-     * @param inputs
+     * @param config {Object} Keys configuration object
      */
-    Keyboard.prototype.updateKeys = function(inputs){
-        this.inputs = _.assign(this.inputs, inputs);
+    Keyboard.prototype.updateKeys = function(config){
+        this.keys = _.assign(this.keys, config);
     }
 
     /**

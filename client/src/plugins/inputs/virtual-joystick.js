@@ -8,6 +8,8 @@
     function VirtualJoystick(){
         candlegames.pestis.client.plugins.inputs.Controller.call(this);
 
+        this.type = 'virtualjoystick';
+
         this.vjoystick={
             base:null,
             joystick:null,

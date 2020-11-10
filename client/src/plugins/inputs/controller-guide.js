@@ -28,10 +28,10 @@
         }
     }
 
-    Controller.prototype.updateInputs = function(){
+    Controller.prototype.updateInputs = function() {
         var keymapvalue = this.keymapvalue;
 
-        if(this.isInputUp()){
+        if(this.isInputUp()) {
             keymapvalue |= (1 << this.keymap.UP);
         }else{
             keymapvalue &= ~(1 << this.keymap.UP);
