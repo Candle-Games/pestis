@@ -24,11 +24,12 @@
   MainMenu.prototype = Object.create(Phaser.Scene.prototype);
   MainMenu.prototype.constructor = MainMenu;
 
-  MainMenu.prototype.preload = function() {}
+  MainMenu.prototype.preload = function() {
+    this.music.loadMusic();
+  }
 
   MainMenu.prototype.create = function() {
-    this.music.init('BlackPlague');
-
+    this.music.init();
     this.menu.show({
       x: this.game.canvas.width / 2,
       y: this.game.canvas.height / 2,

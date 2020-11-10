@@ -17,6 +17,7 @@
   Boot.prototype.preload = function() {
     this.events.on('destroy', this.destroy.bind(this));
     this.load.image('logo', 'resources/images/candle-games-logo.jpeg');
+    this.load.json('music','resources/music/music.json');
   }
 
   Boot.prototype.create = function() {

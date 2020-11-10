@@ -1,0 +1,56 @@
+{
+  "MainMenu_music":
+    {
+      "background": {
+        "id" : "BlackPlague",
+        "name": "the-black-plague",
+        "extension": "ogg"
+      },
+      "sounds": [
+        {
+          "id": "RunOrDie",
+          "name": "run-or-die-",
+          "extension": "ogg",
+          "loop": true,
+          "start": 0,
+          "end": 6,
+          "transition": {
+            "start": 2,
+            "end": 6
+          },
+          "loopInit": [
+            1,
+            2
+          ],
+          "loopOrder": [
+            3,
+            4,
+            5,
+            6,
+            5,
+            3,
+            4,
+            5,
+            6,
+            3,
+            5,
+            4,
+            6
+          ]
+        }
+      ]
+    },
+  "gameplay_music":
+    {
+      "background": {
+        "id" : "BlackPlague",
+        "name": "the-black-plague",
+        "extension": "ogg"
+        },
+      "sounds" : [
+        {
+
+        }
+      ]
+    }
+}

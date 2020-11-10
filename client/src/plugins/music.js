@@ -2,42 +2,86 @@
     function MusicSystem (scene, pluginManager){
         Phaser.Plugins.ScenePlugin.call(this, scene, pluginManager);
 
-        this.finishChase = undefined;
-
-        this.chaseMusic = {
-            init: undefined,
-            loop1: undefined,
-            loop2: undefined,
-            loop3: undefined,
-            loop4: undefined,
-            loop5: undefined,
-            loop6: undefined,
-            transition2: undefined,
-            transition3: undefined,
-            transition4: undefined,
-            transition5: undefined,
-            transition6: undefined
-        }
+        this.dataMusic = undefined;
 
         this.backgroundMusic = undefined;
-        this.soundEffect = undefined;
-
-        this.counterLoop3 = undefined;
-        this.counterLoop4 = undefined;
-        this.counterLoop5 = undefined;
-        this.counterLoop6 = undefined;
-
     }
 
     MusicSystem.prototype = Object.create(Phaser.Plugins.ScenePlugin.prototype);
     MusicSystem.prototype.constructor = MusicSystem;
 
-    /**
-     * Initialize the music plugin
-     * @param backgroundMusic
-     */
+    MusicSystem.prototype.loadMusic = function(){
+        console.log("Cargar Musica");
+        this.dataMusic = this.scene.cache.json.get('music');
+        if(this.dataMusic!==undefined){
+            let sceneMusic = this.dataMusic[this.scene.scene.key + '_music'];
+
+            if(sceneMusic !== undefined){
+                this.scene.load.audio(sceneMusic.background.id, 'resources/music/'+ sceneMusic.background.name +'.' + sceneMusic.background.extension);
+
+                for(let i=0;i<sceneMusic.sounds.length;i++){
+                    let currentSound=sceneMusic.sounds[i];
+                    if(currentSound.start !== undefined){
+                        for(let i=currentSound.start; i<=currentSound.end;i++){
+                            this.scene.load.audio(currentSound.id + '' + i, 'resources/music/'+currentSound.name + ''+ i +'.'+currentSound.extension);
+                        }
+                    }
+                    if(currentSound.transition !== undefined){
+                        for(i=currentSound.transition.start;i<=currentSound.transition.end;i++){
+                            this.scene.load.audio(currentSound.id + '' + i + '-transition', 'resources/music/'+currentSound.name + ''+ i + '-transition');
+                        }
+                    }
+
+                }
+            }
+
+        }
+    }
+
+    MusicSystem.prototype.init = function(){
+        if(this.dataMusic[this.scene.scene.key + '_music'] !==undefined){
+            this.backgroundMusic=this.scene.sound.add(this.dataMusic[this.scene.scene.key + '_music'].background.id);
+            if(this.backgroundMusic!==undefined){
+                this.backgroundMusic.loop=true;
+                this.backgroundMusic.play();
+                this.backgroundMusic.volume=0.2;
+            }
+        }
+    }
+
+    MusicSystem.prototype.playSound=function(sound){
+        let currentSound;
+        for(let i=0;i<this.dataMusic[this.scene.scene.key + '_music'].sounds.length;i++){
+            if(this.dataMusic[this.scene.scene.key + '_music'].sounds[i].id===sound){
+                currentSound=this.dataMusic[this.scene.scene.key + '_music'].sounds[i];
+                break;
+            }
+        }
+        if(currentSound!==undefined) {
+            if(!currentSound.loop){
+                this.scene.sound.add(currentSound.id).play();
+            }else{
+                if(currentSound.loopInit !== undefined){
+                    for(let i=0;i<currentSound.loopInit.length; i++){
+                        this.scene.sound.add(currentSound.id+""+currentSound.loopInit[i]);
+
+                    }
+                }
+            }
+        }
+
+    }
+
+    MusicSystem.prototype.playLoop = function(){
+
+    }
+
+    /*
+
     MusicSystem.prototype.init = function (backgroundMusic){
-        console.log(this.scene);
+        console.log(this.scene.scene.key);
+        var data = this.cache.json.get('music');
+        console.log(data);
         this.finishChase=false;
 
         this.counterLoop3=0;
@@ -93,26 +137,17 @@
         this.chaseMusic.transition6.off('complete');
         this.chaseMusic.transition6.on('complete', transitionFinish, this);
 
-    }
-    /**
-     * Play a sound effect in the scene
-     * @param soundEffect
-     */
+
     MusicSystem.prototype.playSoundEffect = function (soundEffect){
         this.soundEffect = this.scene.sound.add(soundEffect);
         this.soundEffect.play();
     }
 
-    /**
-     * Stop the chase music
-     */
     MusicSystem.prototype.finishChaseMusic = function(){
         this.finishChase = true;
     }
 
-    /**
-     * Star the chase music
-     */
+
     MusicSystem.prototype.startChase = function(){
         if(this.backgroundMusic){
             this.backgroundMusic.stop();
@@ -264,6 +299,7 @@
             this.backgroundMusic.play();
         }
     }
+    */
 
     ns.MusicSystem=MusicSystem;
 })(candlegamestools.namespace('candlegames.pestis.client.plugins'))
