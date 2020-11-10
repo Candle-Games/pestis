@@ -68,6 +68,7 @@
   }
 
   LoadingProgressBar.prototype.hide = function(config) {
+    this.destroy();
   }
 
   LoadingProgressBar.prototype.onProgess = function(pct) {
@@ -80,6 +81,12 @@
   }
 
   LoadingProgressBar.prototype.onLoadComplete = function(value) {
+    this.updateBar(1);
+  }
+
+  LoadingProgressBar.prototype.destroy = function() {
+    if(this.background) { this.background.destroy(); }
+    if(this.pctbar) { this.pctbar.destroy(); }
   }
 
   ns.LoadingProgressBar = LoadingProgressBar;

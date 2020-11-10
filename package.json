@@ -14,8 +14,8 @@
     "socket.io": "^2.3.0"
   },
   "scripts": {
-    "start-server": "node --inspect server/index.js",
-    "start-client": "http-server client/"
+    "start-server": "node server/index.js",
+    "start-client": "http-server client/ --cors=http://localhost:9000/"
   },
   "devDependencies": {
     "http-server": "^0.12.3"

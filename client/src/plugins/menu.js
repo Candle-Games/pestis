@@ -4,8 +4,8 @@
    * @param scene
    * @constructor
    */
-  function Menu(scene) {
-    Phaser.Scenes.ScenePlugin.call(this, scene);
+  function Menu(scene, pluginManager) {
+    Phaser.Plugins.ScenePlugin.call(this, scene, pluginManager);
 
     /**
      * Selected option
@@ -45,7 +45,7 @@
     };
   }
 
-  Menu.prototype = Object.create(Phaser.Scenes.ScenePlugin.prototype);
+  Menu.prototype = Object.create(Phaser.Plugins.ScenePlugin.prototype);
   Menu.prototype.constructor = Menu;
 
   /**
@@ -181,7 +181,7 @@
    * @param gameObject
    */
   Menu.prototype.handleMouseDown = function(pointer, gameObject) {
-    this.scene.events.emit('menuselected', gameObject);
+    this.emitSelected(gameObject);
   }
 
   /**
@@ -203,9 +203,17 @@
         break;
       case 'Enter':
         if(!this.selectedOption) return;
-        this.scene.events.emit('menuselected', this.selectedOption);
+        thi.emitSelected(this.selectedOption);
         break;
     }
+  }
+
+  /**
+   * Emits selected menu event
+   * @param option
+   */
+  Menu.prototype.emitSelected = function(option) {
+    this.scene.events.emit('menuselected', option._menuConfig);
   }
 
   /**
