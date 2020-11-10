@@ -92,6 +92,8 @@
   MainMenu.prototype.handleMenu = function(optionSelected) {
     if(optionSelected.disabled) return;
     this.events.emit('menu-selected', optionSelected.id, optionSelected);
+
+    /*
     if(optionSelected._menuConfig.disabled) return;
     switch(optionSelected.name){
       case "new-game":
@@ -102,6 +104,7 @@
         this.comms.emit('join game', { key:keyRoom });
         break;
     }
+    */
   }
 
   ns.MainMenu = MainMenu;

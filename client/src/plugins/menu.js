@@ -52,8 +52,8 @@
 
   Menu.prototype.destroyScene = function(){
     console.log("destroy menu");
-    this.optionsGroup.destroy();
-    this.optionsContainer.destroy();
+    if(this.optionsGroup !== undefined) { this.optionsGroup.destroy(); }
+    if(this.optionsContainer !== undefined) { this.optionsContainer.destroy(); }
     this.selectedOption = undefined;
   }
 
