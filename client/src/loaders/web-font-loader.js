@@ -9,6 +9,7 @@
    */
   var GoogleFonts = function(loader, fontNames) {
     fontNames = Array.isArray(fontNames) ? fontNames : [ fontNames ];
+    fontLoadedCount = 0;
 
     var fileConfig = {
       type: 'webfont',
@@ -29,6 +30,8 @@
    */
   GoogleFonts.prototype.load = function() {
     var loaderConfig = {
+      active: this.onLoad.bind(this),
+      inactive: this.onError.bind(this),
       fontactive: this.fontActive.bind(this),
       fontinactive: this.fontInactive.bind(this),
       google: {
@@ -39,12 +42,24 @@
     WebFont.load(loaderConfig);
   };
 
-  GoogleFonts.prototype.fontActive = function(name) {
+  GoogleFonts.prototype.onLoad = function() {
+    console.log("Font successfully loaded");
     this.loader.nextFile(this, true);
   }
 
-  GoogleFonts.prototype.fontInactive = function(name) {
-    this.loader.nextFile(this, true);
+  GoogleFonts.prototype.onError = function() {
+    console.log("Font failed to load");
+    this.loader.nextFile(this, false);
+  }
+
+  GoogleFonts.prototype.fontActive = function(name, fvd) {
+    console.log("Font [" + name + "] loaded");
+    // this.loader.emit('webfontactive', this, name, fvd);
+  }
+
+  GoogleFonts.prototype.fontInactive = function(name, fvd) {
+    console.log("Font [" + name + "] failed to load");
+    // this.loader.emit('webfontinactive', this, name, fvd);
   }
 
   ns.WebFontLoader = GoogleFonts;

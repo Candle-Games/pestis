@@ -11,25 +11,59 @@
 
     <!-- GLOBAL LIBS -->
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3.24.1/dist/phaser.js"></script>
-    <script src="/libs/phaser-plugin-debug-draw.umd.js"></script>
+    <!-- This version has a bug loading multiple fonts
+      TODO: try https://github.com/bramstein/fontfaceobserver
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script>
+     -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.7/webfontloader.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sat/0.8.0/SAT.min.js"></script>
+    <script src="https://unpkg.com/xstate@4/dist/xstate.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/phaser@3.24.1/dist/phaser.js"></script> -->
+    <!-- CAMBIAR POR LA VERSION MINIFICADA PARA PRODUCCION -->
+    <script src="/libs/phaser.js"></script>
 
+    <!-- LOCAL LIBS -->
+    <script src="/libs/phaser-plugin-debug-draw.umd.js"></script>
 
     <!-- CUSTOM LIBS -->
     <script src="/src/utils/namespacing.js"></script>
 
-    <!-- GAME CODE -->
+    <!-- COMPONENTS and MIXINS -->
+    <script src="/src/gameobjects/components/state.js"></script>
+    <script src="/src/gameobjects/components/tiled-object.js"></script>
+    <script src="/src/gameobjects/components/animated.js"></script>
+    <script src="/src/gameobjects/components/walking-character.js"></script>
 
+    <script src="/src/scenes/components/state.js"></script>
+    <script src="/src/scenes/components/tiled-map.js"></script>
+    <script src="/src/scenes/components/game-camera.js"></script>
+    <script src="/src/plugins/components/game-engine-tilemap.js"></script>
+
+    <!-- GAME CODE -->
     <script src="/src/loaders/web-font-loader.js"></script>
     <script src="/src/plugins/loading-progress-bar.js"></script>
     <script src="/src/plugins/menu.js"></script>
     <script src="/src/plugins/comms.js"></script>
+    <script src="/src/plugins/game-engine.js"></script>
 
+    <!-- GAME OBJECTS -->
+    <script src="/src/gameobjects/server/character.js"></script>
+    <script src="/src/gameobjects/engine/base-tiled-object.js"></script>
+    <script src="/src/gameobjects/engine/hideout.js"></script>
+    <script src="/src/gameobjects/engine/ground.js"></script>
+    <script src="/src/gameobjects/engine/stairs-spot.js"></script>
+    <script src="/src/gameobjects/engine/stairs.js"></script>
+
+    <script src="/src/gameobjects/client/player-character.js"></script>
+    <script src="/src/gameobjects/client/lantern.js"></script>
+
+    <!-- SCENES -->
+    <script src="/src/scenes/base-scene.js"></script>
     <script src="/src/scenes/boot.js"></script>
     <script src="/src/scenes/loader.js"></script>
     <script src="/src/scenes/main-menu.js"></script>
+    <script src="/src/scenes/game.js"></script>
 
     <!-- STYLESHEETS -->
     <link rel="stylesheet" href="/css/index.css" />

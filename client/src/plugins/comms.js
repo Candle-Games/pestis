@@ -51,7 +51,7 @@
    */
   CommsSystem.prototype.start = function(server) {
     this.server = server || 'http://localhost:9000';
-    this.socket = io(this.server);
+    this.socket = io(this.server, { secure: true, reconnection: false });
 
     this.socket.on('connect', function() {
       console.log('Connection stablished, switching to online mode');
