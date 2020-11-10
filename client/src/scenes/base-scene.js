@@ -15,10 +15,10 @@
   BaseScene.prototype.create = function() {
     this.createStateMachine({
       id: 'Game Scene Manager',
-      initial: 'load',
+      initial: 'boot',
       states: {
-        load: {
-          entry: 'startLoading',
+        boot: {
+          entry: 'startBoot',
           on: {
             LOAD_FINISHED: 'main_menu',
           },
@@ -35,14 +35,14 @@
       }
     }, {
       actions: {
-        startLoading: this.startLoading.bind(this),
+        startBoot: this.startBoot.bind(this),
         startMainMenu: this.startMainMenu.bind(this),
         launchGame: this.launchGame.bind(this)
       }
     });
   }
 
-  BaseScene.prototype.startLoading = function() {
+  BaseScene.prototype.startBoot = function() {
     this.scene.launch('Boot');
     this.scene.get('Boot').events.on('loading-finished', function() {
       // We don't need boot scene anymore, destroy it
@@ -54,14 +54,14 @@
   BaseScene.prototype.startMainMenu = function() {
     this.scene.launch('MainMenu');
     this.scene.get('MainMenu').events.on('menu-selected', function(id) {
-      if(id==='game') {
+      if(id==='new-game') {
+        this.scene.stop('MainMenu');
         this.sendStateEvent('LAUNCH_GAME');
       }
     }, this);
   }
 
   BaseScene.prototype.launchGame = function() {
-    this.scene.stop('MainMenu');
     this.scene.launch('Game');
   }
 

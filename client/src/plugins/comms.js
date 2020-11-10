@@ -121,7 +121,7 @@
       this.socket.off(event, this._socketToEmitter(event));
     }
 
-    this.emitter.off(event, fn, context, once);
+    this.emitter.off(event, callback, context, once);
   }
 
   /**
