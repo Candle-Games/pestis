@@ -45,8 +45,8 @@
       },
       options: [
         { id: 'play-menu', label: 'Play Pestis' },
-        { id: 'contact', label: 'Contact' },
-        { id: 'configuration', label: 'Configuration' }
+        { id: 'configuration', label: 'Configuration' },
+        { id: 'contact', label: 'Credits' }
       ]
     });
 

@@ -68,6 +68,11 @@
     this.game_engine.init(this.map);
   }
 
+  Game.prototype.setupControls = function() {
+    this.inputmanager.selectController('keyboard');
+    this.inputmanager.updateKeyboardConfig(this.config.configuration.keyboard);
+  }
+
   Game.prototype.updateScene = function(update) {
     if(!update.data) return;
 
@@ -134,80 +139,7 @@
   }
 
   Game.prototype.update = function(time, delta) {
-  }
-
-  Game.prototype.setupControls = function() {
-    this.keymapvalue = 0;
-
-    this.keymap = {
-      UP:       0,
-      DOWN:     1,
-      LEFT:     2,
-      RIGHT:    3,
-      ACTION1:  4,
-      ACTION2:  5
-    };
-
-    this.input.keyboard.on('keydown', this.handleKeyDown, this);
-    this.input.keyboard.on('keyup', this.handleKeyUp, this);
-  }
-
-  Game.prototype.handleKeyDown = function(event) {
-    var keymapvalue = this.keymapvalue;
-    switch(event.keyCode) {
-      case Phaser.Input.Keyboard.KeyCodes.W:
-        keymapvalue |= (1 << this.keymap.UP);
-        break;
-      case Phaser.Input.Keyboard.KeyCodes.S:
-        keymapvalue |= (1 << this.keymap.DOWN);
-        break;
-      case Phaser.Input.Keyboard.KeyCodes.A:
-        keymapvalue |= (1 << this.keymap.LEFT);
-        break;
-      case Phaser.Input.Keyboard.KeyCodes.D:
-        keymapvalue |= (1 << this.keymap.RIGHT);
-        break;
-      case Phaser.Input.Keyboard.KeyCodes.COMMA:
-        keymapvalue |= (1 << this.keymap.ACTION1);
-        break;
-      case Phaser.Input.Keyboard.KeyCodes.PERIOD:
-        keymapvalue |= (1 << this.keymap.ACTION2);
-        break;
-    }
-    this.sendInput(keymapvalue);
-  }
-
-  Game.prototype.handleKeyUp = function(event) {
-    var keymapvalue = this.keymapvalue;
-    switch(event.keyCode) {
-      case Phaser.Input.Keyboard.KeyCodes.W:
-        keymapvalue &= ~(1 << this.keymap.UP);
-        break;
-      case Phaser.Input.Keyboard.KeyCodes.S:
-        keymapvalue &= ~(1 << this.keymap.DOWN);
-        break;
-      case Phaser.Input.Keyboard.KeyCodes.A:
-        keymapvalue &= ~(1 << this.keymap.LEFT);
-        break;
-      case Phaser.Input.Keyboard.KeyCodes.D:
-        keymapvalue &= ~(1 << this.keymap.RIGHT);
-        break;
-      case Phaser.Input.Keyboard.KeyCodes.COMMA:
-        keymapvalue &= ~(1 << this.keymap.ACTION1);
-        break;
-      case Phaser.Input.Keyboard.KeyCodes.PERIOD:
-        keymapvalue &= ~(1 << this.keymap.ACTION2);
-        break;
-    }
-    this.sendInput(keymapvalue);
-  }
-
-  Game.prototype.sendInput = function(keymapvalue) {
-    if(this.keymapvalue != keymapvalue) {
-      // Sends input to comms system
-      this.comms.emit('input', keymapvalue);
-      this.keymapvalue = keymapvalue;
-    }
+    this.inputmanager.updateInputs();
   }
 
   ns.Game = Game;

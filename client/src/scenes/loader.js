@@ -36,6 +36,9 @@
     this.load.audio('RunOrDieTransition6', 'resources/music/run-or-die-transition-6.ogg');
 
     this.load.audio('BlackPlague', 'resources/music/the-black-plague.ogg');
+
+    this.load.image('joystick', 'resources/sprites/virtual-joystick/joystick.png');
+    this.load.image('joystick-base', 'resources/sprites/virtual-joystick/base.png');
   }
 
   Loader.prototype.create = function() {

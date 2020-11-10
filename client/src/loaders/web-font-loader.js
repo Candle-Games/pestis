@@ -3,6 +3,7 @@
    * Google WebFont
    * Inspired by: https://gist.github.com/supertommy/bc728957ff7dcb8016da68b04d3a2768
    * Inspired by: https://github.com/rexrainbow/phaser3-rex-notes/blob/master/plugins/loader/webfontloader/WebFont.js
+   * TODO: Change to use https://github.com/bramstein/fontfaceobserver
    * @param loader
    * @param fileConfig
    * @constructor

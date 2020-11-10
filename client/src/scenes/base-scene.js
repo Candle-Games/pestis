@@ -12,6 +12,10 @@
     candlegames.pestis.scenes.components.State
   ]);
 
+  BaseScene.prototype.preload = function() {
+    this.config.loadConfiguration();
+  }
+
   BaseScene.prototype.create = function() {
     this.createStateMachine({
       id: 'Game Scene Manager',

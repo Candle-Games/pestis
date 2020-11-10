@@ -105,8 +105,11 @@
 
   PlayMenu.prototype.startNewGame = function() {
     console.log('Start new game');
-    // this.scene.launch('GamePlayManager', { game: 'new' });
-    this.sendStateEvent('RETURN');
+    this.scene.launch('Game');
+
+    this.scene.get('Game').events.on('game-finished', function() {
+      this.sendStateEvent('RETURN');
+    }, this);
   }
 
   PlayMenu.prototype.loadGame = function() {
