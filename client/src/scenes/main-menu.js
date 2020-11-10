@@ -127,13 +127,6 @@
   MainMenu.prototype.handleMenu = function(optionSelected) {
     if(optionSelected._menuConfig.disabled) return;
     console.log(optionSelected.name + ' selected!!');
-    if(optionSelected.name ==='menu1'){
-      this.music.startChase();
-    }
-    else{
-      //this.music.playSoundEffect('RunOrDie2');
-      this.music.finishChaseMusic();
-    }
   }
 
   ns.MainMenu = MainMenu;

@@ -32,6 +32,10 @@
     MusicSystem.prototype = Object.create(Phaser.Plugins.ScenePlugin.prototype);
     MusicSystem.prototype.constructor = MusicSystem;
 
+    /**
+     * Initialize the music plugin
+     * @param backgroundMusic
+     */
     MusicSystem.prototype.init = function (backgroundMusic){
         console.log(this.scene);
         this.finishChase=false;
@@ -90,17 +94,25 @@
         this.chaseMusic.transition6.on('complete', transitionFinish, this);
 
     }
-
+    /**
+     * Play a sound effect in the scene
+     * @param soundEffect
+     */
     MusicSystem.prototype.playSoundEffect = function (soundEffect){
         this.soundEffect = this.scene.sound.add(soundEffect);
         this.soundEffect.play();
     }
 
+    /**
+     * Stop the chase music
+     */
     MusicSystem.prototype.finishChaseMusic = function(){
         this.finishChase = true;
     }
 
-
+    /**
+     * Star the chase music
+     */
     MusicSystem.prototype.startChase = function(){
         if(this.backgroundMusic){
             this.backgroundMusic.stop();
@@ -245,7 +257,7 @@
                 break;
         }
     }
-
+    
     function transitionFinish(){
         this.finishChase=false;
         if(this.backgroundMusic){
