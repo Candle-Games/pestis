@@ -20,9 +20,10 @@ var game = new Phaser.Game({
   },
   scene: [
     candlegames.pestis.client.scenes.BaseScene,
+
     candlegames.pestis.client.scenes.Boot,
     candlegames.pestis.client.scenes.Loader,
-    candlegames.pestis.client.scenes.Lobby,
+    candlegames.pestis.client.scenes.PlayMenu,
     candlegames.pestis.client.scenes.MainMenu,
     candlegames.pestis.client.scenes.Game,
   ],
