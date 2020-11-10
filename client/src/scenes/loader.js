@@ -14,13 +14,13 @@
   Loader.prototype.constructor = Loader;
 
   Loader.prototype.preload = function() {
-    this.load.on('complete', this.onLoadComplete.bind(this));
-    this.loadingprogressbar.show({ dashStyle: [ 2, 3 ]});
-
+    this.loadingprogressbar.show();
     this.load.googlefont('Indie Flower');
     this.load.googlefont('Oswald');
     this.load.googlefont('Frijole');
     this.load.googlefont('Luckiest Guy');
+
+    this.events.on('destroy', this.destroy.bind(this));
 
     this.load.audio('RunOrDie0', 'resources/music/run-or-die-0.ogg');
     this.load.audio('RunOrDie1', 'resources/music/run-or-die-1.ogg');
@@ -38,8 +38,15 @@
     this.load.audio('BlackPlague', 'resources/music/the-black-plague.ogg');
   }
 
-  Loader.prototype.onLoadComplete = function(value) {
+  Loader.prototype.create = function() {
+    // Create is called when preload completes, now all loading is done
+    console.log("Load completed");
     this.events.emit('loadcompleted');
+
+  }
+
+  Loader.prototype.destroy = function() {
+    this.loadingprogressbar.destroy();
   }
 
   ns.Loader = Loader;
