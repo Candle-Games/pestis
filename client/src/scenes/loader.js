@@ -14,20 +14,34 @@
   Loader.prototype.constructor = Loader;
 
   Loader.prototype.preload = function() {
+    this.events.on('destroy', this.destroy.bind(this));
+
     this.loadingprogressbar.show();
     this.load.googlefont('Indie Flower');
     this.load.googlefont('Oswald');
     this.load.googlefont('Frijole');
     this.load.googlefont('Luckiest Guy');
 
-    this.events.on('destroy', this.destroy.bind(this));
+    this.load.audio('RunOrDie0', 'resources/music/run-or-die-0.ogg');
+    this.load.audio('RunOrDie1', 'resources/music/run-or-die-1.ogg');
+    this.load.audio('RunOrDie2', 'resources/music/run-or-die-2.ogg');
+    this.load.audio('RunOrDie3', 'resources/music/run-or-die-3.ogg');
+    this.load.audio('RunOrDie4', 'resources/music/run-or-die-4.ogg');
+    this.load.audio('RunOrDie5', 'resources/music/run-or-die-5.ogg');
+    this.load.audio('RunOrDie6', 'resources/music/run-or-die-6.ogg');
+    this.load.audio('RunOrDieTransition2', 'resources/music/run-or-die-transition-2.ogg');
+    this.load.audio('RunOrDieTransition3', 'resources/music/run-or-die-transition-3.ogg');
+    this.load.audio('RunOrDieTransition4', 'resources/music/run-or-die-transition-4.ogg');
+    this.load.audio('RunOrDieTransition5', 'resources/music/run-or-die-transition-5.ogg');
+    this.load.audio('RunOrDieTransition6', 'resources/music/run-or-die-transition-6.ogg');
+
+    this.load.audio('BlackPlague', 'resources/music/the-black-plague.ogg');
   }
 
   Loader.prototype.create = function() {
     // Create is called when preload completes, now all loading is done
     console.log("Load completed");
     this.events.emit('loadcompleted');
-
   }
 
   Loader.prototype.destroy = function() {

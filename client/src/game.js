@@ -41,6 +41,7 @@ var game = new Phaser.Game({
     ],
     scene: [
       { key: 'LoadingProgressBarPlugin', plugin: candlegames.pestis.client.plugins.LoadingProgressBar, mapping: 'loadingprogressbar' },
+      { key: 'MusicSystemPlugin', plugin: candlegames.pestis.client.plugins.MusicSystem, mapping: 'music' },
       { key: 'MenuPlugin', plugin: candlegames.pestis.client.plugins.Menu, mapping: 'menu' },
       { key: 'BrowserChecker', plugin: candlegames.pestis.client.plugins.BrowserChecker, mapping: 'browserchecker' },
       { key: 'InputsController', plugin: candlegames.pestis.client.plugins.InputsController, mapping: 'inputscontroller' },

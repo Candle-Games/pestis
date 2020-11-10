@@ -27,6 +27,7 @@
   MainMenu.prototype.preload = function() {}
 
   MainMenu.prototype.create = function() {
+    this.music.init('BlackPlague');
     this.menu.show({
       x: this.game.canvas.width / 2,
       y: this.game.canvas.height / 2,
@@ -56,13 +57,17 @@
     this.events.off('menuselected', this.handleMenu, this);
     this.events.on('menuselected', this.handleMenu, this);
 
-    // Registers listening for game state
-    this.comms.off('gamestate');
+
     // TODO: Remove, it's a test
     this.comms.on('gamestate', function(data) {
       // console.log('Input received ' + (data.server ? '[server] ' : '[local] ')  + ("0000000000000000" + data.data.toString(2)).substr(-16));
       console.log('Gamestate received ' + (data.server ? '[server] ' : '[local] ')  + data.data);
     }, this);
+
+    // Registers listening for game state
+    /*
+    TODO: This shouldn't probably go here
+    this.comms.off('gamestate');
 
     this.comms.off('join success');
     this.comms.on('join success', function(data){
@@ -86,7 +91,7 @@
     this.comms.on('join failed', function() {
       alert("Failed to join the room");
     })
-
+    */
   }
 
   MainMenu.prototype.handleMenu = function(optionSelected) {
@@ -94,6 +99,7 @@
     this.events.emit('menu-selected', optionSelected.id, optionSelected);
 
     /*
+    TODO: This shouldn't probably go here
     if(optionSelected._menuConfig.disabled) return;
     switch(optionSelected.name){
       case "new-game":
