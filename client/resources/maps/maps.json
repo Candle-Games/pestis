@@ -1,0 +1,23 @@
+[
+  {
+    "name": "tutorial-room",
+    "description": "Tutorial",
+    "images": [
+      "bedchild.png",
+      "bedparents.png",
+      "chairleft.png",
+      "chairright.png",
+      "chest.png",
+      "chimney-top.png",
+      "chimney.png",
+      "closet.png",
+      "coats.png",
+      "firewood.png",
+      "sidetable.png",
+      "stairs.png",
+      "table.png",
+      "tutorial-roof.png",
+      "tutorial-wall.png"
+    ]
+  }
+]

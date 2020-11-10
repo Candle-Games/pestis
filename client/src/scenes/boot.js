@@ -1,6 +1,7 @@
 (function(ns) {
   /**
    * Boot scene
+   * TODO: Move loading logic to this function, get rid of loader scene...
    * @constructor
    */
   function Boot() {
@@ -14,6 +15,7 @@
   Boot.prototype.constructor = Boot;
 
   Boot.prototype.preload = function() {
+    this.events.on('destroy', this.destroy.bind(this));
     this.load.image('logo', 'resources/images/candle-games-logo.jpeg');
   }
 
@@ -37,14 +39,18 @@
     this.background.setDisplaySize(sx, sy);
     this.background.setOrigin(0, 0);
 
-    var loaderScene = this.scene.get('Loader');
+    this.loaderScene = this.scene.get('Loader');
 
-    loaderScene.events.on('loadcompleted', function () {
-      this.scene.stop('Loader');
-      this.scene.start('MainMenu');
+    this.loaderScene.events.on('loadcompleted', function () {
+      this.events.emit('loading-finished');
     }, this);
 
     this.scene.launch('Loader');
+  }
+
+  Boot.prototype.destroy = function() {
+    // This scene is not needed anymore, release memory...
+    this.loaderScene.scene.remove();
   }
 
   ns.Boot = Boot;
