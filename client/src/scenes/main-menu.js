@@ -28,6 +28,7 @@
 
   MainMenu.prototype.create = function() {
     this.music.init('BlackPlague');
+
     this.menu.show({
       x: this.game.canvas.width / 2,
       y: this.game.canvas.height / 2,
@@ -43,14 +44,9 @@
         option.setStyle(action==='select' ? { color: '#ffcda4'} : {color: '#fc7f03'});
       },
       options: [
-        { id: 'new-game', label: 'New Game',
-          effect: function(option, action) {
-            option.setStyle(action==='select' ? { color: '#fffe77'} : {color: '#fc7f03'});
-          },
-        },
-        { id: 'continue-game', label: 'Continue Game', disabled: true },
-        { id: 'join-game', label: 'Join Game' },
+        { id: 'play-menu', label: 'Play Pestis' },
         { id: 'contact', label: 'Contact' },
+        { id: 'configuration', label: 'Configuration' }
       ]
     });
 

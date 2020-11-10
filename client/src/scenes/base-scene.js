@@ -30,7 +30,10 @@
           }
         },
         game: {
-          entry: 'launchGame'
+          entry: 'launchGame',
+          on: {
+            RETURN_FROM_GAME: 'main_menu'
+          }
         }
       }
     }, {
@@ -54,7 +57,7 @@
   BaseScene.prototype.startMainMenu = function() {
     this.scene.launch('MainMenu');
     this.scene.get('MainMenu').events.on('menu-selected', function(id) {
-      if(id==='new-game') {
+      if(id==='play-menu') {
         this.scene.stop('MainMenu');
         this.sendStateEvent('LAUNCH_GAME');
       }
@@ -62,7 +65,11 @@
   }
 
   BaseScene.prototype.launchGame = function() {
-    this.scene.launch('Game');
+    this.scene.launch('PlayMenu');
+    this.scene.get('PlayMenu').events.on('end-play-menu', function() {
+      this.scene.stop('PlayMenu');
+      this.sendStateEvent('RETURN_FROM_GAME');
+    }, this);
   }
 
   ns.BaseScene = BaseScene;
