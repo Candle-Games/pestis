@@ -12,6 +12,27 @@
 
     MusicSystem.prototype.init = function(){
         this.dataMusic = this.game.cache.json.get('music');
+        if(this.dataMusic !== undefined) {
+            for (let i = 0; i < this.dataMusic.music.length; i++) {
+                let currentSound = this.dataMusic.music[i];
+                this._sounds[currentSound.id] = []
+                if (currentSound.prefix === undefined) {
+                    this._sounds[currentSound.id].push(currentSound.id);
+                } else {
+                    for (let i = currentSound.first; i <= currentSound.last; i++) {
+                        this._sounds[currentSound.id].push(currentSound.id + this._pad(i, 4));
+                    }
+                    if(currentSound.sequence !== undefined){
+                        if(currentSound.sequence.start){
+                            this._sounds[currentSound.id].sequenceStart = currentSound.sequence.start;
+                        }
+                        this._sounds[currentSound.id].loop = currentSound.sequence.loop;
+                    }
+                }
+            }
+        }
+        console.log(this._sounds);
+
     }
 
     MusicSystem.prototype._pad=function(n,width,z){

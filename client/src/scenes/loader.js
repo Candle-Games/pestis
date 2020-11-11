@@ -22,15 +22,14 @@
     this.load.googlefont('Frijole');
     this.load.googlefont('Luckiest Guy');
     this._loadMusic();
-
-    this.music.init();
-
   }
 
   Loader.prototype.create = function() {
     // Create is called when preload completes, now all loading is done
     console.log("Load completed");
+    this.music.init();
     this.events.emit('loadcompleted');
+
   }
 
   Loader.prototype.destroy = function() {
@@ -44,10 +43,10 @@
         let currentSound = dataMusic.music[i];
         if(currentSound.prefix !== undefined){
           for(let i = currentSound.first; i<=currentSound.last; i++){
-            this.load.audio(currentSound.id +this._pad(i,4),"client/resources/music/"+currentSound.prefix+this._pad(i,4)+currentSound.extension);
+            this.load.audio(currentSound.id +this._pad(i,4),"resources/music/"+currentSound.prefix+this._pad(i,4)+currentSound.extension);
           }
         }else{
-          this.load.audio(currentSound.id, "client/resources/music/"+currentSound.file);
+          this.load.audio(currentSound.id, "resources/music/"+currentSound.file);
         }
       }
     }
