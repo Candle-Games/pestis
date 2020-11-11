@@ -1,59 +1,30 @@
 (function (ns){
-    function MusicSystem (scene, pluginManager){
-        Phaser.Plugins.ScenePlugin.call(this, scene, pluginManager);
+    function MusicSystem (pluginManager){
+        Phaser.Plugins.BasePlugin.call(this, pluginManager);
 
         this.dataMusic = undefined;
 
-        this.backgroundMusic = undefined;
+        this._sounds ={};
     }
 
-    MusicSystem.prototype = Object.create(Phaser.Plugins.ScenePlugin.prototype);
+    MusicSystem.prototype = Object.create(Phaser.Plugins.BasePlugin.prototype);
     MusicSystem.prototype.constructor = MusicSystem;
 
-    MusicSystem.prototype.loadMusic = function(){
-        console.log("Cargar Musica");
-        this.dataMusic = this.scene.cache.json.get('music');
-        if(this.dataMusic!==undefined){
-            let sceneMusic = this.dataMusic[this.scene.scene.key + '_music'];
-
-            if(sceneMusic !== undefined){
-                this.scene.load.audio(sceneMusic.background.id, 'resources/music/'+ sceneMusic.background.name +'.' + sceneMusic.background.extension);
-
-                for(let i=0;i<sceneMusic.sounds.length;i++){
-                    let currentSound=sceneMusic.sounds[i];
-                    if(currentSound.start !== undefined){
-                        for(let i=currentSound.start; i<=currentSound.end;i++){
-                            this.scene.load.audio(currentSound.id + '' + i, 'resources/music/'+currentSound.name + ''+ i +'.'+currentSound.extension);
-                        }
-                    }
-                    if(currentSound.transition !== undefined){
-                        for(i=currentSound.transition.start;i<=currentSound.transition.end;i++){
-                            this.scene.load.audio(currentSound.id + '' + i + '-transition', 'resources/music/'+currentSound.name + ''+ i + '-transition');
-                        }
-                    }
-
-                }
-            }
-
-        }
+    MusicSystem.prototype.init = function(){
+        this.dataMusic = this.game.cache.json.get('music');
     }
 
-    MusicSystem.prototype.init = function(){
-        if(this.dataMusic[this.scene.scene.key + '_music'] !==undefined){
-            this.backgroundMusic=this.scene.sound.add(this.dataMusic[this.scene.scene.key + '_music'].background.id);
-            if(this.backgroundMusic!==undefined){
-                this.backgroundMusic.loop=true;
-                this.backgroundMusic.play();
-                this.backgroundMusic.volume=0.2;
-            }
-        }
+    MusicSystem.prototype._pad=function(n,width,z){
+        z = z || '0';
+        n = n + '';
+        return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
     }
 
     MusicSystem.prototype.playSound=function(sound){
         let currentSound;
-        for(let i=0;i<this.dataMusic[this.scene.scene.key + '_music'].sounds.length;i++){
-            if(this.dataMusic[this.scene.scene.key + '_music'].sounds[i].id===sound){
-                currentSound=this.dataMusic[this.scene.scene.key + '_music'].sounds[i];
+        for(let i=0;i<this.dataMusic[this.scene.scene.key].sounds.length;i++){
+            if(this.dataMusic[this.scene.scene.key].sounds[i].id===sound){
+                currentSound=this.dataMusic[this.scene.scene.key].sounds[i];
                 break;
             }
         }
