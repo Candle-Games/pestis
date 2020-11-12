@@ -17,10 +17,13 @@
     this.events.on('destroy', this.destroy.bind(this));
 
     this.loadingprogressbar.show();
+    this.load.googlefont('MedievalSharp');
+    /*
     this.load.googlefont('Indie Flower');
     this.load.googlefont('Oswald');
     this.load.googlefont('Frijole');
     this.load.googlefont('Luckiest Guy');
+    */
 
     this.load.audio('RunOrDie0', 'resources/music/run-or-die-0.ogg');
     this.load.audio('RunOrDie1', 'resources/music/run-or-die-1.ogg');

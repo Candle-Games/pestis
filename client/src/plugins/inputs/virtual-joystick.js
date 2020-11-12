@@ -42,9 +42,11 @@
         this.vjoystick.base = scene.add.sprite(this.vjoystick.initPos[0],this.vjoystick.initPos[1],'joystick-base');
         this.vjoystick.base.anchor = [0.5,0.5];
         this.vjoystick.maxDistance = this.vjoystick.base.width *0.5;
+        this.vjoystick.base.setScrollFactor(0, 0);
 
         this.vjoystick.joystick=scene.add.sprite(this.vjoystick.initPos[0],this.vjoystick.initPos[1],'joystick');
         this.vjoystick.joystick.anchor = [0.5,0.5];
+        this.vjoystick.joystick.setScrollFactor(0, 0);
 
         /*
         * Inspired by https://www.youtube.com/watch?v=t56DvozbZX4
@@ -56,8 +58,11 @@
 
         this.buttonAction1.sprite = scene.add.sprite(this.buttonAction1.initPos[0], this.buttonAction1.initPos[1], 'joystick-base');
         this.buttonAction1.sprite.setInteractive().on('pointerdown', this.pressInputAction1, this);
+        this.buttonAction1.sprite.setScrollFactor(0, 0);
+
         this.buttonAction2.sprite = scene.add.sprite(this.buttonAction2.initPos[0], this.buttonAction2.initPos[1], 'joystick-base');
         this.buttonAction2.sprite.setInteractive().on('pointerdown', this.pressInputAction2, this);
+        this.buttonAction2.sprite.setScrollFactor(0, 0);
 
     }
 

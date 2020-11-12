@@ -10,7 +10,10 @@
       DOOR: 'door',
       SPAWN_POINT: 'spawnpoint'
     },
+
     map: undefined,
+
+    mapName: undefined,
 
     /**
      * All map objects indexed by their IDs
@@ -32,8 +35,23 @@
      */
     playerCharacter: undefined,
 
+    loadMap: function(map) {
+      var levelResources = '/resources/maps/' + map + '/';
+      var levelFile = levelResources + map + '.json';
+      this.mapName = map;
+
+      this.scene.load.tilemapTiledJSON(map, levelFile);
+      this.scene.load.once('complete', function() {
+        console.log("Game engine map loaded");
+        this.init(map);
+      }, this);
+      this.scene.load.start();
+    },
+
     buildMap: function(map) {
-      this.map = map;
+      console.log("Game engine map built");
+      this.map = this.scene.make.tilemap({ key: map });
+      this.objects = {};
       this._createObjects();
     },
 
