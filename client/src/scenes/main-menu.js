@@ -16,7 +16,10 @@
   MainMenu.prototype.preload = function() {
   }
 
-  MainMenu.prototype.create = function(config) {
+    MainMenu.prototype.create = function (config) {
+
+    this.add.image(this.game.canvas.width, this.game.canvas.height, 'bg-menu');
+
     var config = _.assign(this.menu.config, { options: config.menu });
     this.menu.show(config);
 
