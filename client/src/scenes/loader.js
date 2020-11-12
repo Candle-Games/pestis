@@ -40,6 +40,7 @@
 
     this.load.audio('BlackPlague', 'resources/music/the-black-plague.ogg');
 
+    this.load.image('bg-menu', 'resources/images/main-menu-bg.png');
     this.load.image('joystick', 'resources/sprites/virtual-joystick/joystick.png');
     this.load.image('joystick-base', 'resources/sprites/virtual-joystick/base.png');
 
