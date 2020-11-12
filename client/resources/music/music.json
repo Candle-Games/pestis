@@ -37,6 +37,9 @@
   ],
   "scenes": {
     "MainMenu": {
+      "background": "black-plague"
+    },
+    "PlayMenu": {
       "background": "desolation"
     }
   }

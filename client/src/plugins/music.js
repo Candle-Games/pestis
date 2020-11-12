@@ -62,46 +62,68 @@
 
     /**
      * select the background to the current scene
-     * @param currentScene
+     * @param currentScene Key
      */
     MusicSystem.prototype.sceneChanged = function (currentScene){
         var background = this._dataMusic.scenes[currentScene].background
         if((this.currentBackground === undefined || this.currentBackground !== background )){
+            this._stopBackground();
             this.currentBackground = background;
             this._playBackground();
         }
     }
 
+    /**
+     * Play a sound with his soundId
+     * @param soundId
+     */
     MusicSystem.prototype.playSound = function(soundId) {
         if(this._sounds[soundId][0] !== undefined){
-            this._sounds[soundId][0].play();
+            currentSound = this._sounds[soundId][0]
+            currentSound.play();
         }
     }
 
+    /**
+     * Play the correct background
+     * @private
+     */
     MusicSystem.prototype._playBackground = function(){
         if (this._soundsData[this.currentBackground].entry !== undefined) {
-            this._sounds[this._soundsData[this.currentBackground].entry][0].play({loop: this._soundsData[this._soundsData[this.currentBackground].entry].loop})
+            this._sounds[this._soundsData[this.currentBackground].entry][0].play()
             this._sounds[this._soundsData[this.currentBackground].entry][0].off('complete');
             this._sounds[this._soundsData[this.currentBackground].entry][0].once('complete', function () {
                 this._sounds[this.currentBackground][0].play({loop:true});
             },this);
         }else{
-            this._sounds[this.currentBackground][0].play();
+            this._sounds[this.currentBackground][0].play({loop:true});
         }
     }
 
+    /**
+     * Stop the current background
+     * @private
+     */
     MusicSystem.prototype._stopBackground = function(){
-        if(this._soundsData[this.currentBackground].entry!==undefined){
-            this._sounds[this._soundsData[this.currentBackground].entry][0].stop();
+        if(this.currentBackground !== undefined){
+            if(this._soundsData[this.currentBackground].entry!==undefined){
+                this._sounds[this._soundsData[this.currentBackground].entry][0].stop();
+            }
+            this._sounds[this.currentBackground][0].stop();
         }
-        this._sounds[this.currentBackground][0].stop();
     }
 
-
+    /**
+     * Chase music must stop
+     */
     MusicSystem.prototype.stopChase = function(){
         this.chase.valor=false;
     }
 
+    /**
+     * Chase music must start (soundId select the chase music)
+     * @param soundId
+     */
     MusicSystem.prototype.startChase = function(soundId){
         this.chase.valor=true;
         this.chase.soundId=soundId;
@@ -110,6 +132,10 @@
         this._playSequence();
     }
 
+    /**
+     * Select the sequence that chase music must follow
+     * @private
+     */
     MusicSystem.prototype._playSequence = function(){
         var soundId = this.chase.soundId
         if(soundId !== undefined){
@@ -152,12 +178,26 @@
         }
     }
 
+    /**
+     * Play sound and indicate the function must call when finish it
+     * @param sound
+     * @param func
+     * @private
+     */
     MusicSystem.prototype._playFragment = function(sound, func){
         sound.play();
         sound.off('complete');
         sound.on('complete', func, this);
     }
 
+    /**
+     * create the padding
+     * @param number
+     * @param padding
+     * @param z
+     * @returns {string}
+     * @private
+     */
     MusicSystem.prototype._pad=function(n,width,z){
         z = z || '0';
         n = n + '';
