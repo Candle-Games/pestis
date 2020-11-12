@@ -23,6 +23,8 @@
       ACTION1:  0,
       ACTION2:  0
     };
+
+    this.map;
   }
 
   GameEngine.prototype = Object.create(Phaser.Plugins.ScenePlugin.prototype);
@@ -31,9 +33,6 @@
   Phaser.Class.mixin(GameEngine, [
     candlegames.pestis.plugins.components.TiledMap
   ]);
-
-  GameEngine.prototype.boot = function() {
-  }
 
   GameEngine.prototype.init = function(map) {
     this.buildMap(map);
@@ -176,7 +175,7 @@
     }
 
     var bdata = new Int32Array(data);
-    this.scene.comms.emit('gameplay-update', bdata);
+    this.scene.emit('gameplay-update', bdata);
   }
 
   ns.GameEngine = GameEngine;

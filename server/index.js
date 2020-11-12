@@ -36,6 +36,13 @@ function setupGameInstance(socket) {
       resource: (resource) => path.join(__dirname, '../client/resources', resource)
     }
 
+    // Base to load sources from client project
+    dom.window.source = {
+      source: (file) => {
+
+      }
+    }
+
     // Network socket
     dom.window.candlegamestools.socket = socket;
   }).catch(error => {

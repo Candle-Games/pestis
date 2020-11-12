@@ -31,18 +31,20 @@
      * Current config (default values)
      */
     this.config = {
-      x: 0,
-      y: 0,
-      hanchor: 0,
-      vanchor: 0,
-      spacing: 22,
-      fontfamily: 'arial',
-      fontsize: 20,
-      fontcolor: '#fff',
-      disabledcolor: 'rgba(255,255,255,0.2)',
-      textalign: 'center',
+      x: this.game.canvas.width - 50,
+      y: this.game.canvas.height,
+      hanchor: 1,
+      vanchor: 1,
+      spacing: 50,
+      fontfamily: "MedievalSharp",
+      disabledcolor: 'rgba(255,255,255,0.3)',
+      fontsize: 40,
+      fontcolor: '#fc7f03',
+      textalign: 'right',
       debug: false,
-      effect: this.defaultEffect,
+      effect: function(option, action) {
+        option.setStyle(action==='select' ? { color: '#ffcda4'} : {color: '#fc7f03'});
+      },
       options: []
     };
   }
@@ -51,7 +53,6 @@
   Menu.prototype.constructor = Menu;
 
   Menu.prototype.destroyScene = function(){
-    console.log("destroy menu");
     if(this.optionsGroup !== undefined) { this.optionsGroup.destroy(); }
     if(this.optionsContainer !== undefined) { this.optionsContainer.destroy(); }
     this.selectedOption = undefined;
@@ -212,7 +213,7 @@
         break;
       case 'Enter':
         if(!this.selectedOption) return;
-        thi.emitSelected(this.selectedOption);
+        this.emitSelected(this.selectedOption);
         break;
     }
   }

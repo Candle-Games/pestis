@@ -4,35 +4,17 @@
       key: 'Game'
     })
 
-    this.levelConfig = {
-      "name": "tutorial-room",
-      "description": "Tutorial",
-      "images": [
-        "bedchild.png",
-        "bedparents.png",
-        "chairleft.png",
-        "chairright.png",
-        "chest.png",
-        "chimney-top.png",
-        "chimney.png",
-        "closet.png",
-        "coats.png",
-        "firewood.png",
-        "sidetable.png",
-        "stairs.png",
-        "table.png",
-        "tutorial-roof.png",
-        "tutorial-wall.png"
-      ]
-    };
-
-    this.currentLevel = 'tutorial-room';
+    /**
+     * Current level configuration
+     * @type {Object}
+     */
+    this.levelConfig;
 
     /**
      * Character managed by player
-     * @type {undefined}
+     * @type {candlegames.pestis.gameobjects.client.PlayerCharacter}
      */
-    this.currentCharacter = undefined;
+    this.currentCharacter;
   }
 
   Game.prototype = Object.create(Phaser.Scene.prototype);
@@ -42,6 +24,13 @@
     candlegames.pestis.scenes.components.TiledMap,
     candlegames.pestis.scenes.components.GameCamera
   ]);
+
+  Game.prototype.init = function(data) {
+    this.levelConfig = data.levelConfig;
+
+    this.events.off('destroy');
+    this.events.on('destroy', this.destroy, this);
+  }
 
   Game.prototype.preload = function() {
     this.loadingprogressbar.show();
@@ -56,21 +45,21 @@
     this.load.json('lantern-animations', 'resources/sprites/lantern/lantern-animations.json');
   }
 
-  Game.prototype.create = function() {
+  Game.prototype.onLoadComplete = function(value) {
+    console.log('Game Scene loaded');
+    this.loadingprogressbar.hide();
+  }
+
+  Game.prototype.create = function(data) {
+    console.log('Game Scene created');
     this.comms.on('gameplay-update', this.updateScene, this);
 
     this.buildMap();
     this.setupCamera();
-    this.setupControls();
+    this.setupControls(data.input);
     this.setupLights();
 
-    // TODO: This should be done only working in offline mode
-    this.game_engine.init(this.map);
-  }
-
-  Game.prototype.setupControls = function() {
-    this.inputmanager.selectController('keyboard');
-    this.inputmanager.updateKeyboardConfig(this.config.configuration.keyboard);
+    this.events.emit('game-scene-created');
   }
 
   Game.prototype.updateScene = function(update) {
@@ -129,17 +118,36 @@
   }
 
   Game.prototype.setupLights = function() {
-    this.lights.enable().setAmbientColor(0x555555);
-  }
-
-
-  Game.prototype.onLoadComplete = function(value) {
-    console.log('Scene loaded');
-    this.loadingprogressbar.hide();
+    this.lights.enable();
+    this.lights.addLight().setScrollFactor(0,0);
+    this.lights.setAmbientColor(0xaaaaaa);
   }
 
   Game.prototype.update = function(time, delta) {
     this.inputmanager.updateInputs();
+  }
+
+  Game.prototype.setupControls = function(controller) {
+    this.inputmanager.selectController(controller);
+
+    if(controller==='keyboard') {
+      this.inputmanager.updateKeyboardConfig(this.settings.get('keyboard'));
+    }
+  }
+
+  Game.prototype.destroy = function() {
+    this.levelConfig = undefined;
+
+    // Camera
+    this.camera = undefined;
+
+    // Tilemap
+    this.mapConfig = undefined;
+    this.map = undefined;
+    this.tilesets = [];
+    this.images = {};
+    this.objects = {};
+    this.spawnedObjects = {};
   }
 
   ns.Game = Game;

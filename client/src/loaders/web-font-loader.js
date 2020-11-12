@@ -44,22 +44,22 @@
   };
 
   GoogleFonts.prototype.onLoad = function() {
-    console.log("Font successfully loaded");
+    // console.log("Font successfully loaded");
     this.loader.nextFile(this, true);
   }
 
   GoogleFonts.prototype.onError = function() {
-    console.log("Font failed to load");
+    // console.log("Font failed to load");
     this.loader.nextFile(this, false);
   }
 
   GoogleFonts.prototype.fontActive = function(name, fvd) {
-    console.log("Font [" + name + "] loaded");
+    // console.log("Font [" + name + "] loaded");
     // this.loader.emit('webfontactive', this, name, fvd);
   }
 
   GoogleFonts.prototype.fontInactive = function(name, fvd) {
-    console.log("Font [" + name + "] failed to load");
+    // console.log("Font [" + name + "] failed to load");
     // this.loader.emit('webfontinactive', this, name, fvd);
   }
 

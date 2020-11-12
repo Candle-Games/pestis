@@ -4,8 +4,8 @@
     "LEFT": "a",
     "DOWN": "s",
     "RIGHT": "d",
-    "ACTION1": "q",
-    "ACTION2": "e"
+    "ACTION1": ",",
+    "ACTION2": "."
   },
   "music": {
     "status": 1,
