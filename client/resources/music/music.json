@@ -5,6 +5,15 @@
       "file": "the-black-plague.ogg"
     },
     {
+      "id": "desolation",
+      "file": "desolation.ogg",
+      "entry": "desolation-init"
+    },
+    {
+      "id": "desolation-init",
+      "file": "desolation-init.ogg"
+    },
+    {
       "id": "run-or-die",
       "prefix": "run-or-die-",
       "extension": ".ogg",
@@ -28,7 +37,7 @@
   ],
   "scenes": {
     "MainMenu": {
-      "background": "black-plague"
+      "background": "desolation"
     }
   }
 

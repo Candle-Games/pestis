@@ -2,37 +2,160 @@
     function MusicSystem (pluginManager){
         Phaser.Plugins.BasePlugin.call(this, pluginManager);
 
-        this.dataMusic = undefined;
+        this._dataMusic = undefined;
 
         this._sounds ={};
+        this._soundsData = {};
+
+        this.currentBackground = undefined;
+
+        this.chase = {};
     }
 
     MusicSystem.prototype = Object.create(Phaser.Plugins.BasePlugin.prototype);
     MusicSystem.prototype.constructor = MusicSystem;
 
-    MusicSystem.prototype.init = function(){
-        this.dataMusic = this.game.cache.json.get('music');
-        if(this.dataMusic !== undefined) {
-            for (let i = 0; i < this.dataMusic.music.length; i++) {
-                let currentSound = this.dataMusic.music[i];
-                this._sounds[currentSound.id] = []
-                if (currentSound.prefix === undefined) {
-                    this._sounds[currentSound.id].push(currentSound.id);
-                } else {
-                    for (let i = currentSound.first; i <= currentSound.last; i++) {
-                        this._sounds[currentSound.id].push(currentSound.id + this._pad(i, 4));
+    MusicSystem.prototype.initMusic = function(){
+        this.chase.valor = false;
+        this.chase.soundId=undefined;
+        this._dataMusic = this.game.cache.json.get('music');
+        //if music json is loaded
+        if(this._dataMusic !== undefined) {
+            for (var i = 0; i < this._dataMusic.music.length; i++) {
+                var currentSound = this._dataMusic.music[i];
+                this._sounds[currentSound.id] = [];
+                this._soundsData[currentSound.id] = [];
+
+                //only have one music element
+                if (currentSound.file !== undefined) {
+                    this._sounds[currentSound.id].push(this.game.sound.add(currentSound.id));
+                    this._soundsData[currentSound.id].loop=currentSound.loop;
+                    if(currentSound.entry !== undefined) {
+                        this._soundsData[currentSound.id].entry = currentSound.entry;
                     }
-                    if(currentSound.sequence !== undefined){
-                        if(currentSound.sequence.start){
-                            this._sounds[currentSound.id].sequenceStart = currentSound.sequence.start;
+                }
+                // The music have fragments
+                else {
+                    this._soundsData[currentSound.id].first = currentSound.first;
+                    for (var j = currentSound.first; j <= currentSound.last; j++) {
+                        this._sounds[currentSound.id].push(this.game.sound.add(currentSound.id + this._pad(j, currentSound.padding)));
+                    }
+                    if(currentSound.sequence !== undefined) {
+
+                        if (currentSound.sequence.start) {
+                            this._soundsData[currentSound.id].sequenceStart = currentSound.sequence.start.split(",");
+                            this._soundsData[currentSound.id].sequenceStartIndex = 0;
                         }
-                        this._sounds[currentSound.id].loop = currentSound.sequence.loop;
+                        this._soundsData[currentSound.id].loop = currentSound.sequence.loop.split(",");
+                        this._soundsData[currentSound.id].loopIndex=0;
+                    }
+                    if(currentSound.transition !== undefined){
+                        this._soundsData[currentSound.id].transition = currentSound.transition;
                     }
                 }
             }
         }
         console.log(this._sounds);
+        console.log(this._soundsData);
 
+    }
+
+    /**
+     * select the background to the current scene
+     * @param currentScene
+     */
+    MusicSystem.prototype.sceneChanged = function (currentScene){
+        var background = this._dataMusic.scenes[currentScene].background
+        if((this.currentBackground === undefined || this.currentBackground !== background )){
+            this.currentBackground = background;
+            this._playBackground();
+        }
+    }
+
+    MusicSystem.prototype.playSound = function(soundId) {
+        if(this._sounds[soundId][0] !== undefined){
+            this._sounds[soundId][0].play();
+        }
+    }
+
+    MusicSystem.prototype._playBackground = function(){
+        if (this._soundsData[this.currentBackground].entry !== undefined) {
+            this._sounds[this._soundsData[this.currentBackground].entry][0].play({loop: this._soundsData[this._soundsData[this.currentBackground].entry].loop})
+            this._sounds[this._soundsData[this.currentBackground].entry][0].off('complete');
+            this._sounds[this._soundsData[this.currentBackground].entry][0].once('complete', function () {
+                this._sounds[this.currentBackground][0].play({loop:true});
+            },this);
+        }else{
+            this._sounds[this.currentBackground][0].play();
+        }
+    }
+
+    MusicSystem.prototype._stopBackground = function(){
+        if(this._soundsData[this.currentBackground].entry!==undefined){
+            this._sounds[this._soundsData[this.currentBackground].entry][0].stop();
+        }
+        this._sounds[this.currentBackground][0].stop();
+    }
+
+
+    MusicSystem.prototype.stopChase = function(){
+        this.chase.valor=false;
+    }
+
+    MusicSystem.prototype.startChase = function(soundId){
+        this.chase.valor=true;
+        this.chase.soundId=soundId;
+        this._stopBackground();
+
+        this._playSequence();
+    }
+
+    MusicSystem.prototype._playSequence = function(){
+        var soundId = this.chase.soundId
+        if(soundId !== undefined){
+
+            var soundData = this._soundsData[soundId];
+            var transitionData = this._soundsData[this._soundsData[soundId].transition];
+
+            if(soundData.sequenceStart !== undefined && soundData.sequenceStartIndex < soundData.sequenceStart.length){
+                var currentIndex = parseInt(soundData.sequenceStart[soundData.sequenceStartIndex],10);
+                if(currentIndex<transitionData.first){
+                    this._playFragment(this._sounds[soundId][currentIndex-soundData.first], this._playSequence);
+                    soundData.sequenceStartIndex++;
+                }
+                else{
+                    if(this.chase.valor){
+                        this._playFragment(this._sounds[soundId][currentIndex-soundData.first], this._playSequence);
+                        soundData.sequenceStartIndex++;
+                    }else{
+                        this._playFragment(this._sounds[this._soundsData[soundId].transition][currentIndex-transitionData.first], this._playBackground);
+                        soundData.sequenceStartIndex=0;
+                        soundData.loopIndex=0;
+                    }
+                }
+            }
+
+            else if(soundData.loop !== undefined && soundData.sequenceStartIndex === soundData.sequenceStart.length){
+                var currentIndex = parseInt(soundData.loop[soundData.loopIndex],10);
+                if(this.chase.valor){
+                    this._playFragment(this._sounds[soundId][currentIndex-soundData.first], this._playSequence);
+                    soundData.loopIndex++;
+                    if(soundData.loopIndex === soundData.loop.length){
+                        soundData.loopIndex=0;
+                    }
+                }else{
+                    this._playFragment(this._sounds[this._soundsData[soundId].transition][currentIndex-transitionData.first], this._playBackground);
+                    soundData.loopIndex=0;
+                    soundData.sequenceStartIndex=0;
+                }
+            }
+        }
+    }
+
+    MusicSystem.prototype._playFragment = function(sound, func){
+        sound.play();
+        sound.off('complete');
+        sound.on('complete', func, this);
     }
 
     MusicSystem.prototype._pad=function(n,width,z){
@@ -40,258 +163,6 @@
         n = n + '';
         return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
     }
-
-    MusicSystem.prototype.playSound=function(sound){
-        let currentSound;
-        for(let i=0;i<this.dataMusic[this.scene.scene.key].sounds.length;i++){
-            if(this.dataMusic[this.scene.scene.key].sounds[i].id===sound){
-                currentSound=this.dataMusic[this.scene.scene.key].sounds[i];
-                break;
-            }
-        }
-        if(currentSound!==undefined) {
-            if(!currentSound.loop){
-                this.scene.sound.add(currentSound.id).play();
-            }else{
-                if(currentSound.loopInit !== undefined){
-                    for(let i=0;i<currentSound.loopInit.length; i++){
-                        this.scene.sound.add(currentSound.id+""+currentSound.loopInit[i]);
-
-                    }
-                }
-            }
-        }
-
-    }
-
-    MusicSystem.prototype.playLoop = function(){
-
-    }
-
-    /*
-
-    MusicSystem.prototype.init = function (backgroundMusic){
-        console.log(this.scene.scene.key);
-        var data = this.cache.json.get('music');
-        console.log(data);
-        this.finishChase=false;
-
-        this.counterLoop3=0;
-        this.counterLoop4=0;
-        this.counterLoop5=0;
-        this.counterLoop6=0;
-
-        this.chaseMusic.init =this.scene.sound.add('RunOrDie0')
-
-        this.chaseMusic.loop1 =this.scene.sound.add('RunOrDie1')
-        this.chaseMusic.loop2 =this.scene.sound.add('RunOrDie2')
-        this.chaseMusic.loop3 =this.scene.sound.add('RunOrDie3')
-        this.chaseMusic.loop4 =this.scene.sound.add('RunOrDie4')
-        this.chaseMusic.loop5 =this.scene.sound.add('RunOrDie5')
-        this.chaseMusic.loop6 =this.scene.sound.add('RunOrDie6')
-
-        this.chaseMusic.transition2 = this.scene.sound.add('RunOrDieTransition2')
-        this.chaseMusic.transition3 = this.scene.sound.add('RunOrDieTransition3')
-        this.chaseMusic.transition4 = this.scene.sound.add('RunOrDieTransition4')
-        this.chaseMusic.transition5 = this.scene.sound.add('RunOrDieTransition5')
-        this.chaseMusic.transition6 = this.scene.sound.add('RunOrDieTransition6')
-
-        if(backgroundMusic!=undefined){
-            this.backgroundMusic = this.scene.sound.add(backgroundMusic)
-            this.backgroundMusic.loop=true;
-            this.backgroundMusic.play();
-            this.backgroundMusic.volume=0.2;
-        }
-
-        this.chaseMusic.init.off('complete');
-        this.chaseMusic.init.on('complete',function(){this.chaseMusic.loop1.play();}, this);
-        this.chaseMusic.loop1.off('complete');
-        this.chaseMusic.loop1.on('complete',selectChaseMusic1, this);
-        this.chaseMusic.loop2.off('complete');
-        this.chaseMusic.loop2.on('complete',selectChaseMusic2, this);
-        this.chaseMusic.loop3.off('complete');
-        this.chaseMusic.loop3.on('complete', selectChaseMusic3, this);
-        this.chaseMusic.loop4.off('complete');
-        this.chaseMusic.loop4.on('complete', selectChaseMusic4, this);
-        this.chaseMusic.loop5.off('complete');
-        this.chaseMusic.loop5.on('complete', selectChaseMusic5, this);
-        this.chaseMusic.loop6.off('complete');
-        this.chaseMusic.loop6.on('complete', selectChaseMusic6, this);
-
-        this.chaseMusic.transition2.off('complete');
-        this.chaseMusic.transition2.on('complete', transitionFinish, this);
-        this.chaseMusic.transition3.off('complete');
-        this.chaseMusic.transition3.on('complete', transitionFinish, this);
-        this.chaseMusic.transition4.off('complete');
-        this.chaseMusic.transition4.on('complete', transitionFinish, this);
-        this.chaseMusic.transition5.off('complete');
-        this.chaseMusic.transition5.on('complete', transitionFinish, this);
-        this.chaseMusic.transition6.off('complete');
-        this.chaseMusic.transition6.on('complete', transitionFinish, this);
-
-
-    MusicSystem.prototype.playSoundEffect = function (soundEffect){
-        this.soundEffect = this.scene.sound.add(soundEffect);
-        this.soundEffect.play();
-    }
-
-    MusicSystem.prototype.finishChaseMusic = function(){
-        this.finishChase = true;
-    }
-
-
-    MusicSystem.prototype.startChase = function(){
-        if(this.backgroundMusic){
-            this.backgroundMusic.stop();
-        }
-        this.chaseMusic.loop1.play();
-    }
-
-    function restartLoopCounters(){
-        this.counterLoop3 = 0;
-        this.counterLoop4 = 0;
-        this.counterLoop5 = 0;
-        this.counterLoop6 = 0;
-    }
-
-    function selectChaseMusic1(){
-        if(this.finishChase){
-            restartLoopCounters();
-            this.chaseMusic.transition2.play();
-        }else{
-            this.chaseMusic.loop2.play();
-        }
-    }
-
-    function selectChaseMusic2(){
-        if(this.finishChase){
-            restartLoopCounters();
-            this.chaseMusic.transition3.play();
-        }else{
-            this.chaseMusic.loop3.play();
-        }
-    }
-
-
-    function selectChaseMusic3() {
-        this.counterLoop3++;
-        switch (this.counterLoop3){
-            case 1:
-            case 2:
-                if(this.finishChase){
-                    restartLoopCounters();
-                    this.chaseMusic.transition4.play();
-                }else{
-                    this.chaseMusic.loop4.play();
-                }
-                break;
-            case 3:
-                if(this.finishChase){
-                    restartLoopCounters();
-                    this.chaseMusic.transition5.play();
-                }else{
-                    this.counterLoop3=0;
-                    this.chaseMusic.loop5.play();
-                }
-                break;
-        }
-    }
-
-    function selectChaseMusic4(){
-        this.counterLoop4++;
-        switch (this.counterLoop4){
-            case 1:
-            case 2:
-                if(this.finishChase){
-                    restartLoopCounters();
-                    this.chaseMusic.transition5.play();
-                }else{
-                    this.chaseMusic.loop5.play();
-                }
-                break;
-            case 3:
-                if(this.finishChase){
-                    restartLoopCounters();
-                    this.chaseMusic.transition6.play();
-                }else{
-                    this.counterLoop4=0;
-                    this.chaseMusic.loop6.play();
-                }
-                break;
-
-        }
-    }
-
-    function selectChaseMusic5(){
-        this.counterLoop5++;
-        switch (this.counterLoop5){
-            case 1:
-            case 3:
-                if(this.finishChase){
-                    restartLoopCounters();
-                    this.chaseMusic.transition6.play();
-                }else{
-                    this.chaseMusic.loop6.play();
-                }
-                break;
-            case 2:
-                if(this.finishChase){
-                    restartLoopCounters();
-                    this.chaseMusic.transition3.play();
-                }else{
-                    this.chaseMusic.loop3.play();
-                }
-                break;
-            case 4:
-                if(this.finishChase){
-                    restartLoopCounters();
-                    this.chaseMusic.transition4.play();
-                }else{
-                    this.counterLoop5=0;
-                    this.chaseMusic.loop4.play();
-                }
-                break;
-        }
-    }
-
-    function selectChaseMusic6(){
-        this.counterLoop6++;
-        switch (this.counterLoop6){
-            case 1:
-                if(this.finishChase){
-                    restartLoopCounters();
-                    this.chaseMusic.transition5.play();
-                }else{
-                    this.chaseMusic.loop5.play();
-                }
-                break;
-            case 2:
-                if(this.finishChase){
-                    restartLoopCounters();
-                    this.chaseMusic.transition3.play();
-                }else{
-                    this.chaseMusic.loop3.play();
-                }
-                break;
-            case 3:
-                if(this.finishChase){
-                    restartLoopCounters();
-                    this.chaseMusic.transition3.play();
-                }else{
-                    this.counterLoop6=0;
-                    this.chaseMusic.loop3.play();
-                }
-                break;
-        }
-    }
-    
-    function transitionFinish(){
-        this.finishChase=false;
-        if(this.backgroundMusic){
-            this.backgroundMusic.play();
-        }
-    }
-    */
 
     ns.MusicSystem=MusicSystem;
 })(candlegamestools.namespace('candlegames.pestis.client.plugins'))

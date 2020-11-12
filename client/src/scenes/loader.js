@@ -25,9 +25,9 @@
   }
 
   Loader.prototype.create = function() {
+    this.music.initMusic();
     // Create is called when preload completes, now all loading is done
     console.log("Load completed");
-    this.music.init();
     this.events.emit('loadcompleted');
 
   }
@@ -37,13 +37,13 @@
   }
 
   Loader.prototype._loadMusic = function(){
-    let dataMusic = this.game.cache.json.get('music');
+    var dataMusic = this.game.cache.json.get('music');
     if(dataMusic !== undefined){
-      for(let i=0; i<dataMusic.music.length;i++){
-        let currentSound = dataMusic.music[i];
+      for(var i=0; i<dataMusic.music.length;i++){
+        var currentSound = dataMusic.music[i];
         if(currentSound.prefix !== undefined){
-          for(let i = currentSound.first; i<=currentSound.last; i++){
-            this.load.audio(currentSound.id +this._pad(i,4),"resources/music/"+currentSound.prefix+this._pad(i,4)+currentSound.extension);
+          for(var j = currentSound.first; j<=currentSound.last; j++){
+            this.load.audio(currentSound.id +this._pad(j,currentSound.padding),"resources/music/"+currentSound.prefix+this._pad(j,currentSound.padding)+currentSound.extension);
           }
         }else{
           this.load.audio(currentSound.id, "resources/music/"+currentSound.file);

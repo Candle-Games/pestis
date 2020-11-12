@@ -105,11 +105,13 @@
 
   PlayMenu.prototype.startNewGame = function() {
     console.log('Start new game');
+    this.music.startChase('run-or-die');
     // this.scene.launch('GamePlayManager', { game: 'new' });
     this.sendStateEvent('RETURN');
   }
 
   PlayMenu.prototype.loadGame = function() {
+
     // .......
     // ->
     // this.scene.launch('GamePlayManager', { game: 'partida-1' });
@@ -120,6 +122,8 @@
   }
 
   PlayMenu.prototype.joinGame = function() {
+    this.music.stopChase();
+    this.sendStateEvent('RETURN');
     // .......
     // ->
     // this.scene.launch('GamePlayManager', { game: undefined, connectTo: 'xxxxxxx' );
