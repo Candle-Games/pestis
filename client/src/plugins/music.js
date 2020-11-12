@@ -118,6 +118,7 @@
      */
     MusicSystem.prototype.stopChase = function(){
         this.chase.valor=false;
+        this.chase.soundId = undefined;
     }
 
     /**
