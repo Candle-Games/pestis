@@ -3,9 +3,37 @@
   <head>
     <meta charset="UTF-8">
     <title>Server entry HTML</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3.24.1/dist/phaser.js"></script>
     <script src="src/utils/namespacing.js"></script>
+
+    <!-- LIBS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sat/0.8.0/SAT.min.js"></script>
+    <script src="libs/phaser.js"></script>
+
+    <!-- COMPONENTS and MIXINS -->
+    <script src="src/gameobjects/components/state.js"></script>
+    <script src="src/gameobjects/components/tiled-object.js"></script>
+    <script src="src/gameobjects/components/animated.js"></script>
+    <script src="src/gameobjects/components/walking-character.js"></script>
+
+    <script src="src/scenes/components/state.js"></script>
+    <script src="src/scenes/components/tiled-map.js"></script>
+    <script src="src/scenes/components/game-camera.js"></script>
+    <script src="src/plugins/components/game-engine-tilemap.js"></script>
+
+    <!-- GAME OBJECTS -->
+    <script src="src/gameobjects/server/character.js"></script>
+    <script src="src/gameobjects/engine/base-tiled-object.js"></script>
+    <script src="src/gameobjects/engine/hideout.js"></script>
+    <script src="src/gameobjects/engine/ground.js"></script>
+    <script src="src/gameobjects/engine/stairs-spot.js"></script>
+    <script src="src/gameobjects/engine/stairs.js"></script>
+
+    <!-- PLUGINS -->
+    <script src="src/plugins/game-engine.js"></script>
+
+    <!-- SCENES -->
+    <script src="src/scenes/server-gameplay-manager.js"></script>
+    <script src="src/scenes/game-engine.js"></script>
   </head>
   <body>
     <script src="src/game.js"></script>

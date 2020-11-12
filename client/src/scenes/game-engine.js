@@ -15,10 +15,12 @@
   GameEngineScene.prototype.init = function(config) {
     if(config.socket) {
       this.isServer = true;
-      this.emitter = socket;
+      this.emitter = config.socket;
     } else {
       this.isServer = false;
     }
+
+    this.level = config.level;
   }
 
   GameEngineScene.prototype.create = function() {
@@ -26,37 +28,18 @@
       this.emitter = this.comms;
     }
 
-    this.emitter.off('input');
     this.emitter.on('input', this.inputHandler.bind(this));
-
-    this.emitter.off('message');
-    this.emitter.on('message', this.messageHandler.bind(this));
-  }
-
-  GameEngineScene.prototype.messageHandler = function(message) {
-    console.log('Game message received ' + message.data.event);
-    switch(message.data.event) {
-      case 'load-level':
-        this.loadLevel(message.data);
-        break;
-    }
+    this.loadLevel(this.level);
   }
 
   GameEngineScene.prototype.inputHandler = function(input) {
   }
 
-  GameEngineScene.prototype.loadLevel = function(data) {
-    this.game_engine.loadMap(data.level);
+  GameEngineScene.prototype.loadLevel = function(level) {
+    this.game_engine.loadMap(level);
   }
 
   GameEngineScene.prototype.emit = function(event, data) {
-    if(this.isServer) {
-      data = {
-        isServer: true,
-        data: data
-      }
-    }
-
     this.emitter.emit(event, data);
   }
 

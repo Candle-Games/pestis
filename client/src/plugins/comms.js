@@ -49,25 +49,30 @@
   /**
    * Called when this plugin is instantiated
    */
-  CommsSystem.prototype.start = function(server) {
-    this.server = server || 'http://localhost:9000';
-    this.socket = io(this.server, { secure: true, reconnection: false });
+  CommsSystem.prototype.setup = function(configuration) {
+    this.configuration = configuration;
+
+    this.server = this.configuration.server;
+    this.socket = io(this.server, { secure: true, reconnection: true });
 
     this.socket.on('connect', function() {
       console.log('Connection stablished, switching to online mode');
       this.online = true;
-    }.bind(this))
+    }.bind(this));
 
     this.socket.on('connect_error', function() {
       console.log('The connection failed, switching to offline mode');
       this.online = false;
-    }.bind(this))
+    }.bind(this));
 
     this.emitter = new Phaser.Events.EventEmitter();
   }
 
   /**
-   * Sends messages to other game systems
+   * Sends messages to:
+   * - Server if server connected
+   * - Local emitter if server disconnected
+   *
    * @param event event to send
    * @param data data to send
    */
@@ -77,6 +82,23 @@
     } else {
       this.socket.emit(event, data);
     }
+  }
+
+  /**
+   * Sends data through emitter
+   * Data can come from server if received by socket or locally of disconnected or loop mode
+   * Message sent: {
+   *   data: data to send,
+   *   server: true if server data, false y local data
+   * }
+   * @param event event
+   * @param data data
+   * @param isServer
+   * @private
+   */
+  CommsSystem.prototype._sendToEmitter = function(event, data, isServer) {
+    data['_isServer'] = isServer;
+    this.emitter.emit(event, data, this);
   }
 
   /**
@@ -102,7 +124,7 @@
    */
   CommsSystem.prototype.once = function(event, callback, context) {
     if(!this.socket.hasListeners(event)) {
-      this.socket.on(event, this._socketToEmitter(event));
+      this.socket.once(event, this._socketToEmitter(event));
     }
 
     this.emitter.once(event, callback, context || this);
@@ -122,27 +144,6 @@
     }
 
     this.emitter.off(event, callback, context, once);
-  }
-
-  /**
-   * Sends data through emitter
-   * Data can come from server if received by socket or locally of disconnected or loop mode
-   * Message sent: {
-   *   data: data to send,
-   *   server: true if server data, false y local data
-   * }
-   * @param event event
-   * @param data data
-   * @param isServer
-   * @private
-   */
-  CommsSystem.prototype._sendToEmitter = function(event, data, isServer) {
-    var info = {
-      data: data,
-      server: isServer
-    };
-
-    this.emitter.emit(event, info, this);
   }
 
   /**

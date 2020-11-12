@@ -112,6 +112,10 @@
       this.scene.stop('MainMenu');
       this.sendStateEvent(id);
     }, this);
+
+    // Setup communications module
+    // TODO: Review
+    this.comms.setup(game.cache.json.get('game-configuration').comms);
   }
 
   BaseScene.prototype.startBoot = function() {

@@ -63,18 +63,15 @@
   }
 
   Game.prototype.updateScene = function(update) {
-    if(!update.data) return;
-
-    var data = update.data;
-    switch(data[0]) {
+    switch(update[0]) {
       case 1: // Spawn
-        this.spawnObject(data[1], data[2], data[3]);
+        this.spawnObject(update[1], update[2], update[3]);
         break;
       case 2: // Position change
-        this.updateObjectPosition(data[1], data[2], data[3]);
+        this.updateObjectPosition(update[1], update[2], update[3]);
         break;
       case 3: // hideout collision
-        this.highlightHideout(data[1], data[2], data[3], data[4], data[5]);
+        this.highlightHideout(update[1], update[2], update[3], update[4], update[5]);
         break;
     }
   }

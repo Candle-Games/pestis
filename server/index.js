@@ -5,11 +5,14 @@ const server = require('http').Server(app)
 const io = require('socket.io')(server)
 
 const path = require('path')
+
 const jsdom = require('jsdom')
 const { JSDOM } = jsdom
 
 const DatauriParser = require('datauri/parser')
 const datauri = new DatauriParser()
+
+const CustomResourceLoader = require('./utils/custom-resource-loader')
 
 const players = {}
 
@@ -18,7 +21,8 @@ const games = {}
 function setupGameInstance(socket) {
   return JSDOM.fromFile(path.join(__dirname, 'game/index.html'), {
     runScripts: 'dangerously',
-    resources: 'usable',
+    // resources: 'usable',
+    resources: new CustomResourceLoader(),
     pretendToBeVisual: true
   }).then(dom => {
     // Implementation of missing createObjectURL function
@@ -31,20 +35,35 @@ function setupGameInstance(socket) {
     // Implementation of missing revokeObjectURL function
     dom.window.URL.revokeObjectURL = (blobUrl) => {}
 
-    // Base to load resources from client project
-    dom.window.candlegamestools = {
-      resource: (resource) => path.join(__dirname, '../client/resources', resource)
-    }
-
-    // Base to load sources from client project
-    dom.window.source = {
-      source: (file) => {
-
+    var _currentOpen = dom.window.XMLHttpRequest.prototype.open;
+    dom.window.XMLHttpRequest.prototype.open = function(method, url) {
+//      console.log("XMLHttpRequest " + url);
+      if(url.startsWith('/resources/')) {
+        url = path.join(__dirname, '../client', url);
       }
+      _currentOpen.call(this, method, url);
     }
 
-    // Network socket
-    dom.window.candlegamestools.socket = socket;
+    dom.window.candlegamestools = {
+      /**
+       * Returns resource reference in client
+       * @param resource
+       * @return {string}
+       */
+      resource: (resource) => path.join(__dirname, '../client/resources', resource),
+
+      /**
+       * Returns source reference in client
+       * @param file
+       * @return {string}
+       */
+      source: (file) => path.join(__dirname, '../client/src', file),
+
+      /**
+       * Socket.io current socket
+       */
+      socket: socket
+    }
   }).catch(error => {
     console.log(`Error!! ${error.message}`)
   })

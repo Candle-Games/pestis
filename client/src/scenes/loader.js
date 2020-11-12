@@ -43,6 +43,10 @@
     this.load.image('bg-menu', 'resources/images/main-menu-bg.png');
     this.load.image('joystick', 'resources/sprites/virtual-joystick/joystick.png');
     this.load.image('joystick-base', 'resources/sprites/virtual-joystick/base.png');
+
+    this.load.image('logo-800', 'resources/images/logo-candlegames-800.png');
+    this.load.image('logo-1600', 'resources/images/logo-candlegames-1600.jpeg');
+    this.load.image('main-menu-background', 'resources/images/main-menu-background.png');
   }
 
   Loader.prototype.create = function() {

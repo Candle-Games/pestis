@@ -25,10 +25,11 @@
     this.scene.launch('Game', { levelConfig: levelConfig, input: 'keyboard' });
 
     this.scene.get('Game').events.once('game-scene-created', function() {
-      this.scene.launch('GameEngineScene', {});
-      this.scene.get('GameEngineScene').events.once('preupdate', function() {
-        this.comms.emit('message', { event: 'load-level', level: 'tutorial-room' });
-      }.bind(this))
+      if(this.comms.online) {
+        this.comms.emit('start-level', {level: levelName});
+      } else {
+        this.scene.launch('GameEngineScene', { level: levelName });
+      }
     }.bind(this));
   }
 
