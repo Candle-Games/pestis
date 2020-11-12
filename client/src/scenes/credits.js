@@ -31,6 +31,8 @@
   }
 
   Credits.prototype.create = function() {
+    this.add.image(0, 0, 'main-menu-background').setOrigin(0, 0);
+
     var config = _.assign(this.menu.config, {
       options: [
         { id: 'RETURN_TO_MAIN', label: 'Return' }
@@ -67,7 +69,7 @@
     // From here on, vertically centered on screen
     y = lastCreditText + (height / 2) - (this.creditsConfiguration.logoSize.height / 2);
 
-    var logo = this.add.image(0, y, 'logo');
+    var logo = this.add.image(0, y, 'logo-800');
     logo.setOrigin(0.5, 0);
     logo.setDisplaySize(this.creditsConfiguration.logoSize.width, this.creditsConfiguration.logoSize.height);
     this.creditsContainer.add(logo);

@@ -12,8 +12,8 @@
     "creditBoxMarginTop": 0,
     "creditBoxMarginBottom": 70,
     "logoSize": {
-      "width": 500,
-      "height": 500
+      "width": 300,
+      "height": 423
     },
     "texts": [
       {
@@ -31,8 +31,11 @@
       "name": { "fontFamily": "MedievalSharp", "fontSize": 30, "color": "#fc7f03", "margin": 0 },
       "email": { "fontFamily": "MedievalSharp", "fontSize": 15, "color": "#fab161", "margin": 2 },
       "role": { "fontFamily": "MedievalSharp", "fontSize": 25, "color": "#dddddd", "margin": 16 },
-      "copyright": { "fontFamily": "MedievalSharp", "fontSize": 11, "color": "#dddddd", "margin": -60 }
+      "copyright": { "fontFamily": "MedievalSharp", "fontSize": 11, "color": "#dddddd", "margin": 2 }
     }
+  },
+  "comms": {
+    "server": "http://127.0.0.1:9000/"
   }
 }
 

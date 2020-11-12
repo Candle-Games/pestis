@@ -43,7 +43,7 @@
       this.scene.load.tilemapTiledJSON(map, levelFile);
       this.scene.load.once('complete', function() {
         console.log("Game engine map loaded");
-        this.init(map);
+        this.start(map);
       }, this);
       this.scene.load.start();
     },

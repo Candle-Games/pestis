@@ -1,20 +1,33 @@
+var width = 1280;
+var height = 720;
+
 const config = {
   type: Phaser.HEADLESS,
   parent: 'container',
-  width: 800,
-  height: 600,
+  width: width,
+  height: height,
   autoFocus: false,
   physics: {
     default: 'arcade',
     arcade: {
-      debug: false,
-      gravity: { y: 0 }
+      debug: false
     }
   },
-  scene: {
-    preload: preload,
-    create: create,
-    update: update
+  scene: [
+    candlegames.pestis.server.scenes.GameplayManager,
+    candlegames.pestis.server.scenes.GameEngineScene
+  ],
+  plugins: {
+    global: [
+      { key: 'CharacterPlugin', plugin: candlegames.pestis.gameobjects.server.CharacterPlugin, start: true},
+      { key: 'HideoutPlugin', plugin: candlegames.pestis.gameobjects.engine.HideoutPlugin, start: true},
+      { key: 'GroundPlugin', plugin: candlegames.pestis.gameobjects.engine.GroundPlugin, start: true},
+      { key: 'StairsSpotPlugin', plugin: candlegames.pestis.gameobjects.engine.StairsSpotPlugin, start: true},
+      { key: 'StairsPlugin', plugin: candlegames.pestis.gameobjects.engine.StairsPlugin, start: true},
+    ],
+    scene: [
+      { key: 'GameEngine', plugin: candlegames.pestis.client.plugins.GameEngine, mapping: 'game_engine' }
+    ]
   }
 };
 
