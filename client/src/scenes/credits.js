@@ -1,6 +1,6 @@
 (function(ns) {
   function Credits() {
-    Phaser.Scene.call(this, {
+    candlegames.pestis.client.scenes.MenuScene.call(this, {
       key: 'Credits'
     });
 
@@ -23,27 +23,17 @@
     this.duration = 10000;
   }
 
-  Credits.prototype = Object.create(Phaser.Scene.prototype);
+  Credits.prototype = Object.create(candlegames.pestis.client.scenes.MenuScene.prototype);
   Credits.prototype.constructor = Credits;
 
   Credits.prototype.preload = function() {
     this.creditsConfiguration = game.cache.json.get('game-configuration').credits;
   }
 
-  Credits.prototype.create = function() {
+  Credits.prototype.create = function(data) {
     this.add.image(0, 0, 'main-menu-background').setOrigin(0, 0);
 
-    var config = _.assign(this.menu.config, {
-      options: [
-        { id: 'RETURN_TO_MAIN', label: 'Return' }
-      ]
-    });
-
-    this.menu.show(config);
-
-    this.events.off('menuselected');
-    this.events.on('menuselected', this.handleMenu, this);
-
+    candlegames.pestis.client.scenes.MenuScene.prototype.create.call(this, data);
     this.createCredits();
   }
 
@@ -116,10 +106,6 @@
     creditContainer.add(role);
 
     return creditContainer;
-  }
-
-  Credits.prototype.handleMenu = function(optionSelected) {
-    this.events.emit('return');
   }
 
   ns.Credits = Credits;

@@ -33,14 +33,21 @@
       "first": 2,
       "last": 6,
       "padding": 4
+    },
+    {
+      "id": "credits",
+      "file": "credits.ogg"
     }
   ],
   "scenes": {
-    "MainMenu": {
+    "MenuScene": {
       "background": "black-plague"
     },
-    "PlayMenu": {
+    "Game": {
       "background": "desolation"
+    },
+    "Credits": {
+      "background": "credits"
     }
   }
 

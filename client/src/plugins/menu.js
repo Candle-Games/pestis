@@ -107,7 +107,11 @@
       var option = this.optionsGroup.create(optionX, optionY, optionConfig.label);
       option._menuIdx = i;
       option._menuConfig = optionConfig;
-      option.setInteractive();
+      option._menu = this;
+
+      option.setInteractive()
+        .on('pointerover', this.handleMouseOver)
+        .on('pointerdown', this.handleMouseDown);
 
       this.setOptionStyle(option);
 
@@ -170,18 +174,17 @@
    * Setup menu input and events
    */
   Menu.prototype.setupMenu = function() {
+    this.scene.input.keyboard.off('keydown');
     this.scene.input.keyboard.on('keydown', this.handleKeyDown, this);
-    this.scene.input.on('gameobjectover', this.handleMouseOver, this);
-    this.scene.input.on('gameobjectdown', this.handleMouseDown, this);
   }
 
   /**
    * Handle mouse over menu options
    * @param event
    */
-  Menu.prototype.handleMouseOver = function(pointer, gameObject) {
-    if(!gameObject._menuConfig.disabled) {
-      this.selectOption(gameObject);
+  Menu.prototype.handleMouseOver = function(pointer) {
+    if(!this._menuConfig.disabled) {
+      this._menu.selectOption(this);
     }
   }
 
@@ -190,8 +193,8 @@
    * @param pointer
    * @param gameObject
    */
-  Menu.prototype.handleMouseDown = function(pointer, gameObject) {
-    this.emitSelected(gameObject);
+  Menu.prototype.handleMouseDown = function(pointer) {
+    this._menu.emitSelected(this);
   }
 
   /**

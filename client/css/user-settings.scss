@@ -1,0 +1,202 @@
+$main-color: #fc7f03;
+$background-color: #f8d5b3;
+
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.settings-element {
+    font-family: "MedievalSharp";
+    color: #fff;
+    font-size: 24px;
+    margin: 8px 0px;
+    display: flex;
+    flex-direction: row;
+
+    &:not(.separator) {
+        margin-left: 16px;
+    }
+
+    &.separator {
+        font-size: 32px;
+
+        &:nth-child(n+2) {
+            margin-top: 32px;
+        }
+    }
+}
+
+.settings-element label:first-child {
+    flex: 1;
+    margin-right: 32px;
+}
+
+.settings-element input[type="checkbox"] {
+    margin: 0 16px;
+}
+
+.settings-element input[type="range"] {
+    width: 384px;
+}
+
+.key-button {
+    border: 1px solid white;
+    padding: 0;
+    font-size: 22px;
+    width: 240px;
+    text-align: center;
+
+    &:hover {
+        background: rgba(255,255,255,0.3);
+    }
+
+    &.selected {
+        animation-duration: 1500ms;
+        animation-direction: alternate;
+        animation-iteration-count: infinite;
+        animation-name: blink;
+    }
+}
+
+@keyframes blink {
+    from {
+        background: rgba(248,213,179,1);
+    }
+    to {
+        background: rgba(248,213,179,0.2);
+    }
+}
+
+/**
+ * STYLING CHECKBOX
+ * Inspired by https://css-tricks.com/the-checkbox-hack/
+ */
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+    position: absolute;
+    left: -9999px;
+}
+
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+    position: relative;
+    cursor: pointer;
+}
+
+$check-box-vertical-align: middle;
+
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    vertical-align: $check-box-vertical-align;
+    border: 1px solid #fff;
+    position: relative;
+    top: -2px;
+}
+
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+    content: '\2713\0020';
+    position: relative;
+    width: 24px;
+    height: 24px;
+    vertical-align: $check-box-vertical-align;
+    top: -3px;
+
+    left: -21px;
+    font-size: 24px;
+    line-height: 24px;
+    color: #fc7f03;
+    font-family: 'Lucida Sans Unicode', 'Arial Unicode MS', Arial;
+}
+
+[type="checkbox"]:not(:checked) + label:after {
+    opacity: 0;
+    transform: scale(0);
+}
+[type="checkbox"]:checked + label:after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/**
+ * STYLING RANGE INPUT
+ * Inpired by https://github.com/darlanrod/input-range-scss
+ */
+input[type=range] {
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+    width: 100%; /* Specific width is required for Firefox. */
+    background: transparent; /* Otherwise white in Chrome */
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+@mixin thumb() {
+    -webkit-appearance: none;
+    height: 29px;
+    width: 16px;
+    background: $main-color;
+    cursor: pointer;
+    border-radius: 0;
+    border: none;
+}
+
+input[type="range"] {
+    &::-webkit-slider-thumb {
+        @include thumb;
+        margin-top: -7px;
+    }
+    &::-moz-range-thumb {
+        @include thumb
+    }
+}
+
+@mixin track() {
+    width: 100%;
+    height: 16px;
+    cursor: pointer;
+    background: $background-color;
+}
+
+input[type=range] {
+    &::-webkit-slider-runnable-track {
+        @include track;
+    }
+
+    &::-moz-range-track {
+        @include track
+    }
+
+    &:disabled {
+        opacity: 0.3;
+
+        &::-webkit-slider-thumb,
+        &::-moz-range-thumb,
+        &::-webkit-slider-runnable-track,
+        &::-moz-range-track
+        {
+            cursor: not-allowed;
+            background: #dadada;
+        }
+    }
+}

@@ -5,12 +5,12 @@
     });
 
     this.menus = {
-      'main': [
+      main: [
         { id: 'PLAY_MENU', label: 'Play Pestis' },
         { id: 'SETTINGS', label: 'Settings' },
         { id: 'CREDITS', label: 'Credits' }
       ],
-      'play': [
+      play: [
         {
           id: 'NEW_GAME', label: 'New Game',
           effect: function (option, action) {
@@ -20,7 +20,10 @@
         {id: 'LOAD_GAME', label: 'Continue Game', disabled: true},
         {id: 'JOIN_GAME', label: 'Join Game'},
         {id: 'RETURN_TO_MAIN', label: 'Return'},
-      ]
+      ],
+      return: [
+          { id: 'RETURN_TO_MAIN', label: 'Return' }
+        ]
     };
   }
 
@@ -108,8 +111,8 @@
       }
     });
 
-    this.scene.get('MainMenu').events.on('menu-selected', function(id) {
-      this.scene.stop('MainMenu');
+    this.scene.get('MenuScene').events.on('menu-selected', function(id) {
+      this.scene.stop('MenuScene');
       this.sendStateEvent(id);
     }, this);
 
@@ -128,22 +131,26 @@
   }
 
   BaseScene.prototype.startMainMenu = function() {
-    this.scene.launch('MainMenu', { menu: this.menus['main'] });
+    this.scene.launch('MenuScene', { menu: this.menus['main'] });
   }
 
   BaseScene.prototype.launchPlayMenu = function() {
-    this.scene.launch('MainMenu', { menu: this.menus['play'] });
+    this.scene.launch('MenuScene', { menu: this.menus['play'] });
   }
 
   BaseScene.prototype.openSettings = function() {
-    console.log("Launching settings");
-    this.sendStateEvent('RETURN_TO_MAIN');
+    this.scene.launch('Settings', { menu: this.menus['return'] });
+
+    this.scene.get('Settings').events.on('menu-selected', function(id) {
+      this.scene.stop('Settings');
+      this.sendStateEvent(id);
+    }, this);
   }
 
   BaseScene.prototype.openCredits = function() {
-    this.scene.launch('Credits');
+    this.scene.launch('Credits',  { menu: this.menus['return'] });
 
-    this.scene.get('Credits').events.once('return', function() {
+    this.scene.get('Credits').events.once('menu-selected', function() {
       this.scene.stop('Credits');
       this.sendStateEvent('RETURN_TO_MAIN');
     }, this);

@@ -53,7 +53,7 @@
     this.configuration = configuration;
 
     this.server = this.configuration.server;
-    this.socket = io(this.server, { secure: true, reconnection: true });
+    this.socket = io(this.server, { secure: true, reconnection: this.configuration.retryConnection });
 
     this.socket.on('connect', function() {
       console.log('Connection stablished, switching to online mode');

@@ -8,12 +8,12 @@
     "ACTION2": "."
   },
   "music": {
-    "status": 1,
-    "volume": 1
+    "status": true,
+    "volume": 0.5
   },
   "effects": {
-    "status": 1,
-    "volume": 1
+    "status": true,
+    "volume": 0.75
   },
   "language": "es"
 }
