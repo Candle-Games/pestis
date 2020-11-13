@@ -15,10 +15,30 @@
     MusicSystem.prototype = Object.create(Phaser.Plugins.BasePlugin.prototype);
     MusicSystem.prototype.constructor = MusicSystem;
 
-    MusicSystem.prototype.initMusic = function(){
+    MusicSystem.prototype.loadMusic = function(loader) {
+        this._dataMusic = this.game.cache.json.get('music');
+
+        if(this._dataMusic !== undefined){
+            for(var i=0; i < this._dataMusic.music.length;i++){
+                var currentSound = this._dataMusic.music[i];
+
+                if(currentSound.prefix !== undefined){
+                    for(var j = currentSound.first; j<=currentSound.last; j++){
+                        var paddedNumber = _.padStart("" + j, currentSound.padding, '0');
+                        loader.audio(currentSound.id + paddedNumber, "resources/music/" + currentSound.prefix
+                          + paddedNumber + currentSound.extension);
+                    }
+                }else{
+                    loader.audio(currentSound.id, "resources/music/"+currentSound.file);
+                }
+            }
+        }
+    }
+
+    MusicSystem.prototype.initMusic = function() {
         this.chase.valor = false;
         this.chase.soundId=undefined;
-        this._dataMusic = this.game.cache.json.get('music');
+
         //if music json is loaded
         if(this._dataMusic !== undefined) {
             for (var i = 0; i < this._dataMusic.music.length; i++) {
@@ -38,7 +58,8 @@
                 else {
                     this._soundsData[currentSound.id].first = currentSound.first;
                     for (var j = currentSound.first; j <= currentSound.last; j++) {
-                        this._sounds[currentSound.id].push(this.game.sound.add(currentSound.id + this._pad(j, currentSound.padding)));
+                        var paddedNumber = _.padStart("" + j, currentSound.padding, '0');
+                        this._sounds[currentSound.id].push(this.game.sound.add(currentSound.id + paddedNumber));
                     }
                     if(currentSound.sequence !== undefined) {
 
@@ -55,16 +76,27 @@
                 }
             }
         }
-        console.log(this._sounds);
-        console.log(this._soundsData);
 
+        this._initSceneListeners();
+    }
+
+    MusicSystem.prototype._initSceneListeners = function() {
+        var scenes = this._dataMusic.scenes;
+        var keys = _.keys(scenes);
+
+        for(var i=0, length=keys.length; i < length; ++i) {
+            var scene = this.game.scene.getScene(keys[i]);
+            scene.events.on('start', function(from) {
+                this._sceneChanged(from.scene.scene.key);
+            }, this);
+        }
     }
 
     /**
      * select the background to the current scene
      * @param currentScene Key
      */
-    MusicSystem.prototype.sceneChanged = function (currentScene){
+    MusicSystem.prototype._sceneChanged = function (currentScene) {
         var background = this._dataMusic.scenes[currentScene].background
         if((this.currentBackground === undefined || this.currentBackground !== background )){
             this._stopBackground();
@@ -116,7 +148,7 @@
     /**
      * Chase music must stop
      */
-    MusicSystem.prototype.stopChase = function(){
+    MusicSystem.prototype.stopChase = function() {
         this.chase.valor=false;
         this.chase.soundId = undefined;
     }
@@ -125,7 +157,7 @@
      * Chase music must start (soundId select the chase music)
      * @param soundId
      */
-    MusicSystem.prototype.startChase = function(soundId){
+    MusicSystem.prototype.startChase = function(soundId) {
         this.chase.valor=true;
         this.chase.soundId=soundId;
         this._stopBackground();
@@ -189,20 +221,6 @@
         sound.play();
         sound.off('complete');
         sound.on('complete', func, this);
-    }
-
-    /**
-     * create the padding
-     * @param number
-     * @param padding
-     * @param z
-     * @returns {string}
-     * @private
-     */
-    MusicSystem.prototype._pad=function(n,width,z){
-        z = z || '0';
-        n = n + '';
-        return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
     }
 
     ns.MusicSystem=MusicSystem;

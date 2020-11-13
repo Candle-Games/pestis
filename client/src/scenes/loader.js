@@ -33,11 +33,12 @@
     this.load.image('logo-1600', 'resources/images/logo-candlegames-1600.jpeg');
     this.load.image('main-menu-background', 'resources/images/main-menu-background.png');
 
-    this._loadMusic();
+    this.music.loadMusic(this.load);
   }
 
   Loader.prototype.create = function() {
     this.music.initMusic();
+
     // Create is called when preload completes, now all loading is done
     console.log("Load completed");
     this.events.emit('loadcompleted');
@@ -45,28 +46,6 @@
 
   Loader.prototype.destroy = function() {
     this.loadingprogressbar.destroy();
-  }
-
-  Loader.prototype._loadMusic = function(){
-    var dataMusic = this.game.cache.json.get('music');
-    if(dataMusic !== undefined){
-      for(var i=0; i<dataMusic.music.length;i++){
-        var currentSound = dataMusic.music[i];
-        if(currentSound.prefix !== undefined){
-          for(var j = currentSound.first; j<=currentSound.last; j++){
-            this.load.audio(currentSound.id +this._pad(j,currentSound.padding),"resources/music/"+currentSound.prefix+this._pad(j,currentSound.padding)+currentSound.extension);
-          }
-        }else{
-          this.load.audio(currentSound.id, "resources/music/"+currentSound.file);
-        }
-      }
-    }
-  }
-
-  Loader.prototype._pad=function(n,width,z){
-    z = z || '0';
-    n = n + '';
-    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
   }
 
   ns.Loader = Loader;
