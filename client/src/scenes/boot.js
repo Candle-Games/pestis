@@ -16,6 +16,7 @@
 
   Boot.prototype.preload = function() {
     this.events.on('destroy', this.destroy.bind(this));
+    this.load.json('music','resources/music/music.json');
     this.load.image('logo-800', 'resources/images/logo-candlegames-800.png');
   }
 

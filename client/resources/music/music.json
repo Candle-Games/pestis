@@ -1,0 +1,47 @@
+{
+  "music": [
+    {
+      "id": "black-plague",
+      "file": "the-black-plague.ogg"
+    },
+    {
+      "id": "desolation",
+      "file": "desolation.ogg",
+      "entry": "desolation-init"
+    },
+    {
+      "id": "desolation-init",
+      "file": "desolation-init.ogg"
+    },
+    {
+      "id": "run-or-die",
+      "prefix": "run-or-die-",
+      "extension": ".ogg",
+      "first": 1,
+      "last": 6,
+      "padding": 4,
+      "sequence": {
+        "start": "1,2",
+        "loop": "3,4,5,6,5,3,4,5,6,3,5,4,6"
+      },
+      "transition": "run-or-die-transition"
+    },
+    {
+      "id": "run-or-die-transition",
+      "prefix": "run-or-die-transition-",
+      "extension": ".ogg",
+      "first": 2,
+      "last": 6,
+      "padding": 4
+    }
+  ],
+  "scenes": {
+    "MainMenu": {
+      "background": "black-plague"
+    },
+    "PlayMenu": {
+      "background": "desolation"
+    }
+  }
+
+}

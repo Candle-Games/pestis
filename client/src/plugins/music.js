@@ -1,268 +1,208 @@
 (function (ns){
-    function MusicSystem (scene, pluginManager){
-        Phaser.Plugins.ScenePlugin.call(this, scene, pluginManager);
+    function MusicSystem (pluginManager){
+        Phaser.Plugins.BasePlugin.call(this, pluginManager);
 
-        this.finishChase = undefined;
+        this._dataMusic = undefined;
 
-        this.chaseMusic = {
-            init: undefined,
-            loop1: undefined,
-            loop2: undefined,
-            loop3: undefined,
-            loop4: undefined,
-            loop5: undefined,
-            loop6: undefined,
-            transition2: undefined,
-            transition3: undefined,
-            transition4: undefined,
-            transition5: undefined,
-            transition6: undefined
-        }
+        this._sounds ={};
+        this._soundsData = {};
 
-        this.backgroundMusic = undefined;
-        this.soundEffect = undefined;
+        this.currentBackground = undefined;
 
-        this.counterLoop3 = undefined;
-        this.counterLoop4 = undefined;
-        this.counterLoop5 = undefined;
-        this.counterLoop6 = undefined;
-
+        this.chase = {};
     }
 
-    MusicSystem.prototype = Object.create(Phaser.Plugins.ScenePlugin.prototype);
+    MusicSystem.prototype = Object.create(Phaser.Plugins.BasePlugin.prototype);
     MusicSystem.prototype.constructor = MusicSystem;
 
-    /**
-     * Initialize the music plugin
-     * @param backgroundMusic
-     */
-    MusicSystem.prototype.init = function (backgroundMusic){
-        console.log(this.scene);
-        this.finishChase=false;
+    MusicSystem.prototype.initMusic = function(){
+        this.chase.valor = false;
+        this.chase.soundId=undefined;
+        this._dataMusic = this.game.cache.json.get('music');
+        //if music json is loaded
+        if(this._dataMusic !== undefined) {
+            for (var i = 0; i < this._dataMusic.music.length; i++) {
+                var currentSound = this._dataMusic.music[i];
+                this._sounds[currentSound.id] = [];
+                this._soundsData[currentSound.id] = [];
 
-        this.counterLoop3=0;
-        this.counterLoop4=0;
-        this.counterLoop5=0;
-        this.counterLoop6=0;
+                //only have one music element
+                if (currentSound.file !== undefined) {
+                    this._sounds[currentSound.id].push(this.game.sound.add(currentSound.id));
+                    this._soundsData[currentSound.id].loop=currentSound.loop;
+                    if(currentSound.entry !== undefined) {
+                        this._soundsData[currentSound.id].entry = currentSound.entry;
+                    }
+                }
+                // The music have fragments
+                else {
+                    this._soundsData[currentSound.id].first = currentSound.first;
+                    for (var j = currentSound.first; j <= currentSound.last; j++) {
+                        this._sounds[currentSound.id].push(this.game.sound.add(currentSound.id + this._pad(j, currentSound.padding)));
+                    }
+                    if(currentSound.sequence !== undefined) {
 
-        this.chaseMusic.init =this.scene.sound.add('RunOrDie0')
-
-        this.chaseMusic.loop1 =this.scene.sound.add('RunOrDie1')
-        this.chaseMusic.loop2 =this.scene.sound.add('RunOrDie2')
-        this.chaseMusic.loop3 =this.scene.sound.add('RunOrDie3')
-        this.chaseMusic.loop4 =this.scene.sound.add('RunOrDie4')
-        this.chaseMusic.loop5 =this.scene.sound.add('RunOrDie5')
-        this.chaseMusic.loop6 =this.scene.sound.add('RunOrDie6')
-
-        this.chaseMusic.transition2 = this.scene.sound.add('RunOrDieTransition2')
-        this.chaseMusic.transition3 = this.scene.sound.add('RunOrDieTransition3')
-        this.chaseMusic.transition4 = this.scene.sound.add('RunOrDieTransition4')
-        this.chaseMusic.transition5 = this.scene.sound.add('RunOrDieTransition5')
-        this.chaseMusic.transition6 = this.scene.sound.add('RunOrDieTransition6')
-
-        if(backgroundMusic!=undefined){
-            this.backgroundMusic = this.scene.sound.add(backgroundMusic)
-            this.backgroundMusic.loop=true;
-            this.backgroundMusic.play();
-            this.backgroundMusic.volume=0.2;
+                        if (currentSound.sequence.start) {
+                            this._soundsData[currentSound.id].sequenceStart = currentSound.sequence.start.split(",");
+                            this._soundsData[currentSound.id].sequenceStartIndex = 0;
+                        }
+                        this._soundsData[currentSound.id].loop = currentSound.sequence.loop.split(",");
+                        this._soundsData[currentSound.id].loopIndex=0;
+                    }
+                    if(currentSound.transition !== undefined){
+                        this._soundsData[currentSound.id].transition = currentSound.transition;
+                    }
+                }
+            }
         }
+        console.log(this._sounds);
+        console.log(this._soundsData);
 
-        this.chaseMusic.init.off('complete');
-        this.chaseMusic.init.on('complete',function(){this.chaseMusic.loop1.play();}, this);
-        this.chaseMusic.loop1.off('complete');
-        this.chaseMusic.loop1.on('complete',selectChaseMusic1, this);
-        this.chaseMusic.loop2.off('complete');
-        this.chaseMusic.loop2.on('complete',selectChaseMusic2, this);
-        this.chaseMusic.loop3.off('complete');
-        this.chaseMusic.loop3.on('complete', selectChaseMusic3, this);
-        this.chaseMusic.loop4.off('complete');
-        this.chaseMusic.loop4.on('complete', selectChaseMusic4, this);
-        this.chaseMusic.loop5.off('complete');
-        this.chaseMusic.loop5.on('complete', selectChaseMusic5, this);
-        this.chaseMusic.loop6.off('complete');
-        this.chaseMusic.loop6.on('complete', selectChaseMusic6, this);
-
-        this.chaseMusic.transition2.off('complete');
-        this.chaseMusic.transition2.on('complete', transitionFinish, this);
-        this.chaseMusic.transition3.off('complete');
-        this.chaseMusic.transition3.on('complete', transitionFinish, this);
-        this.chaseMusic.transition4.off('complete');
-        this.chaseMusic.transition4.on('complete', transitionFinish, this);
-        this.chaseMusic.transition5.off('complete');
-        this.chaseMusic.transition5.on('complete', transitionFinish, this);
-        this.chaseMusic.transition6.off('complete');
-        this.chaseMusic.transition6.on('complete', transitionFinish, this);
-
-    }
-    /**
-     * Play a sound effect in the scene
-     * @param soundEffect
-     */
-    MusicSystem.prototype.playSoundEffect = function (soundEffect){
-        this.soundEffect = this.scene.sound.add(soundEffect);
-        this.soundEffect.play();
     }
 
     /**
-     * Stop the chase music
+     * select the background to the current scene
+     * @param currentScene Key
      */
-    MusicSystem.prototype.finishChaseMusic = function(){
-        this.finishChase = true;
-    }
-
-    /**
-     * Star the chase music
-     */
-    MusicSystem.prototype.startChase = function(){
-        if(this.backgroundMusic){
-            this.backgroundMusic.stop();
+    MusicSystem.prototype.sceneChanged = function (currentScene){
+        var background = this._dataMusic.scenes[currentScene].background
+        if((this.currentBackground === undefined || this.currentBackground !== background )){
+            this._stopBackground();
+            this.currentBackground = background;
+            this._playBackground();
         }
-        this.chaseMusic.loop1.play();
     }
 
-    function restartLoopCounters(){
-        this.counterLoop3 = 0;
-        this.counterLoop4 = 0;
-        this.counterLoop5 = 0;
-        this.counterLoop6 = 0;
+    /**
+     * Play a sound with his soundId
+     * @param soundId
+     */
+    MusicSystem.prototype.playSound = function(soundId) {
+        if(this._sounds[soundId][0] !== undefined){
+            currentSound = this._sounds[soundId][0]
+            currentSound.play();
+        }
     }
 
-    function selectChaseMusic1(){
-        if(this.finishChase){
-            restartLoopCounters();
-            this.chaseMusic.transition2.play();
+    /**
+     * Play the correct background
+     * @private
+     */
+    MusicSystem.prototype._playBackground = function(){
+        if (this._soundsData[this.currentBackground].entry !== undefined) {
+            this._sounds[this._soundsData[this.currentBackground].entry][0].play()
+            this._sounds[this._soundsData[this.currentBackground].entry][0].off('complete');
+            this._sounds[this._soundsData[this.currentBackground].entry][0].once('complete', function () {
+                this._sounds[this.currentBackground][0].play({loop:true});
+            },this);
         }else{
-            this.chaseMusic.loop2.play();
+            this._sounds[this.currentBackground][0].play({loop:true});
         }
     }
 
-    function selectChaseMusic2(){
-        if(this.finishChase){
-            restartLoopCounters();
-            this.chaseMusic.transition3.play();
-        }else{
-            this.chaseMusic.loop3.play();
+    /**
+     * Stop the current background
+     * @private
+     */
+    MusicSystem.prototype._stopBackground = function(){
+        if(this.currentBackground !== undefined){
+            if(this._soundsData[this.currentBackground].entry!==undefined){
+                this._sounds[this._soundsData[this.currentBackground].entry][0].stop();
+            }
+            this._sounds[this.currentBackground][0].stop();
         }
     }
 
+    /**
+     * Chase music must stop
+     */
+    MusicSystem.prototype.stopChase = function(){
+        this.chase.valor=false;
+        this.chase.soundId = undefined;
+    }
 
-    function selectChaseMusic3() {
-        this.counterLoop3++;
-        switch (this.counterLoop3){
-            case 1:
-            case 2:
-                if(this.finishChase){
-                    restartLoopCounters();
-                    this.chaseMusic.transition4.play();
-                }else{
-                    this.chaseMusic.loop4.play();
+    /**
+     * Chase music must start (soundId select the chase music)
+     * @param soundId
+     */
+    MusicSystem.prototype.startChase = function(soundId){
+        this.chase.valor=true;
+        this.chase.soundId=soundId;
+        this._stopBackground();
+
+        this._playSequence();
+    }
+
+    /**
+     * Select the sequence that chase music must follow
+     * @private
+     */
+    MusicSystem.prototype._playSequence = function(){
+        var soundId = this.chase.soundId
+        if(soundId !== undefined){
+
+            var soundData = this._soundsData[soundId];
+            var transitionData = this._soundsData[this._soundsData[soundId].transition];
+
+            if(soundData.sequenceStart !== undefined && soundData.sequenceStartIndex < soundData.sequenceStart.length){
+                var currentIndex = parseInt(soundData.sequenceStart[soundData.sequenceStartIndex],10);
+                if(currentIndex<transitionData.first){
+                    this._playFragment(this._sounds[soundId][currentIndex-soundData.first], this._playSequence);
+                    soundData.sequenceStartIndex++;
                 }
-                break;
-            case 3:
-                if(this.finishChase){
-                    restartLoopCounters();
-                    this.chaseMusic.transition5.play();
-                }else{
-                    this.counterLoop3=0;
-                    this.chaseMusic.loop5.play();
+                else{
+                    if(this.chase.valor){
+                        this._playFragment(this._sounds[soundId][currentIndex-soundData.first], this._playSequence);
+                        soundData.sequenceStartIndex++;
+                    }else{
+                        this._playFragment(this._sounds[this._soundsData[soundId].transition][currentIndex-transitionData.first], this._playBackground);
+                        soundData.sequenceStartIndex=0;
+                        soundData.loopIndex=0;
+                    }
                 }
-                break;
+            }
+
+            else if(soundData.loop !== undefined && soundData.sequenceStartIndex === soundData.sequenceStart.length){
+                var currentIndex = parseInt(soundData.loop[soundData.loopIndex],10);
+                if(this.chase.valor){
+                    this._playFragment(this._sounds[soundId][currentIndex-soundData.first], this._playSequence);
+                    soundData.loopIndex++;
+                    if(soundData.loopIndex === soundData.loop.length){
+                        soundData.loopIndex=0;
+                    }
+                }else{
+                    this._playFragment(this._sounds[this._soundsData[soundId].transition][currentIndex-transitionData.first], this._playBackground);
+                    soundData.loopIndex=0;
+                    soundData.sequenceStartIndex=0;
+                }
+            }
         }
     }
 
-    function selectChaseMusic4(){
-        this.counterLoop4++;
-        switch (this.counterLoop4){
-            case 1:
-            case 2:
-                if(this.finishChase){
-                    restartLoopCounters();
-                    this.chaseMusic.transition5.play();
-                }else{
-                    this.chaseMusic.loop5.play();
-                }
-                break;
-            case 3:
-                if(this.finishChase){
-                    restartLoopCounters();
-                    this.chaseMusic.transition6.play();
-                }else{
-                    this.counterLoop4=0;
-                    this.chaseMusic.loop6.play();
-                }
-                break;
-
-        }
+    /**
+     * Play sound and indicate the function must call when finish it
+     * @param sound
+     * @param func
+     * @private
+     */
+    MusicSystem.prototype._playFragment = function(sound, func){
+        sound.play();
+        sound.off('complete');
+        sound.on('complete', func, this);
     }
 
-    function selectChaseMusic5(){
-        this.counterLoop5++;
-        switch (this.counterLoop5){
-            case 1:
-            case 3:
-                if(this.finishChase){
-                    restartLoopCounters();
-                    this.chaseMusic.transition6.play();
-                }else{
-                    this.chaseMusic.loop6.play();
-                }
-                break;
-            case 2:
-                if(this.finishChase){
-                    restartLoopCounters();
-                    this.chaseMusic.transition3.play();
-                }else{
-                    this.chaseMusic.loop3.play();
-                }
-                break;
-            case 4:
-                if(this.finishChase){
-                    restartLoopCounters();
-                    this.chaseMusic.transition4.play();
-                }else{
-                    this.counterLoop5=0;
-                    this.chaseMusic.loop4.play();
-                }
-                break;
-        }
-    }
-
-    function selectChaseMusic6(){
-        this.counterLoop6++;
-        switch (this.counterLoop6){
-            case 1:
-                if(this.finishChase){
-                    restartLoopCounters();
-                    this.chaseMusic.transition5.play();
-                }else{
-                    this.chaseMusic.loop5.play();
-                }
-                break;
-            case 2:
-                if(this.finishChase){
-                    restartLoopCounters();
-                    this.chaseMusic.transition3.play();
-                }else{
-                    this.chaseMusic.loop3.play();
-                }
-                break;
-            case 3:
-                if(this.finishChase){
-                    restartLoopCounters();
-                    this.chaseMusic.transition3.play();
-                }else{
-                    this.counterLoop6=0;
-                    this.chaseMusic.loop3.play();
-                }
-                break;
-        }
-    }
-    
-    function transitionFinish(){
-        this.finishChase=false;
-        if(this.backgroundMusic){
-            this.backgroundMusic.play();
-        }
+    /**
+     * create the padding
+     * @param number
+     * @param padding
+     * @param z
+     * @returns {string}
+     * @private
+     */
+    MusicSystem.prototype._pad=function(n,width,z){
+        z = z || '0';
+        n = n + '';
+        return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
     }
 
     ns.MusicSystem=MusicSystem;
