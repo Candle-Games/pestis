@@ -1,0 +1,41 @@
+{
+  "menu": {
+    "fontFamily": "MedievalSharp",
+    "fontSize": 40,
+    "colors": {
+      "normal": "#fc7f03",
+      "disabled": "rgba(255,255,255,0.3)",
+      "highlight": "#ffcda4"
+    }
+  },
+  "credits": {
+    "creditBoxMarginTop": 0,
+    "creditBoxMarginBottom": 70,
+    "logoSize": {
+      "width": 300,
+      "height": 423
+    },
+    "texts": [
+      {
+        "name": "David María Arribas",
+        "email": "d.maria.2016@alumnos.urjc.es",
+        "role": "Lead developer"
+      },
+      {
+        "name": "Daniel Muñoz Serrano",
+        "email": "d.munozs.2016@alumnos.urjc.es",
+        "role": "Developer"
+      }
+    ],
+    "styles": {
+      "name": { "fontFamily": "MedievalSharp", "fontSize": 30, "color": "#fc7f03", "margin": 0 },
+      "email": { "fontFamily": "MedievalSharp", "fontSize": 15, "color": "#fab161", "margin": 2 },
+      "role": { "fontFamily": "MedievalSharp", "fontSize": 25, "color": "#dddddd", "margin": 16 },
+      "copyright": { "fontFamily": "MedievalSharp", "fontSize": 11, "color": "#dddddd", "margin": 2 }
+    }
+  },
+  "comms": {
+    "server": "http://127.0.0.1:9000/"
+  }
+}
+

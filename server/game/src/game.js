@@ -1,45 +1,41 @@
+var width = 1280;
+var height = 720;
+
 const config = {
   type: Phaser.HEADLESS,
   parent: 'container',
-  width: 800,
-  height: 600,
+  width: width,
+  height: height,
   autoFocus: false,
   physics: {
     default: 'arcade',
     arcade: {
-      debug: false,
-      gravity: { y: 0 }
+      debug: false
     }
   },
-  scene: {
-    preload: preload,
-    create: create,
-    update: update
+  scene: [
+    candlegames.pestis.server.scenes.GameplayManager,
+    candlegames.pestis.server.scenes.GameEngineScene
+  ],
+  plugins: {
+    global: [
+      { key: 'CharacterPlugin', plugin: candlegames.pestis.gameobjects.server.CharacterPlugin, start: true},
+      { key: 'HideoutPlugin', plugin: candlegames.pestis.gameobjects.engine.HideoutPlugin, start: true},
+      { key: 'GroundPlugin', plugin: candlegames.pestis.gameobjects.engine.GroundPlugin, start: true},
+      { key: 'StairsSpotPlugin', plugin: candlegames.pestis.gameobjects.engine.StairsSpotPlugin, start: true},
+      { key: 'StairsPlugin', plugin: candlegames.pestis.gameobjects.engine.StairsPlugin, start: true},
+    ],
+    scene: [
+      { key: 'GameEngine', plugin: candlegames.pestis.client.plugins.GameEngine, mapping: 'game_engine' }
+    ]
   }
 };
 
 
 function preload() {
-  // Tiles image preload
-  console.log('Loading: ' + candlegamestools.resource('maps/tilesets/platformPack_tilesheet.png'));
-  this.load.image('tiles', candlegamestools.resource('maps/tilesets/platformPack_tilesheet.png'));
-
-  // Tiled json preload
-  console.log('Loading: ' + candlegamestools.resource('maps/test-map.json'));
-  this.load.tilemapTiledJSON('testmap', candlegamestools.resource('maps/test-map.json'));
 }
 
 function create() {
-  // Create tilemap object
-  var map = this.make.tilemap({ key: 'testmap' });
-
-  // Add tileset image to tilemap
-  var tileset = map.addTilesetImage('platformPack_tilesheet', 'tiles');
-  console.log('Tile Layers in tilemap: ' + map.getTileLayerNames());
-
-  // Create layer
-  const layer = map.createStaticLayer('TestLayer', tileset, 0, 200);
-
   candlegamestools.socket.on('input', function(data) {
     console.log("Received input");
     candlegamestools.socket.emit('gamestate', data);
@@ -62,7 +58,6 @@ function update(time, delta) {
     console.log(parseInt(this.__timer / 1000));
     this.__last = current;
   }
-
   this.__timer += delta;
 }
 

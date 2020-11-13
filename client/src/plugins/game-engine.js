@@ -23,6 +23,8 @@
       ACTION1:  0,
       ACTION2:  0
     };
+
+    this.map;
   }
 
   GameEngine.prototype = Object.create(Phaser.Plugins.ScenePlugin.prototype);
@@ -32,16 +34,13 @@
     candlegames.pestis.plugins.components.TiledMap
   ]);
 
-  GameEngine.prototype.boot = function() {
-  }
-
-  GameEngine.prototype.init = function(map) {
+  GameEngine.prototype.start = function(map) {
     this.buildMap(map);
     this.setupPhysics();
     this.notifySpawnedObjects();
 
     // TODO: review
-    this.scene.comms.on('input', this.inputHandler, this);
+    this.scene.comms.on('input', this.inputHandler.bind(this), this);
     this.scene.events.on('update', this.update, this);
   }
 
@@ -147,10 +146,10 @@
    * @param input Input message
    */
   GameEngine.prototype.inputHandler = function(input) {
-    this.keyPressed.RIGHT = (input.data & 1 << this.keymap.RIGHT);
-    this.keyPressed.LEFT = (input.data & 1 << this.keymap.LEFT);
-    this.keyPressed.UP = (input.data & 1 << this.keymap.UP);
-    this.keyPressed.DOWN = (input.data & 1 << this.keymap.DOWN);
+    this.keyPressed.RIGHT = (input & 1 << this.keymap.RIGHT);
+    this.keyPressed.LEFT = (input & 1 << this.keymap.LEFT);
+    this.keyPressed.UP = (input & 1 << this.keymap.UP);
+    this.keyPressed.DOWN = (input & 1 << this.keymap.DOWN);
   }
 
   /**
@@ -176,7 +175,7 @@
     }
 
     var bdata = new Int32Array(data);
-    this.scene.comms.emit('gameplay-update', bdata);
+    this.scene.emit('gameplay-update', bdata);
   }
 
   ns.GameEngine = GameEngine;

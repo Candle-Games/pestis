@@ -1,5 +1,5 @@
-[
-  {
+{
+  "tutorial-room": {
     "name": "tutorial-room",
     "description": "Tutorial",
     "images": [
@@ -20,4 +20,4 @@
       "tutorial-wall.png"
     ]
   }
-]
+}

@@ -23,14 +23,17 @@ var game = new Phaser.Game({
 
     candlegames.pestis.client.scenes.Boot,
     candlegames.pestis.client.scenes.Loader,
-    candlegames.pestis.client.scenes.PlayMenu,
     candlegames.pestis.client.scenes.MainMenu,
     candlegames.pestis.client.scenes.Game,
+    candlegames.pestis.client.scenes.Credits,
+    candlegames.pestis.client.scenes.GameplayManager,
+    candlegames.pestis.server.scenes.GameEngineScene
   ],
   plugins: {
     global: [
       { key: 'CommsSystemPlugin', plugin: candlegames.pestis.client.plugins.CommsSystem, mapping: 'comms', start: true },
       { key: 'MusicSystemPlugin', plugin: candlegames.pestis.client.plugins.MusicSystem, mapping: 'music', start:true},
+      { key: 'UserSettings', plugin: candlegames.pestis.client.plugins.UserSettings, mapping: 'settings', start: true },
 
       { key: 'CharacterPlugin', plugin: candlegames.pestis.gameobjects.server.CharacterPlugin, start: true},
       { key: 'HideoutPlugin', plugin: candlegames.pestis.gameobjects.engine.HideoutPlugin, start: true},
@@ -44,11 +47,9 @@ var game = new Phaser.Game({
     scene: [
       { key: 'LoadingProgressBarPlugin', plugin: candlegames.pestis.client.plugins.LoadingProgressBar, mapping: 'loadingprogressbar' },
       { key: 'MenuPlugin', plugin: candlegames.pestis.client.plugins.Menu, mapping: 'menu' },
+      { key: 'InputManager', plugin: candlegames.pestis.client.plugins.InputManager, mapping: 'inputmanager' },
       { key: 'BrowserChecker', plugin: candlegames.pestis.client.plugins.BrowserChecker, mapping: 'browserchecker' },
-      { key: 'InputsController', plugin: candlegames.pestis.client.plugins.InputsController, mapping: 'inputscontroller' },
       { key: 'GameEngine', plugin: candlegames.pestis.client.plugins.GameEngine, mapping: 'game_engine' }
-      /* { key: 'DebugDrawPlugin', plugin: PhaserDebugDrawPlugin, mapping: 'debugDraw' } */
     ]
   }
 });
-

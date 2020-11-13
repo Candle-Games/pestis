@@ -16,8 +16,8 @@
 
   Boot.prototype.preload = function() {
     this.events.on('destroy', this.destroy.bind(this));
-    this.load.image('logo', 'resources/images/candle-games-logo.jpeg');
     this.load.json('music','resources/music/music.json');
+    this.load.image('logo-800', 'resources/images/logo-candlegames-800.png');
   }
 
   Boot.prototype.create = function() {
@@ -36,7 +36,7 @@
     var x = (width - sx) / 2;
     var y = (height / 2) - (sy / 2);
 
-    this.background = this.add.image(x, y, 'logo');
+    this.background = this.add.image(x, y, 'logo-800');
     this.background.setDisplaySize(sx, sy);
     this.background.setOrigin(0, 0);
 
