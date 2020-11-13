@@ -25,21 +25,6 @@
     this.load.googlefont('Luckiest Guy');
     */
 
-    this.load.audio('RunOrDie0', 'resources/music/run-or-die-0.ogg');
-    this.load.audio('RunOrDie1', 'resources/music/run-or-die-1.ogg');
-    this.load.audio('RunOrDie2', 'resources/music/run-or-die-2.ogg');
-    this.load.audio('RunOrDie3', 'resources/music/run-or-die-3.ogg');
-    this.load.audio('RunOrDie4', 'resources/music/run-or-die-4.ogg');
-    this.load.audio('RunOrDie5', 'resources/music/run-or-die-5.ogg');
-    this.load.audio('RunOrDie6', 'resources/music/run-or-die-6.ogg');
-    this.load.audio('RunOrDieTransition2', 'resources/music/run-or-die-transition-2.ogg');
-    this.load.audio('RunOrDieTransition3', 'resources/music/run-or-die-transition-3.ogg');
-    this.load.audio('RunOrDieTransition4', 'resources/music/run-or-die-transition-4.ogg');
-    this.load.audio('RunOrDieTransition5', 'resources/music/run-or-die-transition-5.ogg');
-    this.load.audio('RunOrDieTransition6', 'resources/music/run-or-die-transition-6.ogg');
-
-    this.load.audio('BlackPlague', 'resources/music/the-black-plague.ogg');
-
     this.load.image('bg-menu', 'resources/images/main-menu-bg.png');
     this.load.image('joystick', 'resources/sprites/virtual-joystick/joystick.png');
     this.load.image('joystick-base', 'resources/sprites/virtual-joystick/base.png');
@@ -47,9 +32,12 @@
     this.load.image('logo-800', 'resources/images/logo-candlegames-800.png');
     this.load.image('logo-1600', 'resources/images/logo-candlegames-1600.jpeg');
     this.load.image('main-menu-background', 'resources/images/main-menu-background.png');
+
+    this._loadMusic();
   }
 
   Loader.prototype.create = function() {
+    this.music.initMusic();
     // Create is called when preload completes, now all loading is done
     console.log("Load completed");
     this.events.emit('loadcompleted');
@@ -57,6 +45,28 @@
 
   Loader.prototype.destroy = function() {
     this.loadingprogressbar.destroy();
+  }
+
+  Loader.prototype._loadMusic = function(){
+    var dataMusic = this.game.cache.json.get('music');
+    if(dataMusic !== undefined){
+      for(var i=0; i<dataMusic.music.length;i++){
+        var currentSound = dataMusic.music[i];
+        if(currentSound.prefix !== undefined){
+          for(var j = currentSound.first; j<=currentSound.last; j++){
+            this.load.audio(currentSound.id +this._pad(j,currentSound.padding),"resources/music/"+currentSound.prefix+this._pad(j,currentSound.padding)+currentSound.extension);
+          }
+        }else{
+          this.load.audio(currentSound.id, "resources/music/"+currentSound.file);
+        }
+      }
+    }
+  }
+
+  Loader.prototype._pad=function(n,width,z){
+    z = z || '0';
+    n = n + '';
+    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
   }
 
   ns.Loader = Loader;
