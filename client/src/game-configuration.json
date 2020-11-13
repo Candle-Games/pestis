@@ -35,7 +35,8 @@
     }
   },
   "comms": {
-    "server": "http://127.0.0.1:9000/"
+    "server": "http://127.0.0.1:9000/",
+    "retryConnection": false
   }
 }
 

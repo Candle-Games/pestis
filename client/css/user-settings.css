@@ -1,0 +1,200 @@
+@charset "UTF-8";
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.settings-element {
+  font-family: "MedievalSharp";
+  color: #fff;
+  font-size: 24px;
+  margin: 8px 0px;
+  display: flex;
+  flex-direction: row;
+}
+.settings-element:not(.separator) {
+  margin-left: 16px;
+}
+.settings-element.separator {
+  font-size: 32px;
+}
+.settings-element.separator:nth-child(n+2) {
+  margin-top: 32px;
+}
+
+.settings-element label:first-child {
+  flex: 1;
+  margin-right: 32px;
+}
+
+.settings-element input[type=checkbox] {
+  margin: 0 16px;
+}
+
+.settings-element input[type=range] {
+  width: 384px;
+}
+
+.key-button {
+  border: 1px solid white;
+  padding: 0;
+  font-size: 22px;
+  width: 240px;
+  text-align: center;
+}
+.key-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+.key-button.selected {
+  -webkit-animation-duration: 1500ms;
+          animation-duration: 1500ms;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-name: blink;
+          animation-name: blink;
+}
+
+@-webkit-keyframes blink {
+  from {
+    background: #f8d5b3;
+  }
+  to {
+    background: rgba(248, 213, 179, 0.2);
+  }
+}
+
+@keyframes blink {
+  from {
+    background: #f8d5b3;
+  }
+  to {
+    background: rgba(248, 213, 179, 0.2);
+  }
+}
+/**
+ * STYLING CHECKBOX
+ * Inspired by https://css-tricks.com/the-checkbox-hack/
+ */
+[type=checkbox]:not(:checked),
+[type=checkbox]:checked {
+  position: absolute;
+  left: -9999px;
+}
+
+[type=checkbox]:not(:checked) + label,
+[type=checkbox]:checked + label {
+  position: relative;
+  cursor: pointer;
+}
+
+[type=checkbox]:not(:checked) + label:before,
+[type=checkbox]:checked + label:before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  border: 1px solid #fff;
+  position: relative;
+  top: -2px;
+}
+
+[type=checkbox]:not(:checked) + label:after,
+[type=checkbox]:checked + label:after {
+  content: "✓ ";
+  position: relative;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  top: -3px;
+  left: -21px;
+  font-size: 24px;
+  line-height: 24px;
+  color: #fc7f03;
+  font-family: "Lucida Sans Unicode", "Arial Unicode MS", Arial;
+}
+
+[type=checkbox]:not(:checked) + label:after {
+  opacity: 0;
+  transform: scale(0);
+}
+
+[type=checkbox]:checked + label:after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/**
+ * STYLING RANGE INPUT
+ * Inpired by https://github.com/darlanrod/input-range-scss
+ */
+input[type=range] {
+  -webkit-appearance: none;
+  /* Hides the slider so that custom slider can be made */
+  width: 100%;
+  /* Specific width is required for Firefox. */
+  background: transparent;
+  /* Otherwise white in Chrome */
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 29px;
+  width: 16px;
+  background: #fc7f03;
+  cursor: pointer;
+  border-radius: 0;
+  border: none;
+  margin-top: -7px;
+}
+input[type=range]::-moz-range-thumb {
+  -webkit-appearance: none;
+  height: 29px;
+  width: 16px;
+  background: #fc7f03;
+  cursor: pointer;
+  border-radius: 0;
+  border: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 16px;
+  cursor: pointer;
+  background: #f8d5b3;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 16px;
+  cursor: pointer;
+  background: #f8d5b3;
+}
+input[type=range]:disabled {
+  opacity: 0.3;
+}
+input[type=range]:disabled::-webkit-slider-thumb, input[type=range]:disabled::-moz-range-thumb, input[type=range]:disabled::-webkit-slider-runnable-track, input[type=range]:disabled::-moz-range-track {
+  cursor: not-allowed;
+  background: #dadada;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVzZXItc2V0dGluZ3MuY3NzIiwidXNlci1zZXR0aW5ncy5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLGdCQUFnQjtBQ0doQjtFQUNJLGFBQUE7RUFDQSxzQkFBQTtFQUNBLGFBQUE7RUFDQSxvQ0FBQTtBRERKOztBQ0lBO0VBQ0ksNEJBQUE7RUFDQSxXQUFBO0VBQ0EsZUFBQTtFQUNBLGVBQUE7RUFDQSxhQUFBO0VBQ0EsbUJBQUE7QURESjtBQ0dJO0VBQ0ksaUJBQUE7QUREUjtBQ0lJO0VBQ0ksZUFBQTtBREZSO0FDSVE7RUFDSSxnQkFBQTtBREZaOztBQ09BO0VBQ0ksT0FBQTtFQUNBLGtCQUFBO0FESko7O0FDT0E7RUFDSSxjQUFBO0FESko7O0FDT0E7RUFDSSxZQUFBO0FESko7O0FDT0E7RUFDSSx1QkFBQTtFQUNBLFVBQUE7RUFDQSxlQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0FESko7QUNNSTtFQUNJLG9DQUFBO0FESlI7QUNPSTtFQUNJLGtDQUFBO1VBQUEsMEJBQUE7RUFDQSxzQ0FBQTtVQUFBLDhCQUFBO0VBQ0EsMkNBQUE7VUFBQSxtQ0FBQTtFQUNBLDZCQUFBO1VBQUEscUJBQUE7QURMUjs7QUNTQTtFQUNJO0lBQ0ksbUJBQUE7RUROTjtFQ1FFO0lBQ0ksb0NBQUE7RUROTjtBQUNGOztBQ0FBO0VBQ0k7SUFDSSxtQkFBQTtFRE5OO0VDUUU7SUFDSSxvQ0FBQTtFRE5OO0FBQ0Y7QUNTQTs7O0VBQUE7QUFJQTs7RUFFSSxrQkFBQTtFQUNBLGFBQUE7QURQSjs7QUNVQTs7RUFFSSxrQkFBQTtFQUNBLGVBQUE7QURQSjs7QUNZQTs7RUFFSSxXQUFBO0VBQ0EscUJBQUE7RUFDQSxXQUFBO0VBQ0EsWUFBQTtFQUNBLHNCQVJ1QjtFQVN2QixzQkFBQTtFQUNBLGtCQUFBO0VBQ0EsU0FBQTtBRFRKOztBQ1lBOztFQUVJLGFBQUE7RUFDQSxrQkFBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0Esc0JBcEJ1QjtFQXFCdkIsU0FBQTtFQUVBLFdBQUE7RUFDQSxlQUFBO0VBQ0EsaUJBQUE7RUFDQSxjQUFBO0VBQ0EsNkRBQUE7QURWSjs7QUNhQTtFQUNJLFVBQUE7RUFDQSxtQkFBQTtBRFZKOztBQ1lBO0VBQ0ksVUFBQTtFQUNBLG1CQUFBO0FEVEo7O0FDWUE7OztFQUFBO0FBSUE7RUFDSSx3QkFBQTtFQUEwQix1REFBQTtFQUMxQixXQUFBO0VBQWEsNENBQUE7RUFDYix1QkFBQTtFQUF5Qiw4QkFBQTtBRE43Qjs7QUNTQTtFQUNJLHdCQUFBO0FETko7O0FDU0E7RUFDSSxhQUFBO0FETko7O0FDU0E7RUFDSSxXQUFBO0VBQ0EsZUFBQTtFQUNBLHVCQUFBO0VBQ0EseUJBQUE7RUFDQSxrQkFBQTtBRE5KOztBQ29CSTtFQVZBLHdCQUFBO0VBQ0EsWUFBQTtFQUNBLFdBQUE7RUFDQSxtQkE3SlM7RUE4SlQsZUFBQTtFQUNBLGdCQUFBO0VBQ0EsWUFBQTtFQU1JLGdCQUFBO0FEWFI7QUNhSTtFQWRBLHdCQUFBO0VBQ0EsWUFBQTtFQUNBLFdBQUE7RUFDQSxtQkE3SlM7RUE4SlQsZUFBQTtFQUNBLGdCQUFBO0VBQ0EsWUFBQTtBRElKOztBQ2lCSTtFQVBBLFdBQUE7RUFDQSxZQUFBO0VBQ0EsZUFBQTtFQUNBLG1CQWhMZTtBRDBLbkI7QUNjSTtFQVhBLFdBQUE7RUFDQSxZQUFBO0VBQ0EsZUFBQTtFQUNBLG1CQWhMZTtBRGdMbkI7QUNZSTtFQUNJLFlBQUE7QURWUjtBQ1lRO0VBS0ksbUJBQUE7RUFDQSxtQkFBQTtBRGRaIiwiZmlsZSI6InVzZXItc2V0dGluZ3MuY3NzIn0= */

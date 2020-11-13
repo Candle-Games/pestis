@@ -6,6 +6,9 @@ var game = new Phaser.Game({
   parent: 'game-container',
   debug: true,
   roundPixels: true,
+  dom: {
+    createContainer: true
+  },
   physics: {
     default: 'arcade',
     arcade: {
@@ -23,9 +26,10 @@ var game = new Phaser.Game({
 
     candlegames.pestis.client.scenes.Boot,
     candlegames.pestis.client.scenes.Loader,
-    candlegames.pestis.client.scenes.MainMenu,
+    candlegames.pestis.client.scenes.MenuScene,
     candlegames.pestis.client.scenes.Game,
     candlegames.pestis.client.scenes.Credits,
+    candlegames.pestis.client.scenes.Settings,
     candlegames.pestis.client.scenes.GameplayManager,
     candlegames.pestis.server.scenes.GameEngineScene
   ],
@@ -49,7 +53,8 @@ var game = new Phaser.Game({
       { key: 'MenuPlugin', plugin: candlegames.pestis.client.plugins.Menu, mapping: 'menu' },
       { key: 'InputManager', plugin: candlegames.pestis.client.plugins.InputManager, mapping: 'inputmanager' },
       { key: 'BrowserChecker', plugin: candlegames.pestis.client.plugins.BrowserChecker, mapping: 'browserchecker' },
-      { key: 'GameEngine', plugin: candlegames.pestis.client.plugins.GameEngine, mapping: 'game_engine' }
+      { key: 'GameEngine', plugin: candlegames.pestis.client.plugins.GameEngine, mapping: 'game_engine' },
+      { key: 'RexUI', plugin: rexuiplugin, mapping: 'rexUI' }
       /* { key: 'DebugDrawPlugin', plugin: PhaserDebugDrawPlugin, mapping: 'debugDraw' } */
     ]
   }
