@@ -56,7 +56,7 @@
       ACTION2: false
     };
 
-    switch (event.key) {
+    switch (event.code) {
       case this.keys.UP:
         this.inputs.UP = true;
         break;
@@ -88,7 +88,7 @@
           ACTION2: false
       };
 
-    switch (event.key) {
+    switch (event.code) {
       case this.keys.UP:
         this.inputs.UP = false;
         break;

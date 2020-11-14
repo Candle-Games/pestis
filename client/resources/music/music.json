@@ -2,11 +2,13 @@
   "music": [
     {
       "id": "black-plague",
-      "file": "the-black-plague.ogg"
+      "file": "the-black-plague.ogg",
+      "loop": true
     },
     {
       "id": "desolation",
       "file": "desolation.ogg",
+      "loop": true,
       "entry": "desolation-init"
     },
     {
@@ -21,8 +23,8 @@
       "last": 6,
       "padding": 4,
       "sequence": {
-        "start": "1,2",
-        "loop": "3,4,5,6,5,3,4,5,6,3,5,4,6"
+        "start": 2,
+        "loop": "1,2,3,4,5,6,5,3,4,5,6,3,5,4,6"
       },
       "transition": "run-or-die-transition"
     },
@@ -32,11 +34,13 @@
       "extension": ".ogg",
       "first": 2,
       "last": 6,
-      "padding": 4
+      "padding": 4,
+      "transition": "xxxxxx"
     },
     {
       "id": "credits",
-      "file": "credits.ogg"
+      "file": "credits.ogg",
+      "loop": true
     }
   ],
   "scenes": {

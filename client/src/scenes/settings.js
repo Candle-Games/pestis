@@ -15,7 +15,6 @@
 
   Settings.prototype.create = function(data) {
     var s = this.settings;
-    var settings = this.settings.settings;
 
     candlegames.pestis.client.scenes.MenuScene.prototype.create.call(this, data);
 
@@ -24,35 +23,36 @@
 
     $(node).find('input[name="music-volume"]')
       .on('change', function() {
-        settings.music.volume = parseInt($(this).val()) / 100;
+        s.set('music.volume', parseInt($(this).val()) / 100);
         s.save();
       })
-      .prop('value', settings.music.volume * 100)
-      .prop('disabled', !settings.music.status);
+      .prop('value', s.get('music.volume') * 100)
+      .prop('disabled', !s.get('music.status'));
 
     $(node).find('input[name="music"]').on('change', function() {
-      settings.music.status = $(this).prop('checked');
-      $(node).find('input[name="music-volume"]').prop('disabled', !$(this).prop('checked'));
+      var checked = $(this).prop('checked');
+      $(node).find('input[name="music-volume"]').prop('disabled', !checked);
+      s.set('music.status', checked);
       s.save();
-    }).prop('checked', settings.music.status);
+    }).prop('checked', s.get('music.status'));
 
     $(node).find('input[name="effects-volume"]').on('change', function() {
-      settings.effects.volume = parseInt($(this).val()) / 100;
+      s.set('effects.volume', parseInt($(this).val()) / 100);
       s.save();
     })
-      .prop('value', settings.effects.volume * 100)
-      .prop('disabled', !settings.effects.status);
+      .prop('value', s.get('effects.volume') * 100)
+      .prop('disabled', !s.get('effects.status'));
 
     $(node).find('input[name="effects"]').on('change', function() {
-      settings.effects.status = $(this).prop('checked');
-      $(node).find('input[name="effects-volume"]').prop('disabled', !$(this).prop('checked'));
+      var checked = $(this).prop('checked')
+      $(node).find('input[name="effects-volume"]').prop('disabled', !checked);
+      s.set('effects.status', checked);
       s.save();
-    }).prop('checked', settings.effects.status);
+    }).prop('checked', s.get('effects.status'));
 
     var prevKey = false;
 
     var getKey = function(e) {
-      console.log("Getting key " + $(this).text());
       if(prevKey) {
         $(prevKey).removeClass('selected');
         $(document).off('keydown');
@@ -63,9 +63,9 @@
 
       $(document).on('keydown', function(e) {
         var key = $(prevKey).attr('data-key');
-        settings.keyboard[key] = e.originalEvent.code;
+        s.set('keyboard.' + key, e.originalEvent.code);
         s.save();
-        
+
         $(prevKey)
           .text(e.originalEvent.code)
           .removeClass('selected');
@@ -76,7 +76,7 @@
 
     $(node).find('.key-button').each(function(button) {
       var key = $(this).attr('data-key');
-      $(this).text(settings.keyboard[key])
+      $(this).text(s.get('keyboard.' + key))
         .on('click', getKey);
     });
   }
