@@ -1,227 +1,349 @@
-(function (ns){
-    function MusicSystem (pluginManager){
-        Phaser.Plugins.BasePlugin.call(this, pluginManager);
+(function (ns) {
+  function MusicSystem(pluginManager) {
+    Phaser.Plugins.BasePlugin.call(this, pluginManager);
+    this._dataMusic = undefined;
+    this._sounds = {};
 
-        this._dataMusic = undefined;
+    this._musicSettings;
+    this._effectsSettings;
 
-        this._sounds ={};
-        this._soundsData = {};
+    this.currentBackground = undefined;
+    this.currentEffects = undefined;
+    this.currentScene = undefined;
+  }
 
+  MusicSystem.prototype = Object.create(Phaser.Plugins.BasePlugin.prototype);
+  MusicSystem.prototype.constructor = MusicSystem;
+
+  /**
+   * Loads music files
+   * @param loader
+   */
+  MusicSystem.prototype.loadMusic = function (loader) {
+    this._dataMusic = this.game.cache.json.get('music');
+
+    if (this._dataMusic !== undefined) {
+      for (var i = 0; i < this._dataMusic.music.length; i++) {
+        var currentSound = this._dataMusic.music[i];
+
+        if (currentSound.prefix !== undefined) {
+          for (var j = currentSound.first; j <= currentSound.last; j++) {
+            var paddedNumber = _.padStart("" + j, currentSound.padding, '0');
+            loader.audio(currentSound.id + paddedNumber, "resources/music/" + currentSound.prefix
+              + paddedNumber + currentSound.extension);
+          }
+        } else {
+          loader.audio(currentSound.id, "resources/music/" + currentSound.file);
+        }
+      }
+    }
+  }
+
+  /**
+   * Initializes music system
+   */
+  MusicSystem.prototype.initMusic = function () {
+    var sounds = {};
+
+    this._musicSettings = this.game.plugins.get('UserSettings').settings.music;
+    this._effectsSettings = this.game.plugins.get('UserSettings').settings.effects;
+
+    this.game.events.on('settings-update', function(settings, scene) {
+      this._musicSettings = settings.music;
+      this._effectsSettings= settings.effects;
+      this.updateSettings(settings, scene);
+    }, this);
+
+    if (this._dataMusic !== undefined) {
+      for (var i = 0; i < this._dataMusic.music.length; i++) {
+        var currentSound = this._dataMusic.music[i];
+        var sound = [];
+
+        if (currentSound.file !== undefined) {   // single file sound
+          if (currentSound.entry !== undefined) {
+            sound.push(this.createSound(currentSound.entry, false));
+          }
+          sound.push(this.createSound(currentSound.id,
+            currentSound.loop !== undefined && currentSound.loop));
+        } else {
+          var transition = this.findSoundInData(currentSound.transition);
+
+          if (currentSound.sequence) {
+            var start = currentSound.sequence.start;
+            var sequenceLoop = [];
+
+            sequenceLoop = currentSound.sequence.loop.split(',').map(function (idx, i, array) {
+              idx = parseInt(idx, 10);
+
+              var key = currentSound.id
+                + _.padStart(idx, currentSound.padding, '0');
+
+              if (transition !== undefined) {
+                var stopIdx = parseInt((i + 1 >= array.length) ? array[start] : array[(i + 1)], 10);
+
+                var stopKey = transition.id
+                  + _.padStart(stopIdx, currentSound.padding, '0');
+              }
+              return this.createSequenceSound(key, (i + 1) >= array.length ? start: undefined, stopKey);
+            }.bind(this));
+
+            sound = sound.concat(sequenceLoop);
+          } else {
+            for (var j = currentSound.first; j <= currentSound.last; j++) {
+              var key = currentSound.id
+                + _.padStart(j, currentSound.padding, '0');
+
+              if (transition !== undefined && j + 1 <= transition.last) {
+                var stopIdx = (j==currentSound.last) ? currentSound.first : j + 1;
+
+                var stopKey = transition.id
+                  + _.padStart(stopIdx, currentSound.padding, '0');
+              }
+
+              sound.push(this.createSequenceSound(key, start, stopKey));
+            }
+          }
+        }
+
+        sounds[currentSound.id] = sound;
+      }
+    }
+
+    this._sounds = sounds;
+
+    this._initSceneListeners();
+  }
+
+  MusicSystem.prototype.updateSettings = function(settings, scene) {
+    if(this.currentBackground !== undefined) {
+      this.currentBackground.setVolume(this._musicSettings.volume);
+
+      if(this._musicSettings.status !== this.currentBackground.play) {
+
+        if(this._musicSettings.status) {
+          this._sceneChanged(this.currentScene);
+        } else {
+          this.currentBackground.stop();
+          this.currentBackground = undefined;
+        }
+      }
+    } else {
+      if(this._musicSettings.status) {
+        this._sceneChanged(this.currentScene);
+      }
+    }
+  }
+
+  /**
+   * Creates a sound for playback
+   * @param id
+   * @param looped
+   * @return {{sound, looped}}
+   */
+  MusicSystem.prototype.createSound = function (id, looped) {
+    var sound = {
+      sound: id,
+      looped: looped
+    };
+
+    return sound;
+  }
+
+  /**
+   *
+   * @param id
+   * @param loopStart
+   * @param stopSound
+   * @return {{}}
+   */
+  MusicSystem.prototype.createSequenceSound = function (id, loopStart, stopSound) {
+    var sound = {
+      sound: id,
+      loopStart: loopStart,
+      stopSound: stopSound
+    };
+
+    return sound;
+  }
+
+  /**
+   * Returns the data for a sound
+   * @param id
+   * @return {*}
+   */
+  MusicSystem.prototype.findSoundInData = function (id) {
+    if (id === undefined) return;
+
+    for (var i = 0, length = this._dataMusic.music.length; i < length; ++i) {
+      if (this._dataMusic.music[i].id === id) {
+        return this._dataMusic.music[i];
+      }
+    }
+
+    return;
+  }
+
+  /**
+   * Inits scene change listeners
+   * @private
+   */
+  MusicSystem.prototype._initSceneListeners = function () {
+    var scenes = this._dataMusic.scenes;
+    var keys = _.keys(scenes);
+
+    for (var i = 0, length = keys.length; i < length; ++i) {
+      var scene = this.game.scene.getScene(keys[i]);
+      scene.events.on('start', function (from) {
+        this.currentScene = from.scene.scene.key;
+        this._sceneChanged(from.scene.scene.key);
+      }, this);
+    }
+  }
+
+  /**
+   * select the background to the current scene
+   * @param currentScene Key
+   */
+  MusicSystem.prototype._sceneChanged = function (currentScene) {
+    var background = this._dataMusic.scenes[currentScene].background;
+    this._playBackgroundMusic(background);
+  }
+
+  /**
+   * Plays current background music
+   * @private
+   */
+  MusicSystem.prototype._playBackgroundMusic = function (background) {
+    if(background === undefined) return;
+    if(this.currentBackground !== undefined && this.currentBackground.name===background) return;
+
+    // First stop current backgroun if any
+    this._stopBackgroundMusic();
+
+    var play = this._musicSettings.status;
+    var volume = this._musicSettings.volume;
+    this.currentBackground = this._musicLoop(background, volume, play);
+    if(this.currentBackground !== undefined) {
+      this.currentBackground.run();
+    }
+  }
+
+  /**
+   * Stops current background music
+   * @private
+   */
+  MusicSystem.prototype._stopBackgroundMusic = function (remove) {
+    remove = (remove==undefined) ? true : remove;
+    if (this.currentBackground !== undefined) {
+      this.currentBackground.stop();
+      if(remove) {
         this.currentBackground = undefined;
+      }
+    }
+  }
 
-        this.chase = {};
+  MusicSystem.prototype.playEffect = function(effect) {
+    this.stopEffect(effect);
+
+    var play = this._effectsSettings.status;
+    var volume = this._effectsSettings.volume;
+    this.currentEffects[effect] = this._musicLoop(effect, volume, play);
+    this.currentEffects[effect].run();
+  }
+
+  MusicSystem.prototype.stopEffect = function(effect) {
+    if(this.currentEffects[effect] !== undefined) {
+      this.currentEffects[effect].stop();
+      this.currentEffects[effect] = undefined;
+    }
+  }
+
+  MusicSystem.prototype.stopAllEffects = function() {
+    var effects = _.keys(this.currentEffects);
+    for(var i=0, length=effects.length; i < length; ++i) {
+      var effectName = effects[i];
+      this.stopEffect(effectName);
+    }
+    this.currentEffects = {};
+  }
+
+  /**
+   * Looped music player
+   * @param sound
+   * @param volume
+   * @param play
+   * @return {{volume: *, currentIdx: number, currentSound: undefined, stop: function(): void, array: *, run: function(): void, setVolume: function(*=): void, playNext: function(): void}|undefined}
+   * @private
+   */
+  MusicSystem.prototype._musicLoop = function (sound, volume, play) {
+    if(!play || this._sounds[sound]===undefined) {
+      return undefined;
     }
 
-    MusicSystem.prototype = Object.create(Phaser.Plugins.BasePlugin.prototype);
-    MusicSystem.prototype.constructor = MusicSystem;
+    var musicSystem = this;
+    var soundSystem = this.game.sound;
 
-    MusicSystem.prototype.loadMusic = function(loader) {
-        this._dataMusic = this.game.cache.json.get('music');
+    var musicLoop = {
+      array: musicSystem._sounds[sound],
+      currentIdx: 0,
+      currentSound: undefined,
+      volume: volume,
+      name: sound,
+      play: play,
 
-        if(this._dataMusic !== undefined){
-            for(var i=0; i < this._dataMusic.music.length;i++){
-                var currentSound = this._dataMusic.music[i];
+      run: function () {
+        var data = this.array[this.currentIdx];
+        this.currentSound = soundSystem.add(data.sound);
+        this.currentSound.play();
+        this.currentSound.setLoop(data.looped != undefined && data.looped);
+        this.currentSound.setVolume(this.volume);
+        this.currentSound.once('complete', this._playNext, this);
+        console.log("Playing " + data.sound);
+      },
+      _playNext: function () {
+        if (this.currentIdx + 1 >= this.array.length) {
+          var data = this.array[this.currentIdx];
+          if (data.loopStart) {
+            this.currentIdx = data.loopStart;
+          } else {
+            return;
+          }
+        } else {
+          this.currentIdx++;
+        }
 
-                if(currentSound.prefix !== undefined){
-                    for(var j = currentSound.first; j<=currentSound.last; j++){
-                        var paddedNumber = _.padStart("" + j, currentSound.padding, '0');
-                        loader.audio(currentSound.id + paddedNumber, "resources/music/" + currentSound.prefix
-                          + paddedNumber + currentSound.extension);
-                    }
-                }else{
-                    loader.audio(currentSound.id, "resources/music/"+currentSound.file);
-                }
+        this.run();
+      },
+      stop: function () {
+        var data = this.array[this.currentIdx];
+
+        if (this.currentSound !== undefined) {
+          if(data.isSequence) {
+            this.currentSound.off('complete');
+
+            if(data.stopSound !== undefined) {
+              this.currentSound.once('complete', function() {
+                this.currentSound = soundSystem.add(data.stopSound);
+                this.currentSound.play();
+                this.currentSound.setVolume(this.volume);
+              }, this);
             }
+          } else {
+            this.currentSound.stop();
+            console.log("Stopped " + data.sound);
+          }
         }
-    }
-
-    MusicSystem.prototype.initMusic = function() {
-        this.chase.valor = false;
-        this.chase.soundId=undefined;
-
-        //if music json is loaded
-        if(this._dataMusic !== undefined) {
-            for (var i = 0; i < this._dataMusic.music.length; i++) {
-                var currentSound = this._dataMusic.music[i];
-                this._sounds[currentSound.id] = [];
-                this._soundsData[currentSound.id] = [];
-
-                //only have one music element
-                if (currentSound.file !== undefined) {
-                    this._sounds[currentSound.id].push(this.game.sound.add(currentSound.id));
-                    this._soundsData[currentSound.id].loop=currentSound.loop;
-                    if(currentSound.entry !== undefined) {
-                        this._soundsData[currentSound.id].entry = currentSound.entry;
-                    }
-                }
-                // The music have fragments
-                else {
-                    this._soundsData[currentSound.id].first = currentSound.first;
-                    for (var j = currentSound.first; j <= currentSound.last; j++) {
-                        var paddedNumber = _.padStart("" + j, currentSound.padding, '0');
-                        this._sounds[currentSound.id].push(this.game.sound.add(currentSound.id + paddedNumber));
-                    }
-                    if(currentSound.sequence !== undefined) {
-
-                        if (currentSound.sequence.start) {
-                            this._soundsData[currentSound.id].sequenceStart = currentSound.sequence.start.split(",");
-                            this._soundsData[currentSound.id].sequenceStartIndex = 0;
-                        }
-                        this._soundsData[currentSound.id].loop = currentSound.sequence.loop.split(",");
-                        this._soundsData[currentSound.id].loopIndex=0;
-                    }
-                    if(currentSound.transition !== undefined){
-                        this._soundsData[currentSound.id].transition = currentSound.transition;
-                    }
-                }
-            }
+      },
+      setVolume: function(volume) {
+        if(this.currentSound !== undefined) {
+          this.currentSound.setVolume(volume);
+          this.volume = volume;
         }
+      }
+    };
 
-        this._initSceneListeners();
-    }
+    return musicLoop;
+  }
 
-    MusicSystem.prototype._initSceneListeners = function() {
-        var scenes = this._dataMusic.scenes;
-        var keys = _.keys(scenes);
-
-        for(var i=0, length=keys.length; i < length; ++i) {
-            var scene = this.game.scene.getScene(keys[i]);
-            scene.events.on('start', function(from) {
-                this._sceneChanged(from.scene.scene.key);
-            }, this);
-        }
-    }
-
-    /**
-     * select the background to the current scene
-     * @param currentScene Key
-     */
-    MusicSystem.prototype._sceneChanged = function (currentScene) {
-        var background = this._dataMusic.scenes[currentScene].background
-        if((this.currentBackground === undefined || this.currentBackground !== background )){
-            this._stopBackground();
-            this.currentBackground = background;
-            this._playBackground();
-        }
-    }
-
-    /**
-     * Play a sound with his soundId
-     * @param soundId
-     */
-    MusicSystem.prototype.playSound = function(soundId) {
-        if(this._sounds[soundId][0] !== undefined){
-            currentSound = this._sounds[soundId][0]
-            currentSound.play();
-        }
-    }
-
-    /**
-     * Play the correct background
-     * @private
-     */
-    MusicSystem.prototype._playBackground = function(){
-        if (this._soundsData[this.currentBackground].entry !== undefined) {
-            this._sounds[this._soundsData[this.currentBackground].entry][0].play()
-            this._sounds[this._soundsData[this.currentBackground].entry][0].off('complete');
-            this._sounds[this._soundsData[this.currentBackground].entry][0].once('complete', function () {
-                this._sounds[this.currentBackground][0].play({loop:true});
-            },this);
-        }else{
-            this._sounds[this.currentBackground][0].play({loop:true});
-        }
-    }
-
-    /**
-     * Stop the current background
-     * @private
-     */
-    MusicSystem.prototype._stopBackground = function(){
-        if(this.currentBackground !== undefined){
-            if(this._soundsData[this.currentBackground].entry!==undefined){
-                this._sounds[this._soundsData[this.currentBackground].entry][0].stop();
-            }
-            this._sounds[this.currentBackground][0].stop();
-        }
-    }
-
-    /**
-     * Chase music must stop
-     */
-    MusicSystem.prototype.stopChase = function() {
-        this.chase.valor=false;
-        this.chase.soundId = undefined;
-    }
-
-    /**
-     * Chase music must start (soundId select the chase music)
-     * @param soundId
-     */
-    MusicSystem.prototype.startChase = function(soundId) {
-        this.chase.valor=true;
-        this.chase.soundId=soundId;
-        this._stopBackground();
-
-        this._playSequence();
-    }
-
-    /**
-     * Select the sequence that chase music must follow
-     * @private
-     */
-    MusicSystem.prototype._playSequence = function(){
-        var soundId = this.chase.soundId
-        if(soundId !== undefined){
-
-            var soundData = this._soundsData[soundId];
-            var transitionData = this._soundsData[this._soundsData[soundId].transition];
-
-            if(soundData.sequenceStart !== undefined && soundData.sequenceStartIndex < soundData.sequenceStart.length){
-                var currentIndex = parseInt(soundData.sequenceStart[soundData.sequenceStartIndex],10);
-                if(currentIndex<transitionData.first){
-                    this._playFragment(this._sounds[soundId][currentIndex-soundData.first], this._playSequence);
-                    soundData.sequenceStartIndex++;
-                }
-                else{
-                    if(this.chase.valor){
-                        this._playFragment(this._sounds[soundId][currentIndex-soundData.first], this._playSequence);
-                        soundData.sequenceStartIndex++;
-                    }else{
-                        this._playFragment(this._sounds[this._soundsData[soundId].transition][currentIndex-transitionData.first], this._playBackground);
-                        soundData.sequenceStartIndex=0;
-                        soundData.loopIndex=0;
-                    }
-                }
-            }
-
-            else if(soundData.loop !== undefined && soundData.sequenceStartIndex === soundData.sequenceStart.length){
-                var currentIndex = parseInt(soundData.loop[soundData.loopIndex],10);
-                if(this.chase.valor){
-                    this._playFragment(this._sounds[soundId][currentIndex-soundData.first], this._playSequence);
-                    soundData.loopIndex++;
-                    if(soundData.loopIndex === soundData.loop.length){
-                        soundData.loopIndex=0;
-                    }
-                }else{
-                    this._playFragment(this._sounds[this._soundsData[soundId].transition][currentIndex-transitionData.first], this._playBackground);
-                    soundData.loopIndex=0;
-                    soundData.sequenceStartIndex=0;
-                }
-            }
-        }
-    }
-
-    /**
-     * Play sound and indicate the function must call when finish it
-     * @param sound
-     * @param func
-     * @private
-     */
-    MusicSystem.prototype._playFragment = function(sound, func){
-        sound.play();
-        sound.off('complete');
-        sound.on('complete', func, this);
-    }
-
-    ns.MusicSystem=MusicSystem;
-})(candlegamestools.namespace('candlegames.pestis.client.plugins'))
+  ns.MusicSystem = MusicSystem;
+})(candlegamestools.namespace('candlegames.pestis.client.plugins'));

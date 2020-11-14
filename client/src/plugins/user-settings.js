@@ -5,7 +5,7 @@
     /**
      * Current settings
      */
-    this.settings;
+    this._settings;
 
     /**
      * Local storage key
@@ -19,15 +19,27 @@
   UserSettings.prototype = Object.create(Phaser.Plugins.BasePlugin.prototype);
   UserSettings.prototype.constructor = UserSettings;
 
-  UserSettings.prototype.get = function(key, defaultValue) {
-    if(this.settings[key]===undefined) {
-      return defaultValue;
+  Object.defineProperty(UserSettings.prototype, 'settings', {
+    get: function() {
+      return this._settings;
+    },
+    set: function(value) {
+      this._settings = value;
+      this.sendUpdateEvent();
     }
-    return this.settings[key];
-  }
+  });
 
   UserSettings.prototype.set = function(key, value) {
-    this.settings[key] = value;
+    _.set(this.settings, key, value);
+    this.sendUpdateEvent();
+  }
+
+  UserSettings.prototype.get = function(key, defaultValue) {
+    var value = _.get(this._settings, key);
+    if(value===undefined) {
+      return defaultValue;
+    }
+    return value;
   }
 
   UserSettings.prototype.isSaved = function() {
@@ -35,12 +47,17 @@
   };
 
   UserSettings.prototype.save = function() {
-    window.localStorage.setItem(this.key, JSON.stringify(this.settings));
+    window.localStorage.setItem(this.key, JSON.stringify(this._settings));
   };
 
   UserSettings.prototype.reset = function() {
     window.localStorage.removeItem(this.key);
     this.loadDefaultSettings();
+  }
+
+  UserSettings.prototype.sendUpdateEvent = function() {
+    console.log("Sending settings update");
+    this.game.events.emit('settings-update', this._settings);
   }
 
   UserSettings.prototype.loadSettings = function() {
