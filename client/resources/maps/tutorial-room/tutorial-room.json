@@ -746,6 +746,17 @@
                  "width":0,
                  "x":688,
                  "y":1500
+                }, 
+                {
+                 "height":448,
+                 "id":93,
+                 "name":"Salida",
+                 "rotation":0,
+                 "type":"levelexit",
+                 "visible":true,
+                 "width":96,
+                 "x":4080,
+                 "y":1056
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -754,7 +765,7 @@
          "y":0
         }],
  "nextlayerid":15,
- "nextobjectid":93,
+ "nextobjectid":94,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.2",
