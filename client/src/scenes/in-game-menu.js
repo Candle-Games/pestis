@@ -24,7 +24,7 @@
 
     var config = _.assign(this.menu.config, {
       options: [
-        {id: 'SAVE_GAME', label: 'Save game', disabled: true},
+        {id: 'SAVE_GAME', label: 'Save game', disabled: true },
         {id: 'RETURN_TO_MAIN', label: 'Exit game'},
         {id: 'RETURN', label: 'Return'}
       ]

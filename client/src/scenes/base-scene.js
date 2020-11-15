@@ -1,4 +1,4 @@
-(function(ns) {
+(function (ns) {
   function BaseScene() {
     Phaser.Scene.call(this, {
       key: 'BaseScene'
@@ -6,24 +6,19 @@
 
     this.menus = {
       main: [
-        { id: 'PLAY_MENU', label: 'Play Pestis' },
-        { id: 'SETTINGS', label: 'Settings' },
-        { id: 'CREDITS', label: 'Credits' }
+        {id: 'PLAY_MENU', label: 'Play Pestis'},
+        {id: 'SETTINGS', label: 'Settings'},
+        {id: 'CREDITS', label: 'Credits'}
       ],
       play: [
-        {
-          id: 'NEW_GAME', label: 'New Game',
-          effect: function (option, action) {
-            option.setStyle(action === 'select' ? {color: '#fffe77'} : {color: '#fc7f03'});
-          },
-        },
+        {id: 'NEW_GAME', label: 'New Game'},
         {id: 'LOAD_GAME', label: 'Continue Game', disabled: true},
         {id: 'JOIN_GAME', label: 'Join Game'},
         {id: 'RETURN_TO_MAIN', label: 'Return'},
       ],
       return: [
-          { id: 'RETURN_TO_MAIN', label: 'Return' }
-        ]
+        {id: 'RETURN_TO_MAIN', label: 'Return'}
+      ]
     };
   }
 
@@ -34,12 +29,12 @@
     candlegames.pestis.scenes.components.State
   ]);
 
-  BaseScene.prototype.preload = function() {
+  BaseScene.prototype.preload = function () {
     this.settings.loadSettings();
     this.load.json('game-configuration', '/src/game-configuration.json');
   }
 
-  BaseScene.prototype.create = function() {
+  BaseScene.prototype.create = function () {
     this.createStateMachine({
       id: 'Game Scene Manager',
       initial: 'boot',
@@ -111,7 +106,7 @@
       }
     });
 
-    this.scene.get('MenuScene').events.on('menu-selected', function(id) {
+    this.scene.get('MenuScene').events.on('menu-selected', function (id) {
       this.scene.stop('MenuScene');
       this.sendStateEvent(id);
     }, this);
@@ -121,56 +116,56 @@
     this.comms.setup(game.cache.json.get('game-configuration').comms);
   }
 
-  BaseScene.prototype.startBoot = function() {
+  BaseScene.prototype.startBoot = function () {
     this.scene.launch('Boot');
-    this.scene.get('Boot').events.once('loading-finished', function() {
+    this.scene.get('Boot').events.once('loading-finished', function () {
       // We don't need boot scene anymore, destroy it
       this.scene.remove('Boot');
       this.sendStateEvent('LOAD_FINISHED');
     }, this);
   }
 
-  BaseScene.prototype.startMainMenu = function() {
-    this.scene.launch('MenuScene', { menu: this.menus['main'] });
+  BaseScene.prototype.startMainMenu = function () {
+    this.scene.launch('MenuScene', {menu: this.menus['main']});
   }
 
-  BaseScene.prototype.launchPlayMenu = function() {
-    this.scene.launch('MenuScene', { menu: this.menus['play'] });
+  BaseScene.prototype.launchPlayMenu = function () {
+    this.scene.launch('MenuScene', {menu: this.menus['play']});
   }
 
-  BaseScene.prototype.openSettings = function() {
-    this.scene.launch('Settings', { menu: this.menus['return'] });
+  BaseScene.prototype.openSettings = function () {
+    this.scene.launch('Settings', {menu: this.menus['return']});
 
-    this.scene.get('Settings').events.on('menu-selected', function(id) {
+    this.scene.get('Settings').events.on('menu-selected', function (id) {
       this.scene.stop('Settings');
       this.sendStateEvent(id);
     }, this);
   }
 
-  BaseScene.prototype.openCredits = function() {
-    this.scene.launch('Credits',  { menu: this.menus['return'] });
+  BaseScene.prototype.openCredits = function () {
+    this.scene.launch('Credits', {menu: this.menus['return']});
 
-    this.scene.get('Credits').events.once('menu-selected', function() {
+    this.scene.get('Credits').events.once('menu-selected', function () {
       this.scene.stop('Credits');
       this.sendStateEvent('RETURN_TO_MAIN');
     }, this);
   }
 
-  BaseScene.prototype.playGame = function() {
-    this.scene.launch('GameplayManager', { new: true, level: 'tutorial-room' });
+  BaseScene.prototype.playGame = function () {
+    this.scene.launch('GameplayManager', {new: true, level: 'tutorial-room'});
 
-    this.scene.get('GameplayManager').events.once('game-finished', function() {
+    this.scene.get('GameplayManager').events.once('game-finished', function () {
       this.scene.stop('GameplayManager');
       this.sendStateEvent('RETURN_TO_PLAYMENU');
     }, this);
   }
 
-  BaseScene.prototype.loadGame = function() {
+  BaseScene.prototype.loadGame = function () {
     console.log("Launching game loading");
     this.sendStateEvent('RETURN_TO_PLAYMENU');
   }
 
-  BaseScene.prototype.joinGame = function() {
+  BaseScene.prototype.joinGame = function () {
     console.log("Launching game joining");
     this.sendStateEvent('RETURN_TO_PLAYMENU');
   }
