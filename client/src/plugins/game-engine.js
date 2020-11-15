@@ -35,6 +35,7 @@
   ]);
 
   GameEngine.prototype.start = function(map) {
+    this.map = undefined;
     this.buildMap(map);
     this.setupPhysics();
     this.notifySpawnedObjects();
@@ -60,6 +61,7 @@
    * Setups physics
    */
   GameEngine.prototype.setupPhysics = function() {
+    this.scene.physics.world.colliders.destroy();
     this.scene.physics.add.collider(this.pcs, this.colliders, this.objectsCollision, null, this);
     this.scene.physics.add.overlap(this.pcs, this.overspots, this.spotOverlap, null, this);
   }

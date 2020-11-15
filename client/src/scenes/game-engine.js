@@ -21,6 +21,9 @@
     }
 
     this.level = config.level;
+
+    this.events.off('shutdown');
+    this.events.on('shutdown', this.shutdown, this);
   }
 
   GameEngineScene.prototype.create = function() {
@@ -28,11 +31,7 @@
       this.emitter = this.comms;
     }
 
-    this.emitter.on('input', this.inputHandler.bind(this));
     this.loadLevel(this.level);
-  }
-
-  GameEngineScene.prototype.inputHandler = function(input) {
   }
 
   GameEngineScene.prototype.loadLevel = function(level) {
@@ -43,6 +42,11 @@
     this.emitter.emit(event, data);
   }
 
+  GameEngineScene.prototype.shutdown = function() {
+    this.game_engine._destroyObjects();
+    this.events.removeAllListeners();
+    // this.comms.off('input');
+  }
 
   ns.GameEngineScene = GameEngineScene;
 })(candlegamestools.namespace('candlegames.pestis.server.scenes'));

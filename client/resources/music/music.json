@@ -47,9 +47,6 @@
     "MenuScene": {
       "background": "black-plague"
     },
-    "Game": {
-      "background": "desolation"
-    },
     "Credits": {
       "background": "credits"
     }

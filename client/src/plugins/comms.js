@@ -139,7 +139,7 @@
    * @param once Applies only to one time listeners
    */
   CommsSystem.prototype.off = function(event, callback, context, once) {
-    if(!this.socket.hasListeners(event)) {
+    if(this.socket.hasListeners(event)) {
       this.socket.off(event, this._socketToEmitter(event));
     }
 

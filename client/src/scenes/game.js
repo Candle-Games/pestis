@@ -15,6 +15,11 @@
      * @type {candlegames.pestis.gameobjects.client.PlayerCharacter}
      */
     this.currentCharacter;
+
+    /**
+     * Loaded textures
+     */
+    this._textures;
   }
 
   Game.prototype = Object.create(Phaser.Scene.prototype);
@@ -33,7 +38,10 @@
   }
 
   Game.prototype.preload = function() {
+    console.log('Game Scene preloading');
     this.loadingprogressbar.show();
+
+    this.load.off('complete');
     this.load.on('complete', this.onLoadComplete.bind(this));
 
     this.loadMap(this.levelConfig);
@@ -77,6 +85,7 @@
   }
 
   Game.prototype.spawnObject = function(id, x, y) {
+    console.log("Spawning object " + id);
     var object = this.getMapObject(id);
     var playerCharacter = this.add.playercharacter(object);
     playerCharacter.setPosition(x, y);
@@ -93,7 +102,6 @@
   Game.prototype.setCurrentCharacter = function(character) {
     this.currentCharacter = character;
     this.cameraFollow(this.currentCharacter);
-
   }
 
   Game.prototype.updateObjectPosition = function(id, x, y, o, r) {
@@ -133,18 +141,24 @@
   }
 
   Game.prototype.destroy = function() {
+    console.log("Shutdown game scene");
+
+    this.currentCharacter.destroy();
     this.levelConfig = undefined;
+
+    this.textures.removeKey('pc1');
+    this.textures.removeKey('lantern');
 
     // Camera
     this.camera = undefined;
 
     // Tilemap
-    this.mapConfig = undefined;
-    this.map = undefined;
-    this.tilesets = [];
-    this.images = {};
-    this.objects = {};
-    this.spawnedObjects = {};
+    this._destroyTileMap();
+
+    // Comms
+    this.comms.off('gameplay-update');
+
+    this.input.removeAllListeners();
   }
 
   ns.Game = Game;
