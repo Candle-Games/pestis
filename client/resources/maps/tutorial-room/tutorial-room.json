@@ -3,7 +3,8 @@
     {
      "export":
         {
-         "format":"json"
+         "format":"json",
+         "target":"tutorial-room.json"
         }
     },
  "height":100,
@@ -550,113 +551,6 @@
                  "width":0,
                  "x":808,
                  "y":960
-                }, 
-                {
-                 "height":0,
-                 "id":81,
-                 "name":"Shapeshifter 2 Spawn Point",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"object_type",
-                         "type":"string",
-                         "value":"shapeshifter"
-                        }, 
-                        {
-                         "name":"spawn_object",
-                         "type":"string",
-                         "value":"shapeshifter"
-                        }],
-                 "rotation":0,
-                 "type":"spawnpoint",
-                 "visible":true,
-                 "width":0,
-                 "x":3406.66666666667,
-                 "y":960
-                }, 
-                {
-                 "height":0,
-                 "id":83,
-                 "name":"Shapeshifter 1 Spawn Point",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"object_type",
-                         "type":"string",
-                         "value":"shapeshifter"
-                        }, 
-                        {
-                         "name":"spawn_object",
-                         "type":"string",
-                         "value":"shapeshifter"
-                        }],
-                 "rotation":0,
-                 "type":"spawnpoint",
-                 "visible":true,
-                 "width":0,
-                 "x":762.666666666667,
-                 "y":1500
-                }, 
-                {
-                 "height":0,
-                 "id":84,
-                 "name":"Key 1 Spawn Object",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"object_type",
-                         "type":"string",
-                         "value":"key"
-                        }, 
-                        {
-                         "name":"opens",
-                         "type":"int",
-                         "value":0
-                        }, 
-                        {
-                         "name":"spawn_object",
-                         "type":"string",
-                         "value":"key"
-                        }],
-                 "rotation":0,
-                 "type":"spawnobject",
-                 "visible":true,
-                 "width":0,
-                 "x":441.333333333333,
-                 "y":1500
-                }, 
-                {
-                 "height":0,
-                 "id":85,
-                 "name":"Locked Door 1 Spawn Object",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"needs",
-                         "type":"int",
-                         "value":0
-                        }, 
-                        {
-                         "name":"object_type",
-                         "type":"string",
-                         "value":"lockeddoor"
-                        }, 
-                        {
-                         "name":"opened",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"spawn_object",
-                         "type":"string",
-                         "value":"lockeddoor1"
-                        }],
-                 "rotation":0,
-                 "type":"spawnobject",
-                 "visible":true,
-                 "width":0,
-                 "x":2721,
-                 "y":960
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -665,16 +559,16 @@
          "y":0
         }],
  "nextlayerid":15,
- "nextobjectid":86,
+ "nextobjectid":81,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.4.2",
+ "tiledversion":"2020.09.22",
  "tileheight":16,
  "tilesets":[
         {
          "columns":22,
          "firstgid":1,
-         "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/tutorial-roof.png",
+         "image":"images\/tutorial-roof.png",
          "imageheight":288,
          "imagewidth":352,
          "margin":0,
@@ -687,7 +581,7 @@
         {
          "columns":32,
          "firstgid":397,
-         "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/tutorial-wall.png",
+         "image":"images\/tutorial-wall.png",
          "imageheight":640,
          "imagewidth":512,
          "margin":0,
@@ -714,73 +608,73 @@
          "tiles":[
                 {
                  "id":0,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/chimney.png",
+                 "image":"images\/chimney.png",
                  "imageheight":352,
                  "imagewidth":608
                 }, 
                 {
                  "id":2,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/chairleft.png",
+                 "image":"images\/chairleft.png",
                  "imageheight":239,
                  "imagewidth":160
                 }, 
                 {
                  "id":3,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/chairright.png",
+                 "image":"images\/chairright.png",
                  "imageheight":239,
                  "imagewidth":160
                 }, 
                 {
                  "id":4,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/chest.png",
+                 "image":"images\/chest.png",
                  "imageheight":224,
                  "imagewidth":352
                 }, 
                 {
                  "id":6,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/table.png",
+                 "image":"images\/table.png",
                  "imageheight":199,
                  "imagewidth":576
                 }, 
                 {
                  "id":7,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/closet.png",
+                 "image":"images\/closet.png",
                  "imageheight":508,
                  "imagewidth":320
                 }, 
                 {
                  "id":8,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/sidetable.png",
+                 "image":"images\/sidetable.png",
                  "imageheight":185,
                  "imagewidth":255
                 }, 
                 {
                  "id":9,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/bedchild.png",
+                 "image":"images\/bedchild.png",
                  "imageheight":256,
                  "imagewidth":512
                 }, 
                 {
                  "id":10,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/bedparents.png",
+                 "image":"images\/bedparents.png",
                  "imageheight":256,
                  "imagewidth":576
                 }, 
                 {
                  "id":12,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/chimney-top.png",
+                 "image":"images\/chimney-top.png",
                  "imageheight":95,
                  "imagewidth":608
                 }, 
                 {
                  "id":14,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/firewood.png",
+                 "image":"images\/firewood.png",
                  "imageheight":282,
                  "imagewidth":352
                 }, 
                 {
                  "id":17,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/coats.png",
+                 "image":"images\/coats.png",
                  "imageheight":352,
                  "imagewidth":320
                 }],
@@ -789,7 +683,7 @@
         {
          "columns":19,
          "firstgid":1695,
-         "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/stairs.png",
+         "image":"images\/stairs.png",
          "imageheight":96,
          "imagewidth":304,
          "margin":0,
