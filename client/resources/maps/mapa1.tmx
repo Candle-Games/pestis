@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="750" height="150" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="132">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="750" height="150" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="140">
  <tileset firstgid="1" source="fondo.tsx"/>
  <tileset firstgid="1" name="Stairs" tilewidth="16" tileheight="16" tilecount="0" columns="19">
   <image source="../Pestis-Tutorial/Stairs.png" width="304" height="96"/>
@@ -101,6 +101,7 @@
   <object id="116" name="Shapeshifter 1 Spawn Point" type="spawnpoint" x="3690" y="1788.67">
    <properties>
     <property name="object_type" value="shapeshifter"/>
+    <property name="path" type="int" value="138"/>
     <property name="spawn_object" value="shapeshifter"/>
    </properties>
    <point/>
@@ -108,6 +109,7 @@
   <object id="117" name="Shapeshifter 4 Spawn Point" type="spawnpoint" x="6506" y="1214">
    <properties>
     <property name="object_type" value="shapeshifter"/>
+    <property name="path" type="int" value="135"/>
     <property name="spawn_object" value="shapeshifter"/>
    </properties>
    <point/>
@@ -115,6 +117,7 @@
   <object id="118" name="Shapeshifter 5 Spawn Point" type="spawnpoint" x="7896" y="637">
    <properties>
     <property name="object_type" value="shapeshifter"/>
+    <property name="path" type="int" value="134"/>
     <property name="spawn_object" value="shapeshifter"/>
    </properties>
    <point/>
@@ -129,6 +132,7 @@
   <object id="120" name="Shapeshifter 3 Spawn Point" type="spawnpoint" x="9692" y="1784">
    <properties>
     <property name="object_type" value="shapeshifter"/>
+    <property name="path" type="int" value="139"/>
     <property name="spawn_object" value="shapeshifter"/>
    </properties>
    <point/>
@@ -197,6 +201,31 @@
     <property name="spawn_object" value="key"/>
    </properties>
    <point/>
+  </object>
+  <object id="133" name="hideout" type="hideout" x="6066.55" y="480" width="176" height="160"/>
+  <object id="134" name="ss5path" type="path" x="9022.67" y="637">
+   <properties>
+    <property name="id" type="int" value="118"/>
+   </properties>
+   <polyline points="0,0 -6020,1.33333"/>
+  </object>
+  <object id="135" name="ss4path" type="path" x="7616" y="1214">
+   <properties>
+    <property name="id" type="int" value="117"/>
+   </properties>
+   <polyline points="0,0 -3872,0"/>
+  </object>
+  <object id="138" name="ss1path" type="path" x="6816" y="1788.67">
+   <properties>
+    <property name="id" type="int" value="116"/>
+   </properties>
+   <polyline points="0,0 -6608,0"/>
+  </object>
+  <object id="139" name="ss3path" type="path" x="7472" y="1784">
+   <properties>
+    <property name="id" type="int" value="120"/>
+   </properties>
+   <polyline points="0,0 4416,0"/>
   </object>
  </objectgroup>
 </map>
