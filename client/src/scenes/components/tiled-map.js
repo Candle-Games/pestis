@@ -16,6 +16,11 @@
     tilesets: [],
 
     /**
+     * Tileset layers
+     */
+    tilesetLayers: [],
+
+    /**
      * All tiled images
      */
     images: {},
@@ -78,6 +83,7 @@
       }
     },
 
+
     _createTilesetLayers: function() {
       if(this.map !== undefined) {
         var tileLayerNames = this.map.getTileLayerNames();
@@ -86,6 +92,7 @@
           var layer = this.map.getLayer(tileLayerNames[i]);
           var dynamicLayer = this.map.createDynamicLayer(layer.name, this.tilesets, 0, 0);
           dynamicLayer.setPipeline('Light2D');
+          this.tilesetLayers.push(dynamicLayer);
         }
       }
     },
@@ -141,6 +148,23 @@
           }
         }
       }
+    },
+
+    _destroyObjects: function() {
+      var keys = _.keys(this.spawnedObjects);
+      for(var i=0, length=keys; i < length; ++i) {
+        this.spawnedObjects[keys[i]].destroy();
+      }
+    },
+
+    _destroyTileMap: function() {
+      this._destroyObjects();
+      this.tilesetLayers.length = 0;
+      this.tilesets.length = 0;
+      this.spawnedObjects = {};
+      this.images = {};
+      this.objects = {};
+      this.map.destroy();
     },
 
     _isImageObject: function(object) {

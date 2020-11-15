@@ -27,11 +27,11 @@ var game = new Phaser.Game({
     candlegames.pestis.client.scenes.Boot,
     candlegames.pestis.client.scenes.Loader,
     candlegames.pestis.client.scenes.MenuScene,
-    candlegames.pestis.client.scenes.Game,
+//    candlegames.pestis.client.scenes.Game,
     candlegames.pestis.client.scenes.Credits,
     candlegames.pestis.client.scenes.Settings,
     candlegames.pestis.client.scenes.GameplayManager,
-    candlegames.pestis.server.scenes.GameEngineScene
+//    candlegames.pestis.server.scenes.GameEngineScene
   ],
   plugins: {
     global: [

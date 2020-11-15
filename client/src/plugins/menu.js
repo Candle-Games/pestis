@@ -37,14 +37,13 @@
       vanchor: 1,
       spacing: 50,
       fontfamily: "MedievalSharp",
+      normalcolor: '#fc7f03',
+      highlightcolor: '#fffe77',
       disabledcolor: 'rgba(255,255,255,0.3)',
-      fontsize: 40,
       fontcolor: '#fc7f03',
+      fontsize: 40,
       textalign: 'right',
       debug: false,
-      effect: function(option, action) {
-        option.setStyle(action==='select' ? { color: '#ffcda4'} : {color: '#fc7f03'});
-      },
       options: []
     };
   }
@@ -68,7 +67,9 @@
    *   spacing: <float> pixels to vertically separate the menu options,
    *   fontfamily: 'font name' global font name for the menu,
    *   fontsize: <float> global font size for menu options,
-   *   fontcolor: font color for menu options,
+   *   normalcolor: font color for menu options,
+   *   disabledcolor: font color for disabled menú options,
+   *   highlightcolor: font color for highlighted/selected menú options,
    *   textalign: 'left' (default) or 'center' or 'right' to align options inside menu container,
    *   selectEffect: <function> calls function with option when option is selected,
    *   unselectEffect: <function> class function with option when function is unselected,
@@ -85,7 +86,8 @@
    * }
    */
   Menu.prototype.show = function(config) {
-    this.config = _.assign(this.config, config);
+    var configuration = game.cache.json.get('game-configuration').menu;
+    this.config = _.assign(this.config, configuration, config);
     this.selectedOption=undefined;
     this.drawMenu();
     this.setupMenu();
@@ -163,8 +165,10 @@
     option.setOrigin(0, 0);
     option.setFontFamily(option._menuConfig.fontfamily || this.config.fontfamily);
     option.setFontSize(option._menuConfig.fontsize || this.config.fontsize);
+    option._menuConfig.disabled = option._menuConfig.disabled===undefined ? false : option._menuConfig.disabled;
+
     if(!option._menuConfig.disabled) {
-      option.setStyle({ color: option._menuConfig.fontcolor || this.config.fontcolor});
+      option.setStyle({ color: option._menuConfig.normalcolor || this.config.normalcolor });
     } else {
       option.setStyle({ color: option._menuConfig.disabledcolor || this.config.disabledcolor});
     }
@@ -271,7 +275,11 @@
    */
   Menu.prototype.setOptionSelected = function(option) {
     var effect = option._menuConfig.effect || this.config.effect;
-    effect(option, 'select');
+    if(effect !== undefined) {
+      effect(option, 'select');
+    } else {
+      this.defaultEffect(option, 'select');
+    }
   }
 
   /**
@@ -280,7 +288,11 @@
    */
   Menu.prototype.setOptionUnselected = function(option) {
     var effect = option.effect || this.config.effect;
-    effect(option, 'unselect');
+    if(effect !== undefined) {
+      effect(option, 'unselect');
+    } else {
+      this.defaultEffect(option, 'unselect');
+    }
   }
 
   /**
@@ -289,11 +301,13 @@
    * @param action 'select' or 'unselect'
    */
   Menu.prototype.defaultEffect = function(option, action) {
-    if(action==='select') {
-      option.setFontStyle('bolder');
-    } else {
-      option.setFontStyle('normal');
+    var color = action==='select' ? this.config.highlightcolor : this.config.normalcolor;
+
+    if(option._menuConfig.disabled) {
+      color = option._menuConfig.disabledcolor || this.config.disabledcolor;
     }
+
+    option.setStyle({ color: color });
   }
 
   ns.Menu = Menu;

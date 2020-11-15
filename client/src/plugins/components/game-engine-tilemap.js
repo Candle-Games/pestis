@@ -115,5 +115,13 @@
         }
       }
     },
+
+    _destroyObjects: function() {
+      this.overspots.destroy(true);
+      this.colliders.destroy(true);
+      this.pcs.destroy(true);
+      this.npcs.destroy(true);
+      this.playerCharacter.destroy();
+    }
   };
 })(candlegamestools.namespace('candlegames.pestis.plugins.components'));

@@ -2,11 +2,9 @@
   "menu": {
     "fontFamily": "MedievalSharp",
     "fontSize": 40,
-    "colors": {
-      "normal": "#fc7f03",
-      "disabled": "rgba(255,255,255,0.3)",
-      "highlight": "#ffcda4"
-    }
+    "normalcolor": "#fc7f03",
+    "disabledcolor": "rgba(255,255,255,0.3)",
+    "highlightcolor": "#fffe77"
   },
   "credits": {
     "creditBoxMarginTop": 0,
