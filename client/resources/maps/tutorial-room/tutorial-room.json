@@ -3,7 +3,8 @@
     {
      "export":
         {
-         "format":"json"
+         "format":"json",
+         "target":"."
         }
     },
  "height":100,
@@ -563,6 +564,11 @@
                          "value":"shapeshifter"
                         }, 
                         {
+                         "name":"path",
+                         "type":"int",
+                         "value":91
+                        }, 
+                        {
                          "name":"spawn_object",
                          "type":"string",
                          "value":"shapeshifter"
@@ -584,6 +590,11 @@
                          "name":"object_type",
                          "type":"string",
                          "value":"shapeshifter"
+                        }, 
+                        {
+                         "name":"path",
+                         "type":"int",
+                         "value":92
                         }, 
                         {
                          "name":"spawn_object",
@@ -657,6 +668,84 @@
                  "width":0,
                  "x":2721,
                  "y":960
+                }, 
+                {
+                 "height":0,
+                 "id":90,
+                 "name":"Shapeshifter 1 Spawn Point",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":2966.92,
+                         "y":0.0833333
+                        }],
+                 "properties":[
+                        {
+                         "name":"enemy_id",
+                         "type":"int",
+                         "value":83
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":2989,
+                 "y":960
+                }, 
+                {
+                 "height":0,
+                 "id":91,
+                 "name":"ss2path",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":1040,
+                         "y":0
+                        }],
+                 "properties":[
+                        {
+                         "name":"enemy_id",
+                         "type":"int",
+                         "value":81
+                        }],
+                 "rotation":0,
+                 "type":"path",
+                 "visible":true,
+                 "width":0,
+                 "x":2816,
+                 "y":960
+                }, 
+                {
+                 "height":0,
+                 "id":92,
+                 "name":"ss1path",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":3216,
+                         "y":0
+                        }],
+                 "properties":[
+                        {
+                         "name":"enemy_id",
+                         "type":"int",
+                         "value":83
+                        }],
+                 "rotation":0,
+                 "type":"path",
+                 "visible":true,
+                 "width":0,
+                 "x":688,
+                 "y":1500
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -665,7 +754,7 @@
          "y":0
         }],
  "nextlayerid":15,
- "nextobjectid":86,
+ "nextobjectid":93,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.2",
@@ -674,7 +763,7 @@
         {
          "columns":22,
          "firstgid":1,
-         "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/tutorial-roof.png",
+         "image":"images\/tutorial-roof.png",
          "imageheight":288,
          "imagewidth":352,
          "margin":0,
@@ -687,7 +776,7 @@
         {
          "columns":32,
          "firstgid":397,
-         "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/tutorial-wall.png",
+         "image":"images\/tutorial-wall.png",
          "imageheight":640,
          "imagewidth":512,
          "margin":0,
@@ -714,73 +803,73 @@
          "tiles":[
                 {
                  "id":0,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/chimney.png",
+                 "image":"images\/chimney.png",
                  "imageheight":352,
                  "imagewidth":608
                 }, 
                 {
                  "id":2,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/chairleft.png",
+                 "image":"images\/chairleft.png",
                  "imageheight":239,
                  "imagewidth":160
                 }, 
                 {
                  "id":3,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/chairright.png",
+                 "image":"images\/chairright.png",
                  "imageheight":239,
                  "imagewidth":160
                 }, 
                 {
                  "id":4,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/chest.png",
+                 "image":"images\/chest.png",
                  "imageheight":224,
                  "imagewidth":352
                 }, 
                 {
                  "id":6,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/table.png",
+                 "image":"images\/table.png",
                  "imageheight":199,
                  "imagewidth":576
                 }, 
                 {
                  "id":7,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/closet.png",
+                 "image":"images\/closet.png",
                  "imageheight":508,
                  "imagewidth":320
                 }, 
                 {
                  "id":8,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/sidetable.png",
+                 "image":"images\/sidetable.png",
                  "imageheight":185,
                  "imagewidth":255
                 }, 
                 {
                  "id":9,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/bedchild.png",
+                 "image":"images\/bedchild.png",
                  "imageheight":256,
                  "imagewidth":512
                 }, 
                 {
                  "id":10,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/bedparents.png",
+                 "image":"images\/bedparents.png",
                  "imageheight":256,
                  "imagewidth":576
                 }, 
                 {
                  "id":12,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/chimney-top.png",
+                 "image":"images\/chimney-top.png",
                  "imageheight":95,
                  "imagewidth":608
                 }, 
                 {
                  "id":14,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/firewood.png",
+                 "image":"images\/firewood.png",
                  "imageheight":282,
                  "imagewidth":352
                 }, 
                 {
                  "id":17,
-                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/coats.png",
+                 "image":"images\/coats.png",
                  "imageheight":352,
                  "imagewidth":320
                 }],
@@ -789,7 +878,7 @@
         {
          "columns":19,
          "firstgid":1695,
-         "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/stairs.png",
+         "image":"images\/stairs.png",
          "imageheight":96,
          "imagewidth":304,
          "margin":0,
