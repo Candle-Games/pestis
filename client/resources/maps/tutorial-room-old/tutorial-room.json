@@ -3,8 +3,7 @@
     {
      "export":
         {
-         "format":"json",
-         "target":"tutorial-room.json"
+         "format":"json"
         }
     },
  "height":100,
@@ -74,6 +73,12 @@
                  "height":352,
                  "id":8,
                  "name":"hideout",
+                 "properties":[
+                        {
+                         "name":"hideout",
+                         "type":"bool",
+                         "value":false
+                        }],
                  "rotation":0,
                  "type":"hideout",
                  "visible":true,
@@ -86,6 +91,12 @@
                  "height":95,
                  "id":32,
                  "name":"hideout",
+                 "properties":[
+                        {
+                         "name":"hideout",
+                         "type":"bool",
+                         "value":false
+                        }],
                  "rotation":0,
                  "type":"hideout",
                  "visible":true,
@@ -98,6 +109,12 @@
                  "height":352,
                  "id":34,
                  "name":"hideout",
+                 "properties":[
+                        {
+                         "name":"hideout",
+                         "type":"bool",
+                         "value":false
+                        }],
                  "rotation":0,
                  "type":"hideout",
                  "visible":true,
@@ -110,6 +127,12 @@
                  "height":224,
                  "id":35,
                  "name":"hideout",
+                 "properties":[
+                        {
+                         "name":"hideout",
+                         "type":"bool",
+                         "value":true
+                        }],
                  "rotation":0,
                  "type":"hideout",
                  "visible":true,
@@ -122,6 +145,12 @@
                  "height":199,
                  "id":19,
                  "name":"hideout",
+                 "properties":[
+                        {
+                         "name":"hideout",
+                         "type":"bool",
+                         "value":true
+                        }],
                  "rotation":0,
                  "type":"hideout",
                  "visible":true,
@@ -134,6 +163,12 @@
                  "height":239,
                  "id":22,
                  "name":"hideout",
+                 "properties":[
+                        {
+                         "name":"hideout",
+                         "type":"bool",
+                         "value":true
+                        }],
                  "rotation":0,
                  "type":"hideout",
                  "visible":true,
@@ -146,6 +181,12 @@
                  "height":239,
                  "id":23,
                  "name":"hideout",
+                 "properties":[
+                        {
+                         "name":"hideout",
+                         "type":"bool",
+                         "value":true
+                        }],
                  "rotation":0,
                  "type":"hideout",
                  "visible":true,
@@ -158,6 +199,12 @@
                  "height":508,
                  "id":25,
                  "name":"hideout",
+                 "properties":[
+                        {
+                         "name":"hideout",
+                         "type":"bool",
+                         "value":true
+                        }],
                  "rotation":0,
                  "type":"hideout",
                  "visible":true,
@@ -170,6 +217,12 @@
                  "height":508,
                  "id":26,
                  "name":"hideout",
+                 "properties":[
+                        {
+                         "name":"hideout",
+                         "type":"bool",
+                         "value":true
+                        }],
                  "rotation":0,
                  "type":"hideout",
                  "visible":true,
@@ -182,6 +235,12 @@
                  "height":185,
                  "id":27,
                  "name":"hideout",
+                 "properties":[
+                        {
+                         "name":"hideout",
+                         "type":"bool",
+                         "value":true
+                        }],
                  "rotation":0,
                  "type":"hideout",
                  "visible":true,
@@ -194,6 +253,12 @@
                  "height":185,
                  "id":28,
                  "name":"hideout",
+                 "properties":[
+                        {
+                         "name":"hideout",
+                         "type":"bool",
+                         "value":true
+                        }],
                  "rotation":0,
                  "type":"hideout",
                  "visible":true,
@@ -206,6 +271,12 @@
                  "height":185,
                  "id":29,
                  "name":"hideout",
+                 "properties":[
+                        {
+                         "name":"hideout",
+                         "type":"bool",
+                         "value":true
+                        }],
                  "rotation":0,
                  "type":"hideout",
                  "visible":true,
@@ -218,6 +289,12 @@
                  "height":256,
                  "id":36,
                  "name":"hideout",
+                 "properties":[
+                        {
+                         "name":"hideout",
+                         "type":"bool",
+                         "value":true
+                        }],
                  "rotation":0,
                  "type":"hideout",
                  "visible":true,
@@ -230,6 +307,12 @@
                  "height":256,
                  "id":37,
                  "name":"hideout",
+                 "properties":[
+                        {
+                         "name":"hideout",
+                         "type":"bool",
+                         "value":true
+                        }],
                  "rotation":0,
                  "type":"hideout",
                  "visible":true,
@@ -242,6 +325,12 @@
                  "height":282,
                  "id":38,
                  "name":"hideout",
+                 "properties":[
+                        {
+                         "name":"hideout",
+                         "type":"bool",
+                         "value":true
+                        }],
                  "rotation":0,
                  "type":"hideout",
                  "visible":true,
@@ -416,7 +505,7 @@
                  "type":"stairs_bottom",
                  "visible":true,
                  "width":112,
-                 "x":3088,
+                 "x":3104,
                  "y":1488
                 }, 
                 {
@@ -446,16 +535,6 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"headline",
-                         "type":"string",
-                         "value":""
-                        }, 
-                        {
-                         "name":"music_chase",
-                         "type":"string",
-                         "value":"run-or-die"
-                        }, 
-                        {
                          "name":"object_type",
                          "type":"string",
                          "value":"playercharacter"
@@ -469,7 +548,114 @@
                  "type":"spawnpoint",
                  "visible":true,
                  "width":0,
-                 "x":800,
+                 "x":808,
+                 "y":960
+                }, 
+                {
+                 "height":0,
+                 "id":81,
+                 "name":"Shapeshifter 2 Spawn Point",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"object_type",
+                         "type":"string",
+                         "value":"shapeshifter"
+                        }, 
+                        {
+                         "name":"spawn_object",
+                         "type":"string",
+                         "value":"shapeshifter"
+                        }],
+                 "rotation":0,
+                 "type":"spawnpoint",
+                 "visible":true,
+                 "width":0,
+                 "x":3406.66666666667,
+                 "y":960
+                }, 
+                {
+                 "height":0,
+                 "id":83,
+                 "name":"Shapeshifter 1 Spawn Point",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"object_type",
+                         "type":"string",
+                         "value":"shapeshifter"
+                        }, 
+                        {
+                         "name":"spawn_object",
+                         "type":"string",
+                         "value":"shapeshifter"
+                        }],
+                 "rotation":0,
+                 "type":"spawnpoint",
+                 "visible":true,
+                 "width":0,
+                 "x":762.666666666667,
+                 "y":1500
+                }, 
+                {
+                 "height":0,
+                 "id":84,
+                 "name":"Key 1 Spawn Object",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"object_type",
+                         "type":"string",
+                         "value":"key"
+                        }, 
+                        {
+                         "name":"opens",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"spawn_object",
+                         "type":"string",
+                         "value":"key"
+                        }],
+                 "rotation":0,
+                 "type":"spawnobject",
+                 "visible":true,
+                 "width":0,
+                 "x":441.333333333333,
+                 "y":1500
+                }, 
+                {
+                 "height":0,
+                 "id":85,
+                 "name":"Locked Door 1 Spawn Object",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"needs",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"object_type",
+                         "type":"string",
+                         "value":"lockeddoor"
+                        }, 
+                        {
+                         "name":"opened",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"spawn_object",
+                         "type":"string",
+                         "value":"lockeddoor1"
+                        }],
+                 "rotation":0,
+                 "type":"spawnobject",
+                 "visible":true,
+                 "width":0,
+                 "x":2721,
                  "y":960
                 }],
          "opacity":1,
@@ -479,16 +665,16 @@
          "y":0
         }],
  "nextlayerid":15,
- "nextobjectid":84,
+ "nextobjectid":86,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"2020.09.22",
+ "tiledversion":"1.4.2",
  "tileheight":16,
  "tilesets":[
         {
          "columns":22,
          "firstgid":1,
-         "image":"images\/tutorial-roof.png",
+         "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/tutorial-roof.png",
          "imageheight":288,
          "imagewidth":352,
          "margin":0,
@@ -501,7 +687,7 @@
         {
          "columns":32,
          "firstgid":397,
-         "image":"images\/tutorial-wall.png",
+         "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/tutorial-wall.png",
          "imageheight":640,
          "imagewidth":512,
          "margin":0,
@@ -528,73 +714,73 @@
          "tiles":[
                 {
                  "id":0,
-                 "image":"images\/chimney.png",
+                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/chimney.png",
                  "imageheight":352,
                  "imagewidth":608
                 }, 
                 {
                  "id":2,
-                 "image":"images\/chairleft.png",
+                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/chairleft.png",
                  "imageheight":239,
                  "imagewidth":160
                 }, 
                 {
                  "id":3,
-                 "image":"images\/chairright.png",
+                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/chairright.png",
                  "imageheight":239,
                  "imagewidth":160
                 }, 
                 {
                  "id":4,
-                 "image":"images\/chest.png",
+                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/chest.png",
                  "imageheight":224,
                  "imagewidth":352
                 }, 
                 {
                  "id":6,
-                 "image":"images\/table.png",
+                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/table.png",
                  "imageheight":199,
                  "imagewidth":576
                 }, 
                 {
                  "id":7,
-                 "image":"images\/closet.png",
+                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/closet.png",
                  "imageheight":508,
                  "imagewidth":320
                 }, 
                 {
                  "id":8,
-                 "image":"images\/sidetable.png",
+                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/sidetable.png",
                  "imageheight":185,
                  "imagewidth":255
                 }, 
                 {
                  "id":9,
-                 "image":"images\/bedchild.png",
+                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/bedchild.png",
                  "imageheight":256,
                  "imagewidth":512
                 }, 
                 {
                  "id":10,
-                 "image":"images\/bedparents.png",
+                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/bedparents.png",
                  "imageheight":256,
                  "imagewidth":576
                 }, 
                 {
                  "id":12,
-                 "image":"images\/chimney-top.png",
+                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/chimney-top.png",
                  "imageheight":95,
                  "imagewidth":608
                 }, 
                 {
                  "id":14,
-                 "image":"images\/firewood.png",
+                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/firewood.png",
                  "imageheight":282,
                  "imagewidth":352
                 }, 
                 {
                  "id":17,
-                 "image":"images\/coats.png",
+                 "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/coats.png",
                  "imageheight":352,
                  "imagewidth":320
                 }],
@@ -603,7 +789,7 @@
         {
          "columns":19,
          "firstgid":1695,
-         "image":"images\/stairs.png",
+         "image":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/tutorial-room\/images\/stairs.png",
          "imageheight":96,
          "imagewidth":304,
          "margin":0,

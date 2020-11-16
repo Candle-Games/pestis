@@ -48,5 +48,9 @@
     // this.comms.off('input');
   }
 
+  GameEngineScene.prototype.getGameState = function() {
+    return this.game_engine.getGameState();
+  }
+
   ns.GameEngineScene = GameEngineScene;
 })(candlegamestools.namespace('candlegames.pestis.server.scenes'));

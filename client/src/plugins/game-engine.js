@@ -180,5 +180,36 @@
     this.scene.emit('gameplay-update', bdata);
   }
 
+  GameEngine.prototype.getGameState = function() {
+    var pcs = this.pcs.getChildren();
+    var characters = [];
+
+    for(var i=0, length=pcs.length; i < length; ++i) {
+      var pc = pcs[i];
+      characters.push({
+        id: pc.id,
+        c: pc.x,
+        y: pc.y
+      });
+    }
+
+    var npcs = this.npcs.getChildren();
+    var noncharacters = [];
+    for(var i=0, length=npcs.length; i < length; ++i) {
+      var npc = npcs[i];
+      noncharacters.push({
+        id: npc.id,
+        x: npc.x,
+        y: npc.y
+      })
+    }
+
+    return {
+      map: this.mapName,
+      pcs: characters,
+      npcs: noncharacters
+    };
+  }
+
   ns.GameEngine = GameEngine;
 })(candlegamestools.namespace('candlegames.pestis.client.plugins'));

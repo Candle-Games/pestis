@@ -12,7 +12,7 @@
       ],
       play: [
         {id: 'NEW_GAME', label: 'New Game'},
-        {id: 'LOAD_GAME', label: 'Continue Game', disabled: true},
+        {id: 'LOAD_GAME', label: 'Continue Game', disabled: true },
         {id: 'JOIN_GAME', label: 'Join Game'},
         {id: 'RETURN_TO_MAIN', label: 'Return'},
       ],
@@ -32,6 +32,9 @@
   BaseScene.prototype.preload = function () {
     this.settings.loadSettings();
     this.load.json('game-configuration', '/src/game-configuration.json');
+    if(this.savedgames.getNumberOfSaves() > 0) {
+      this.menus.play[1].disabled = false;
+    }
   }
 
   BaseScene.prototype.create = function () {
@@ -161,8 +164,11 @@
   }
 
   BaseScene.prototype.loadGame = function () {
-    console.log("Launching game loading");
-    this.sendStateEvent('RETURN_TO_PLAYMENU');
+    this.scene.launch('GameLoad', {menu: this.menus['return']})
+    this.scene.get('GameLoad').events.once('menu-selected', function () {
+      this.scene.stop('GameLoad');
+      this.sendStateEvent('RETURN_TO_PLAYMENU');
+    }, this);
   }
 
   BaseScene.prototype.joinGame = function () {
