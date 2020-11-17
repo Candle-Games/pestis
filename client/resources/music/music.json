@@ -1,5 +1,5 @@
 {
-  "music": [
+  "music": [    
     {
       "id": "black-plague",
       "file": "the-black-plague.ogg",
@@ -61,6 +61,16 @@
       "id": "credits",
       "file": "credits.ogg",
       "loop": true
+    },
+
+
+    {
+      "id": "menu-enter",
+      "file": "menu-enter.wav"      
+    },
+    {
+      "id": "menu-select",
+      "file": "menu-select.wav"      
     }
   ],
   "scenes": {
