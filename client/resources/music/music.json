@@ -69,7 +69,11 @@
     },
     "Credits": {
       "background": "credits"
-    }
+    },
+    "game": {
+      "tutorial-room": "home-scary-home",
+      "level1": "desolation",
+      "level2": "lost-souls"
   }
 
 }
