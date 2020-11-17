@@ -1,25 +1,45 @@
+lang = "english";
 (function (ns) {
   function BaseScene() {
     Phaser.Scene.call(this, {
       key: 'BaseScene'
     });
-
-    this.menus = {
-      main: [
-        {id: 'PLAY_MENU', label: 'Play Pestis'},
-        {id: 'SETTINGS', label: 'Settings'},
-        {id: 'CREDITS', label: 'Credits'}
-      ],
-      play: [
-        {id: 'NEW_GAME', label: 'New Game'},
-        {id: 'LOAD_GAME', label: 'Continue Game', disabled: true },
-        {id: 'JOIN_GAME', label: 'Join Game'},
-        {id: 'RETURN_TO_MAIN', label: 'Return'},
-      ],
-      return: [
-        {id: 'RETURN_TO_MAIN', label: 'Return'}
-      ]
-    };
+    if(lang == "english"){
+      this.menus = {
+        main: [
+          {id: 'PLAY_MENU', label: 'Play Pestis'},
+          {id: 'SETTINGS', label: 'Settings'},
+          {id: 'CREDITS', label: 'Credits'}
+        ],
+        play: [
+          {id: 'NEW_GAME', label: 'New Game'},
+          {id: 'LOAD_GAME', label: 'Continue Game', disabled: true },
+          {id: 'JOIN_GAME', label: 'Join Game'},
+          {id: 'RETURN_TO_MAIN', label: 'Return'},
+        ],
+        return: [
+          {id: 'RETURN_TO_MAIN', label: 'Return'}
+        ]
+      };
+    }else
+      if(lang == "spanish"){
+        this.menus = {
+          main: [
+            {id: 'PLAY_MENU', label: 'Jugar a Pestis'},
+            {id: 'SETTINGS', label: 'Ajustes'},
+            {id: 'CREDITS', label: 'Créditos'}
+          ],
+          play: [
+            {id: 'NEW_GAME', label: 'Nueva partida'},
+            {id: 'LOAD_GAME', label: 'Continuar partida', disabled: true },
+            {id: 'JOIN_GAME', label: 'Unirse a partida'},
+            {id: 'RETURN_TO_MAIN', label: 'Volver'},
+          ],
+          return: [
+            {id: 'RETURN_TO_MAIN', label: 'Volver'}
+          ]
+        };
+      }
   }
 
   BaseScene.prototype = Object.create(Phaser.Scene.prototype);

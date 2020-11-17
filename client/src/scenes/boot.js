@@ -24,6 +24,7 @@
     var width = this.game.canvas.width;
     var height = this.game.canvas.height;
     var img = this.textures.get('logo-800').getSourceImage();
+    var lang = "spanish";
 
     if(width > height) {
       var sy = height * 0.6;

@@ -23,6 +23,31 @@
         "name": "Daniel Muñoz Serrano",
         "email": "d.munozs.2016@alumnos.urjc.es",
         "role": "Developer"
+      },
+      {
+        "name": "Francisco Manuel",
+        "email": "-------@alumnos.urjc.es",
+        "role": "Artist"
+      },
+      {
+        "name": "Ivan Murcia Esteban",
+        "email": "i.murcia.2016@alumnos.urjc.es",
+        "role": "Artist"
+      },
+      {
+        "name": "Néstor Hernandez Benito",
+        "email": "n.hernandezb.2017@alumnos.urjc.es",
+        "role": "Game designer & Manager"
+      },
+      {
+        "name": "Rodrigo Pérez Turel",
+        "email": "r.perezt.2016@alumnos.urjc.es",
+        "role": "Game designer"
+      },
+      {
+        "name": "Alejandro Rodriguez Muñoz",
+        "email": "a.rodriguez.2017@alumnos.urjc.es",
+        "role": "Musician"
       }
     ],
     "styles": {
