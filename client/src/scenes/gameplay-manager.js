@@ -36,10 +36,10 @@
 
     this.scene.get('Game').events.once('game-scene-created', function() {
       if(this.comms.online) {
-        this.comms.emit('start-level', {level: levelName});
+        this.comms.emit('start-level', {level: levelConfig.name});
       } else {
         this.scene.add('GameEngineScene', candlegames.pestis.server.scenes.GameEngineScene);
-        this.scene.launch('GameEngineScene', { level: levelName });
+        this.scene.launch('GameEngineScene', { level: levelConfig.name });
       }
     }.bind(this));
   }
