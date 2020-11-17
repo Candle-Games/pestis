@@ -20,8 +20,10 @@
     var saves = 0;
 
     for(var i=0, length=this.slots; i < length; ++i) {
+      if(this.savedGamesSlots != null){
       if(this.savedGamesSlots[i] !== undefined && this.savedGamesSlots[i] !== null) {
         saves++;
+      }
       }
     }
 

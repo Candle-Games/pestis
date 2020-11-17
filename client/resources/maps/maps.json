@@ -1,5 +1,5 @@
 {
-  "tutorial-room": {
+  "tutorial-room-old": {
     "name": "tutorial-room",
     "description": "Tutorial",
     "images": [
@@ -18,6 +18,22 @@
       "table.png",
       "tutorial-roof.png",
       "tutorial-wall.png"
+    ]
+  },
+  "tutorial-room": {
+    "name": "level1",
+    "description": "Primer mapa",
+    "images": [
+      "barrel.png",
+      "box.png",
+      "box-stack.png",
+      "box-stack-2.png",
+      "downstreet-wall.png",
+      "stairs.png",
+      "stall01.png",
+      "stall02.png",
+      "stall03.png",
+      "street-wall.png"
     ]
   }
 }
