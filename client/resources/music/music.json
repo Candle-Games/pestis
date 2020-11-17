@@ -6,6 +6,16 @@
       "loop": true
     },
     {
+      "id": "home-scary-home",
+      "file": "home-scary-home.ogg",
+      "loop": true,
+      "entry": "home-scary-home-init"
+    },
+    {
+      "id": "home-scary-home-init",
+      "file": "home-scary-home-init.ogg"
+    },
+    {
       "id": "desolation",
       "file": "desolation.ogg",
       "loop": true,
@@ -15,6 +25,16 @@
       "id": "desolation-init",
       "file": "desolation-init.ogg"
     },
+    {
+      "id": "lost-souls",
+      "file": "lost-souls.ogg",
+      "loop": true,
+      "entry": "lost-souls-init"
+    },
+    {
+      "id": "lost-souls-init",
+      "file": "lost-souls-init.ogg"
+    },    
     {
       "id": "run-or-die",
       "prefix": "run-or-die-",
