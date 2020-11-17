@@ -5,46 +5,50 @@
     Phaser.GameObjects.Sprite.call(this, scene, this._tiledObject.x, this._tiledObject.y,
       this._tiledProperties.spawn_object);
 
-    this.id = this._tiledObject.id;
-    this.name = this._tiledProperties.spawn_object;
 
-    this.setOriginFromFrame();
-    this.generateAnimations(this._tiledProperties.spawn_object);
+    if(this._tiledProperties.object_type === 'playercharacter') {
 
-    this.lantern = scene.add.lantern(this.x, this.y);
-    this.lantern.setOrigin(this.originX, this.originY);
+      this.id = this._tiledObject.id;
+      this.name = this._tiledProperties.spawn_object;
 
-    this.createStateMachine({
-        id: 'character',
-        initial: 'idle',
-        states: {
-          idle: {
-            entry: [ 'startIdle' ],
-            on: {
-              WALK: 'walking',
-              HIDE: 'hiding',
-              RUN: 'running',
-              JUMP: 'jumping'
+      this.setOriginFromFrame();
+      this.generateAnimations(this._tiledProperties.spawn_object);
+
+      this.lantern = scene.add.lantern(this.x, this.y);
+      this.lantern.setOrigin(this.originX, this.originY);
+
+      this.createStateMachine({
+            id: 'character',
+            initial: 'idle',
+            states: {
+              idle: {
+                entry: ['startIdle'],
+                on: {
+                  WALK: 'walking',
+                  HIDE: 'hiding',
+                  RUN: 'running',
+                  JUMP: 'jumping'
+                }
+              },
+              walking: {
+                entry: ['startWalking'],
+                on: {
+                  STOP: 'idle',
+                  RUN: 'running'
+                },
+              },
+              hiding: {},
+              running: {},
+              jumping: {}
             }
-          },
-          walking: {
-            entry: [ 'startWalking' ],
-            on: {
-              STOP: 'idle',
-              RUN: 'running'
-            },
-          },
-          hiding: {},
-          running: {},
-          jumping: {}
-        }
-      },{
-        actions: {
-          'startWalking': this._walk.bind(this),
-          'startIdle': this._stop.bind(this)
-        }
-      }
-    )
+          }, {
+            actions: {
+              'startWalking': this._walk.bind(this),
+              'startIdle': this._stop.bind(this)
+            }
+          }
+      )
+    }
   }
 
   PlayerCharacter.prototype = Object.create(Phaser.GameObjects.Sprite.prototype);

@@ -25,6 +25,7 @@
     };
 
     this.map;
+
   }
 
   GameEngine.prototype = Object.create(Phaser.Plugins.ScenePlugin.prototype);
@@ -39,6 +40,7 @@
     this.buildMap(map);
     this.setupPhysics();
     this.notifySpawnedObjects();
+
 
     // TODO: review
     this.scene.comms.on('input', this.inputHandler.bind(this), this);
@@ -63,6 +65,7 @@
   GameEngine.prototype.setupPhysics = function() {
     this.scene.physics.world.colliders.destroy();
     this.scene.physics.add.collider(this.pcs, this.colliders, this.objectsCollision, null, this);
+    this.scene.physics.add.collider(this.npcs, this.colliders, this.objectsCollision, null, this);
     this.scene.physics.add.overlap(this.pcs, this.overspots, this.spotOverlap, null, this);
   }
 
@@ -141,6 +144,11 @@
 
     this.inputUpdate(time, delta);
     this.sendUpdate({ type: 'position', object: this.playerCharacter });
+
+    var npcs = this.npcs.getChildren();
+    for(var i=0, length=npcs.length; i < length; ++i) {
+      this.sendUpdate({ type: 'position', object: npcs[i] });
+    }
   }
 
   /**
@@ -178,6 +186,12 @@
 
     var bdata = new Int32Array(data);
     this.scene.emit('gameplay-update', bdata);
+  }
+
+  GameEngine.prototype._updateEnemies = function(){
+    for(var i=0;i<this.npcs.length; i++){
+
+    }
   }
 
   ns.GameEngine = GameEngine;

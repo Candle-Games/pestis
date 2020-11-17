@@ -10,10 +10,13 @@
 
         this.type = 'virtualjoystick';
 
+        this.yOffset = 0;
+        this.xOffset = 0;
+
         this.vjoystick={
             base:null,
             joystick:null,
-            initPos: [200,200],
+            initPos:[0,0],
             angle: 0,
             currentDistance: 0,
             maxDistance: 0,
@@ -23,12 +26,11 @@
 
         this.buttonAction1= {
             sprite: null,
-            initPos: [400,500],
             isActive: false
         };
         this.buttonAction2= {
             sprite: null,
-            initPos: [700,500],
+            offset: 30,
             isActive: false
         };
 
@@ -39,12 +41,17 @@
 
     VirtualJoystick.prototype.init = function(scene){
         this.scene = scene;
-        this.vjoystick.base = scene.add.sprite(this.vjoystick.initPos[0],this.vjoystick.initPos[1],'joystick-base');
+        var camera = scene.cameras.main;
+        this.yOffset = camera.height * 0.20;
+        this.xOffset = camera.width * 0.10;
+
+        this.vjoystick.base = scene.add.sprite(this.xOffset,camera.height - this.yOffset,'joystick-base');
         this.vjoystick.base.anchor = [0.5,0.5];
         this.vjoystick.maxDistance = this.vjoystick.base.width *0.5;
         this.vjoystick.base.setScrollFactor(0, 0);
+        this.vjoystick.initPos = [this.vjoystick.base.x , this.vjoystick.base.y];
 
-        this.vjoystick.joystick=scene.add.sprite(this.vjoystick.initPos[0],this.vjoystick.initPos[1],'joystick');
+        this.vjoystick.joystick=scene.add.sprite(this.xOffset , camera.height - this.yOffset,'joystick');
         this.vjoystick.joystick.anchor = [0.5,0.5];
         this.vjoystick.joystick.setScrollFactor(0, 0);
 
@@ -56,11 +63,11 @@
         this.scene.input.off('pointermove', this.doDrag, this);
         this.scene.input.off('pointerup', this.stopDrag, this);
 
-        this.buttonAction1.sprite = scene.add.sprite(this.buttonAction1.initPos[0], this.buttonAction1.initPos[1], 'joystick-base');
+        this.buttonAction1.sprite = scene.add.sprite(camera.width - this.xOffset, camera.height - this.yOffset, 'joystick-base');
         this.buttonAction1.sprite.setInteractive().on('pointerdown', this.pressInputAction1, this);
         this.buttonAction1.sprite.setScrollFactor(0, 0);
 
-        this.buttonAction2.sprite = scene.add.sprite(this.buttonAction2.initPos[0], this.buttonAction2.initPos[1], 'joystick-base');
+        this.buttonAction2.sprite = scene.add.sprite(this.buttonAction1.sprite.x - this.buttonAction2.offset - this.buttonAction1.sprite.width, camera.height - this.yOffset, 'joystick-base');
         this.buttonAction2.sprite.setInteractive().on('pointerdown', this.pressInputAction2, this);
         this.buttonAction2.sprite.setScrollFactor(0, 0);
 

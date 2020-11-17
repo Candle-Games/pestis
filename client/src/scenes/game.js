@@ -87,16 +87,22 @@
   Game.prototype.spawnObject = function(id, x, y) {
     console.log("Spawning object " + id);
     var object = this.getMapObject(id);
-    var playerCharacter = this.add.playercharacter(object);
-    playerCharacter.setPosition(x, y);
-    playerCharacter.setPipeline('Light2D');
-
-    this.spawnedObjects[playerCharacter.id] = playerCharacter;
-
-    if(playerCharacter._tiledProperties.object_type !== undefined &&
-      playerCharacter._tiledProperties.object_type === 'playercharacter') {
-      this.setCurrentCharacter(playerCharacter);
+    var character = undefined;
+    if(object._tiledProperties.object_type === "playercharacter"){
+      character = this.add.playercharacter(object);
+    }else{
+      character = this.add.defaultenemy(object);
     }
+
+    character.setPosition(x, y);
+    character.setPipeline('Light2D');
+
+
+    if(character._tiledProperties.object_type === "playercharacter"){
+      this.setCurrentCharacter(character);
+    }
+
+    this.spawnedObjects[id] = character;
   }
 
   Game.prototype.setCurrentCharacter = function(character) {
