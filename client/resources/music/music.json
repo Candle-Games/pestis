@@ -100,16 +100,20 @@
     },
 
     {
-      "id": "demon1",
+      "id": "faces1",
       "file": "demon1.wav"
     },
     {
-      "id": "demon2",
+      "id": "faces2",
       "file": "demon2.wav"
     },
     {
-      "id": "demon3",
+      "id": "faces3",
       "file": "demon3.wav"
+    },
+    {
+      "id": "skeleton",
+      "file": "skeleton.wav"
     }
   ],
   "scenes": {
