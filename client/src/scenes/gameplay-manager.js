@@ -36,10 +36,10 @@
 
     this.scene.get('Game').events.once('game-scene-created', function() {
       if(this.comms.online) {
-        this.comms.emit('start-level', {level: levelName});
+        this.comms.emit('start-level', {level: levelConfig.name});
       } else {
         this.scene.add('GameEngineScene', candlegames.pestis.server.scenes.GameEngineScene);
-        this.scene.launch('GameEngineScene', { level: levelName });
+        this.scene.launch('GameEngineScene', { level: levelConfig.name });
       }
     }.bind(this));
   }
@@ -88,7 +88,7 @@
     this.scene.remove('InGameMenu');
     this._inGameMenu = undefined;
     this.scene.get('Game').scene.resume();
-    
+
     this.key.once('down', this.escapePressed, this);
   }
 

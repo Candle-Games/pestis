@@ -64,8 +64,9 @@
     _walk: function(speed, direction) {
       if(direction===undefined) direction = 1;
       if(speed===undefined) speed = this.walkVelocity;
-
-      this.body.setVelocityX(speed * direction);
+      if(!this.isHiding) {
+        this.body.setVelocityX(speed * direction);
+      }
     },
 
     up: function(delta) {
@@ -78,14 +79,17 @@
           this._setBodyEnabled(true);
           this.stairs_p = undefined;
           this.stairs = undefined;
+          this.stairsUp = false;
         }
       } else if(this.stairs_spot && this.stairs_spot.type === 'stairs_bottom') {
         this._setBodyEnabled(false);
         this.stairs = this.scene.game_engine.objects[this.stairs_spot._tiledProperties.stairs];
         this.setPosition(this.stairs.endPoint.x, this.stairs.endPoint.y);
         this.stairs_spot = undefined;
+        this.stairsUp = true;
       } else {
         this.jump();
+        this.isJumping = true;
       }
     },
 
@@ -99,14 +103,16 @@
           this._setBodyEnabled(true);
           this.stairs_p = undefined;
           this.stairs = undefined;
+          this.stairsDown = false;
         }
       } else if(this.stairs_spot && this.stairs_spot.type === 'stairs_top') {
         this._setBodyEnabled(false);
         this.stairs = this.scene.game_engine.objects[this.stairs_spot._tiledProperties.stairs];
         this.setPosition(this.stairs.startPoint.x, this.stairs.startPoint.y);
         this.stairs_spot = undefined;
+        this.stairsDown = true;
       } else if(this.hideout) {
-        // Hide
+        this.isHiding = true;
       }
     },
 
@@ -118,7 +124,6 @@
     _setBodyEnabled: function(enable) {
       if(enable===undefined) enable = true;
       this.body.enable = enable;
-      // this.body.setAllowGravity(enable);
     }
 
   };

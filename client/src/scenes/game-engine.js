@@ -45,7 +45,6 @@
   GameEngineScene.prototype.shutdown = function() {
     this.game_engine._destroyObjects();
     this.events.removeAllListeners();
-    // this.comms.off('input');
   }
 
   GameEngineScene.prototype.getGameState = function() {

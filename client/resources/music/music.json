@@ -50,6 +50,10 @@
     "Credits": {
       "background": "credits"
     }
+  },
+  "game": {
+    "tutorial-room": "desolation",
+    "level1": "whatever"
   }
 
 }

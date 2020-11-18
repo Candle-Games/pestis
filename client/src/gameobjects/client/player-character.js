@@ -16,32 +16,79 @@
 
     this.createStateMachine({
         id: 'character',
-        initial: 'idle',
+        initial: 'grounded',
+        context: {
+          obj: this
+        },
         states: {
-          idle: {
-            entry: [ 'startIdle' ],
+          grounded: {
+            initial: 'idle',
+            states: {
+              idle: {
+                entry: 'startIdle'
+              },
+              walking: {
+                entry: 'startWalking',
+                on: {
+                  STOP: 'idle'
+                },
+              },
+              hiding: {
+                entry: 'startHiding',
+                on: {
+                  STOP: 'idle'
+                }
+              },
+              running: {},
+              back: {
+                type: 'history'
+              },
+            },
             on: {
-              WALK: 'walking',
-              HIDE: 'hiding',
-              RUN: 'running',
-              JUMP: 'jumping'
+              WALK: '.walking',
+              RUN: '.running',
+              HIDE: '.hiding',
+
+              JUMP: 'jumping',
+
+              STEP_DOWN: 'stepping.down',
+              STEP_UP: 'stepping.up'
             }
           },
-          walking: {
-            entry: [ 'startWalking' ],
+          jumping: {
+            entry: 'startJumping',
             on: {
-              STOP: 'idle',
-              RUN: 'running'
-            },
+              GROUNDED: 'grounded.back'
+            }
           },
-          hiding: {},
-          running: {},
-          jumping: {}
+          stepping: {
+            states: {
+              down: {
+                entry: 'stairsDown',
+                on: {
+                  STEP_UP: 'up'
+                }
+              },
+              up: {
+                entry: 'stairsUp',
+                on: {
+                  STEP_DOWN: 'down'
+                }
+              }
+            },
+            on: {
+              GROUNDED: 'grounded'
+            }
+          }
         }
       },{
         actions: {
           'startWalking': this._walk.bind(this),
-          'startIdle': this._stop.bind(this)
+          'startIdle': this._stop.bind(this),
+          'startHiding': this._hide.bind(this),
+          'startJumping': this._jump.bind(this),
+          'stairsDown': this._stepDown.bind(this),
+          'stairsUp': this._stepUp.bind(this),
         }
       }
     )
@@ -55,6 +102,50 @@
     candlegames.pestis.gameobjects.components.TiledObject,
     candlegames.pestis.gameobjects.components.Animated
   ]);
+
+  /**
+   *
+   * @param context
+   * @param event
+   * @private
+   */
+  PlayerCharacter.prototype._jump = function(context, event) {
+    this.play(this._animations.jump);
+    this.lantern.play(this.lantern._animations.jump);
+  }
+
+  /**
+   *
+   * @param context
+   * @param event
+   * @private
+   */
+  PlayerCharacter.prototype._stepDown = function(context, event) {
+    this.play(this._animations.stairsdown);
+    this.lantern.play(this.lantern._animations.stairsdown);
+  }
+
+  /**
+   *
+   * @param context
+   * @param event
+   * @private
+   */
+  PlayerCharacter.prototype._stepUp = function(context, event) {
+    this.play(this._animations.stairsup);
+    this.lantern.play(this.lantern._animations.stairsup);
+  }
+
+  /**
+   * Called when hide state is started
+   * @param context
+   * @param event
+   * @private
+   */
+  PlayerCharacter.prototype._hide = function(context, event) {
+      this.play(this._animations.hide);
+      this.lantern.play(this.lantern._animations.hide);
+  }
 
   /**
    * Called when walk state is started
@@ -77,6 +168,7 @@
   PlayerCharacter.prototype._stop = function(context, event) {
     console.log("Playing idle");
     this.play(this._animations.idle);
+    this.lantern.play(this.lantern._animations.idle);
   }
 
   /**
@@ -96,6 +188,20 @@
     if(this.lantern !== undefined) {
       this.lantern.setFlipX(this.flipX);
       this.lantern.setPosition(this.x, this.y);
+    }
+  }
+
+  PlayerCharacter.prototype.setWalkState = function(state) {
+    if(state===0) {
+      this.sendStateEvent('GROUNDED');
+    } else if(state===1) {
+      this.sendStateEvent('JUMP');
+    } else if(state===2) {
+      this.sendStateEvent('STEP_UP');
+    } else if(state===3) {
+      this.sendStateEvent('STEP_DOWN');
+    } else if(state===4) {
+      this.sendStateEvent('HIDE');
     }
   }
 
