@@ -11,6 +11,8 @@
 
     Phaser.GameObjects.Container.call(this, scene, this._tiledObject.x, this._tiledObject.y);
 
+    this.super = Phaser.GameObjects.Container.prototype;
+
     this.id = this.getTiledProperty('id');
     this.name = this.getTiledProperty('spawn_object');
 
@@ -19,6 +21,8 @@
 
     this.body.setOffset(0, -5);
     this.body.setGravityY(2352);
+
+    this.currentCharacter = false;
 
     /**
      * Hideout the player is stepping on
@@ -33,8 +37,18 @@
   Phaser.Class.mixin(Character, [
     candlegames.pestis.gameobjects.components.State,
     candlegames.pestis.gameobjects.components.TiledObject,
-    candlegames.pestis.gameobjects.components.WalkingCharacter,
+    candlegames.pestis.gameobjects.components.WalkingCharacter
   ]);
+
+  Character.prototype.preUpdate = function(time, delta) {
+    if(this.body.onFloor() && this.body.velocity.y==0) {
+      this.isJumping = false;
+    } else if(this.isHiding)
+
+    if(this.super.preUpdate) {
+      this.super.preUpdate.call(this, time, delta);
+    }
+  }
 
 
   ns.Character = Character;

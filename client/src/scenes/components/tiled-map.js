@@ -107,7 +107,6 @@
 
           for(var j=0, olength=objects.length; j < olength; ++j) {
             var object = objects[j];
-
             this.objects[object.id] = object;
 
             if(this._isImageObject(object)) {

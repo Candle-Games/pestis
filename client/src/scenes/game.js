@@ -46,11 +46,21 @@
 
     this.loadMap(this.levelConfig);
 
-    this.load.multiatlas('pc1', 'resources/sprites/pc1/pc1.json', 'resources/sprites/pc1/');
-    this.load.json('pc1-animations', 'resources/sprites/pc1/pc1-animations.json');
+    for(var i=0, length=this.levelConfig.characters.length; i < length; ++i) {
+      var character = this.levelConfig.characters[i];
+      var characterFolder = 'resources/sprites/' + character + '/';
+      var characterJson = characterFolder + character + '.json';
+      this.load.multiatlas(character, characterJson, characterFolder);
 
-    this.load.multiatlas('lantern', 'resources/sprites/lantern/lantern.json', 'resources/sprites/lantern/');
-    this.load.json('lantern-animations', 'resources/sprites/lantern/lantern-animations.json');
+      var characterAnimations = characterFolder + character + '-animations.json';
+      this.load.json(character + '-animations', characterAnimations);
+    }
+
+    // this.load.multiatlas('pc1', 'resources/sprites/pc1/pc1.json', 'resources/sprites/pc1/');
+    // this.load.json('pc1-animations', 'resources/sprites/pc1/pc1-animations.json');
+    //
+    // this.load.multiatlas('lantern', 'resources/sprites/lantern/lantern.json', 'resources/sprites/lantern/');
+    // this.load.json('lantern-animations', 'resources/sprites/lantern/lantern-animations.json');
   }
 
   Game.prototype.onLoadComplete = function(value) {
@@ -76,7 +86,7 @@
         this.spawnObject(update[1], update[2], update[3]);
         break;
       case 2: // Position change
-        this.updateObjectPosition(update[1], update[2], update[3]);
+        this.updateObjectPosition(update[1], update[2], update[3], update[4]);
         break;
       case 3: // hideout collision
         this.highlightHideout(update[1], update[2], update[3], update[4], update[5]);
@@ -104,10 +114,11 @@
     this.cameraFollow(this.currentCharacter);
   }
 
-  Game.prototype.updateObjectPosition = function(id, x, y, o, r) {
+  Game.prototype.updateObjectPosition = function(id, x, y, s) {
     if(this.spawnedObjects[id]) {
       var obj = this.spawnedObjects[id];
       obj.setPosition(x, y);
+      obj.setWalkState(s);
     }
   }
 

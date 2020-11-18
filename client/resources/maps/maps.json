@@ -18,6 +18,32 @@
       "table.png",
       "tutorial-roof.png",
       "tutorial-wall.png"
+    ],
+    "characters": [
+      "pc1",
+      "pc2",
+      "lantern"
+    ]
+  },
+  "level1": {
+    "name": "level1",
+    "description": "Nivel 1",
+    "images": [
+      "box.png",
+      "stall03.png",
+      "stall02.png",
+      "stall01.png",
+      "street-wall.png",
+      "box-stack-2.png",
+      "box-stack.png",
+      "barrel.png",
+      "downstreet-wall.png",
+      "stairs.png"
+    ],
+    "characters": [
+      "pc1",
+      "pc2",
+      "lantern"
     ]
   }
 }

@@ -2,7 +2,7 @@
 	"animations": [
 		{
 			"key": "hide",
-			"prefix": "hide/pc1",
+			"prefix": "hide/pc2",
 			"suffix": ".png",
 			"zeroPad": 4,
 			"frameRate": 10,
@@ -12,7 +12,7 @@
 		},
 		{
 			"key": "idle",
-			"prefix": "idle/pc1",
+			"prefix": "idle/pc2",
 			"suffix": ".png",
 			"zeroPad": 4,
 			"frameRate": 10,
@@ -22,7 +22,7 @@
 		},
 		{
 			"key": "jump",
-			"prefix": "jump/pc1",
+			"prefix": "jump/pc2",
 			"suffix": ".png",
 			"zeroPad": 4,
 			"frameRate": 15,
@@ -32,7 +32,7 @@
 		},
 		{
 			"key": "stairsdown",
-			"prefix": "stairsdown/pc1",
+			"prefix": "stairsdown/pc2",
 			"suffix": ".png",
 			"zeroPad": 4,
 			"frameRate": 15,
@@ -42,7 +42,7 @@
 		},
 		{
 			"key": "stairsup",
-			"prefix": "stairsup/pc1",
+			"prefix": "stairsup/pc2",
 			"suffix": ".png",
 			"zeroPad": 4,
 			"frameRate": 15,
@@ -52,7 +52,7 @@
 		},
 		{
 			"key": "walk",
-			"prefix": "walk/pc1",
+			"prefix": "walk/pc2",
 			"suffix": ".png",
 			"zeroPad": 4,
 			"frameRate": 15,
@@ -65,6 +65,6 @@
 		"app": "https://www.codeandweb.com/texturepacker",
 		"creators": "Candlegames",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:af5c5b931ec0391661e97196ba033db9:c1880782967e7d001752d3680cf4eecc:b083eb5e5cd09ef8985ad50b2b08c5e5$"
+		"smartupdate": "$TexturePacker:SmartUpdate:295a4357fbadc1581ed4d32f8b6637b7:6cf75398b961d8aaf8352d1adb7eb2c3:c5509c0458018ede1000fb69d7d7303d$"
 	}
 }
