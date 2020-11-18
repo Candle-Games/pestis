@@ -119,6 +119,7 @@
       if(!this.scene.physics.world.overlap(this.playerCharacter, this.playerCharacter.hideout)) {
         this.sendUpdate({ type: 'hideoutcollision', is_colliding: false, player: this.playerCharacter, object: this.playerCharacter.hideout });
         this.playerCharacter.hideout = undefined;
+        this.playerCharacter.isHiding = undefined;
       }
     }
 
@@ -140,6 +141,12 @@
       this.playerCharacter.up(delta);
     } else if(this.keyPressed.DOWN) {
       this.playerCharacter.down(delta);
+    } else {
+      if(this.playerCharacter.isHiding) {
+        this.playerCharacter.isHiding = false;
+        this.playerCharacter.stairsDown = false;
+        this.playerCharacter.stairsDown = false;
+      }
     }
   }
 
@@ -186,7 +193,17 @@
         data = [ 1, update.object.id, update.object.x, update.object.y ];
         break;
       case 'position':
-        data = [ 2, update.object.id, update.object.x, update.object.y ];
+        data = [ 2, update.object.id, update.object.x, update.object.y, 0 ];
+
+        if(update.object.isJumping) {
+          data[4] = 1;
+        } else if(update.object.stairsUp) {
+          data[4] = 2;
+        } else if(update.object.stairsDown) {
+          data[4] = 3;
+        } else if(update.object.isHiding) {
+          data[4] = 4;
+        }
         break;
       case 'hideoutcollision':
         data = [ 3, update.is_colliding, update.object.id ];
@@ -195,6 +212,37 @@
 
     var bdata = new Int32Array(data);
     this.scene.emit('gameplay-update', bdata);
+  }
+
+  GameEngine.prototype.getGameState = function() {
+    var pcs = this.pcs.getChildren();
+    var characters = [];
+
+    for(var i=0, length=pcs.length; i < length; ++i) {
+      var pc = pcs[i];
+      characters.push({
+        id: pc.id,
+        c: pc.x,
+        y: pc.y
+      });
+    }
+
+    var npcs = this.npcs.getChildren();
+    var noncharacters = [];
+    for(var i=0, length=npcs.length; i < length; ++i) {
+      var npc = npcs[i];
+      noncharacters.push({
+        id: npc.id,
+        x: npc.x,
+        y: npc.y
+      })
+    }
+
+    return {
+      map: this.mapName,
+      pcs: characters,
+      npcs: noncharacters
+    };
   }
 
   ns.GameEngine = GameEngine;

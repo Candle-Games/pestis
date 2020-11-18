@@ -430,14 +430,14 @@
                         }, 
                         {
                          "x":1264,
-                         "y":546.25
+                         "y":544
                         }],
                  "rotation":0,
                  "type":"stairs",
                  "visible":true,
                  "width":0,
-                 "x":1839.33333333333,
-                 "y":956.416666666667
+                 "x":1840,
+                 "y":960
                 }, 
                 {
                  "height":0,
@@ -470,103 +470,7 @@
                  "visible":true,
                  "width":0,
                  "x":800,
-                 "y":958
-                }, 
-                {
-                 "height":0,
-                 "id":82,
-                 "name":"Spawnpoint enemy 1",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"object_type",
-                         "type":"string",
-                         "value":"enemy"
-                        }, 
-                        {
-                         "name":"path",
-                         "type":"int",
-                         "value":83
-                        }, 
-                        {
-                         "name":"spawn_object",
-                         "type":"string",
-                         "value":"sombra"
-                        }],
-                 "rotation":0,
-                 "type":"spawnpoint",
-                 "visible":true,
-                 "width":0,
-                 "x":3440.66666666667,
-                 "y":950.666666666667
-                }, 
-                {
-                 "height":0,
-                 "id":83,
-                 "name":"Path enemy 1",
-                 "polyline":[
-                        {
-                         "x":0,
-                         "y":48
-                        }, 
-                        {
-                         "x":1024,
-                         "y":48
-                        }],
-                 "rotation":0,
-                 "type":"path",
-                 "visible":true,
-                 "width":0,
-                 "x":2896,
-                 "y":880
-                }, 
-                {
-                 "height":0,
-                 "id":84,
-                 "name":"Spawnpoint enemy 2",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"object_type",
-                         "type":"string",
-                         "value":"enemy"
-                        }, 
-                        {
-                         "name":"path",
-                         "type":"int",
-                         "value":85
-                        }, 
-                        {
-                         "name":"spawn_object",
-                         "type":"string",
-                         "value":"caras"
-                        }],
-                 "rotation":0,
-                 "type":"spawnpoint",
-                 "visible":true,
-                 "width":0,
-                 "x":1136.66666666667,
-                 "y":1497.33333333333
-                }, 
-                {
-                 "height":0,
-                 "id":85,
-                 "name":"Path Enemy 2",
-                 "polyline":[
-                        {
-                         "x":0,
-                         "y":0
-                        }, 
-                        {
-                         "x":3184,
-                         "y":0
-                        }],
-                 "rotation":0,
-                 "type":"path",
-                 "visible":true,
-                 "width":0,
-                 "x":672,
-                 "y":1472
+                 "y":960
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -575,10 +479,10 @@
          "y":0
         }],
  "nextlayerid":15,
- "nextobjectid":86,
+ "nextobjectid":84,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.4.2",
+ "tiledversion":"2020.09.22",
  "tileheight":16,
  "tilesets":[
         {

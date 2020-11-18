@@ -1,0 +1,30 @@
+{
+	"animations": [
+		{
+			"key": "idle",
+			"prefix": "idle/pc1",
+			"suffix": ".png",
+			"zeroPad": 4,
+			"frameRate": 25,
+			"repeat": -1,
+			"start": 35,
+			"end": 45
+		},
+		{
+			"key": "walk",
+			"prefix": "walk/pc1",
+			"suffix": ".png",
+			"zeroPad": 4,
+			"frameRate": 25,
+			"repeat": -1,
+			"start": 1,
+			"end": 33
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"creators": "Candlegames",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:8878cb453dc16d80969480a093dc634f:dfd759621d59b9d7973eccd57d38006c:3cb1870c9833148a5caabddb8d515574$"
+	}
+}

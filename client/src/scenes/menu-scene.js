@@ -8,6 +8,8 @@
       key: 'MenuScene'
     }, config);
 
+    this.super = MenuScene.prototype;
+
     Phaser.Scene.call(this, config);
   }
 

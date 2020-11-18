@@ -20,7 +20,7 @@
     this.events.once('shutdown', this.shutdown, this);
 
     this.key = this.input.keyboard.addKey('ESC');
-    this.key.on('down', this.escapePressed, this);
+    this.key.once('down', this.escapePressed, this);
 
     if(data.new) {
       this.startLevel(data.level);
@@ -36,13 +36,12 @@
 
     this.scene.get('Game').events.once('game-scene-created', function() {
       if(this.comms.online) {
-        this.comms.emit('start-level', {level: levelName});
+        this.comms.emit('start-level', {level: levelConfig.name});
       } else {
         this.scene.add('GameEngineScene', candlegames.pestis.server.scenes.GameEngineScene);
-        this.scene.launch('GameEngineScene', { level: levelName });
+        this.scene.launch('GameEngineScene', { level: levelConfig.name });
       }
     }.bind(this));
-
   }
 
   GameplayManager.prototype.stopLevel = function() {
@@ -55,18 +54,21 @@
   }
 
   GameplayManager.prototype.escapePressed = function() {
-    this.scene.get('Game').scene.pause();
-    this.startInGameMenu();
+    this.generateSaveData(function(saveData) {
+      this.scene.get('Game').scene.pause();
+      this.startInGameMenu(saveData);
+    }.bind(this));
   }
 
-  GameplayManager.prototype.startInGameMenu = function() {
+  GameplayManager.prototype.startInGameMenu = function(saveData) {
     if(this._inGameMenu===undefined) {
       this.scene.add('InGameMenu', candlegames.pestis.client.scenes.InGameMenu);
       this._inGameMenu = this.scene.get('InGameMenu');
       this._inGameMenu.events.on('menu-selected', this.inGameMenuSelected, this);
     }
 
-    this.scene.launch('InGameMenu').bringToTop();
+    this.scene.launch('InGameMenu', saveData).bringToTop();
+    this.key.once('down', this.returnToGame, this);
   }
 
   GameplayManager.prototype.inGameMenuSelected = function(id, optionSelected) {
@@ -74,13 +76,25 @@
 
     switch (id) {
       case 'RETURN':
-        this.scene.get('Game').scene.resume();
+        this.returnToGame();
         break;
       case 'RETURN_TO_MAIN':
-        this.stopLevel();
-        this.events.emit('game-finished')
+        this.returnToMainMenu();
         break;
     }
+  }
+
+  GameplayManager.prototype.returnToGame = function() {
+    this.scene.remove('InGameMenu');
+    this._inGameMenu = undefined;
+    this.scene.get('Game').scene.resume();
+
+    this.key.once('down', this.escapePressed, this);
+  }
+
+  GameplayManager.prototype.returnToMainMenu = function() {
+    this.stopLevel();
+    this.events.emit('game-finished')
   }
 
   GameplayManager.prototype.shutdown = function() {
@@ -89,6 +103,34 @@
       this.scene.remove('InGameMenu');
       this._inGameMenu = undefined;
     }
+  }
+
+  GameplayManager.prototype.generateSaveData = function(callback) {
+    var callback = callback;
+    var saveData = {};
+
+    if(this.comms.online) {
+      // TODO: Get state from server
+    } else {
+      var gameEngineScene = this.scene.get('GameEngineScene');
+      saveData = gameEngineScene.getGameState();
+    }
+
+    this.game.renderer.snapshot(function(image) {
+      saveData.snapshot = image.src;
+      saveData.timestamp = Date.now();
+
+      callback(saveData);
+    }.bind(this));
+  }
+
+  GameplayManager.prototype.generateSnapshot = function() {
+    this.game.renderer.snapshot(function(image) {
+      var link = document.createElement('a');
+      link.setAttribute("href", image.src);
+      link.setAttribute("download", 'snapshot.png');
+      link.click();
+    });
   }
 
   ns.GameplayManager = GameplayManager;
