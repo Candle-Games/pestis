@@ -56,19 +56,14 @@
       this.load.json(character + '-animations', characterAnimations);
     }
 
-    // this.load.multiatlas('pc1', 'resources/sprites/pc1/pc1.json', 'resources/sprites/pc1/');
-    // this.load.json('pc1-animations', 'resources/sprites/pc1/pc1-animations.json');
-    //
     // this.load.multiatlas('lantern', 'resources/sprites/lantern/lantern.json', 'resources/sprites/lantern/');
     // this.load.json('lantern-animations', 'resources/sprites/lantern/lantern-animations.json');
-    this.load.multiatlas('lantern', 'resources/sprites/lantern/lantern.json', 'resources/sprites/lantern/');
-    this.load.json('lantern-animations', 'resources/sprites/lantern/lantern-animations.json');
-
-    this.load.multiatlas('sombra', 'resources/sprites/sombra/sombra.json', 'resources/sprites/sombra/');
-    this.load.json('sombra-animations', 'resources/sprites/sombra/sombra-animations.json');
-
-    this.load.multiatlas('caras', 'resources/sprites/caras/caras.json', 'resources/sprites/caras/');
-    this.load.json('caras-animations', 'resources/sprites/caras/caras-animations.json');
+    //
+    // this.load.multiatlas('sombra', 'resources/sprites/sombra/sombra.json', 'resources/sprites/sombra/');
+    // this.load.json('sombra-animations', 'resources/sprites/sombra/sombra-animations.json');
+    //
+    // this.load.multiatlas('caras', 'resources/sprites/caras/caras.json', 'resources/sprites/caras/');
+    // this.load.json('caras-animations', 'resources/sprites/caras/caras-animations.json');
   }
 
   Game.prototype.onLoadComplete = function(value) {
@@ -91,10 +86,10 @@
   Game.prototype.updateScene = function(update) {
     switch(update[0]) {
       case 1: // Spawn
-        this.spawnObject(update[1], update[2], update[3]);
+        this.spawnObject(update);
         break;
       case 2: // Position change
-        this.updateObjectPosition(update[1], update[2], update[3], update[4]);
+        this.updateObject(update);
         break;
       case 3: // hideout collision
         this.highlightHideout(update[1], update[2], update[3], update[4], update[5]);
@@ -102,21 +97,49 @@
     }
   }
 
-  Game.prototype.spawnObject = function(id, x, y) {
-    console.log("Spawning object " + id);
+  Game.prototype.spawnObject = function(updateData) {
+    var id = updateData[1];
+    var x = updateData[2];
+    var y = updateData[3];
+    var state = updateData[4];
+    var isCurrentCharacter = updateData[5];
+    var hasLantern = updateData[6];
+
     var object = this.getMapObject(id);
-    var character = undefined;
+
+    var character;
+
     if(object._tiledProperties.object_type === "playercharacter"){
-      character = this.add.playercharacter(object);
-      this.setCurrentCharacter(character);
-    }else{
-      character = this.add.defaultenemy(object);
+      character = this.spawnPlayerCharacter(object, state, isCurrentCharacter, hasLantern);
+    } else {
+      character = this.spawnNonPlayerCharacter(object);
     }
 
+    this.spawnedObjects[character.id] = character;
     character.setPosition(x, y);
     character.setPipeline('Light2D');
 
     this.spawnedObjects[id] = character;
+  }
+
+  Game.prototype.spawnPlayerCharacter = function(object, state, isCurrentCharacter, hasLantern) {
+    var playerCharacter = this.add.playercharacter(object);
+
+    if(hasLantern) {
+      this.playerLantern = this.add.lantern(0, 0);
+      playerCharacter.setLantern(this.playerLantern);
+    }
+
+    if(isCurrentCharacter) {
+      this.setCurrentCharacter(playerCharacter);
+    }
+
+    return playerCharacter;
+  }
+
+  Game.prototype.spawnNonPlayerCharacter = function(object) {
+    var character = this.add.defaultenemy(object);
+    return character;
   }
 
   Game.prototype.setCurrentCharacter = function(character) {
@@ -124,12 +147,22 @@
     this.cameraFollow(this.currentCharacter);
   }
 
-  Game.prototype.updateObjectPosition = function(id, x, y, s) {
+  Game.prototype.updateObject = function(data) {
+    var id = data[1];
+    var x = data[2];
+    var y = data[3];
+    var status = data[4];
+    var current = data[5];
+    var lantern = data[6];
+
     if(this.spawnedObjects[id]) {
       var obj = this.spawnedObjects[id];
       obj.setPosition(x, y);
       if(obj.setWalkState) {
-        obj.setWalkState(s);
+        obj.setWalkState(status);
+      }
+      if(obj.setLantern) {
+        obj.setLantern(lantern == 1 ? this.playerLantern : undefined);
       }
     }
   }
@@ -148,7 +181,7 @@
   Game.prototype.setupLights = function() {
     this.lights.enable();
     this.lights.addLight().setScrollFactor(0,0);
-    this.lights.setAmbientColor(0xaaaaaa);
+    this.lights.setAmbientColor(0x444444);
   }
 
   Game.prototype.update = function(time, delta) {

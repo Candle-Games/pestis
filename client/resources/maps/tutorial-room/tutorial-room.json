@@ -278,7 +278,7 @@
                  "y":960
                 }, 
                 {
-                 "height":414.666666666667,
+                 "height":414.667,
                  "id":40,
                  "name":"ground",
                  "rotation":0,
@@ -295,7 +295,7 @@
                  "rotation":0,
                  "type":"ground",
                  "visible":true,
-                 "width":4221.33333333333,
+                 "width":4221.33,
                  "x":256,
                  "y":1504
                 }, 
@@ -425,19 +425,19 @@
                  "name":"stairs",
                  "polyline":[
                         {
-                         "x":0,
-                         "y":0
+                         "x":0.670000000000073,
+                         "y":3.58299999999997
                         }, 
                         {
-                         "x":1264,
-                         "y":546.25
+                         "x":1264.67,
+                         "y":542.310272727273
                         }],
                  "rotation":0,
                  "type":"stairs",
                  "visible":true,
                  "width":0,
-                 "x":1839.33333333333,
-                 "y":956.416666666667
+                 "x":1839.33,
+                 "y":956.417
                 }, 
                 {
                  "height":0,
@@ -497,8 +497,8 @@
                  "type":"spawnpoint",
                  "visible":true,
                  "width":0,
-                 "x":3440.66666666667,
-                 "y":950.666666666667
+                 "x":3440.67,
+                 "y":950.667
                 }, 
                 {
                  "height":0,
@@ -545,8 +545,8 @@
                  "type":"spawnpoint",
                  "visible":true,
                  "width":0,
-                 "x":1136.66666666667,
-                 "y":1497.33333333333
+                 "x":1136.67,
+                 "y":1497.33
                 }, 
                 {
                  "height":0,
@@ -615,7 +615,7 @@
                  "y":944
                 }, 
                 {
-                 "height":382.666666666667,
+                 "height":382.667,
                  "id":90,
                  "name":"door_exit",
                  "properties":[
@@ -633,8 +633,8 @@
                  "type":"door",
                  "visible":true,
                  "width":52,
-                 "x":4173.33333333333,
-                 "y":1118.66666666667
+                 "x":4173.33,
+                 "y":1118.67
                 }, 
                 {
                  "height":416,
@@ -649,9 +649,37 @@
                  "rotation":0,
                  "type":"exit",
                  "visible":true,
-                 "width":205.333333333334,
-                 "x":4270.66666666667,
-                 "y":1117.33333333333
+                 "width":205.333,
+                 "x":4270.67,
+                 "y":1117.33
+                }, 
+                {
+                 "height":0,
+                 "id":94,
+                 "name":"Player 2 Spawn Point",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"music_chase",
+                         "type":"string",
+                         "value":"run-or-die"
+                        }, 
+                        {
+                         "name":"object_type",
+                         "type":"string",
+                         "value":"playercharacter"
+                        }, 
+                        {
+                         "name":"spawn_object",
+                         "type":"string",
+                         "value":"pc2"
+                        }],
+                 "rotation":0,
+                 "type":"spawnpoint",
+                 "visible":true,
+                 "width":0,
+                 "x":576,
+                 "y":960
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -660,10 +688,10 @@
          "y":0
         }],
  "nextlayerid":15,
- "nextobjectid":94,
+ "nextobjectid":96,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.4.2",
+ "tiledversion":"2020.09.22",
  "tileheight":16,
  "tilesets":[
         {

@@ -58,6 +58,7 @@
     jump: function() {
       if(this.canJump && this.body.onFloor()) {
         this.body.setVelocityY(this.jumpVelocity);
+        this.isJumping = true;
       }
     },
 
@@ -69,27 +70,43 @@
       }
     },
 
+    upEnd: function() {
+      if(!this.stairsUp) {
+        this.canJump = true;
+      }
+      this.stairsUp = false;
+    },
+
+    downEnd: function() {
+      if(!this.stairsDown) {
+        this.canJump = true;
+      }
+      this.stairsDown = false;
+    },
+
     up: function(delta) {
       if(this.stairs !== undefined) {
         var n_pixels = -this.walkVelocity * delta * 0.001;
         var stepDown = this.stairs.step(new Phaser.Math.Vector2(this.x, this.y), n_pixels);
         this.setPosition(stepDown.x, stepDown.y);
+        this.canJump = false;
+        this.stairsUp = true;
+        this.stairsDown = false;
 
         if(this.stairs.inStartPoint(stepDown)) {
-          this._setBodyEnabled(true);
           this.stairs_p = undefined;
           this.stairs = undefined;
           this.stairsUp = false;
+          this._setBodyEnabled(true);
+          console.log("End of stairs up");
         }
       } else if(this.stairs_spot && this.stairs_spot.type === 'stairs_bottom') {
         this._setBodyEnabled(false);
         this.stairs = this.scene.game_engine.objects[this.stairs_spot._tiledProperties.stairs];
         this.setPosition(this.stairs.endPoint.x, this.stairs.endPoint.y);
-        this.stairs_spot = undefined;
         this.stairsUp = true;
       } else {
         this.jump();
-        this.isJumping = true;
       }
     },
 
@@ -99,18 +116,22 @@
         var n_pixels = this.walkVelocity * delta * 0.001;
         var stepDown = this.stairs.step(new Phaser.Math.Vector2(this.x, this.y), n_pixels);
         this.setPosition(stepDown.x, stepDown.y);
+        this.canJump = false;
+        this.stairsDown = true;
+        this.stairsUp = false;
 
         if(this.stairs.inEndPoint(stepDown)) {
-          this._setBodyEnabled(true);
           this.stairs_p = undefined;
           this.stairs = undefined;
           this.stairsDown = false;
+          this.canJump = true;
+          this._setBodyEnabled(true);
+          console.log("End of stairs down");
         }
       } else if(this.stairs_spot && this.stairs_spot.type === 'stairs_top') {
         this._setBodyEnabled(false);
         this.stairs = this.scene.game_engine.objects[this.stairs_spot._tiledProperties.stairs];
         this.setPosition(this.stairs.startPoint.x, this.stairs.startPoint.y);
-        this.stairs_spot = undefined;
         this.stairsDown = true;
       } else if(this.hideout) {
         this.isHiding = true;
@@ -126,6 +147,5 @@
       if(enable===undefined) enable = true;
       this.body.enable = enable;
     }
-
   };
 })(candlegamestools.namespace('candlegames.pestis.gameobjects.components'));

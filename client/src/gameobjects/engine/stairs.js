@@ -38,6 +38,13 @@
    */
   Stairs.prototype.step = function(currentPosition, n) {
     var newPosition = currentPosition.add(this.slope.clone().scale(n));
+    /*
+    if(newPosition.distance(this.startPoint) > this.length) {
+      newPosition = this.endPoint.clone();
+    } else if(newPosition.distance(this.endPoint) > this.length) {
+      newPosition = this.startPoint.clone();
+    }
+    */
     return newPosition;
   }
 

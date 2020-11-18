@@ -22,7 +22,11 @@
     this.body.setOffset(0, -5);
     this.body.setGravityY(2352);
 
-    this.currentCharacter = false;
+    this.isCurrentCharacter = false;
+
+    this.hasLantern = false;
+
+    this.initUpdateData();
 
     /**
      * Hideout the player is stepping on
@@ -37,19 +41,34 @@
   Phaser.Class.mixin(Character, [
     candlegames.pestis.gameobjects.components.State,
     candlegames.pestis.gameobjects.components.TiledObject,
-    candlegames.pestis.gameobjects.components.WalkingCharacter
+    candlegames.pestis.gameobjects.components.WalkingCharacter,
+    candlegames.pestis.gameobjects.components.Chase,
+    candlegames.pestis.gameobjects.components.UpdateData
   ]);
 
   Character.prototype.preUpdate = function(time, delta) {
     if(this.body.onFloor() && this.body.velocity.y==0) {
       this.isJumping = false;
-    } else if(this.isHiding)
+    }
+
+    if(this._followTarget) {
+      this._followTarget.isHiding = this.isHiding;
+    }
+
+    this.follow(delta);
 
     if(this.super.preUpdate) {
       this.super.preUpdate.call(this, time, delta);
     }
   }
 
+  Character.prototype.setCurrentCharacter = function(isCurrent) {
+    this.isCurrentCharacter = isCurrent;
+  }
+
+  Character.prototype.setLantern = function(hasLantern) {
+    this.hasLantern = hasLantern;
+  }
 
   ns.Character = Character;
 
