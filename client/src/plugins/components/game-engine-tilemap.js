@@ -30,10 +30,6 @@
     pcs: undefined,
     npcs: undefined,
 
-    /**
-     * Current player character
-     */
-    playerCharacter: undefined,
 
     loadMap: function(map) {
       var levelResources = '/resources/maps/' + map + '/';
@@ -101,7 +97,6 @@
                 phaserObject = this.scene.add.character(object);
                 if(phaserObject._tiledProperties.object_type==='playercharacter') {
                   this.pcs.add(phaserObject);
-                  this.playerCharacter = phaserObject;
                 } else {
                   this.npcs.add(phaserObject);
                 }

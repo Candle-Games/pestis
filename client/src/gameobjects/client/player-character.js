@@ -8,11 +8,10 @@
     this.id = this._tiledObject.id;
     this.name = this._tiledProperties.spawn_object;
 
+    this.setDepth(100);
+
     this.setOriginFromFrame();
     this.generateAnimations(this._tiledProperties.spawn_object);
-
-    this.lantern = scene.add.lantern(this.x, this.y);
-    this.lantern.setOrigin(this.originX, this.originY);
 
     this.createStateMachine({
         id: 'character',
@@ -36,7 +35,7 @@
               hiding: {
                 entry: 'startHiding',
                 on: {
-                  STOP: 'idle'
+                  GROUNDED: 'idle'
                 }
               },
               running: {},
@@ -111,7 +110,7 @@
    */
   PlayerCharacter.prototype._jump = function(context, event) {
     this.play(this._animations.jump);
-    this.lantern.play(this.lantern._animations.jump);
+    if(this.lantern !== undefined) { this.lantern.play(this.lantern._animations.jump); }
   }
 
   /**
@@ -122,7 +121,7 @@
    */
   PlayerCharacter.prototype._stepDown = function(context, event) {
     this.play(this._animations.stairsdown);
-    this.lantern.play(this.lantern._animations.stairsdown);
+    if(this.lantern !== undefined) { this.lantern.play(this.lantern._animations.stairsdown); }
   }
 
   /**
@@ -133,7 +132,7 @@
    */
   PlayerCharacter.prototype._stepUp = function(context, event) {
     this.play(this._animations.stairsup);
-    this.lantern.play(this.lantern._animations.stairsup);
+    if(this.lantern !== undefined) { this.lantern.play(this.lantern._animations.stairsup); }
   }
 
   /**
@@ -143,8 +142,9 @@
    * @private
    */
   PlayerCharacter.prototype._hide = function(context, event) {
-      this.play(this._animations.hide);
-      this.lantern.play(this.lantern._animations.hide);
+    console.log("Playing hide: " + this.name);
+    this.play(this._animations.hide);
+    if(this.lantern !== undefined) { this.lantern.play(this.lantern._animations.hide); }
   }
 
   /**
@@ -156,7 +156,7 @@
   PlayerCharacter.prototype._walk = function(context, event) {
     console.log("Playing walk");
     this.play(this._animations.walk);
-    this.lantern.play(this.lantern._animations.walk);
+    if(this.lantern !== undefined) { this.lantern.play(this.lantern._animations.walk); }
   }
 
   /**
@@ -166,20 +166,22 @@
    * @private
    */
   PlayerCharacter.prototype._stop = function(context, event) {
-    console.log("Playing idle");
+    console.log("Playing idle: " + this.name);
     this.play(this._animations.idle);
-    this.lantern.play(this.lantern._animations.idle);
+    if(this.lantern !== undefined) { this.lantern.play(this.lantern._animations.idle); }
   }
 
   /**
    * @override Phaser.GameObjects.Sprite
    */
   PlayerCharacter.prototype.setPosition = function(x, y, z, w) {
-    if(Math.abs(this.x - x) > 0) {
-      this.sendStateEvent('WALK');
-      this.setFlipX(x < this.x);
-    } else {
-      this.sendStateEvent('STOP');
+    if(this.state !== 'hiding') {
+      if (Math.abs(this.x - x) > 0) {
+        this.sendStateEvent('WALK');
+        this.setFlipX(x < this.x);
+      } else {
+        this.sendStateEvent('STOP');
+      }
     }
 
     // Call parent setPosition
@@ -202,6 +204,19 @@
       this.sendStateEvent('STEP_DOWN');
     } else if(state===4) {
       this.sendStateEvent('HIDE');
+    }
+  }
+
+  PlayerCharacter.prototype.setLantern = function(lantern) {
+    if(lantern !== undefined) {
+      this.lantern = lantern;
+      this.lantern.setOrigin(this.originX, this.originY);
+      this.lantern.setPosition(this.x, this.y);
+      this.setDepth(101);
+      this.lantern.setDepth(101);
+    } else {
+      this.lantern = undefined;
+      this.setDepth(100);
     }
   }
 

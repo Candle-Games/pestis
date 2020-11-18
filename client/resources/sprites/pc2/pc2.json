@@ -2,6 +2,7 @@
 	"textures": [
 		{
 			"image": "pc2-0.png",
+			"normalMap": "pc2-0_n.png",
 			"format": "RGBA8888",
 			"size": {
 				"w": 1875,
@@ -763,6 +764,7 @@
 		},
 		{
 			"image": "pc2-1.png",
+			"normalMap": "pc2-1_n.png",
 			"format": "RGBA8888",
 			"size": {
 				"w": 1723,
@@ -1399,6 +1401,7 @@
 		},
 		{
 			"image": "pc2-2.png",
+			"normalMap": "pc2-2_n.png",
 			"format": "RGBA8888",
 			"size": {
 				"w": 2035,
@@ -1985,6 +1988,7 @@
 		},
 		{
 			"image": "pc2-3.png",
+			"normalMap": "pc2-3_n.png",
 			"format": "RGBA8888",
 			"size": {
 				"w": 2035,

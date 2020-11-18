@@ -471,6 +471,29 @@
                  "width":0,
                  "x":800,
                  "y":960
+                }, 
+                {
+                 "height":0,
+                 "id":84,
+                 "name":"Player 2 Spawn Point",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"object_type",
+                         "type":"string",
+                         "value":"playercharacter"
+                        }, 
+                        {
+                         "name":"spawn_object",
+                         "type":"string",
+                         "value":"pc2"
+                        }],
+                 "rotation":0,
+                 "type":"spawnpoint",
+                 "visible":true,
+                 "width":0,
+                 "x":560,
+                 "y":960
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -479,7 +502,7 @@
          "y":0
         }],
  "nextlayerid":15,
- "nextobjectid":84,
+ "nextobjectid":85,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"2020.09.22",

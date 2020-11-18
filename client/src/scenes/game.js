@@ -55,12 +55,6 @@
       var characterAnimations = characterFolder + character + '-animations.json';
       this.load.json(character + '-animations', characterAnimations);
     }
-
-    // this.load.multiatlas('pc1', 'resources/sprites/pc1/pc1.json', 'resources/sprites/pc1/');
-    // this.load.json('pc1-animations', 'resources/sprites/pc1/pc1-animations.json');
-    //
-    // this.load.multiatlas('lantern', 'resources/sprites/lantern/lantern.json', 'resources/sprites/lantern/');
-    // this.load.json('lantern-animations', 'resources/sprites/lantern/lantern-animations.json');
   }
 
   Game.prototype.onLoadComplete = function(value) {
@@ -83,10 +77,10 @@
   Game.prototype.updateScene = function(update) {
     switch(update[0]) {
       case 1: // Spawn
-        this.spawnObject(update[1], update[2], update[3]);
+        this.spawnObject(update);
         break;
       case 2: // Position change
-        this.updateObjectPosition(update[1], update[2], update[3], update[4]);
+        this.updateObject(update);
         break;
       case 3: // hideout collision
         this.highlightHideout(update[1], update[2], update[3], update[4], update[5]);
@@ -94,19 +88,29 @@
     }
   }
 
-  Game.prototype.spawnObject = function(id, x, y) {
+  Game.prototype.spawnObject = function(updateData) {
+    var id = updateData[1];
+    var x = updateData[2];
+    var y = updateData[3];
+    var state = updateData[4];
+    var isCurrentCharacter = updateData[5];
+    var hasLantern = updateData[6];
+
     console.log("Spawning object " + id);
     var object = this.getMapObject(id);
+
     var playerCharacter = this.add.playercharacter(object);
     playerCharacter.setPosition(x, y);
     playerCharacter.setPipeline('Light2D');
 
-    this.spawnedObjects[playerCharacter.id] = playerCharacter;
+    if(isCurrentCharacter) { this.setCurrentCharacter(playerCharacter); }
 
-    if(playerCharacter._tiledProperties.object_type !== undefined &&
-      playerCharacter._tiledProperties.object_type === 'playercharacter') {
-      this.setCurrentCharacter(playerCharacter);
+    if(hasLantern) {
+      this.playerLantern = this.add.lantern(x, y);
+      playerCharacter.setLantern(this.playerLantern);
     }
+
+    this.spawnedObjects[playerCharacter.id] = playerCharacter;
   }
 
   Game.prototype.setCurrentCharacter = function(character) {
@@ -114,11 +118,19 @@
     this.cameraFollow(this.currentCharacter);
   }
 
-  Game.prototype.updateObjectPosition = function(id, x, y, s) {
+  Game.prototype.updateObject = function(data) {
+    var id = data[1];
+    var x = data[2];
+    var y = data[3];
+    var status = data[4];
+    var current = data[5];
+    var lantern = data[6];
+
     if(this.spawnedObjects[id]) {
       var obj = this.spawnedObjects[id];
       obj.setPosition(x, y);
-      obj.setWalkState(s);
+      obj.setWalkState(status);
+      obj.setLantern(lantern==1 ? this.playerLantern : undefined);
     }
   }
 
@@ -136,7 +148,7 @@
   Game.prototype.setupLights = function() {
     this.lights.enable();
     this.lights.addLight().setScrollFactor(0,0);
-    this.lights.setAmbientColor(0xaaaaaa);
+    this.lights.setAmbientColor(0x444444);
   }
 
   Game.prototype.update = function(time, delta) {
