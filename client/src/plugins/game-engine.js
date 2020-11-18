@@ -51,7 +51,7 @@
   GameEngine.prototype.indicateEnemiesPath = function (){
     var npcs = this.npcs.getChildren();
     for(var i=0, length=npcs.length; i < length; ++i) {
-      var pathId = npcs[i].getTiledProperty('path');
+      var pathId = npcs[i]._tiledObject._tiledProperties.path;
       npcs[i].selectPath(pathId);
     }
   }
@@ -150,7 +150,7 @@
    */
   GameEngine.prototype.update = function(time, delta) {
     if(this.playerCharacter === undefined) return;
-
+    
     this.inputUpdate(time, delta);
     this.sendUpdate({ type: 'position', object: this.playerCharacter });
 

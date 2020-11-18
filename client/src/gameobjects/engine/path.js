@@ -5,7 +5,6 @@
         this.startPoint = new Phaser.Math.Vector2(tiledObject.x + tiledObject.polyline[0].x, tiledObject.y + tiledObject.polyline[0].y);
         this.endPoint = new Phaser.Math.Vector2(tiledObject.x + tiledObject.polyline[1].x, tiledObject.y + tiledObject.polyline[1].y);
 
-        this.length = this.startPoint.distance(this.endPoint);
     }
 
     Path.prototype = Object.create(ns.BaseTiledObject.prototype);
@@ -17,7 +16,7 @@
      * @returns {boolean}
      */
     Path.prototype.inEndPoint = function(position){
-        return position.distance(this.startPoint) >= this.length;
+        return position.x >= this.endPoint.x;
     }
 
     /**
@@ -26,7 +25,7 @@
      * @returns {boolean}
      */
     Path.prototype.inStartPoint = function(position){
-        return position.distance(this.endPoint) >= this.length;
+        return position.x <= this.startPoint.x;
     }
 
     ns.Path = Path;

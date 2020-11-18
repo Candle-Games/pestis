@@ -13,7 +13,7 @@
 
         this.createStateMachine({
             id: 'enemy',
-            initial: 'idle',
+            initial: 'walking',
             states:{
                 idle: {
                     entry: ['startIdle'],
@@ -80,7 +80,7 @@
         if (Math.abs(this.x - x) > 0) {
             this.sendStateEvent('WALK');
             this.setFlipX(x < this.x);
-        } else {
+        }else {
             this.sendStateEvent('STOP');
         }
 

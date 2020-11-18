@@ -43,9 +43,9 @@
             if(speed===undefined) speed = this.walkVelocity;
 
             if(this.currentPlayer === undefined){
-                if(this.currentDirection === -1 && this.path !== undefined && this.path.inEndPoint(this.body.position)){
+                if(this.currentDirection === -1 && this.path !== undefined && this.path.inStartPoint(this.body.position)){
                     this.currentDirection = this.currentDirection * -1;
-                }else if(this.currentDirection === 1 && this.path !== undefined && this.path.inStartPoint(this.body.position)){
+                }else if(this.currentDirection === 1 && this.path !== undefined && this.path.inEndPoint(this.body.position)){
                     this.currentDirection = this.currentDirection * -1;
                 }
             }else{
