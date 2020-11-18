@@ -21,7 +21,7 @@
   }
 
   Controller.prototype.sendInput = function (keymapvalue) {
-    if (this.keymapvalue != keymapvalue) {
+    if (this.keymapvalue !== keymapvalue) {
       //Send input to comms system
       this.scene.comms.emit('input', keymapvalue);
       this.keymapvalue = keymapvalue;

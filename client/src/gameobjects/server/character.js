@@ -16,7 +16,7 @@
     this.id = this.getTiledProperty('id');
     this.name = this.getTiledProperty('spawn_object');
 
-    this.setSize(80, 5);
+    this.setSize(80, 10);
     scene.physics.add.existing(this);
 
     this.body.setOffset(0, -5);

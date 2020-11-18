@@ -47,6 +47,7 @@
   }
 
   Keyboard.prototype.handleKeyDown = function (event) {
+
     switch (event.code) {
       case this.keys.UP:
         this.inputs.UP = true;
@@ -70,6 +71,7 @@
   }
 
   Keyboard.prototype.handleKeyUp = function (event) {
+
     switch (event.code) {
       case this.keys.UP:
         this.inputs.UP = false;

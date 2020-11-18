@@ -55,6 +55,15 @@
       var characterAnimations = characterFolder + character + '-animations.json';
       this.load.json(character + '-animations', characterAnimations);
     }
+
+    // this.load.multiatlas('lantern', 'resources/sprites/lantern/lantern.json', 'resources/sprites/lantern/');
+    // this.load.json('lantern-animations', 'resources/sprites/lantern/lantern-animations.json');
+    //
+    // this.load.multiatlas('sombra', 'resources/sprites/sombra/sombra.json', 'resources/sprites/sombra/');
+    // this.load.json('sombra-animations', 'resources/sprites/sombra/sombra-animations.json');
+    //
+    // this.load.multiatlas('caras', 'resources/sprites/caras/caras.json', 'resources/sprites/caras/');
+    // this.load.json('caras-animations', 'resources/sprites/caras/caras-animations.json');
   }
 
   Game.prototype.onLoadComplete = function(value) {
@@ -96,21 +105,41 @@
     var isCurrentCharacter = updateData[5];
     var hasLantern = updateData[6];
 
-    console.log("Spawning object " + id);
     var object = this.getMapObject(id);
 
-    var playerCharacter = this.add.playercharacter(object);
-    playerCharacter.setPosition(x, y);
-    playerCharacter.setPipeline('Light2D');
+    var character;
 
-    if(isCurrentCharacter) { this.setCurrentCharacter(playerCharacter); }
+    if(object._tiledProperties.object_type === "playercharacter"){
+      character = this.spawnPlayerCharacter(object, state, isCurrentCharacter, hasLantern);
+    } else {
+      character = this.spawnNonPlayerCharacter(object);
+    }
+
+    this.spawnedObjects[character.id] = character;
+    character.setPosition(x, y);
+    character.setPipeline('Light2D');
+
+    this.spawnedObjects[id] = character;
+  }
+
+  Game.prototype.spawnPlayerCharacter = function(object, state, isCurrentCharacter, hasLantern) {
+    var playerCharacter = this.add.playercharacter(object);
 
     if(hasLantern) {
-      this.playerLantern = this.add.lantern(x, y);
+      this.playerLantern = this.add.lantern(0, 0);
       playerCharacter.setLantern(this.playerLantern);
     }
 
-    this.spawnedObjects[playerCharacter.id] = playerCharacter;
+    if(isCurrentCharacter) {
+      this.setCurrentCharacter(playerCharacter);
+    }
+
+    return playerCharacter;
+  }
+
+  Game.prototype.spawnNonPlayerCharacter = function(object) {
+    var character = this.add.defaultenemy(object);
+    return character;
   }
 
   Game.prototype.setCurrentCharacter = function(character) {
@@ -129,8 +158,12 @@
     if(this.spawnedObjects[id]) {
       var obj = this.spawnedObjects[id];
       obj.setPosition(x, y);
-      obj.setWalkState(status);
-      obj.setLantern(lantern==1 ? this.playerLantern : undefined);
+      if(obj.setWalkState) {
+        obj.setWalkState(status);
+      }
+      if(obj.setLantern) {
+        obj.setLantern(lantern == 1 ? this.playerLantern : undefined);
+      }
     }
   }
 

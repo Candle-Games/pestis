@@ -1,0 +1,38 @@
+{
+	"animations": [
+		{
+			"key": "walk",
+			"prefix": "walk/sombra",
+			"suffix": ".png",
+			"zeroPad": 4,
+			"frameRate": 5,
+			"repeat": -1,
+			"start": 1,
+			"end": 4,
+			"anchors": [
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"creators": "Candlegames",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:0d26d0b6ab6be62e3d525623e49430eb:ecd6b420820ebf60479baad9326416cb:df82365c1594a93ca4145b3ec6ca7227$"
+	}
+}

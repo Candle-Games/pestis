@@ -1,0 +1,242 @@
+{
+	"animations": [
+		{
+			"key": "run",
+			"prefix": "run/caras",
+			"suffix": ".png",
+			"zeroPad": 4,
+			"frameRate": 25,
+			"repeat": -1,
+			"start": 32,
+			"end": 45,
+			"anchors": [
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				}
+			]
+		},
+		{
+			"key": "transform",
+			"prefix": "transform/caras",
+			"suffix": ".png",
+			"zeroPad": 4,
+			"frameRate": 25,
+			"repeat": -1,
+			"start": 16,
+			"end": 23,
+			"anchors": [
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				}
+			]
+		},
+		{
+			"key": "transformB",
+			"prefix": "transformB/caras",
+			"suffix": ".png",
+			"zeroPad": 4,
+			"frameRate": 25,
+			"repeat": -1,
+			"start": 24,
+			"end": 31,
+			"anchors": [
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				}
+			]
+		},
+		{
+			"key": "walk",
+			"prefix": "walk/caras",
+			"suffix": ".png",
+			"zeroPad": 4,
+			"frameRate": 25,
+			"repeat": -1,
+			"start": 1,
+			"end": 16,
+			"anchors": [
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				},
+				{
+					"x": 0.5,
+					"y": 1
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"creators": "Candlegames",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:d85dbf043ebd6c3aca3b94dfd5ab3229:1b1550c6ace923f179c705311abee05d:fc68db679e2a61bd308b309a42e0c813$"
+	}
+}

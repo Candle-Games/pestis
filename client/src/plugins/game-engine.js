@@ -52,6 +52,8 @@
     this.setupPlayerCharacters();
     this.setupPhysics();
     this.notifySpawnedObjects();
+    this.indicateEnemiesPath()
+
 
     // TODO: review
     this.scene.comms.on('input', this.inputHandler.bind(this), this);
@@ -82,6 +84,14 @@
     this.brotherCharacter.setFollowTarget(this.playerCharacter);
   }
 
+  GameEngine.prototype.indicateEnemiesPath = function (){
+    var npcs = this.npcs.getChildren();
+    for(var i=0, length=npcs.length; i < length; ++i) {
+      var pathId = npcs[i]._tiledObject._tiledProperties.path;
+      npcs[i].selectPath(pathId);
+    }
+  }
+
   GameEngine.prototype.notifySpawnedObjects = function() {
     var npcs = this.npcs.getChildren();
     for(var i=0, length=npcs.length; i < length; ++i) {
@@ -100,6 +110,7 @@
   GameEngine.prototype.setupPhysics = function() {
     this.scene.physics.world.colliders.destroy();
     this.scene.physics.add.collider(this.pcs, this.colliders, this.objectsCollision, null, this);
+    this.scene.physics.add.collider(this.npcs, this.colliders, this.objectsCollision, null, this);
     this.scene.physics.add.overlap(this.pcs, this.overspots, this.spotOverlap, null, this);
   }
 
@@ -212,6 +223,11 @@
     for(var i=0, length=this.pcs.children.entries.length; i < length; ++i) {
       this.sendUpdate({ type: 'position', object: this.pcs.children.entries[i] });
     }
+
+    var npcs = this.npcs.getChildren();
+    for(var i=0, length=npcs.length; i < length; ++i) {
+      this.sendUpdate({ type: 'position', object: npcs[i] });
+    }
   }
 
   /**
@@ -234,6 +250,8 @@
   GameEngine.prototype.sendUpdate = function(update) {
     var length = 0;
     var data = [];
+
+    // if(update.type !== 'spawn') return;
 
     switch(update.type) {
       case 'spawn':
