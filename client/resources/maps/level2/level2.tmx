@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="750" height="150" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="161">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="750" height="150" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="175">
  <tileset firstgid="1" name="Negro" tilewidth="16" tileheight="16" tilecount="880" columns="40">
   <image source="../../../../../../../Downloads/Color_negro.jpg" width="640" height="360"/>
  </tileset>
@@ -27,7 +27,7 @@
    <polyline points="248,-91.3333 1562.67,482.667"/>
   </object>
   <object id="138" name="stairs_bottom" type="stairs_bottom" x="3800.73" y="2351.76" width="144" height="48"/>
-  <object id="139" x="2197.58" y="1777.09" width="752" height="48"/>
+  <object id="139" name="stairs_top" type="stairs_top" x="2418.79" y="1777.09" width="309.576" height="48"/>
   <object id="144" name="ground" type="ground" x="4195" y="1248" width="272" height="548"/>
   <object id="145" name="stairs" type="stairs" x="11406" y="842">
    <polyline points="436,-184 -836,388"/>
@@ -45,6 +45,46 @@
   <object id="158" name="ground" type="ground" x="10" y="640" width="11980" height="32"/>
   <object id="160" name="ground" type="ground" x="4708" y="392">
    <polygon points="0,0 160,0 160,80 320,80 320,160 448,160 448,240 0,240"/>
+  </object>
+  <object id="161" name="stairs" type="stairs" x="7007.58" y="1696" rotation="180">
+   <polyline points="248,482.667 1562.67,-91.3333"/>
+  </object>
+  <object id="162" name="stairs_bottom" type="stairs_bottom" x="5374.67" y="1772.24" width="144" height="48"/>
+  <object id="163" name="stairs_top" type="stairs_top" x="6594.73" y="1195.57" width="309.576" height="48"/>
+  <object id="165" name="Player 1 Spawn Point" type="spawnpoint" x="515.333" y="1211.33">
+   <properties>
+    <property name="headline" value=""/>
+    <property name="music_chase" value="run-or-die"/>
+    <property name="object_type" value="playercharacter"/>
+    <property name="spawn_object" value="pc1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="166" name="key 2" type="key" x="402" y="632">
+   <point/>
+  </object>
+  <object id="167" name="key 1" type="key" x="3985" y="1789.67">
+   <point/>
+  </object>
+  <object id="168" name="door 2" type="door" x="608" y="1249" width="34" height="573">
+   <properties>
+    <property name="key" type="int" value="166"/>
+   </properties>
+  </object>
+  <object id="170" name="door 1" type="door" x="10104" y="672" width="56" height="544">
+   <properties>
+    <property name="key" type="int" value="167"/>
+   </properties>
+  </object>
+  <object id="172" name="door 1" type="door" x="10100" y="1260" width="56" height="544">
+   <properties>
+    <property name="key" type="int" value="166"/>
+   </properties>
+  </object>
+  <object id="173" name="exit" type="exit" x="11004" y="1288" width="944" height="532">
+   <properties>
+    <property name="to_scene" value=""/>
+   </properties>
   </object>
  </objectgroup>
 </map>
