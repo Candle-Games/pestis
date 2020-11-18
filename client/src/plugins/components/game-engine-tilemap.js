@@ -105,6 +105,7 @@
                   this.playerCharacter = phaserObject;
                 } else {
                   phaserObject = this.scene.add.enemy(object);
+                  phaserObject.path = this.objects[phaserObject._tiledProperties.path];
                   this.npcs.add(phaserObject);
                 }
                 break;

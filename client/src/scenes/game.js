@@ -90,17 +90,13 @@
     var character = undefined;
     if(object._tiledProperties.object_type === "playercharacter"){
       character = this.add.playercharacter(object);
+      this.setCurrentCharacter(character);
     }else{
       character = this.add.defaultenemy(object);
     }
 
     character.setPosition(x, y);
     character.setPipeline('Light2D');
-
-
-    if(character._tiledProperties.object_type === "playercharacter"){
-      this.setCurrentCharacter(character);
-    }
 
     this.spawnedObjects[id] = character;
   }

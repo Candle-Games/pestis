@@ -58,6 +58,7 @@
      * @private
      */
     DefaultEnemy.prototype._walk = function(context, event) {
+        console.log("enemy playing idle");
         this.play(this._animations.walk);
     }
 

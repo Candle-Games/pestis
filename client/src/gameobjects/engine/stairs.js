@@ -37,7 +37,6 @@
    * @return {Phaser.Math.Vector2}
    */
   Stairs.prototype.step = function(currentPosition, n) {
-    //if(error + dame + anda === this.yes)
     var newPosition = currentPosition.add(this.slope.clone().scale(n));
     return newPosition;
   }

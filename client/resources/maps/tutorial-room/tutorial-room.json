@@ -267,6 +267,67 @@
          "name":"collisions",
          "objects":[
                 {
+                 "height":0,
+                 "id":82,
+                 "name":"Spawnpoint enemigo 1",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"object_type",
+                         "type":"string",
+                         "value":"enemy"
+                        }, 
+                        {
+                         "name":"path",
+                         "type":"string",
+                         "value":"83"
+                        }, 
+                        {
+                         "name":"spawn_object",
+                         "type":"string",
+                         "value":"pc1"
+                        }],
+                 "rotation":0,
+                 "type":"spawnpoint",
+                 "visible":true,
+                 "width":0,
+                 "x":2867,
+                 "y":952
+                }, 
+                {
+                 "height":0,
+                 "id":84,
+                 "name":"Player 1 Spawn Point",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"headline",
+                         "type":"string",
+                         "value":""
+                        }, 
+                        {
+                         "name":"music_chase",
+                         "type":"string",
+                         "value":"run-or-die"
+                        }, 
+                        {
+                         "name":"object_type",
+                         "type":"string",
+                         "value":"playercharacter"
+                        }, 
+                        {
+                         "name":"spawn_object",
+                         "type":"string",
+                         "value":"pc1"
+                        }],
+                 "rotation":0,
+                 "type":"spawnpoint",
+                 "visible":true,
+                 "width":0,
+                 "x":2316.24242424242,
+                 "y":954.151515151515
+                }, 
+                {
                  "height":64,
                  "id":39,
                  "name":"ground",
@@ -441,84 +502,23 @@
                 }, 
                 {
                  "height":0,
-                 "id":80,
-                 "name":"Player 1 Spawn Point",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"headline",
-                         "type":"string",
-                         "value":""
-                        }, 
-                        {
-                         "name":"music_chase",
-                         "type":"string",
-                         "value":"run-or-die"
-                        }, 
-                        {
-                         "name":"object_type",
-                         "type":"string",
-                         "value":"playercharacter"
-                        }, 
-                        {
-                         "name":"spawn_object",
-                         "type":"string",
-                         "value":"pc1"
-                        }],
-                 "rotation":0,
-                 "type":"spawnpoint",
-                 "visible":true,
-                 "width":0,
-                 "x":800,
-                 "y":960
-                }, 
-                {
-                 "height":0,
-                 "id":82,
-                 "name":"Spawnpoint enemigo 1",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"object_type",
-                         "type":"string",
-                         "value":"enemy"
-                        }, 
-                        {
-                         "name":"path",
-                         "type":"string",
-                         "value":"84"
-                        }, 
-                        {
-                         "name":"spawn_object",
-                         "type":"string",
-                         "value":"pc1"
-                        }],
-                 "rotation":0,
-                 "type":"spawnpoint",
-                 "visible":true,
-                 "width":0,
-                 "x":2864,
-                 "y":960
-                }, 
-                {
-                 "height":0,
-                 "id":84,
-                 "name":"camino enemigo 1",
+                 "id":83,
+                 "name":"enemigo 1 path",
                  "polyline":[
                         {
                          "x":0,
                          "y":0
                         }, 
                         {
-                         "x":-1072.72727272727,
-                         "y":-18.1818181818181
+                         "x":-1800,
+                         "y":-27.2727272727273
                         }],
                  "rotation":0,
                  "type":"path",
                  "visible":true,
                  "width":0,
-                 "x":3900,
-                 "y":893.939393939394
+                 "x":3869.69696969697,
+                 "y":906.060606060606
                 }],
          "opacity":1,
          "type":"objectgroup",

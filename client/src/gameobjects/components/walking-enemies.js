@@ -15,46 +15,51 @@
          */
         path: undefined,
 
+        /**
+         * current player
+         */
+        currentPlayer: undefined,
+
+        /**
+         * current direction
+         */
+        currentDirection: -1,
+
+        /**
+         * vision distance
+         */
+        vision: 1500,
 
         stop: function(){
             this._walk(0);
         },
 
-        walkLeft: function(){
-            this._walk(this.walkVelocity, -1);
-        },
-
-        walkRight: function(){
-            this._walk(this.walkVelocity, -1);
-        },
-
-        runRight: function(){
-            this._walk(this.walkVelocity * this.runMultiplier, 1);
-        },
-
-        runLeft: function(){
-            this._walk(this.walkVelocity * this.runMultiplier, -1);
-        },
-
-        flyRigth: function(){
-
-        },
-
-        _walk: function(speed, direction){
-            if(direction===undefined) direction = 1;
+        _walk: function(speed){
             if(speed===undefined) speed = this.walkVelocity;
 
-            this.body.setVelocity(speed * direction);
+            if(this.currentPlayer === undefined){
+                if(this.currentDirection === -1 && this.path !== undefined && this.path.inEndPoint(this.body.position)){
+                    this.currentDirection = this.currentDirection * -1;
+                }else if(this.currentDirection === 1 && this.path !== undefined && this.path.inStartPoint(this.body.position)){
+                    this.currentDirection = this.currentDirection * -1;
+                }
+                this.body.setVelocityX(speed * this.currentDirection);
+            }else{
+                if(this.currentPlayer.body.x < this.body.x){
+                    this.currentDirection = -1;
+                }else{
+                    this.currentDirection = 1;
+                }
+                this.body.setVelocityX(speed * this.runMultiplier * this.currentDirection);
+            }
+
         },
 
-        _fly: function(speed, direction){
-            if(direction === undefined) direction=1;
-            if(speed===undefined) speed = this.walkVelocity;
+        selectPath: function(pathId){
+            this.path = this.scene.game_engine.objects[pathId];
+            console.log(this.path);
         },
 
-        selectPath: function(path){
-            this.path = path;
-        },
 
         /**
          *
@@ -67,4 +72,4 @@
             // this.body.setAllowGravity(enable);
         }
     }
-})
+})(candlegamestools.namespace('candlegames.pestis.gameobjects.components'));

@@ -25,7 +25,7 @@
      * @param position
      * @returns {boolean}
      */
-    Path.prototype.isStartPoint = function(position){
+    Path.prototype.inStartPoint = function(position){
         return position.distance(this.endPoint) >= this.length;
     }
 

@@ -40,11 +40,20 @@
     this.buildMap(map);
     this.setupPhysics();
     this.notifySpawnedObjects();
+    this.indicateEnemiesPath()
 
 
     // TODO: review
     this.scene.comms.on('input', this.inputHandler.bind(this), this);
     this.scene.events.on('update', this.update, this);
+  }
+
+  GameEngine.prototype.indicateEnemiesPath = function (){
+    var npcs = this.npcs.getChildren();
+    for(var i=0, length=npcs.length; i < length; ++i) {
+      var pathId = npcs[i].getTiledProperty('path');
+      npcs[i].selectPath(pathId);
+    }
   }
 
   GameEngine.prototype.notifySpawnedObjects = function() {
@@ -186,12 +195,6 @@
 
     var bdata = new Int32Array(data);
     this.scene.emit('gameplay-update', bdata);
-  }
-
-  GameEngine.prototype._updateEnemies = function(){
-    for(var i=0;i<this.npcs.length; i++){
-
-    }
   }
 
   ns.GameEngine = GameEngine;
