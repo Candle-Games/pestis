@@ -64,11 +64,11 @@
             var pc=pcs[i];
             var pcRect =  new Phaser.Geom.Rectangle(pc.body.x - (pc.body.width * 0.5), pc.body.y - (264 * 0.5), pc.body.width, 264);
             var intersection = Phaser.Geom.Intersects.LineToRectangle(this.visionLine, pcRect);
-            if(intersection){
-                //if(!pc.isHideout && inStairs){
+            if(intersection) {
+                if(!pc.isHiding && !pc.stairsUp && !pc.stairsDown) {
                     this.currentPlayer = pc;
                     if(this.currentMusic === undefined){
-                        this.currentMusic = pc._tiledProperties.music_chase
+                        this.currentMusic = pc._tiledProperties.music_chase;
                         this.scene.music.playEffect(this.currentMusic);
                     }
                     this.killLine.setTo(this.body.x, this.body.y  -264 * 0.5, this.body.x + this.distanceToKill * this.currentDirection, this.body.y - 264 * 0.5)
@@ -76,8 +76,7 @@
                     if(caugth){
                         console.log("finish Game");
                     }
-
-                //}
+                }
                 break;
             }
         }

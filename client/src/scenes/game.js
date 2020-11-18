@@ -128,7 +128,9 @@
     if(this.spawnedObjects[id]) {
       var obj = this.spawnedObjects[id];
       obj.setPosition(x, y);
-      obj.setWalkState(s);
+      if(obj.setWalkState) {
+        obj.setWalkState(s);
+      }
     }
   }
 

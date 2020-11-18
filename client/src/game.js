@@ -55,7 +55,6 @@ var game = new Phaser.Game({
 
       { key: 'PlayerCharacterPlugin', plugin: candlegames.pestis.gameobjects.client.PlayerCharacterPlugin, start: true },
       { key: 'DefaultEnemyPlugin', plugin: candlegames.pestis.gameobjects.client.DefaultEnemyPlugin, start: true },
-      { key: 'LanternPlugin', plugin: candlegames.pestis.gameobjects.client.LanternPlugin, start: true }
       { key: 'LanternPlugin', plugin: candlegames.pestis.gameobjects.client.LanternPlugin, start: true },
       { key: 'SavedGameSlot', plugin: candlegames.pestis.gameobjects.client.SavedGameSlotPlugin, start: true },
       { key: 'SavedGameContainer', plugin: candlegames.pestis.gameobjects.client.SavedGamesContainerPlugin, start: true }
