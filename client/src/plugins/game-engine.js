@@ -25,6 +25,7 @@
     };
 
     this.map;
+
   }
 
   GameEngine.prototype = Object.create(Phaser.Plugins.ScenePlugin.prototype);
@@ -39,10 +40,20 @@
     this.buildMap(map);
     this.setupPhysics();
     this.notifySpawnedObjects();
+    this.indicateEnemiesPath()
+
 
     // TODO: review
     this.scene.comms.on('input', this.inputHandler.bind(this), this);
     this.scene.events.on('update', this.update, this);
+  }
+
+  GameEngine.prototype.indicateEnemiesPath = function (){
+    var npcs = this.npcs.getChildren();
+    for(var i=0, length=npcs.length; i < length; ++i) {
+      var pathId = npcs[i]._tiledObject._tiledProperties.path;
+      npcs[i].selectPath(pathId);
+    }
   }
 
   GameEngine.prototype.notifySpawnedObjects = function() {
@@ -63,6 +74,7 @@
   GameEngine.prototype.setupPhysics = function() {
     this.scene.physics.world.colliders.destroy();
     this.scene.physics.add.collider(this.pcs, this.colliders, this.objectsCollision, null, this);
+    this.scene.physics.add.collider(this.npcs, this.colliders, this.objectsCollision, null, this);
     this.scene.physics.add.overlap(this.pcs, this.overspots, this.spotOverlap, null, this);
   }
 
@@ -145,9 +157,14 @@
    */
   GameEngine.prototype.update = function(time, delta) {
     if(this.playerCharacter === undefined) return;
-
+    
     this.inputUpdate(time, delta);
     this.sendUpdate({ type: 'position', object: this.playerCharacter });
+
+    var npcs = this.npcs.getChildren();
+    for(var i=0, length=npcs.length; i < length; ++i) {
+      this.sendUpdate({ type: 'position', object: npcs[i] });
+    }
   }
 
   /**

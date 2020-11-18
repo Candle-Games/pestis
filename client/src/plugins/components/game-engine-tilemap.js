@@ -8,7 +8,8 @@
       GROUND: 'ground',
       WALL: 'wall',
       DOOR: 'door',
-      SPAWN_POINT: 'spawnpoint'
+      SPAWN_POINT: 'spawnpoint',
+      PATH: 'path'
     },
 
     map: undefined,
@@ -69,7 +70,7 @@
           var objects = objectLayer.objects;
 
           for (var j = 0, olength = objects.length; j < olength; ++j) {
-            var object = objects[j];
+            var object = this._generateObjectProperties(objects[j]);
             var phaserObject;
 
             switch(object.type) {
@@ -97,14 +98,19 @@
               case this.objectTypes.DOOR:
                 break;
 
-              case this.objectTypes.SPAWN_POINT:
-                phaserObject = this.scene.add.character(object);
-                if(phaserObject._tiledProperties.object_type==='playercharacter') {
+              case this.objectTypes.SPAWN_POINT:;
+                if(object._tiledProperties.object_type==='playercharacter') {
+                  phaserObject = this.scene.add.character(object)
                   this.pcs.add(phaserObject);
                   this.playerCharacter = phaserObject;
                 } else {
+                  phaserObject = this.scene.add.enemy(object);
+                  phaserObject.path = this.objects[phaserObject._tiledProperties.path];
                   this.npcs.add(phaserObject);
                 }
+                break;
+              case this.objectTypes.PATH:
+                phaserObject = this.scene.add.objectpath(object);
                 break;
             }
 
@@ -114,6 +120,20 @@
           }
         }
       }
+    },
+
+    _generateObjectProperties: function (object){
+      object._tiledProperties = {};
+
+      // Load tiled object properties if exist
+      var properties = object.properties;
+      if(properties !== undefined) {
+        for(var i=0, length=properties.length; i<length; ++i) {
+          object._tiledProperties[properties[i].name] = properties[i].value;
+        }
+      }
+
+      return object;
     },
 
     _destroyObjects: function() {

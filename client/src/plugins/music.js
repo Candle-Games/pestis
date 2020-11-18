@@ -8,7 +8,7 @@
     this._effectsSettings;
 
     this.currentBackground = undefined;
-    this.currentEffects = undefined;
+    this.currentEffects = [];
     this.currentScene = undefined;
   }
 
@@ -318,16 +318,13 @@
         var data = this.array[this.currentIdx];
 
         if (this.currentSound !== undefined) {
-          if(data.isSequence) {
-            this.currentSound.off('complete');
-
             if(data.stopSound !== undefined) {
+              this.currentSound.off('complete');
               this.currentSound.once('complete', function() {
                 this.currentSound = soundSystem.add(data.stopSound);
                 this.currentSound.play();
                 this.currentSound.setVolume(this.volume);
               }, this);
-            }
           } else {
             this.currentSound.stop();
             console.log("Stopped " + data.sound);

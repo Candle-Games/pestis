@@ -52,7 +52,7 @@
     },
 
     runRight: function() {
-      this._walk(this.walkVelocity * this.runMultiplier, -1);
+      this._walk(this.walkVelocity * this.runMultiplier, 1);
     },
 
     jump: function() {
@@ -94,6 +94,7 @@
     },
 
     down: function(delta) {
+
       if(this.stairs !== undefined) {
         var n_pixels = this.walkVelocity * delta * 0.001;
         var stepDown = this.stairs.step(new Phaser.Math.Vector2(this.x, this.y), n_pixels);

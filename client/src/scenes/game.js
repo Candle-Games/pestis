@@ -61,6 +61,14 @@
     //
     // this.load.multiatlas('lantern', 'resources/sprites/lantern/lantern.json', 'resources/sprites/lantern/');
     // this.load.json('lantern-animations', 'resources/sprites/lantern/lantern-animations.json');
+    this.load.multiatlas('lantern', 'resources/sprites/lantern/lantern.json', 'resources/sprites/lantern/');
+    this.load.json('lantern-animations', 'resources/sprites/lantern/lantern-animations.json');
+
+    this.load.multiatlas('sombra', 'resources/sprites/sombra/sombra.json', 'resources/sprites/sombra/');
+    this.load.json('sombra-animations', 'resources/sprites/sombra/sombra-animations.json');
+
+    this.load.multiatlas('caras', 'resources/sprites/caras/caras.json', 'resources/sprites/caras/');
+    this.load.json('caras-animations', 'resources/sprites/caras/caras-animations.json');
   }
 
   Game.prototype.onLoadComplete = function(value) {
@@ -97,16 +105,18 @@
   Game.prototype.spawnObject = function(id, x, y) {
     console.log("Spawning object " + id);
     var object = this.getMapObject(id);
-    var playerCharacter = this.add.playercharacter(object);
-    playerCharacter.setPosition(x, y);
-    playerCharacter.setPipeline('Light2D');
-
-    this.spawnedObjects[playerCharacter.id] = playerCharacter;
-
-    if(playerCharacter._tiledProperties.object_type !== undefined &&
-      playerCharacter._tiledProperties.object_type === 'playercharacter') {
-      this.setCurrentCharacter(playerCharacter);
+    var character = undefined;
+    if(object._tiledProperties.object_type === "playercharacter"){
+      character = this.add.playercharacter(object);
+      this.setCurrentCharacter(character);
+    }else{
+      character = this.add.defaultenemy(object);
     }
+
+    character.setPosition(x, y);
+    character.setPipeline('Light2D');
+
+    this.spawnedObjects[id] = character;
   }
 
   Game.prototype.setCurrentCharacter = function(character) {
@@ -118,7 +128,9 @@
     if(this.spawnedObjects[id]) {
       var obj = this.spawnedObjects[id];
       obj.setPosition(x, y);
-      obj.setWalkState(s);
+      if(obj.setWalkState) {
+        obj.setWalkState(s);
+      }
     }
   }
 

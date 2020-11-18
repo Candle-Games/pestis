@@ -107,7 +107,8 @@
 
           for(var j=0, olength=objects.length; j < olength; ++j) {
             var object = objects[j];
-            this.objects[object.id] = object;
+
+            this.objects[object.id] = this._generateObjectProperties(object);
 
             if(this._isImageObject(object)) {
               var tileset = this.images[object.gid];
@@ -147,6 +148,20 @@
           }
         }
       }
+    },
+
+    _generateObjectProperties: function (object){
+      object._tiledProperties = {};
+
+      // Load tiled object properties if exist
+      var properties = object.properties;
+      if(properties !== undefined) {
+        for(var i=0, length=properties.length; i<length; ++i) {
+          object._tiledProperties[properties[i].name] = properties[i].value;
+        }
+      }
+
+      return object;
     },
 
     _destroyObjects: function() {

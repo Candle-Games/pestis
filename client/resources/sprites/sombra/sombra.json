@@ -1,0 +1,121 @@
+{
+	"textures": [
+		{
+			"image": "sombra.png",
+			"normalMap": "sombra_n.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 608,
+				"h": 203
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "walk/sombra0001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 150,
+						"h": 201
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 150,
+						"h": 201
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 150,
+						"h": 201
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "walk/sombra0002.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 150,
+						"h": 201
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 150,
+						"h": 201
+					},
+					"frame": {
+						"x": 153,
+						"y": 1,
+						"w": 150,
+						"h": 201
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "walk/sombra0003.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 150,
+						"h": 201
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 150,
+						"h": 201
+					},
+					"frame": {
+						"x": 305,
+						"y": 1,
+						"w": 150,
+						"h": 201
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "walk/sombra0004.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 150,
+						"h": 201
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 150,
+						"h": 201
+					},
+					"frame": {
+						"x": 457,
+						"y": 1,
+						"w": 150,
+						"h": 201
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:0d26d0b6ab6be62e3d525623e49430eb:ecd6b420820ebf60479baad9326416cb:df82365c1594a93ca4145b3ec6ca7227$"
+	}
+}
