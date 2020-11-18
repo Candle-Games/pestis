@@ -1,5 +1,5 @@
 {
-  "tutorial-room-old": {
+  "tutorial-room": {
     "name": "tutorial-room",
     "description": "Tutorial",
     "images": [
@@ -25,7 +25,7 @@
       "lantern"
     ]
   },
-  "tutorial-room": {
+  "level1": {
     "name": "level1",
     "description": "Nivel 1",
     "images": [
