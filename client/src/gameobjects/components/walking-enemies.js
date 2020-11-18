@@ -30,11 +30,16 @@
          */
         vision: 1500,
 
+        /**
+         * Distance to kill character
+         */
+        distanceToKill: 200,
+
         stop: function(){
-            this._walk(0);
+            this.walk(0);
         },
 
-        _walk: function(speed){
+        walk: function(speed){
             if(speed===undefined) speed = this.walkVelocity;
 
             if(this.currentPlayer === undefined){
@@ -43,16 +48,18 @@
                 }else if(this.currentDirection === 1 && this.path !== undefined && this.path.inStartPoint(this.body.position)){
                     this.currentDirection = this.currentDirection * -1;
                 }
-                this.body.setVelocityX(speed * this.currentDirection);
             }else{
-                if(this.currentPlayer.body.x < this.body.x){
+                if(this.currentPlayer.body.x + this.distanceToKill < this.body.x){
                     this.currentDirection = -1;
-                }else{
+                    speed = speed * this.runMultiplier;
+                }else if (this.currentPlayer.body.x - this.distanceToKill > this.body.x){
                     this.currentDirection = 1;
+                    speed = speed * this.runMultiplier;
+                }else{
+                    speed = 0;
                 }
-                this.body.setVelocityX(speed * this.runMultiplier * this.currentDirection);
             }
-
+            this.body.setVelocityX(speed * this.currentDirection);
         },
 
         selectPath: function(pathId){

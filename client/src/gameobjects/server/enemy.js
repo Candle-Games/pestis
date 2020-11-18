@@ -22,9 +22,12 @@
         this.body.setOffset(0, -5);
         this.body.setGravityY(2352);
 
-        this.line = new Phaser.Geom.Line(0,0,0,0);
+        this.visionLine = new Phaser.Geom.Line(0,0,0,0);
+        this.killLine = new Phaser.Geom.Line(0,0,0,0);
 
         this.currentMusic=undefined;
+
+        this.timeWaiting = -1;
     }
 
     Enemy.prototype = Object.create(Phaser.GameObjects.Container.prototype);
@@ -37,32 +40,43 @@
     ]);
 
     Enemy.prototype.preUpdate = function(time, delta) {
-        this.searchCharacters();
-        this._walk();
+        if(this.timeWaiting<0){
+            this.searchCharacters(time);
+            this.walk();
+        }else{
+            if(time-this.timeWaiting > 5000){ //5 segundos
+                this.timeWaiting = -1;
+            }
+        }
+
         if(this.super.preUpdate !== undefined)
         {
             this.super.preUpdate.call(this, time, delta);
         }
     }
 
-    Enemy.prototype.searchCharacters = function() {
-        this.line.setTo(this.body.x, this.body.y  -264 * 0.5, this.body.x + this.vision * this.currentDirection, this.body.y - 264 * 0.5)
+    Enemy.prototype.searchCharacters = function(time) {
+        this.visionLine.setTo(this.body.x, this.body.y  -264 * 0.5, this.body.x + this.vision * this.currentDirection, this.body.y - 264 * 0.5)
         this.currentPlayer = undefined;
 
         var pcs = this.scene.game_engine.pcs.getChildren()
         for(var i=0; i<pcs.length; i++){
             var pc=pcs[i];
             var pcRect =  new Phaser.Geom.Rectangle(pc.body.x - (pc.body.width * 0.5), pc.body.y - (264 * 0.5), pc.body.width, 264);
-            var intersection = Phaser.Geom.Intersects.LineToRectangle(this.line, pcRect);
+            var intersection = Phaser.Geom.Intersects.LineToRectangle(this.visionLine, pcRect);
             if(intersection){
-                console.log(this.line);
-                console.log(pcRect);
-                //if(!pc.isHideout){
+                //if(!pc.isHideout && inStairs){
                     this.currentPlayer = pc;
                     if(this.currentMusic === undefined){
                         this.currentMusic = pc._tiledProperties.music_chase
                         this.scene.music.playEffect(this.currentMusic);
                     }
+                    this.killLine.setTo(this.body.x, this.body.y  -264 * 0.5, this.body.x + this.distanceToKill * this.currentDirection, this.body.y - 264 * 0.5)
+                    var caugth = Phaser.Geom.Intersects.LineToRectangle(this.killLine, pcRect);
+                    if(caugth){
+                        console.log("finish Game");
+                    }
+
                 //}
                 break;
             }
@@ -70,6 +84,7 @@
         if(this.currentPlayer === undefined && this.currentMusic !== undefined){
             this.scene.music.stopEffect(this.currentMusic)
             this.currentMusic=undefined;
+            this.timeWaiting = time;
         }
     }
 
