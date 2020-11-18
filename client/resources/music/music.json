@@ -71,6 +71,45 @@
     {
       "id": "menu-select",
       "file": "menu-select.wav"      
+    },
+
+    {
+      "id": "key-pick",
+      "file": "key-pick.wav"
+    },
+    {
+      "id": "door",
+      "file": "door.wav"
+    },
+
+    {
+      "id": "kid1",
+      "file": "kid1.wav"
+    },
+    {
+      "id": "kid2",
+      "file": "kid2.wav"
+    },
+    {
+      "id": "kid3",
+      "file": "kid3.wav"
+    },
+    {
+      "id": "kid4",
+      "file": "kid4.wav"
+    },
+
+    {
+      "id": "demon1",
+      "file": "demon1.wav"
+    },
+    {
+      "id": "demon2",
+      "file": "demon2.wav"
+    },
+    {
+      "id": "demon3",
+      "file": "demon3.wav"
     }
   ],
   "scenes": {
