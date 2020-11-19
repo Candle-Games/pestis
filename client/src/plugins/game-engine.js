@@ -52,7 +52,7 @@
     this.setupPlayerCharacters();
     this.setupPhysics();
     this.notifySpawnedObjects();
-    this.indicateEnemiesPath()
+    this.indicateEnemiesPath();
 
 
     // TODO: review
@@ -88,7 +88,7 @@
     }
   }
 
-  GameEngine.prototype.indicateEnemiesPath = function (){
+  GameEngine.prototype.indicateEnemiesPath= function (){
     var npcs = this.npcs.getChildren();
     for(var i=0, length=npcs.length; i < length; ++i) {
       var pathId = npcs[i]._tiledObject._tiledProperties.path;

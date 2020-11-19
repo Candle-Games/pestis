@@ -68,19 +68,19 @@
             if(intersection) {
                 if(!pc.isHiding && pc.stairs === undefined) {
                     this.currentPlayer = pc;
-                    this.lastCharacterPosition = pc.body.x;
-                    if(this.currentMusic === undefined){
-                        this.currentMusic = pc._tiledProperties.music_chase;
-                        this.scene.music.playEffect(this.currentMusic);
-                    }
-                    this.killLine.setTo(this.body.x, this.body.y  -264 * 0.5, this.body.x + this.distanceToKill * this.currentDirection, this.body.y - 264 * 0.5)
-                    var caugth = Phaser.Geom.Intersects.LineToRectangle(this.killLine, pcRect);
-                    if(caugth){
-                        console.log("finish Game");
+                    if (this.canSeePlayer(this.visionLine, Math.abs(pc.x - this.body.x))){
+                        this.lastCharacterPosition = pc.body.x;
+                        if (this.currentMusic === undefined) {
+                            this.currentMusic = pc._tiledProperties.music_chase;
+                            this.scene.music.playEffect(this.currentMusic);
+                        }
+                        if (Math.abs(this.body.x - this.currentPlayer.body.x) < this.distanceToKill) {
+                            console.log("finish Game");
+                        }
                     }
                 }
-                break;
             }
+            break;
         }
         if(this.currentPlayer === undefined && this.currentMusic !== undefined){
             this.scene.music.stopEffect(this.currentMusic)

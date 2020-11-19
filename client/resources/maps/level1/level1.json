@@ -1342,7 +1342,7 @@
                         {
                          "name":"path_id",
                          "type":"int",
-                         "value":229
+                         "value":225
                         }, 
                         {
                          "name":"spawn_object",

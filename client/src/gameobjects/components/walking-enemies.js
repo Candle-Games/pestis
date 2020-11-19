@@ -71,7 +71,21 @@
             this.path = this.scene.game_engine.objects[pathId];
         },
 
-
+        canSeePlayer: function(line, distance){
+            var walls = this.scene.game_engine.colliders.getChildren();
+            for(var i=0; i < walls.length ; i++){
+                var intersection = Phaser.Geom.Intersects.LineToRectangle(line, walls[i].rectangle);
+                if(intersection) {
+                    if (distance < Math.abs(this.body.x - walls[i].x)) {
+                        return true;
+                    }
+                    else{
+                        return false;
+                    }
+                }
+            }
+            return true;
+        },
         /**
          *
          * @param enable
