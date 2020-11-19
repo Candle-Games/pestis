@@ -16,11 +16,6 @@
         path: undefined,
 
         /**
-         * Walls in the wold
-         */
-        walls: [],
-
-        /**
          * current player
          */
         currentPlayer: undefined,
@@ -77,21 +72,12 @@
             console.log(this.path);
         },
 
-        indicateWalls: function(arrayWalls){
-            if(this.walls.length === 0){
-                for(var i=0; i < arrayWalls.length; i++){
-                    var wall = arrayWalls[i];
-                    this.walls.push(new Phaser.Geom.Rectangle(wall.x, wall.y, wall.width, wall.height));
-                }
-            }
-            console.log(this);
-        },
-
         canSeePlayer: function(line, distance){
-            for(var i=0; i < this.walls.length; i++){
-                var intersection = Phaser.Geom.Intersects.LineToRectangle(line, this.walls[i]);
+            var walls = this.scene.game_engine.colliders.getChildren();
+            for(var i=0; i < walls.length ; i++){
+                var intersection = Phaser.Geom.Intersects.LineToRectangle(line, walls[i].rectangle);
                 if(intersection) {
-                    if (distance < Math.abs(this.body.x - this.walls[i].x)) {
+                    if (distance < Math.abs(this.body.x - walls[i].x)) {
                         return true;
                     }
                     else{

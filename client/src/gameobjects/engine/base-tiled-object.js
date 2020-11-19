@@ -15,6 +15,7 @@
     this.setOrigin(0, 0);
     this.id = this._tiledObject.id;
     this.type = type;
+    this.rectangle = new Phaser.Geom.Rectangle(this.x, this.y, this.width, this.height);
 
     if(this._tiledObject.polygon || this._tiledObject.polyline) {
       this.generateSATPolygon();

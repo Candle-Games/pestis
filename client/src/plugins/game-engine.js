@@ -52,7 +52,7 @@
     this.setupPlayerCharacters();
     this.setupPhysics();
     this.notifySpawnedObjects();
-    this.indicateEnemiesPathAndColliders()
+    this.indicateEnemiesPath();
 
 
     // TODO: review
@@ -88,12 +88,11 @@
     }
   }
 
-  GameEngine.prototype.indicateEnemiesPathAndColliders = function (){
+  GameEngine.prototype.indicateEnemiesPath= function (){
     var npcs = this.npcs.getChildren();
     for(var i=0, length=npcs.length; i < length; ++i) {
       var pathId = npcs[i]._tiledObject._tiledProperties.path;
       npcs[i].selectPath(pathId);
-      npcs[i].indicateWalls(this.colliders.getChildren());
     }
   }
 

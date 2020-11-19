@@ -74,9 +74,7 @@
                             this.currentMusic = pc._tiledProperties.music_chase;
                             this.scene.music.playEffect(this.currentMusic);
                         }
-                        this.killLine.setTo(this.body.x, this.body.y - 264 * 0.5, this.body.x + this.distanceToKill * this.currentDirection, this.body.y - 264 * 0.5)
-                        var caugth = Phaser.Geom.Intersects.LineToRectangle(this.killLine, pcRect);
-                        if (caugth) {
+                        if (Math.abs(this.body.x - this.currentPlayer.body.x) < this.distanceToKill) {
                             console.log("finish Game");
                         }
                     }
