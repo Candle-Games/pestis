@@ -408,9 +408,9 @@
                  "gid":1073743741,
                  "height":159.181,
                  "id":231,
-                 "name":"",
+                 "name":"rkey",
                  "rotation":231.123,
-                 "type":"",
+                 "type":"key",
                  "visible":true,
                  "width":61,
                  "x":8532.69,
@@ -420,7 +420,7 @@
                  "gid":1916,
                  "height":368,
                  "id":233,
-                 "name":"",
+                 "name":"rdoor",
                  "properties":[
                         {
                          "name":"key",
@@ -433,7 +433,7 @@
                          "value":false
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"door",
                  "visible":true,
                  "width":59,
                  "x":9297.33,
@@ -443,9 +443,9 @@
                  "gid":1073743739,
                  "height":179.37,
                  "id":234,
-                 "name":"",
+                 "name":"gkey",
                  "rotation":234.797,
-                 "type":"",
+                 "type":"key",
                  "visible":true,
                  "width":68.7366,
                  "x":11490,
@@ -455,7 +455,7 @@
                  "gid":1914,
                  "height":368,
                  "id":235,
-                 "name":"",
+                 "name":"gdoor",
                  "properties":[
                         {
                          "name":"key",
@@ -468,7 +468,7 @@
                          "value":false
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"door",
                  "visible":true,
                  "width":59,
                  "x":11587,
@@ -478,9 +478,9 @@
                  "gid":1073743743,
                  "height":193,
                  "id":236,
-                 "name":"",
+                 "name":"ikey",
                  "rotation":235.136,
-                 "type":"",
+                 "type":"key",
                  "visible":true,
                  "width":73.9599,
                  "x":585.298,
@@ -490,7 +490,7 @@
                  "gid":1918,
                  "height":368,
                  "id":237,
-                 "name":"",
+                 "name":"idoor",
                  "properties":[
                         {
                          "name":"key",
@@ -503,7 +503,7 @@
                          "value":false
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"door",
                  "visible":true,
                  "width":59,
                  "x":4835,
@@ -1415,7 +1415,7 @@
  "nextobjectid":239,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"2020.09.22",
+ "tiledversion":"1.4.2",
  "tileheight":16,
  "tilesets":[
         {
