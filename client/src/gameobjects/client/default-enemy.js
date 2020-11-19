@@ -8,6 +8,8 @@
         this.id = this._tiledObject.id;
         this.name = this._tiledProperties.spawn_object;
 
+        this.setDepth(this._tiledProperties.depth);
+
         this.setOriginFromFrame();
         this.generateAnimations(this._tiledProperties.spawn_object);
 
@@ -58,8 +60,10 @@
      * @private
      */
     DefaultEnemy.prototype._walk = function(context, event) {
-        console.log("enemy playing idle");
-        this.play(this._animations.walk);
+        // console.log("enemy playing idle");
+        if(this._animations.walk !== undefined) {
+            this.play(this._animations.walk);
+        }
     }
 
     /**
@@ -69,8 +73,10 @@
      * @private
      */
     DefaultEnemy.prototype._stop = function(context, event){
-        console.log("enemy playing idle");
-        this.play(this._animations.idle);
+        // console.log("enemy playing idle");
+        if(this._animations.idle !== undefined) {
+            this.play(this._animations.idle);
+        }
     }
 
     /**

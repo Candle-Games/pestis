@@ -8,10 +8,10 @@
     this.id = this._tiledObject.id;
     this.name = this._tiledProperties.spawn_object;
 
-    this.setDepth(100);
+    this.setDepth(this._tiledProperties.depth);
 
     this.setOriginFromFrame();
-    this._frameRateOffset = Math.random() * 5;
+    // this._frameRateOffset = Math.random() * 5;
     this.generateAnimations(this._tiledProperties.spawn_object);
 
     this.createStateMachine({
@@ -35,6 +35,7 @@
               },
               hiding: {
                 entry: 'startHiding',
+                exit: 'stopHiding',
                 on: {
                   GROUNDED: 'idle'
                 }
@@ -86,6 +87,7 @@
           'startWalking': this._walk.bind(this),
           'startIdle': this._stop.bind(this),
           'startHiding': this._hide.bind(this),
+          'stopHiding': this._hideEnd.bind(this),
           'startJumping': this._jump.bind(this),
           'stairsDown': this._stepDown.bind(this),
           'stairsUp': this._stepUp.bind(this),
@@ -143,9 +145,14 @@
    * @private
    */
   PlayerCharacter.prototype._hide = function(context, event) {
-    console.log("Playing hide: " + this.name);
+    // console.log("Playing hide: " + this.name);
     this.play(this._animations.hide);
+    this.setDepth(this._tiledProperties.hidingdepth);
     if(this.lantern !== undefined) { this.lantern.play(this.lantern._animations.hide); }
+  }
+
+  PlayerCharacter.prototype._hideEnd = function(context, event) {
+    this.setDepth(this._tiledProperties.depth);
   }
 
   /**
@@ -155,7 +162,7 @@
    * @private
    */
   PlayerCharacter.prototype._walk = function(context, event) {
-    console.log("Playing walk");
+    // console.log("Playing walk");
     this.play(this._animations.walk);
     if(this.lantern !== undefined) { this.lantern.play(this.lantern._animations.walk); }
   }
@@ -167,7 +174,7 @@
    * @private
    */
   PlayerCharacter.prototype._stop = function(context, event) {
-    console.log("Playing idle: " + this.name);
+    // console.log("Playing idle: " + this.name);
     this.play(this._animations.idle);
     if(this.lantern !== undefined) { this.lantern.play(this.lantern._animations.idle); }
   }
@@ -213,11 +220,9 @@
       this.lantern = lantern;
       this.lantern.setOrigin(this.originX, this.originY);
       this.lantern.setPosition(this.x, this.y);
-      this.setDepth(101);
-      this.lantern.setDepth(101);
+      this.lantern.setDepth(this.depth);
     } else {
       this.lantern = undefined;
-      this.setDepth(100);
     }
   }
 

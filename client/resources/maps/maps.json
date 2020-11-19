@@ -40,12 +40,20 @@
       "box-stack.png",
       "barrel.png",
       "downstreet-wall.png",
-      "stairs.png"
+      "stairs.png",
+      "goldenkey.png",
+      "oxidekey.png",
+      "silverkey.png",
+      "oxidedoor.png",
+      "goldendoor.png",
+      "silverdoor.png"
     ],
     "characters": [
       "pc1",
       "pc2",
-      "lantern"
+      "lantern",
+      "sombra",
+      "caras"
     ]
   }
 }

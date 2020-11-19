@@ -44,15 +44,25 @@
     },
 
     /**
+     * Hides with a target
+     */
+    hideHere() {
+    },
+
+    /**
      * Follows a target
+     * TODO: delay start of following
      * @param delta
      */
     follow: function(delta) {
       if(this._followTarget===undefined) { return; }
 
       if(this._targetStairs) {
-        this._stairsFollow(delta)
+        this._stairsFollow(delta);
       } else {
+        if(this.getHiding()) {
+          this.setHiding(true);
+        }
         this._walkTo(this._followTarget.x, this._followTarget.y, this._followDistance);
       }
     },
