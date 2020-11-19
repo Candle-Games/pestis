@@ -1,0 +1,19 @@
+{
+  "menu_play": "Jugar a pestis",
+  "menu_settings": "Configuracion",
+  "menu_credits": "Créditos",
+  "menu_new_game": "Nueva partida",
+  "menu_load_game": "Continuar partida",
+  "menu_join_game": "Unirse a una partida",
+  "menu_return": "Volver",
+  "settings_sound": "Sonido",
+  "settings_music": "Música",
+  "settings_effects": "Efectos de sonido",
+  "settings_keyboard": "Teclado",
+  "settings_up": "Arriba",
+  "settings_down": "Abajo",
+  "settings_left": "Izquierda",
+  "settings_right": "Derecha",
+  "settings_action1": "Acción 1",
+  "settings_action2": "Acción 2"
+}

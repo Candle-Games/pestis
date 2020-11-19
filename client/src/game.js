@@ -37,6 +37,7 @@ var game = new Phaser.Game({
       /**
        * Global plugins
        */
+      { key: 'I18N', plugin: candlegames.pestis.client.plugins.I18N, mapping: 'i18n', start: true },
       { key: 'CommsSystemPlugin', plugin: candlegames.pestis.client.plugins.CommsSystem, mapping: 'comms', start: true },
       { key: 'MusicSystemPlugin', plugin: candlegames.pestis.client.plugins.MusicSystem, mapping: 'music', start:true},
       { key: 'UserSettings', plugin: candlegames.pestis.client.plugins.UserSettings, mapping: 'settings', start: true },
@@ -54,6 +55,7 @@ var game = new Phaser.Game({
       { key: 'PathPlugin', plugin: candlegames.pestis.gameobjects.engine.PathPlugin, start: true},
       { key: 'DoorPlugin', plugin: candlegames.pestis.gameobjects.engine.DoorPlugin, start: true},
       { key: 'KeyPlugin', plugin: candlegames.pestis.gameobjects.engine.KeyPlugin, start: true},
+      { key: 'DoorTriggerPlugin', plugin: candlegames.pestis.gameobjects.engine.DoorTriggerPlugin, start: true},
       { key: 'TunnelPlugin', plugin: candlegames.pestis.gameobjects.engine.TunnelPlugin, start: true},
 
       { key: 'PlayerCharacterPlugin', plugin: candlegames.pestis.gameobjects.client.PlayerCharacterPlugin, start: true },

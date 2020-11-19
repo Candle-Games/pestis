@@ -9,8 +9,8 @@
   Settings.prototype.constructor = Settings;
 
   Settings.prototype.preload = function() {
-    this.load.html('user-settings', '/html/user-settings.html');
-    this.load.css('user-settings', '/css/user-settings.css');
+    this.load.html('user-settings', 'html/user-settings.html');
+    this.load.css('user-settings', 'css/user-settings.css');
   }
 
   Settings.prototype.create = function(data) {
@@ -20,6 +20,11 @@
 
     var dom = this.add.dom(game.canvas.width / 2, game.canvas.height / 2).createFromCache('user-settings');
     var node = dom.node;
+
+    var translator = this.i18n;
+    $(node).find('.settings-element.separator,label').each(function(e) {
+      $(this).text(translator.get($(this).text()));
+    });
 
     $(node).find('input[name="music-volume"]')
       .on('change', function() {

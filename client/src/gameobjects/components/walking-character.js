@@ -159,7 +159,6 @@
 
     setHiding: function(hiding) {
       if(hiding !== this.isHiding) {
-        if(this.name==='pc1') { console.log("Change hiding to " + (hiding ? 'true' : 'false' )); }
         this.isHiding = hiding;
       }
     },

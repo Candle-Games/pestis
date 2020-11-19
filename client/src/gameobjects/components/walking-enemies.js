@@ -69,7 +69,6 @@
 
         selectPath: function(pathId){
             this.path = this.scene.game_engine.objects[pathId];
-            console.log(this.path);
         },
 
         canSeePlayer: function(line, distance){
