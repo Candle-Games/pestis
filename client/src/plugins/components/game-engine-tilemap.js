@@ -37,7 +37,7 @@
 
 
     loadMap: function(map) {
-      var levelResources = '/resources/maps/' + map + '/';
+      var levelResources = 'resources/maps/' + map + '/';
       var levelFile = levelResources + map + '.json';
       this.mapName = map;
 
