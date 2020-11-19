@@ -69,7 +69,9 @@
   GameEngine.prototype.changePlayerCharacters = function() {
     var pc = this.playerCharacter;
     var brother = this.brotherCharacter;
-    this.setPlayerCharacter(brother, pc);
+    if(brother !== undefined) {
+      this.setPlayerCharacter(brother, pc);
+    }
   }
 
   GameEngine.prototype.setPlayerCharacter = function(pc1, pc2) {
@@ -78,10 +80,12 @@
     this.playerCharacter.setLantern(true);
     this.playerCharacter.setFollowTarget(undefined);
 
-    this.brotherCharacter = pc2;
-    this.brotherCharacter.setCurrentCharacter(false);
-    this.brotherCharacter.setLantern(false);
-    this.brotherCharacter.setFollowTarget(this.playerCharacter);
+    if(pc2 !== undefined) {
+      this.brotherCharacter = pc2;
+      this.brotherCharacter.setCurrentCharacter(false);
+      this.brotherCharacter.setLantern(false);
+      this.brotherCharacter.setFollowTarget(this.playerCharacter);
+    }
   }
 
   GameEngine.prototype.indicateEnemiesPath = function (){
@@ -151,6 +155,12 @@
           this.sendUpdate({ type: 'spotcollision', is_colliding: true, player: player, object: object });
         }
         break;
+      case 'tunnel':
+        if(player.tunnel_spot === undefined) {
+          player.tunnel_spot = object;
+          this.sendUpdate({ type: 'spotcollision', is_colliding: true, player: player, object: object });
+        }
+        break;
       case 'key':
         if(player.key === undefined){
           player.key = object;
@@ -170,7 +180,7 @@
             this.sendUpdate({type: 'spotcollision', is_colliding: false, player: pc, object: pc.hideout});
           }
           pc.hideout = undefined;
-          //pc.setHiding(false);
+          pc.setHiding(false);
         }
       }
 
@@ -181,6 +191,15 @@
           pc.stairs_spot = undefined;
         }
       }
+
+      // Check tunnel spots
+      if(pc.tunnel_spot !== undefined) {
+        if(!this.scene.physics.world.overlap(pc, pc.tunnel_spot)) {
+          this.sendUpdate({type: 'spotcollision', is_colliding: false, player: pc, object: pc.tunnel_spot});
+          pc.tunnel_spot = undefined;
+        }
+      }
+
 
       //Check key
       if(pc.key !== undefined){

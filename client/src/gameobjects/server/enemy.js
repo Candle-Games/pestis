@@ -43,7 +43,6 @@
         if(this.timeWaiting<0){
             this.searchCharacters(time);
         }else{
-            console.log(time)
             if(time-this.timeWaiting > 5000){ //5 segundos
                 this.timeWaiting = -1;
                 this.lastCharacterPosition = -1;
@@ -60,8 +59,6 @@
     Enemy.prototype.searchCharacters = function(time) {
         this.visionLine.setTo(this.body.x, this.body.y  -264 * 0.5, this.body.x + this.vision * this.currentDirection, this.body.y - 264 * 0.5)
         this.currentPlayer = undefined;
-
-        return;
 
         var pcs = this.scene.game_engine.pcs.getChildren()
         for(var i=0; i<pcs.length; i++){

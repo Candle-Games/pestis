@@ -10,6 +10,8 @@
       DOOR: 'door',
       SPAWN_POINT: 'spawnpoint',
       PATH: 'path',
+      TUNNEL: 'tunnel',
+      PATH: 'path',
       KEY: 'key'
     },
 
@@ -51,7 +53,17 @@
       this.map = this.scene.make.tilemap({ key: map });
       this.objects = {};
       this._createObjects();
-      var x = 0;
+      this._processTunnels();
+    },
+
+    _processTunnels: function() {
+      var keys = _.keys(this.objects);
+      for(var i=0, length = keys.length; i < length; ++i) {
+        var object = this.objects[keys[i]];
+        if(object.type===this.objectTypes.TUNNEL) {
+          object.setEnd(this.objects[object._tiledProperties.end]);
+        }
+      }
     },
 
     _createObjects: function() {
@@ -107,6 +119,11 @@
 
               case this.objectTypes.PATH:
                 phaserObject = this.scene.add.objectpath(object);
+                break;
+
+              case this.objectTypes.TUNNEL:
+                phaserObject = this.scene.add.tunnel(object);
+                this.overspots.add(phaserObject);
                 break;
 
               case this.objectTypes.KEY:

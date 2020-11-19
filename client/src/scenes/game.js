@@ -20,6 +20,8 @@
      * Loaded textures
      */
     this._textures;
+
+    this.highlightArrow;
   }
 
   Game.prototype = Object.create(Phaser.Scene.prototype);
@@ -55,15 +57,6 @@
       var characterAnimations = characterFolder + character + '-animations.json';
       this.load.json(character + '-animations', characterAnimations);
     }
-
-    // this.load.multiatlas('lantern', 'resources/sprites/lantern/lantern.json', 'resources/sprites/lantern/');
-    // this.load.json('lantern-animations', 'resources/sprites/lantern/lantern-animations.json');
-    //
-    // this.load.multiatlas('sombra', 'resources/sprites/sombra/sombra.json', 'resources/sprites/sombra/');
-    // this.load.json('sombra-animations', 'resources/sprites/sombra/sombra-animations.json');
-    //
-    // this.load.multiatlas('caras', 'resources/sprites/caras/caras.json', 'resources/sprites/caras/');
-    // this.load.json('caras-animations', 'resources/sprites/caras/caras-animations.json');
   }
 
   Game.prototype.onLoadComplete = function(value) {
@@ -80,6 +73,9 @@
     this.setupControls(data.input);
     this.setupLights();
 
+    this.highlightArrow = this.add.image(0, 0, 'select-arrow');
+    this.highlightArrow.setVisible(false);
+    this.music.playGameMusic(this.levelConfig.name);
     this.events.emit('game-scene-created');
   }
 
@@ -170,13 +166,13 @@
   Game.prototype.highlightSpot = function(highlight, id, x, y, width, height) {
     var spot = this.spawnedObjects[id];
 
-    /*if(highlight) {
+    if(highlight) {
       this.highlightArrow.setDepth(this.currentCharacter.depth + 1);
       this.highlightArrow.setPosition(x + (width * 0.5), y - height - 10);
       this.highlightArrow.setVisible(true);
     } else {
       this.highlightArrow.setVisible(false);
-    }*/
+    }
   }
 
   Game.prototype.setupLights = function() {
@@ -199,6 +195,9 @@
 
   Game.prototype.destroy = function() {
     console.log("Shutdown game scene");
+    this.music.stopGameMusic();
+
+    this.highlightArrow.destroy();
 
     this.currentCharacter.destroy();
     this.levelConfig = undefined;

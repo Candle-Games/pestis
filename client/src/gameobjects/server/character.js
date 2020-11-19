@@ -57,10 +57,6 @@
       this.isJumping = false;
     }
 
-    if(this._followTarget) {
-      this._followTarget.isHiding = this.isHiding;
-    }
-
     this.follow(delta);
 
     if(this.super.preUpdate) {
