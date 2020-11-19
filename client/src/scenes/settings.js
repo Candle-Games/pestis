@@ -21,6 +21,11 @@
     var dom = this.add.dom(game.canvas.width / 2, game.canvas.height / 2).createFromCache('user-settings');
     var node = dom.node;
 
+    var translator = this.i18n;
+    $(node).find('.settings-element.separator,label').each(function(e) {
+      $(this).text(translator.get($(this).text()));
+    });
+
     $(node).find('input[name="music-volume"]')
       .on('change', function() {
         s.set('music.volume', parseInt($(this).val()) / 100);

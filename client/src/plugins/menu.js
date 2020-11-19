@@ -106,7 +106,7 @@
 
     for(var i=0, length=config.options.length; i < length; ++i) {
       var optionConfig = config.options[i];
-      var option = this.optionsGroup.create(optionX, optionY, optionConfig.label);
+      var option = this.optionsGroup.create(optionX, optionY, this.scene.i18n.get(optionConfig.label));
       option._menuIdx = i;
       option._menuConfig = optionConfig;
       option._menu = this;

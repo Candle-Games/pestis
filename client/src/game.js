@@ -37,6 +37,7 @@ var game = new Phaser.Game({
       /**
        * Global plugins
        */
+      { key: 'I18N', plugin: candlegames.pestis.client.plugins.I18N, mapping: 'i18n', start: true },
       { key: 'CommsSystemPlugin', plugin: candlegames.pestis.client.plugins.CommsSystem, mapping: 'comms', start: true },
       { key: 'MusicSystemPlugin', plugin: candlegames.pestis.client.plugins.MusicSystem, mapping: 'music', start:true},
       { key: 'UserSettings', plugin: candlegames.pestis.client.plugins.UserSettings, mapping: 'settings', start: true },

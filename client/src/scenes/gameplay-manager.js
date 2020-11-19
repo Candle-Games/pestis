@@ -98,7 +98,6 @@
   }
 
   GameplayManager.prototype.shutdown = function() {
-    console.log("Shutting down GamePlayManager");
     if(this._inGameMenu !== undefined) {
       this.scene.remove('InGameMenu');
       this._inGameMenu = undefined;

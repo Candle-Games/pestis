@@ -31,7 +31,6 @@
   }
 
   MenuScene.prototype.handleMenu = function(optionSelected) {
-    console.log("Menu selected: " + optionSelected.id);
     if(optionSelected.disabled) return;
     this.events.emit('menu-selected', optionSelected.id, optionSelected);
   }
