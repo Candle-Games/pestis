@@ -20,7 +20,7 @@
                 {
                  "name":"depth",
                  "type":"int",
-                 "value":1
+                 "value":100
                 }],
          "type":"tilelayer",
          "visible":true,
@@ -38,7 +38,7 @@
                 {
                  "name":"depth",
                  "type":"int",
-                 "value":2
+                 "value":200
                 }],
          "type":"tilelayer",
          "visible":true,
@@ -56,7 +56,7 @@
                 {
                  "name":"depth",
                  "type":"int",
-                 "value":3
+                 "value":300
                 }],
          "type":"tilelayer",
          "visible":true,
@@ -254,7 +254,7 @@
                 {
                  "name":"depth",
                  "type":"int",
-                 "value":4
+                 "value":400
                 }],
          "type":"objectgroup",
          "visible":true,
@@ -278,7 +278,7 @@
                  "y":960
                 }, 
                 {
-                 "height":864,
+                 "height":414.667,
                  "id":40,
                  "name":"ground",
                  "rotation":0,
@@ -295,7 +295,7 @@
                  "rotation":0,
                  "type":"ground",
                  "visible":true,
-                 "width":3968,
+                 "width":4221.33,
                  "x":256,
                  "y":1504
                 }, 
@@ -386,7 +386,7 @@
                  "y":704
                 }, 
                 {
-                 "height":80,
+                 "height":48,
                  "id":48,
                  "name":"stairs_top",
                  "properties":[
@@ -425,19 +425,19 @@
                  "name":"stairs",
                  "polyline":[
                         {
-                         "x":0,
-                         "y":0
+                         "x":0.67,
+                         "y":3.583
                         }, 
                         {
-                         "x":1264,
-                         "y":544
+                         "x":1264.67,
+                         "y":542.31
                         }],
                  "rotation":0,
                  "type":"stairs",
                  "visible":true,
                  "width":0,
-                 "x":1840,
-                 "y":960
+                 "x":1839.33,
+                 "y":956.417
                 }, 
                 {
                  "height":0,
@@ -446,9 +446,19 @@
                  "point":true,
                  "properties":[
                         {
+                         "name":"depth",
+                         "type":"string",
+                         "value":"450"
+                        }, 
+                        {
                          "name":"headline",
                          "type":"string",
                          "value":""
+                        }, 
+                        {
+                         "name":"hidingdepth",
+                         "type":"int",
+                         "value":350
                         }, 
                         {
                          "name":"music_chase",
@@ -470,7 +480,198 @@
                  "visible":true,
                  "width":0,
                  "x":800,
-                 "y":960
+                 "y":958
+                }, 
+                {
+                 "height":0,
+                 "id":82,
+                 "name":"Spawnpoint enemy 1",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"depth",
+                         "type":"int",
+                         "value":475
+                        }, 
+                        {
+                         "name":"object_type",
+                         "type":"string",
+                         "value":"enemy"
+                        }, 
+                        {
+                         "name":"path",
+                         "type":"int",
+                         "value":83
+                        }, 
+                        {
+                         "name":"spawn_object",
+                         "type":"string",
+                         "value":"sombra"
+                        }],
+                 "rotation":0,
+                 "type":"spawnpoint",
+                 "visible":true,
+                 "width":0,
+                 "x":3440.67,
+                 "y":950.667
+                }, 
+                {
+                 "height":0,
+                 "id":83,
+                 "name":"Path enemy 1",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":48
+                        }, 
+                        {
+                         "x":1024,
+                         "y":48
+                        }],
+                 "rotation":0,
+                 "type":"path",
+                 "visible":true,
+                 "width":0,
+                 "x":2896,
+                 "y":880
+                }, 
+                {
+                 "height":0,
+                 "id":84,
+                 "name":"Spawnpoint enemy 2",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"depth",
+                         "type":"int",
+                         "value":475
+                        }, 
+                        {
+                         "name":"object_type",
+                         "type":"string",
+                         "value":"enemy"
+                        }, 
+                        {
+                         "name":"path",
+                         "type":"int",
+                         "value":85
+                        }, 
+                        {
+                         "name":"spawn_object",
+                         "type":"string",
+                         "value":"caras"
+                        }],
+                 "rotation":0,
+                 "type":"spawnpoint",
+                 "visible":true,
+                 "width":0,
+                 "x":1136.67,
+                 "y":1497.33
+                }, 
+                {
+                 "height":0,
+                 "id":85,
+                 "name":"Path Enemy 2",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":3184,
+                         "y":0
+                        }],
+                 "rotation":0,
+                 "type":"path",
+                 "visible":true,
+                 "width":0,
+                 "x":672,
+                 "y":1472
+                }, 
+                {
+                 "height":385,
+                 "id":86,
+                 "name":"Puerta 1",
+                 "properties":[
+                        {
+                         "name":"key",
+                         "type":"int",
+                         "value":87
+                        }, 
+                        {
+                         "name":"opened",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"door",
+                 "visible":true,
+                 "width":31,
+                 "x":2705,
+                 "y":577
+                }, 
+                {
+                 "height":0,
+                 "id":87,
+                 "name":"key 1",
+                 "point":true,
+                 "rotation":0,
+                 "type":"key",
+                 "visible":true,
+                 "width":0,
+                 "x":464,
+                 "y":1488
+                }, 
+                {
+                 "height":0,
+                 "id":88,
+                 "name":"key 2",
+                 "point":true,
+                 "rotation":0,
+                 "type":"key",
+                 "visible":true,
+                 "width":0,
+                 "x":4064,
+                 "y":944
+                }, 
+                {
+                 "height":382.667,
+                 "id":90,
+                 "name":"door_exit",
+                 "properties":[
+                        {
+                         "name":"key",
+                         "type":"int",
+                         "value":88
+                        }, 
+                        {
+                         "name":"opened",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"door",
+                 "visible":true,
+                 "width":52,
+                 "x":4173.33,
+                 "y":1118.67
+                }, 
+                {
+                 "height":416,
+                 "id":92,
+                 "name":"salida",
+                 "properties":[
+                        {
+                         "name":"to_scene",
+                         "type":"string",
+                         "value":"level1"
+                        }],
+                 "rotation":0,
+                 "type":"exit",
+                 "visible":true,
+                 "width":205.333,
+                 "x":4270.67,
+                 "y":1117.33
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -479,7 +680,7 @@
          "y":0
         }],
  "nextlayerid":15,
- "nextobjectid":84,
+ "nextobjectid":96,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"2020.09.22",

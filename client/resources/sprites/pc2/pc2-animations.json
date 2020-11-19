@@ -1,0 +1,70 @@
+{
+	"animations": [
+		{
+			"key": "hide",
+			"prefix": "hide/pc2",
+			"suffix": ".png",
+			"zeroPad": 4,
+			"frameRate": 10,
+			"repeat": -1,
+			"start": 43,
+			"end": 53
+		},
+		{
+			"key": "idle",
+			"prefix": "idle/pc2",
+			"suffix": ".png",
+			"zeroPad": 4,
+			"frameRate": 10,
+			"repeat": -1,
+			"start": 34,
+			"end": 42
+		},
+		{
+			"key": "jump",
+			"prefix": "jump/pc2",
+			"suffix": ".png",
+			"zeroPad": 4,
+			"frameRate": 15,
+			"repeat": -1,
+			"start": 54,
+			"end": 72
+		},
+		{
+			"key": "stairsdown",
+			"prefix": "stairsdown/pc2",
+			"suffix": ".png",
+			"zeroPad": 4,
+			"frameRate": 15,
+			"repeat": -1,
+			"start": 73,
+			"end": 94
+		},
+		{
+			"key": "stairsup",
+			"prefix": "stairsup/pc2",
+			"suffix": ".png",
+			"zeroPad": 4,
+			"frameRate": 15,
+			"repeat": -1,
+			"start": 95,
+			"end": 115
+		},
+		{
+			"key": "walk",
+			"prefix": "walk/pc2",
+			"suffix": ".png",
+			"zeroPad": 4,
+			"frameRate": 15,
+			"repeat": -1,
+			"start": 1,
+			"end": 33
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"creators": "Candlegames",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:295a4357fbadc1581ed4d32f8b6637b7:6cf75398b961d8aaf8352d1adb7eb2c3:c5509c0458018ede1000fb69d7d7303d$"
+	}
+}

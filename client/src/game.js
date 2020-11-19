@@ -46,12 +46,16 @@ var game = new Phaser.Game({
        * Game Objects registration
        */
       { key: 'CharacterPlugin', plugin: candlegames.pestis.gameobjects.server.CharacterPlugin, start: true},
+      { key: 'EnemyPlugin', plugin: candlegames.pestis.gameobjects.server.EnemyPlugin, start: true},
       { key: 'HideoutPlugin', plugin: candlegames.pestis.gameobjects.engine.HideoutPlugin, start: true},
       { key: 'GroundPlugin', plugin: candlegames.pestis.gameobjects.engine.GroundPlugin, start: true},
       { key: 'StairsSpotPlugin', plugin: candlegames.pestis.gameobjects.engine.StairsSpotPlugin, start: true},
       { key: 'StairsPlugin', plugin: candlegames.pestis.gameobjects.engine.StairsPlugin, start: true},
+      { key: 'PathPlugin', plugin: candlegames.pestis.gameobjects.engine.PathPlugin, start: true},
+      { key: 'TunnelPlugin', plugin: candlegames.pestis.gameobjects.engine.TunnelPlugin, start: true},
 
       { key: 'PlayerCharacterPlugin', plugin: candlegames.pestis.gameobjects.client.PlayerCharacterPlugin, start: true },
+      { key: 'DefaultEnemyPlugin', plugin: candlegames.pestis.gameobjects.client.DefaultEnemyPlugin, start: true },
       { key: 'LanternPlugin', plugin: candlegames.pestis.gameobjects.client.LanternPlugin, start: true },
       { key: 'SavedGameSlot', plugin: candlegames.pestis.gameobjects.client.SavedGameSlotPlugin, start: true },
       { key: 'SavedGameContainer', plugin: candlegames.pestis.gameobjects.client.SavedGamesContainerPlugin, start: true }

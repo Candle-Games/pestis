@@ -20,6 +20,8 @@
      */
     parseTiledObject: function(tiledObject) {
       if(tiledObject !== undefined) {
+        this._tiledProperties = {};
+
         // Set current tiled object
         this._tiledObject = tiledObject;
 

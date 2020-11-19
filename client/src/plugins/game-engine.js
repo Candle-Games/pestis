@@ -25,6 +25,18 @@
     };
 
     this.map;
+
+    /**
+     * Current player character
+     * @type {Character}
+     */
+    this.playerCharacter = undefined;
+
+    /**
+     * Brother charcter
+     * @type {Character}
+     */
+    this.brotherCharacter = undefined;
   }
 
   GameEngine.prototype = Object.create(Phaser.Plugins.ScenePlugin.prototype);
@@ -37,12 +49,51 @@
   GameEngine.prototype.start = function(map) {
     this.map = undefined;
     this.buildMap(map);
+    this.setupPlayerCharacters();
     this.setupPhysics();
     this.notifySpawnedObjects();
+    this.indicateEnemiesPath()
+
 
     // TODO: review
     this.scene.comms.on('input', this.inputHandler.bind(this), this);
     this.scene.events.on('update', this.update, this);
+  }
+
+  GameEngine.prototype.setupPlayerCharacters = function() {
+    var pc1 = this.pcs.children.entries[0];
+    var pc2 = this.pcs.children.entries[1];
+    this.setPlayerCharacter(pc1, pc2);
+  }
+
+  GameEngine.prototype.changePlayerCharacters = function() {
+    var pc = this.playerCharacter;
+    var brother = this.brotherCharacter;
+    if(brother !== undefined) {
+      this.setPlayerCharacter(brother, pc);
+    }
+  }
+
+  GameEngine.prototype.setPlayerCharacter = function(pc1, pc2) {
+    this.playerCharacter = pc1;
+    this.playerCharacter.setCurrentCharacter(true);
+    this.playerCharacter.setLantern(true);
+    this.playerCharacter.setFollowTarget(undefined);
+
+    if(pc2 !== undefined) {
+      this.brotherCharacter = pc2;
+      this.brotherCharacter.setCurrentCharacter(false);
+      this.brotherCharacter.setLantern(false);
+      this.brotherCharacter.setFollowTarget(this.playerCharacter);
+    }
+  }
+
+  GameEngine.prototype.indicateEnemiesPath = function (){
+    var npcs = this.npcs.getChildren();
+    for(var i=0, length=npcs.length; i < length; ++i) {
+      var pathId = npcs[i]._tiledObject._tiledProperties.path;
+      npcs[i].selectPath(pathId);
+    }
   }
 
   GameEngine.prototype.notifySpawnedObjects = function() {
@@ -63,6 +114,7 @@
   GameEngine.prototype.setupPhysics = function() {
     this.scene.physics.world.colliders.destroy();
     this.scene.physics.add.collider(this.pcs, this.colliders, this.objectsCollision, null, this);
+    this.scene.physics.add.collider(this.npcs, this.colliders, this.objectsCollision, null, this);
     this.scene.physics.add.overlap(this.pcs, this.overspots, this.spotOverlap, null, this);
   }
 
@@ -86,7 +138,7 @@
     switch(object._tiledObject.type) {
       case 'hideout':
         if(player.hideout === undefined) {
-          this.sendUpdate({ type: 'hideoutcollision', is_colliding: true, player: player, object: object });
+          this.sendUpdate({ type: 'spotcollision', is_colliding: true, player: player, object: object });
           player.hideout = object;
         }
         break;
@@ -94,25 +146,79 @@
       case 'stairs_bottom':
         if(player.stairs_spot === undefined) {
           player.stairs_spot = object;
+          this.sendUpdate({ type: 'spotcollision', is_colliding: true, player: player, object: object });
         }
         break;
+      case 'tunnel':
+        if(player.tunnel_spot === undefined) {
+          player.tunnel_spot = object;
+          this.sendUpdate({ type: 'spotcollision', is_colliding: true, player: player, object: object });
+        }
+        break;
+    }
+  }
+
+  GameEngine.prototype.checkOverlapEnd = function() {
+    for(var i=0, length=this.pcs.children.entries.length; i < length; i++) {
+      var pc = this.pcs.children.entries[i];
+
+      // Check hideouts
+      if(pc.hideout !== undefined) {
+        if (!this.scene.physics.world.overlap(pc, pc.hideout)) {
+          if (pc === this.playerCharacter) {
+            this.sendUpdate({type: 'spotcollision', is_colliding: false, player: pc, object: pc.hideout});
+          }
+          pc.hideout = undefined;
+          pc.setHiding(false);
+        }
+      }
+
+      // Check stairs spots
+      if(pc.stairs_spot !== undefined) {
+        if(!this.scene.physics.world.overlap(pc, pc.stairs_spot)) {
+          this.sendUpdate({type: 'spotcollision', is_colliding: false, player: pc, object: pc.stairs_spot});
+          pc.stairs_spot = undefined;
+        }
+      }
+
+      // Check stairs spots
+      if(pc.tunnel_spot !== undefined) {
+        if(!this.scene.physics.world.overlap(pc, pc.tunnel_spot)) {
+          this.sendUpdate({type: 'spotcollision', is_colliding: false, player: pc, object: pc.tunnel_spot});
+          pc.tunnel_spot = undefined;
+        }
+      }
+
     }
   }
 
   GameEngine.prototype.inputUpdate = function(time, delta) {
     if(this.playerCharacter === undefined) return;
 
-    if(this.playerCharacter.hideout !== undefined) {
-      // TODO: Check performance try to speed up
-      if(!this.scene.physics.world.overlap(this.playerCharacter, this.playerCharacter.hideout)) {
-        this.sendUpdate({ type: 'hideoutcollision', is_colliding: false, player: this.playerCharacter, object: this.playerCharacter.hideout });
-        this.playerCharacter.hideout = undefined;
+    if(!this.action2Pressed && this.keyPressed.ACTION2) {
+      if(!this.playerCharacter.isJumping && !this.playerCharacter.stairsUp && !this.playerCharacter.stairsDown) {
+        this.changePlayerCharacters();
       }
+      this.action2Pressed = true;
+    } else if(!this.keyPressed.ACTION2) {
+      this.action2Pressed = false;
     }
 
-    if(this.playerCharacter.stairs_spot !== undefined) {
-      if(!this.scene.physics.world.overlap(this.playerCharacter, this.playerCharacter.stairs_spot)) {
-        this.playerCharacter.stairs_spot = undefined;
+    if(this.keyPressed.UP) {
+      this.upPressed = true;
+      this.playerCharacter.up(delta);
+      return;
+    } else if(this.keyPressed.DOWN) {
+      this.downPressed = true;
+      this.playerCharacter.down(delta);
+      return;
+    } else {
+      if(this.upPressed) {
+        this.upPressed = false;
+        this.playerCharacter.upEnd();
+      } else if(this.downPressed) {
+        this.downPressed = false;
+        this.playerCharacter.downEnd();
       }
     }
 
@@ -123,12 +229,6 @@
     } else {
       this.playerCharacter.stop();
     }
-
-    if(this.keyPressed.UP) {
-      this.playerCharacter.up(delta);
-    } else if(this.keyPressed.DOWN) {
-      this.playerCharacter.down(delta);
-    }
   }
 
   /**
@@ -137,10 +237,17 @@
    * @param delta
    */
   GameEngine.prototype.update = function(time, delta) {
-    if(this.playerCharacter === undefined) return;
-
+    this.checkOverlapEnd();
     this.inputUpdate(time, delta);
-    this.sendUpdate({ type: 'position', object: this.playerCharacter });
+
+    for(var i=0, length=this.pcs.children.entries.length; i < length; ++i) {
+      this.sendUpdate({ type: 'position', object: this.pcs.children.entries[i] });
+    }
+
+    var npcs = this.npcs.getChildren();
+    for(var i=0, length=npcs.length; i < length; ++i) {
+      this.sendUpdate({ type: 'position', object: npcs[i] });
+    }
   }
 
   /**
@@ -152,6 +259,8 @@
     this.keyPressed.LEFT = (input & 1 << this.keymap.LEFT);
     this.keyPressed.UP = (input & 1 << this.keymap.UP);
     this.keyPressed.DOWN = (input & 1 << this.keymap.DOWN);
+    this.keyPressed.ACTION1 = (input & 1 << this.keymap.ACTION1);
+    this.keyPressed.ACTION2 = (input & 1 << this.keymap.ACTION2);
   }
 
   /**
@@ -166,13 +275,23 @@
 
     switch(update.type) {
       case 'spawn':
-        data = [ 1, update.object.id, update.object.x, update.object.y ];
+        if(update.object.getUpdateData !== undefined) {
+          data = update.object.getUpdateData(1);
+        } else {
+          data = [ 1, update.object.id, update.object.x, update.object.y ];
+        }
         break;
       case 'position':
-        data = [ 2, update.object.id, update.object.x, update.object.y ];
+        // If needed until all objects have getUpdateData implemented
+        if(update.object.getUpdateData !== undefined) {
+          data = update.object.getUpdateData(2);
+        } else {
+          data = [ 2, update.object.id, update.object.x, update.object.y, 0 ];
+        }
         break;
-      case 'hideoutcollision':
-        data = [ 3, update.is_colliding, update.object.id ];
+      case 'spotcollision':
+        data = [ 3, update.is_colliding, update.object.id, update.object.x, update.object.y,
+          update.object.width, update.object.height ];
         break;
     }
 

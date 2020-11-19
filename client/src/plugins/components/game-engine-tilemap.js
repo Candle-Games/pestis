@@ -8,7 +8,9 @@
       GROUND: 'ground',
       WALL: 'wall',
       DOOR: 'door',
-      SPAWN_POINT: 'spawnpoint'
+      SPAWN_POINT: 'spawnpoint',
+      PATH: 'path',
+      TUNNEL: 'tunnel'
     },
 
     map: undefined,
@@ -30,10 +32,6 @@
     pcs: undefined,
     npcs: undefined,
 
-    /**
-     * Current player character
-     */
-    playerCharacter: undefined,
 
     loadMap: function(map) {
       var levelResources = '/resources/maps/' + map + '/';
@@ -53,6 +51,17 @@
       this.map = this.scene.make.tilemap({ key: map });
       this.objects = {};
       this._createObjects();
+      this._processTunnels();
+    },
+
+    _processTunnels: function() {
+      var keys = _.keys(this.objects);
+      for(var i=0, length = keys.length; i < length; ++i) {
+        var object = this.objects[keys[i]];
+        if(object.type===this.objectTypes.TUNNEL) {
+          object.setEnd(this.objects[object._tiledProperties.end]);
+        }
+      }
     },
 
     _createObjects: function() {
@@ -69,7 +78,7 @@
           var objects = objectLayer.objects;
 
           for (var j = 0, olength = objects.length; j < olength; ++j) {
-            var object = objects[j];
+            var object = this._generateObjectProperties(objects[j]);
             var phaserObject;
 
             switch(object.type) {
@@ -97,14 +106,23 @@
               case this.objectTypes.DOOR:
                 break;
 
-              case this.objectTypes.SPAWN_POINT:
-                phaserObject = this.scene.add.character(object);
-                if(phaserObject._tiledProperties.object_type==='playercharacter') {
+              case this.objectTypes.SPAWN_POINT:;
+                if(object._tiledProperties.object_type==='playercharacter') {
+                  phaserObject = this.scene.add.character(object)
                   this.pcs.add(phaserObject);
-                  this.playerCharacter = phaserObject;
                 } else {
+                  phaserObject = this.scene.add.enemy(object);
+                  phaserObject.path = this.objects[phaserObject._tiledProperties.path];
                   this.npcs.add(phaserObject);
                 }
+                break;
+              case this.objectTypes.PATH:
+                phaserObject = this.scene.add.objectpath(object);
+                break;
+
+              case this.objectTypes.TUNNEL:
+                phaserObject = this.scene.add.tunnel(object);
+                this.overspots.add(phaserObject);
                 break;
             }
 
@@ -114,6 +132,20 @@
           }
         }
       }
+    },
+
+    _generateObjectProperties: function (object){
+      object._tiledProperties = {};
+
+      // Load tiled object properties if exist
+      var properties = object.properties;
+      if(properties !== undefined) {
+        for(var i=0, length=properties.length; i<length; ++i) {
+          object._tiledProperties[properties[i].name] = properties[i].value;
+        }
+      }
+
+      return object;
     },
 
     _destroyObjects: function() {

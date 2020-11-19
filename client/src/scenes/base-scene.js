@@ -32,12 +32,13 @@
   BaseScene.prototype.preload = function () {
     this.settings.loadSettings();
     this.load.json('game-configuration', '/src/game-configuration.json');
-    if(this.savedgames.getNumberOfSaves() > 0) {
-      this.menus.play[1].disabled = false;
-    }
   }
 
   BaseScene.prototype.create = function () {
+    if(this.savedgames.getNumberOfSaves() > 0) {
+      this.menus.play[1].disabled = false;
+    }
+
     this.createStateMachine({
       id: 'Game Scene Manager',
       initial: 'boot',
@@ -155,7 +156,7 @@
   }
 
   BaseScene.prototype.playGame = function () {
-    this.scene.launch('GameplayManager', {new: true, level: 'tutorial-room'});
+    this.scene.launch('GameplayManager', {new: true, level: 'level1'});
 
     this.scene.get('GameplayManager').events.once('game-finished', function () {
       this.scene.stop('GameplayManager');

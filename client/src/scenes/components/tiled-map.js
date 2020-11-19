@@ -91,10 +91,27 @@
         for (var i = 0, length = tileLayerNames.length; i < length; i++) {
           var layer = this.map.getLayer(tileLayerNames[i]);
           var dynamicLayer = this.map.createDynamicLayer(layer.name, this.tilesets, 0, 0);
+          dynamicLayer._tiledProperties = this._getLayerProperties(layer);
           dynamicLayer.setPipeline('Light2D');
+          if(dynamicLayer._tiledProperties.depth !== undefined) {
+            dynamicLayer.setDepth(dynamicLayer._tiledProperties.depth);
+          }
           this.tilesetLayers.push(dynamicLayer);
         }
       }
+    },
+
+    _getLayerProperties: function(layer) {
+      var tiledProperties = {};
+
+      var properties = layer.properties;
+      if(properties !== undefined) {
+        for(var i=0, length=properties.length; i<length; ++i) {
+          tiledProperties[properties[i].name] = properties[i].value;
+        }
+      }
+
+      return tiledProperties;
     },
 
     _createObjectsFromLayer: function() {
@@ -103,12 +120,13 @@
 
         for(var i=0,ilength=objectLayerNames.length; i < ilength; ++i) {
           var objectLayer = this.map.getObjectLayer(objectLayerNames[i]);
+          objectLayer._tiledProperties = this._getLayerProperties(objectLayer);
           var objects = objectLayer.objects;
 
           for(var j=0, olength=objects.length; j < olength; ++j) {
             var object = objects[j];
 
-            this.objects[object.id] = object;
+            this.objects[object.id] = this._generateObjectProperties(object);
 
             if(this._isImageObject(object)) {
               var tileset = this.images[object.gid];
@@ -117,6 +135,10 @@
               var sprite = this.add.sprite(object.x, object.y, imageName);
               sprite.id = object.id;
               sprite.name = object.name;
+
+              if(objectLayer._tiledProperties.depth !== undefined) {
+                sprite.setDepth(objectLayer._tiledProperties.depth);
+              }
 
               if (object.width) { sprite.displayWidth = object.width; }
               if (object.height) { sprite.displayHeight = object.height; }
@@ -148,6 +170,20 @@
           }
         }
       }
+    },
+
+    _generateObjectProperties: function (object){
+      object._tiledProperties = {};
+
+      // Load tiled object properties if exist
+      var properties = object.properties;
+      if(properties !== undefined) {
+        for(var i=0, length=properties.length; i<length; ++i) {
+          object._tiledProperties[properties[i].name] = properties[i].value;
+        }
+      }
+
+      return object;
     },
 
     _destroyObjects: function() {

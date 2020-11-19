@@ -2,14 +2,1960 @@
 	"textures": [
 		{
 			"image": "lantern-0.png",
-			"normalMap": "lantern-0_n.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 1685,
-				"h": 1770
+				"w": 1870,
+				"h": 1974
 			},
 			"scale": 1,
 			"frames": [
+				{
+					"filename": "stairsdown/lantern0073.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsdown/lantern0074.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 360,
+						"y": 1,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsdown/lantern0075.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 719,
+						"y": 1,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsdown/lantern0076.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 1078,
+						"y": 1,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsdown/lantern0077.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 1437,
+						"y": 1,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsdown/lantern0078.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 1,
+						"y": 314,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsdown/lantern0079.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 360,
+						"y": 314,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsdown/lantern0080.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 719,
+						"y": 314,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsdown/lantern0081.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 1078,
+						"y": 314,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsdown/lantern0082.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 1437,
+						"y": 314,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsdown/lantern0083.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 1,
+						"y": 627,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "jump/lantern0054.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 372,
+						"h": 335
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 372,
+						"h": 335
+					},
+					"frame": {
+						"x": 360,
+						"y": 627,
+						"w": 372,
+						"h": 335
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "jump/lantern0055.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 372,
+						"h": 335
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 372,
+						"h": 335
+					},
+					"frame": {
+						"x": 734,
+						"y": 627,
+						"w": 372,
+						"h": 335
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "jump/lantern0056.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 372,
+						"h": 335
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 372,
+						"h": 335
+					},
+					"frame": {
+						"x": 1108,
+						"y": 627,
+						"w": 372,
+						"h": 335
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "jump/lantern0057.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 372,
+						"h": 335
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 372,
+						"h": 335
+					},
+					"frame": {
+						"x": 1482,
+						"y": 627,
+						"w": 372,
+						"h": 335
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "jump/lantern0058.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 372,
+						"h": 335
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 372,
+						"h": 335
+					},
+					"frame": {
+						"x": 1,
+						"y": 964,
+						"w": 372,
+						"h": 335
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "jump/lantern0059.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 372,
+						"h": 335
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 372,
+						"h": 335
+					},
+					"frame": {
+						"x": 375,
+						"y": 964,
+						"w": 372,
+						"h": 335
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "jump/lantern0060.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 372,
+						"h": 335
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 372,
+						"h": 335
+					},
+					"frame": {
+						"x": 749,
+						"y": 964,
+						"w": 372,
+						"h": 335
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "jump/lantern0061.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 372,
+						"h": 335
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 372,
+						"h": 335
+					},
+					"frame": {
+						"x": 1123,
+						"y": 964,
+						"w": 372,
+						"h": 335
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "jump/lantern0062.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 372,
+						"h": 335
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 372,
+						"h": 335
+					},
+					"frame": {
+						"x": 1497,
+						"y": 964,
+						"w": 372,
+						"h": 335
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "jump/lantern0063.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 372,
+						"h": 335
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 372,
+						"h": 335
+					},
+					"frame": {
+						"x": 1,
+						"y": 1301,
+						"w": 372,
+						"h": 335
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "jump/lantern0064.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 372,
+						"h": 335
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 372,
+						"h": 335
+					},
+					"frame": {
+						"x": 375,
+						"y": 1301,
+						"w": 372,
+						"h": 335
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "jump/lantern0065.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 372,
+						"h": 335
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 372,
+						"h": 335
+					},
+					"frame": {
+						"x": 749,
+						"y": 1301,
+						"w": 372,
+						"h": 335
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "jump/lantern0066.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 372,
+						"h": 335
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 372,
+						"h": 335
+					},
+					"frame": {
+						"x": 1123,
+						"y": 1301,
+						"w": 372,
+						"h": 335
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "jump/lantern0067.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 372,
+						"h": 335
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 372,
+						"h": 335
+					},
+					"frame": {
+						"x": 1497,
+						"y": 1301,
+						"w": 372,
+						"h": 335
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "jump/lantern0068.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 372,
+						"h": 335
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 372,
+						"h": 335
+					},
+					"frame": {
+						"x": 1,
+						"y": 1638,
+						"w": 372,
+						"h": 335
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "jump/lantern0069.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 372,
+						"h": 335
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 372,
+						"h": 335
+					},
+					"frame": {
+						"x": 375,
+						"y": 1638,
+						"w": 372,
+						"h": 335
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "jump/lantern0070.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 372,
+						"h": 335
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 372,
+						"h": 335
+					},
+					"frame": {
+						"x": 749,
+						"y": 1638,
+						"w": 372,
+						"h": 335
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "jump/lantern0071.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 372,
+						"h": 335
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 372,
+						"h": 335
+					},
+					"frame": {
+						"x": 1123,
+						"y": 1638,
+						"w": 372,
+						"h": 335
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "jump/lantern0072.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 372,
+						"h": 335
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 372,
+						"h": 335
+					},
+					"frame": {
+						"x": 1497,
+						"y": 1638,
+						"w": 372,
+						"h": 335
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				}
+			]
+		},
+		{
+			"image": "lantern-1.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 2034,
+				"h": 2038
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "stairsdown/lantern0084.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsdown/lantern0085.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 360,
+						"y": 1,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsdown/lantern0086.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 719,
+						"y": 1,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsdown/lantern0087.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 1078,
+						"y": 1,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsdown/lantern0088.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 1437,
+						"y": 1,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsdown/lantern0089.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 1,
+						"y": 314,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsdown/lantern0090.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 1,
+						"y": 627,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsdown/lantern0091.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 1,
+						"y": 940,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsdown/lantern0092.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 1,
+						"y": 1253,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsdown/lantern0093.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 1,
+						"y": 1566,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsdown/lantern0094.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 357,
+						"h": 311
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 357,
+						"h": 311
+					},
+					"frame": {
+						"x": 360,
+						"y": 314,
+						"w": 357,
+						"h": 311
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsup/lantern0095.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 332,
+						"h": 329
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 332,
+						"h": 329
+					},
+					"frame": {
+						"x": 719,
+						"y": 314,
+						"w": 332,
+						"h": 329
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsup/lantern0115.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 332,
+						"h": 329
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 332,
+						"h": 329
+					},
+					"frame": {
+						"x": 719,
+						"y": 314,
+						"w": 332,
+						"h": 329
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsup/lantern0096.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 332,
+						"h": 329
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 332,
+						"h": 329
+					},
+					"frame": {
+						"x": 360,
+						"y": 627,
+						"w": 332,
+						"h": 329
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsup/lantern0097.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 332,
+						"h": 329
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 332,
+						"h": 329
+					},
+					"frame": {
+						"x": 1053,
+						"y": 314,
+						"w": 332,
+						"h": 329
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsup/lantern0098.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 332,
+						"h": 329
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 332,
+						"h": 329
+					},
+					"frame": {
+						"x": 1387,
+						"y": 314,
+						"w": 332,
+						"h": 329
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "hide/lantern0043.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 312,
+						"h": 242
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 242
+					},
+					"frame": {
+						"x": 1721,
+						"y": 314,
+						"w": 312,
+						"h": 242
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "hide/lantern0044.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 312,
+						"h": 242
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 242
+					},
+					"frame": {
+						"x": 1721,
+						"y": 558,
+						"w": 312,
+						"h": 242
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsup/lantern0099.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 332,
+						"h": 329
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 332,
+						"h": 329
+					},
+					"frame": {
+						"x": 694,
+						"y": 645,
+						"w": 332,
+						"h": 329
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsup/lantern0100.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 332,
+						"h": 329
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 332,
+						"h": 329
+					},
+					"frame": {
+						"x": 360,
+						"y": 958,
+						"w": 332,
+						"h": 329
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsup/lantern0101.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 332,
+						"h": 329
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 332,
+						"h": 329
+					},
+					"frame": {
+						"x": 1028,
+						"y": 645,
+						"w": 332,
+						"h": 329
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsup/lantern0102.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 332,
+						"h": 329
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 332,
+						"h": 329
+					},
+					"frame": {
+						"x": 1362,
+						"y": 645,
+						"w": 332,
+						"h": 329
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsup/lantern0103.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 332,
+						"h": 329
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 332,
+						"h": 329
+					},
+					"frame": {
+						"x": 1696,
+						"y": 802,
+						"w": 332,
+						"h": 329
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsup/lantern0104.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 332,
+						"h": 329
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 332,
+						"h": 329
+					},
+					"frame": {
+						"x": 694,
+						"y": 976,
+						"w": 332,
+						"h": 329
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsup/lantern0105.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 332,
+						"h": 329
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 332,
+						"h": 329
+					},
+					"frame": {
+						"x": 360,
+						"y": 1289,
+						"w": 332,
+						"h": 329
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsup/lantern0106.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 332,
+						"h": 329
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 332,
+						"h": 329
+					},
+					"frame": {
+						"x": 1028,
+						"y": 976,
+						"w": 332,
+						"h": 329
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsup/lantern0107.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 332,
+						"h": 329
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 332,
+						"h": 329
+					},
+					"frame": {
+						"x": 1362,
+						"y": 976,
+						"w": 332,
+						"h": 329
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsup/lantern0108.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 332,
+						"h": 329
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 332,
+						"h": 329
+					},
+					"frame": {
+						"x": 1696,
+						"y": 1133,
+						"w": 332,
+						"h": 329
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsup/lantern0109.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 332,
+						"h": 329
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 332,
+						"h": 329
+					},
+					"frame": {
+						"x": 360,
+						"y": 1620,
+						"w": 332,
+						"h": 329
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsup/lantern0110.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 332,
+						"h": 329
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 332,
+						"h": 329
+					},
+					"frame": {
+						"x": 694,
+						"y": 1307,
+						"w": 332,
+						"h": 329
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsup/lantern0111.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 332,
+						"h": 329
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 332,
+						"h": 329
+					},
+					"frame": {
+						"x": 1028,
+						"y": 1307,
+						"w": 332,
+						"h": 329
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsup/lantern0112.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 332,
+						"h": 329
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 332,
+						"h": 329
+					},
+					"frame": {
+						"x": 1362,
+						"y": 1307,
+						"w": 332,
+						"h": 329
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsup/lantern0113.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 332,
+						"h": 329
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 332,
+						"h": 329
+					},
+					"frame": {
+						"x": 1696,
+						"y": 1464,
+						"w": 332,
+						"h": 329
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "hide/lantern0045.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 312,
+						"h": 242
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 242
+					},
+					"frame": {
+						"x": 694,
+						"y": 1795,
+						"w": 312,
+						"h": 242
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "stairsup/lantern0114.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 332,
+						"h": 329
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 332,
+						"h": 329
+					},
+					"frame": {
+						"x": 1008,
+						"y": 1638,
+						"w": 332,
+						"h": 329
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "idle/lantern0034.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 337,
+						"h": 293
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 337,
+						"h": 293
+					},
+					"frame": {
+						"x": 1342,
+						"y": 1638,
+						"w": 337,
+						"h": 293
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "hide/lantern0046.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 312,
+						"h": 242
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 242
+					},
+					"frame": {
+						"x": 1681,
+						"y": 1795,
+						"w": 312,
+						"h": 242
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				}
+			]
+		},
+		{
+			"image": "lantern-2.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 2022,
+				"h": 2014
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "idle/lantern0035.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 337,
+						"h": 293
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 337,
+						"h": 293
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 337,
+						"h": 293
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "idle/lantern0041.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 337,
+						"h": 293
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 337,
+						"h": 293
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 337,
+						"h": 293
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "idle/lantern0036.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 337,
+						"h": 293
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 337,
+						"h": 293
+					},
+					"frame": {
+						"x": 340,
+						"y": 1,
+						"w": 337,
+						"h": 293
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "idle/lantern0037.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 337,
+						"h": 293
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 337,
+						"h": 293
+					},
+					"frame": {
+						"x": 679,
+						"y": 1,
+						"w": 337,
+						"h": 293
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "idle/lantern0039.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 337,
+						"h": 293
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 337,
+						"h": 293
+					},
+					"frame": {
+						"x": 679,
+						"y": 1,
+						"w": 337,
+						"h": 293
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "idle/lantern0038.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 337,
+						"h": 293
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 337,
+						"h": 293
+					},
+					"frame": {
+						"x": 1018,
+						"y": 1,
+						"w": 337,
+						"h": 293
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "idle/lantern0040.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 337,
+						"h": 293
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 337,
+						"h": 293
+					},
+					"frame": {
+						"x": 1357,
+						"y": 1,
+						"w": 337,
+						"h": 293
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "hide/lantern0047.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 312,
+						"h": 242
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 242
+					},
+					"frame": {
+						"x": 1696,
+						"y": 1,
+						"w": 312,
+						"h": 242
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "hide/lantern0048.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 312,
+						"h": 242
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 242
+					},
+					"frame": {
+						"x": 1696,
+						"y": 245,
+						"w": 312,
+						"h": 242
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "idle/lantern0042.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 337,
+						"h": 293
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 337,
+						"h": 293
+					},
+					"frame": {
+						"x": 1,
+						"y": 296,
+						"w": 337,
+						"h": 293
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
 				{
 					"filename": "walk/lantern0001.png",
 					"rotated": false,
@@ -25,8 +1971,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 1,
-						"y": 1,
+						"x": 340,
+						"y": 296,
 						"w": 335,
 						"h": 293
 					},
@@ -50,7 +1996,7 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 1,
+						"x": 677,
 						"y": 296,
 						"w": 335,
 						"h": 293
@@ -75,7 +2021,7 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 1,
+						"x": 677,
 						"y": 296,
 						"w": 335,
 						"h": 293
@@ -100,8 +2046,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 1,
-						"y": 591,
+						"x": 1014,
+						"y": 296,
 						"w": 335,
 						"h": 293
 					},
@@ -125,8 +2071,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 1,
-						"y": 591,
+						"x": 1014,
+						"y": 296,
 						"w": 335,
 						"h": 293
 					},
@@ -150,10 +2096,35 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 1,
-						"y": 886,
+						"x": 1351,
+						"y": 296,
 						"w": 335,
 						"h": 293
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "hide/lantern0049.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 312,
+						"h": 242
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 242
+					},
+					"frame": {
+						"x": 1688,
+						"y": 489,
+						"w": 312,
+						"h": 242
 					},
 					"anchor": {
 						"x": 0.5,
@@ -176,7 +2147,7 @@
 					},
 					"frame": {
 						"x": 1,
-						"y": 1181,
+						"y": 591,
 						"w": 335,
 						"h": 293
 					},
@@ -201,7 +2172,7 @@
 					},
 					"frame": {
 						"x": 1,
-						"y": 1181,
+						"y": 591,
 						"w": 335,
 						"h": 293
 					},
@@ -225,8 +2196,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 1,
-						"y": 1476,
+						"x": 338,
+						"y": 591,
 						"w": 335,
 						"h": 293
 					},
@@ -250,8 +2221,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 338,
-						"y": 1,
+						"x": 675,
+						"y": 591,
 						"w": 335,
 						"h": 293
 					},
@@ -275,8 +2246,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 338,
-						"y": 296,
+						"x": 1012,
+						"y": 591,
 						"w": 335,
 						"h": 293
 					},
@@ -300,7 +2271,7 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 338,
+						"x": 1349,
 						"y": 591,
 						"w": 335,
 						"h": 293
@@ -325,8 +2296,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 338,
-						"y": 886,
+						"x": 1686,
+						"y": 733,
 						"w": 335,
 						"h": 293
 					},
@@ -350,8 +2321,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 338,
-						"y": 1181,
+						"x": 1,
+						"y": 886,
 						"w": 335,
 						"h": 293
 					},
@@ -376,7 +2347,7 @@
 					},
 					"frame": {
 						"x": 338,
-						"y": 1476,
+						"y": 886,
 						"w": 335,
 						"h": 293
 					},
@@ -401,7 +2372,7 @@
 					},
 					"frame": {
 						"x": 675,
-						"y": 1,
+						"y": 886,
 						"w": 335,
 						"h": 293
 					},
@@ -425,8 +2396,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 675,
-						"y": 296,
+						"x": 1012,
+						"y": 886,
 						"w": 335,
 						"h": 293
 					},
@@ -450,8 +2421,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 675,
-						"y": 591,
+						"x": 1349,
+						"y": 886,
 						"w": 335,
 						"h": 293
 					},
@@ -475,8 +2446,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 675,
-						"y": 886,
+						"x": 1686,
+						"y": 1028,
 						"w": 335,
 						"h": 293
 					},
@@ -500,8 +2471,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 675,
-						"y": 1181,
+						"x": 1,
+						"y": 1323,
 						"w": 335,
 						"h": 293
 					},
@@ -525,8 +2496,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 675,
-						"y": 1476,
+						"x": 1,
+						"y": 1618,
 						"w": 335,
 						"h": 293
 					},
@@ -550,8 +2521,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 1012,
-						"y": 1,
+						"x": 338,
+						"y": 1181,
 						"w": 335,
 						"h": 293
 					},
@@ -575,8 +2546,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 1012,
-						"y": 296,
+						"x": 675,
+						"y": 1181,
 						"w": 335,
 						"h": 293
 					},
@@ -601,7 +2572,7 @@
 					},
 					"frame": {
 						"x": 1012,
-						"y": 591,
+						"y": 1181,
 						"w": 335,
 						"h": 293
 					},
@@ -625,8 +2596,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 1012,
-						"y": 886,
+						"x": 1349,
+						"y": 1181,
 						"w": 335,
 						"h": 293
 					},
@@ -650,8 +2621,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 1012,
-						"y": 1181,
+						"x": 1686,
+						"y": 1323,
 						"w": 335,
 						"h": 293
 					},
@@ -675,8 +2646,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 1012,
-						"y": 1476,
+						"x": 338,
+						"y": 1618,
 						"w": 335,
 						"h": 293
 					},
@@ -700,8 +2671,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 1349,
-						"y": 1,
+						"x": 675,
+						"y": 1618,
 						"w": 335,
 						"h": 293
 					},
@@ -725,8 +2696,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 1349,
-						"y": 296,
+						"x": 1012,
+						"y": 1476,
 						"w": 335,
 						"h": 293
 					},
@@ -751,7 +2722,7 @@
 					},
 					"frame": {
 						"x": 1349,
-						"y": 591,
+						"y": 1476,
 						"w": 335,
 						"h": 293
 					},
@@ -760,6 +2731,92 @@
 						"y": 1
 					}
 				},
+				{
+					"filename": "hide/lantern0050.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 312,
+						"h": 242
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 242
+					},
+					"frame": {
+						"x": 1686,
+						"y": 1618,
+						"w": 312,
+						"h": 242
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "hide/lantern0051.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 312,
+						"h": 242
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 242
+					},
+					"frame": {
+						"x": 1012,
+						"y": 1771,
+						"w": 312,
+						"h": 242
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "hide/lantern0052.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 312,
+						"h": 242
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 242
+					},
+					"frame": {
+						"x": 1326,
+						"y": 1771,
+						"w": 312,
+						"h": 242
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				}
+			]
+		},
+		{
+			"image": "lantern-3.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 337,
+				"h": 1129
+			},
+			"scale": 1,
+			"frames": [
 				{
 					"filename": "walk/lantern0031.png",
 					"rotated": false,
@@ -775,8 +2832,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 1349,
-						"y": 886,
+						"x": 1,
+						"y": 1,
 						"w": 335,
 						"h": 293
 					},
@@ -800,8 +2857,8 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 1349,
-						"y": 1181,
+						"x": 1,
+						"y": 296,
 						"w": 335,
 						"h": 293
 					},
@@ -825,10 +2882,35 @@
 						"h": 293
 					},
 					"frame": {
-						"x": 1349,
-						"y": 1476,
+						"x": 1,
+						"y": 591,
 						"w": 335,
 						"h": 293
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "hide/lantern0053.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 312,
+						"h": 242
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 242
+					},
+					"frame": {
+						"x": 1,
+						"y": 886,
+						"w": 312,
+						"h": 242
 					},
 					"anchor": {
 						"x": 0.5,
@@ -841,6 +2923,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:f29b4ddacf0ffb7d20bc2b9b0d0f806c:ada7f9faff1a981c9e97df7ac9f77027:9c52373ae04ad4512ff57ff64bd4cf2b$"
+		"smartupdate": "$TexturePacker:SmartUpdate:4f0e0d9b58593e52648a9ac37508226a:6c716b4668da97b622117fe99b8dc6e1:33c8c0bc1adaa029f5d3b1d7cdace337$"
 	}
 }

@@ -47,14 +47,6 @@
   }
 
   Keyboard.prototype.handleKeyDown = function (event) {
-    this.inputs = {
-      UP: false,
-      LEFT: false,
-      DOWN: false,
-      RIGHT: false,
-      ACTION1: false,
-      ACTION2: false
-    };
 
     switch (event.code) {
       case this.keys.UP:
@@ -79,14 +71,6 @@
   }
 
   Keyboard.prototype.handleKeyUp = function (event) {
-      this.inputs = {
-          UP: false,
-          LEFT: false,
-          DOWN: false,
-          RIGHT: false,
-          ACTION1: false,
-          ACTION2: false
-      };
 
     switch (event.code) {
       case this.keys.UP:
