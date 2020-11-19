@@ -32,12 +32,13 @@
   BaseScene.prototype.preload = function () {
     this.settings.loadSettings();
     this.load.json('game-configuration', '/src/game-configuration.json');
-    if(this.savedgames.getNumberOfSaves() > 0) {
-      this.menus.play[1].disabled = false;
-    }
   }
 
   BaseScene.prototype.create = function () {
+    if(this.savedgames.getNumberOfSaves() > 0) {
+      this.menus.play[1].disabled = false;
+    }
+
     this.createStateMachine({
       id: 'Game Scene Manager',
       initial: 'boot',

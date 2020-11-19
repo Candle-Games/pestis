@@ -31,7 +31,7 @@
   SavedGames.prototype.init = function(data) {
     var savedGamesSlots = window.localStorage.getItem(this.storageKey);
 
-    if(savedGamesSlots !== undefined) {
+    if(savedGamesSlots !== undefined && savedGamesSlots !== null) {
       this.savedGamesSlots = JSON.parse(savedGamesSlots);
     }
   }
