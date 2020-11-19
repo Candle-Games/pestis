@@ -6,6 +6,16 @@
       "loop": true
     },
     {
+      "id": "home-scary-home",
+      "file": "home-scary-home.ogg",
+      "loop": true,
+      "entry": "home-scary-home-init"
+    },
+    {
+      "id": "home-scary-home-init",
+      "file": "home-scary-home-init.ogg"
+    },
+    {
       "id": "desolation",
       "file": "desolation.ogg",
       "loop": true,
@@ -14,6 +24,16 @@
     {
       "id": "desolation-init",
       "file": "desolation-init.ogg"
+    },
+    {
+      "id": "lost-souls",
+      "file": "lost-souls.ogg",
+      "loop": true,
+      "entry": "lost-souls-init"
+    },
+    {
+      "id": "lost-souls-init",
+      "file": "lost-souls-init.ogg"
     },
     {
       "id": "run-or-die",
@@ -41,6 +61,54 @@
       "id": "credits",
       "file": "credits.ogg",
       "loop": true
+    },
+    {
+      "id": "menu-enter",
+      "file": "menu-enter.wav"
+    },
+    {
+      "id": "menu-select",
+      "file": "menu-select.wav"
+    },
+    {
+      "id": "key-pick",
+      "file": "key-pick.wav"
+    },
+    {
+      "id": "door",
+      "file": "door.wav"
+    },
+    {
+      "id": "kid1",
+      "file": "kid1.wav"
+    },
+    {
+      "id": "kid2",
+      "file": "kid2.wav"
+    },
+    {
+      "id": "kid3",
+      "file": "kid3.wav"
+    },
+    {
+      "id": "kid4",
+      "file": "kid4.wav"
+    },
+    {
+      "id": "faces1",
+      "file": "faces1.wav"
+    },
+    {
+      "id": "faces2",
+      "file": "faces2.wav"
+    },
+    {
+      "id": "faces3",
+      "file": "faces3.wav"
+    },
+    {
+      "id": "skeleton",
+      "file": "skeleton.wav"
     }
   ],
   "scenes": {
@@ -52,8 +120,8 @@
     }
   },
   "game": {
-    "tutorial-room": "desolation",
-    "level1": "whatever"
+    "tutorial-room": "home-scary-home",
+    "level1": "desolation",
+    "level2": "lost-souls"
   }
-
 }

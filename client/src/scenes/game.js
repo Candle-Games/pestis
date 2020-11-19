@@ -84,8 +84,7 @@
 
     this.highlightArrow = this.add.image(0, 0, 'select-arrow');
     this.highlightArrow.setVisible(false);
-    // this.highlightArrow.setDisplaySize(30, 15);
-
+    this.music.playGameMusic(this.levelConfig.name);
     this.events.emit('game-scene-created');
   }
 
@@ -205,6 +204,7 @@
 
   Game.prototype.destroy = function() {
     console.log("Shutdown game scene");
+    this.music.stopGameMusic();
 
     this.highlightArrow.destroy();
 

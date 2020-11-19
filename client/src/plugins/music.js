@@ -209,6 +209,15 @@
     this._playBackgroundMusic(background);
   }
 
+  MusicSystem.prototype.playGameMusic = function(backgroundId) {
+    var background = this._dataMusic.game[backgroundId];
+    this._playBackgroundMusic(background);
+  }
+
+  MusicSystem.prototype.stopGameMusic = function() {
+    this._stopBackgroundMusic(true);
+  }
+
   /**
    * Plays current background music
    * @private
