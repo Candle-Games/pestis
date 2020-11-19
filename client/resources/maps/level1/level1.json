@@ -4,7 +4,7 @@
      "export":
         {
          "format":"json",
-         "target":"level1.json"
+         "target":"..\/Documents\/GitHub\/pestis\/client\/resources\/maps\/level1\/level1.json"
         }
     },
  "height":150,
@@ -1530,7 +1530,7 @@
  "nextobjectid":255,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.4.2",
+ "tiledversion":"2020.09.22",
  "tileheight":16,
  "tilesets":[
         {
@@ -1688,19 +1688,6 @@
         {
          "columns":90,
          "firstgid":1923,
-         "image":"images\/wall-vines.png",
-         "imageheight":726,
-         "imagewidth":1440,
-         "margin":0,
-         "name":"wall-vines",
-         "spacing":0,
-         "tilecount":4050,
-         "tileheight":16,
-         "tilewidth":16
-        }, 
-        {
-         "columns":90,
-         "firstgid":5973,
          "image":"images\/wall-vines.png",
          "imageheight":726,
          "imagewidth":1440,
