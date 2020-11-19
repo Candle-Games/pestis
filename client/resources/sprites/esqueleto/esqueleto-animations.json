@@ -1,0 +1,40 @@
+{
+	"animations": [
+		{
+			"key": "attack",
+			"prefix": "attack/esqueleto",
+			"suffix": ".png",
+			"zeroPad": 4,
+			"frameRate": 25,
+			"repeat": -1,
+			"start": 43,
+			"end": 82
+		},
+		{
+			"key": "idle",
+			"prefix": "idle/esqueleto",
+			"suffix": ".png",
+			"zeroPad": 4,
+			"frameRate": 25,
+			"repeat": -1,
+			"start": 83,
+			"end": 91
+		},
+		{
+			"key": "walk",
+			"prefix": "walk/esqueleto",
+			"suffix": ".png",
+			"zeroPad": 4,
+			"frameRate": 25,
+			"repeat": -1,
+			"start": 1,
+			"end": 42
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"creators": "Candlegames",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:41b3ee8b4854289298d30a67d2cf6021:72929b33dbf6b69b52b3914ca50060a3:6d552eda99f766fa0f9710db7b99e1c1$"
+	}
+}

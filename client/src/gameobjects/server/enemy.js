@@ -61,6 +61,8 @@
         this.visionLine.setTo(this.body.x, this.body.y  -264 * 0.5, this.body.x + this.vision * this.currentDirection, this.body.y - 264 * 0.5)
         this.currentPlayer = undefined;
 
+        return;
+
         var pcs = this.scene.game_engine.pcs.getChildren()
         for(var i=0; i<pcs.length; i++){
             var pc=pcs[i];

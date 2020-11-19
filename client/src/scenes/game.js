@@ -92,7 +92,7 @@
         this.updateObject(update);
         break;
       case 3: // hideout collision
-        this.highlightHideout(update[1], update[2], update[3], update[4], update[5]);
+        this.highlightSpot(update[1], update[2], update[3], update[4], update[5], update[6]);
         break;
     }
   }
@@ -167,15 +167,16 @@
     }
   }
 
-  Game.prototype.highlightHideout = function(highlight, id) {
-    var hideout = this.spawnedObjects[id];
-    if(hideout===undefined) return;
+  Game.prototype.highlightSpot = function(highlight, id, x, y, width, height) {
+    var spot = this.spawnedObjects[id];
 
-    if(highlight) {
-      hideout.resetPipeline();
+    /*if(highlight) {
+      this.highlightArrow.setDepth(this.currentCharacter.depth + 1);
+      this.highlightArrow.setPosition(x + (width * 0.5), y - height - 10);
+      this.highlightArrow.setVisible(true);
     } else {
-      hideout.setPipeline("Light2D");
-    }
+      this.highlightArrow.setVisible(false);
+    }*/
   }
 
   Game.prototype.setupLights = function() {
