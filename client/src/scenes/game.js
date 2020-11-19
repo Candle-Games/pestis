@@ -57,15 +57,6 @@
       var characterAnimations = characterFolder + character + '-animations.json';
       this.load.json(character + '-animations', characterAnimations);
     }
-
-    // this.load.multiatlas('lantern', 'resources/sprites/lantern/lantern.json', 'resources/sprites/lantern/');
-    // this.load.json('lantern-animations', 'resources/sprites/lantern/lantern-animations.json');
-    //
-    // this.load.multiatlas('sombra', 'resources/sprites/sombra/sombra.json', 'resources/sprites/sombra/');
-    // this.load.json('sombra-animations', 'resources/sprites/sombra/sombra-animations.json');
-    //
-    // this.load.multiatlas('caras', 'resources/sprites/caras/caras.json', 'resources/sprites/caras/');
-    // this.load.json('caras-animations', 'resources/sprites/caras/caras-animations.json');
   }
 
   Game.prototype.onLoadComplete = function(value) {

@@ -35,6 +35,11 @@
          */
         distanceToKill: 200,
 
+        /**
+         * Last position of Character to go
+         */
+        lastCharacterPosition: -1,
+
         stop: function(){
             this.walk(0);
         },
@@ -42,17 +47,17 @@
         walk: function(speed){
             if(speed===undefined) speed = this.walkVelocity;
 
-            if(this.currentPlayer === undefined){
+            if(this.lastCharacterPosition < 0){
                 if(this.currentDirection === -1 && this.path !== undefined && this.path.inStartPoint(this.body.position)){
                     this.currentDirection = this.currentDirection * -1;
                 }else if(this.currentDirection === 1 && this.path !== undefined && this.path.inEndPoint(this.body.position)){
                     this.currentDirection = this.currentDirection * -1;
                 }
             }else{
-                if(this.currentPlayer.body.x + this.distanceToKill < this.body.x){
+                if(this.lastCharacterPosition + this.distanceToKill < this.body.x){
                     this.currentDirection = -1;
                     speed = speed * this.runMultiplier;
-                }else if (this.currentPlayer.body.x - this.distanceToKill > this.body.x){
+                }else if (this.lastCharacterPosition - this.distanceToKill > this.body.x){
                     this.currentDirection = 1;
                     speed = speed * this.runMultiplier;
                 }else{

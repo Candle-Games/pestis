@@ -16,6 +16,10 @@
     this.id = this.getTiledProperty('id');
     this.name = this.getTiledProperty('spawn_object');
 
+
+    this.key = undefined;
+    this.keys = [];
+
     this.setSize(80, 10);
     scene.physics.add.existing(this);
 
@@ -62,6 +66,20 @@
 
   Character.prototype.setCurrentCharacter = function(isCurrent) {
     this.isCurrentCharacter = isCurrent;
+  }
+
+  /**
+   * Return if character has the key
+   * @param keyId
+   * @returns {boolean}
+   */
+  Character.prototype.hasKey = function(keyId){
+    for(var i = 0; i < this.keys.length; i++){
+      if(this.keys[i].id === keyId){
+        return true;
+      }
+    }
+    return false;
   }
 
   Character.prototype.setLantern = function(hasLantern) {

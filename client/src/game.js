@@ -52,6 +52,8 @@ var game = new Phaser.Game({
       { key: 'StairsSpotPlugin', plugin: candlegames.pestis.gameobjects.engine.StairsSpotPlugin, start: true},
       { key: 'StairsPlugin', plugin: candlegames.pestis.gameobjects.engine.StairsPlugin, start: true},
       { key: 'PathPlugin', plugin: candlegames.pestis.gameobjects.engine.PathPlugin, start: true},
+      { key: 'DoorPlugin', plugin: candlegames.pestis.gameobjects.engine.DoorPlugin, start: true},
+      { key: 'KeyPlugin', plugin: candlegames.pestis.gameobjects.engine.KeyPlugin, start: true},
       { key: 'TunnelPlugin', plugin: candlegames.pestis.gameobjects.engine.TunnelPlugin, start: true},
 
       { key: 'PlayerCharacterPlugin', plugin: candlegames.pestis.gameobjects.client.PlayerCharacterPlugin, start: true },

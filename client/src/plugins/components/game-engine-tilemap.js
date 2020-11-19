@@ -10,7 +10,9 @@
       DOOR: 'door',
       SPAWN_POINT: 'spawnpoint',
       PATH: 'path',
-      TUNNEL: 'tunnel'
+      TUNNEL: 'tunnel',
+      PATH: 'path',
+      KEY: 'key'
     },
 
     map: undefined,
@@ -97,13 +99,11 @@
                 phaserObject = this.scene.add.stairs(object);
                 break;
 
+              case this.objectTypes.DOOR:
               case this.objectTypes.GROUND:
               case this.objectTypes.WALL:
                 phaserObject = this.scene.add.ground(object);
                 this.colliders.add(phaserObject);
-                break;
-
-              case this.objectTypes.DOOR:
                 break;
 
               case this.objectTypes.SPAWN_POINT:;
@@ -116,12 +116,18 @@
                   this.npcs.add(phaserObject);
                 }
                 break;
+
               case this.objectTypes.PATH:
                 phaserObject = this.scene.add.objectpath(object);
                 break;
 
               case this.objectTypes.TUNNEL:
                 phaserObject = this.scene.add.tunnel(object);
+                this.overspots.add(phaserObject);
+                break;
+
+              case this.objectTypes.KEY:
+                phaserObject = this.scene.add.doorkey(object);
                 this.overspots.add(phaserObject);
                 break;
             }

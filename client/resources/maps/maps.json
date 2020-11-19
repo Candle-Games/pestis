@@ -13,7 +13,13 @@
       "closet.png",
       "coats.png",
       "firewood.png",
+      "goldendoor.png",
+      "goldenkey.png",
+      "oxidedoor.png",
+      "oxidekey.png",
       "sidetable.png",
+      "silverdoor.png",
+      "silverkey.png",
       "stairs.png",
       "table.png",
       "tutorial-roof.png",
@@ -24,7 +30,8 @@
       "pc2",
       "lantern",
       "sombra",
-      "caras"
+      "caras",
+      "esqueleto"
     ]
   },
   "level1": {
@@ -53,7 +60,8 @@
       "pc2",
       "lantern",
       "sombra",
-      "caras"
+      "caras",
+      "ninio"
     ]
   }
 }

@@ -127,6 +127,12 @@
     if(object._tiledObject.polygon) {
       SAT.pointInPolygon(new SAT.Vector(player.x, player.y), object.__satPolygon);
     }
+    if(object._tiledObject.type === 'door'){
+      var doorkey = object._tiledProperties.key;
+      if(player.hasKey(doorkey)){
+        object.destroy();
+      }
+    }
   }
 
   /**
@@ -155,6 +161,11 @@
           this.sendUpdate({ type: 'spotcollision', is_colliding: true, player: player, object: object });
         }
         break;
+      case 'key':
+        if(player.key === undefined){
+          player.key = object;
+          this.sendUpdate({ type: 'spotcollision', is_colliding: true, player: player, object: object });
+        }
     }
   }
 
@@ -181,7 +192,7 @@
         }
       }
 
-      // Check stairs spots
+      // Check tunnel spots
       if(pc.tunnel_spot !== undefined) {
         if(!this.scene.physics.world.overlap(pc, pc.tunnel_spot)) {
           this.sendUpdate({type: 'spotcollision', is_colliding: false, player: pc, object: pc.tunnel_spot});
@@ -189,6 +200,15 @@
         }
       }
 
+
+      //Check key
+      if(pc.key !== undefined){
+        if(!this.scene.physics.world.overlap(pc,pc.key)){
+          this.sendUpdate({type: 'spotcollision', is_colliding: false, player: pc, object: pc.key});
+          this.sendUpdate({type: 'spotcollision', object: pc.key});
+          pc.key = undefined;
+        }
+      }
     }
   }
 
@@ -202,6 +222,13 @@
       this.action2Pressed = true;
     } else if(!this.keyPressed.ACTION2) {
       this.action2Pressed = false;
+    }
+
+    if(this.keyPressed.ACTION1 && this.playerCharacter.key !== undefined){
+      var key = this.playerCharacter.key;
+      this.playerCharacter.keys.push(key);
+      key.setPosition(-100,-100);
+      this.sendUpdate({type: 'position', object: key});
     }
 
     if(this.keyPressed.UP) {
