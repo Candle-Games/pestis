@@ -1,0 +1,20 @@
+{
+	"animations": [
+		{
+			"key": "plaguedr",
+			"prefix": "plaguedr/plaguedr",
+			"suffix": ".png",
+			"zeroPad": 4,
+			"frameRate": 15,
+			"repeat": -1,
+			"start": 1,
+			"end": 20
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"creators": "Candlegames",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:f74f3f7ac515a427a18ef93c4687c536:9d3c7eb506f99c655de522c84553628d:034f4363104848f939f38bb546ad20bf$"
+	}
+}
