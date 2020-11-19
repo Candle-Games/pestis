@@ -42,12 +42,14 @@
     Enemy.prototype.preUpdate = function(time, delta) {
         if(this.timeWaiting<0){
             this.searchCharacters(time);
-            this.walk();
         }else{
+            console.log(time)
             if(time-this.timeWaiting > 5000){ //5 segundos
                 this.timeWaiting = -1;
+                this.lastCharacterPosition = -1;
             }
         }
+        this.walk();
 
         if(this.super.preUpdate !== undefined)
         {
@@ -58,7 +60,6 @@
     Enemy.prototype.searchCharacters = function(time) {
         this.visionLine.setTo(this.body.x, this.body.y  -264 * 0.5, this.body.x + this.vision * this.currentDirection, this.body.y - 264 * 0.5)
         this.currentPlayer = undefined;
-        return;
 
         var pcs = this.scene.game_engine.pcs.getChildren()
         for(var i=0; i<pcs.length; i++){
@@ -66,8 +67,9 @@
             var pcRect =  new Phaser.Geom.Rectangle(pc.body.x - (pc.body.width * 0.5), pc.body.y - (264 * 0.5), pc.body.width, 264);
             var intersection = Phaser.Geom.Intersects.LineToRectangle(this.visionLine, pcRect);
             if(intersection) {
-                if(!pc.isHiding && !pc.stairsUp && !pc.stairsDown) {
+                if(!pc.isHiding && pc.stairs === undefined) {
                     this.currentPlayer = pc;
+                    this.lastCharacterPosition = pc.body.x;
                     if(this.currentMusic === undefined){
                         this.currentMusic = pc._tiledProperties.music_chase;
                         this.scene.music.playEffect(this.currentMusic);

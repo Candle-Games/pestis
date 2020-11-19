@@ -1,11 +1,11 @@
 {
   "keyboard": {
-    "UP": "w",
-    "LEFT": "a",
-    "DOWN": "s",
-    "RIGHT": "d",
-    "ACTION1": ",",
-    "ACTION2": "."
+    "UP": "KeyW",
+    "LEFT": "KeyA",
+    "DOWN": "KeyS",
+    "RIGHT": "KeyD",
+    "ACTION1": "KeyE",
+    "ACTION2": "KeyQ"
   },
   "music": {
     "status": true,
