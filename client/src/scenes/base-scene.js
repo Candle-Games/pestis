@@ -14,7 +14,7 @@
 
   BaseScene.prototype.preload = function () {
     this.settings.loadSettings();
-    this.load.json('game-configuration', '/src/game-configuration.json');
+    this.load.json('game-configuration', 'src/game-configuration.json');
   }
 
   BaseScene.prototype.create = function () {

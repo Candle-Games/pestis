@@ -13,7 +13,7 @@
   GameplayManager.prototype.constructor = GameplayManager;
 
   GameplayManager.prototype.preload = function(data) {
-    this.load.json('maps-config', '/resources/maps/maps.json');
+    this.load.json('maps-config', 'resources/maps/maps.json');
   }
 
   GameplayManager.prototype.create = function(data) {

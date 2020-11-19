@@ -9,8 +9,8 @@
   Settings.prototype.constructor = Settings;
 
   Settings.prototype.preload = function() {
-    this.load.html('user-settings', '/html/user-settings.html');
-    this.load.css('user-settings', '/css/user-settings.css');
+    this.load.html('user-settings', 'html/user-settings.html');
+    this.load.css('user-settings', 'css/user-settings.css');
   }
 
   Settings.prototype.create = function(data) {

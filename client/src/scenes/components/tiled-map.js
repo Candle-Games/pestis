@@ -42,7 +42,7 @@
     },
 
     loadMap: function(mapConfig) {
-      var levelResources = '/resources/maps/' + mapConfig.name + '/';
+      var levelResources = 'resources/maps/' + mapConfig.name + '/';
       var levelFile = levelResources + mapConfig.name + '.json';
       this.load.tilemapTiledJSON(mapConfig.name, levelFile);
 
