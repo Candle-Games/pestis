@@ -2,7 +2,6 @@
     function Door(scene,tiledObject){
         ns.BaseTiledObject.call(this,scene,tiledObject.type, tiledObject);
         this.setOrigin(0.5,1);
-        this.setSize(50, 400);
     }
 
     Door.prototype = Object.create(ns.BaseTiledObject.prototype);

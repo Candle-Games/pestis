@@ -99,7 +99,6 @@
                 phaserObject = this.scene.add.stairs(object);
                 break;
 
-              case this.objectTypes.DOOR:
               case this.objectTypes.GROUND:
               case this.objectTypes.WALL:
                 phaserObject = this.scene.add.ground(object);
@@ -130,6 +129,9 @@
                 phaserObject = this.scene.add.doorkey(object);
                 this.overspots.add(phaserObject);
                 break;
+
+              case this.objectTypes.DOOR:
+                phaserObject = this.scene.add.door(object);
             }
 
             if(phaserObject !== undefined) {
