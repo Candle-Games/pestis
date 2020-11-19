@@ -16,6 +16,11 @@
     isJumping: false,
 
     /**
+     * Is it currently hiding
+     */
+    isHiding: false,
+
+    /**
      * Can it jump now?
      */
     canJump: true,
@@ -65,9 +70,8 @@
     _walk: function(speed, direction) {
       if(direction===undefined) direction = 1;
       if(speed===undefined) speed = this.walkVelocity;
-      if(!this.isHiding) {
-        this.body.setVelocityX(speed * direction);
-      }
+
+      this.body.setVelocityX(speed * direction);
     },
 
     upEnd: function() {
@@ -81,7 +85,13 @@
       if(!this.stairsDown) {
         this.canJump = true;
       }
+
       this.stairsDown = false;
+      this.inTunnel = false;
+
+      if(this.getHiding()) {
+        this.setHiding(false);
+      }
     },
 
     up: function(delta) {
@@ -113,7 +123,6 @@
     },
 
     down: function(delta) {
-
       if(this.stairs !== undefined) {
         var n_pixels = this.walkVelocity * delta * 0.001;
         var stepDown = this.stairs.step(new Phaser.Math.Vector2(this.x, this.y), n_pixels);
@@ -137,9 +146,26 @@
         this.setPosition(this.stairs.startPoint.x, this.stairs.startPoint.y);
         this.stairsDown = true;
         this.emit('stairs-enter', this.stairs, this.stairs_spot);
-      } else if(this.hideout) {
-        this.isHiding = true;
+      } else if(this.hideout !== undefined) {
+        if(!this.getHiding()) {
+          this.setHiding(true);
+          this.stop();
+        }
+      } else if(this.tunnel_spot !== undefined && !this.inTunnel) {
+        this.inTunnel = true;
+        this.tunnel_spot.cross(this);
       }
+    },
+
+    setHiding: function(hiding) {
+      if(hiding !== this.isHiding) {
+        if(this.name==='pc1') { console.log("Change hiding to " + (hiding ? 'true' : 'false' )); }
+        this.isHiding = hiding;
+      }
+    },
+
+    getHiding: function() {
+      return this.isHiding;
     },
 
     /**

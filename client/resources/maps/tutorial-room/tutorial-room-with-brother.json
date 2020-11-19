@@ -20,7 +20,7 @@
                 {
                  "name":"depth",
                  "type":"int",
-                 "value":100
+                 "value":1
                 }],
          "type":"tilelayer",
          "visible":true,
@@ -38,7 +38,7 @@
                 {
                  "name":"depth",
                  "type":"int",
-                 "value":200
+                 "value":2
                 }],
          "type":"tilelayer",
          "visible":true,
@@ -56,7 +56,7 @@
                 {
                  "name":"depth",
                  "type":"int",
-                 "value":300
+                 "value":3
                 }],
          "type":"tilelayer",
          "visible":true,
@@ -254,7 +254,7 @@
                 {
                  "name":"depth",
                  "type":"int",
-                 "value":400
+                 "value":4
                 }],
          "type":"objectgroup",
          "visible":true,
@@ -386,7 +386,7 @@
                  "y":704
                 }, 
                 {
-                 "height":48,
+                 "height":80,
                  "id":48,
                  "name":"stairs_top",
                  "properties":[
@@ -425,12 +425,12 @@
                  "name":"stairs",
                  "polyline":[
                         {
-                         "x":0.67,
-                         "y":3.583
+                         "x":0.670000000000073,
+                         "y":-4.91700000000003
                         }, 
                         {
                          "x":1264.67,
-                         "y":542.31
+                         "y":542.310272727273
                         }],
                  "rotation":0,
                  "type":"stairs",
@@ -446,19 +446,9 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"depth",
-                         "type":"string",
-                         "value":"450"
-                        }, 
-                        {
                          "name":"headline",
                          "type":"string",
                          "value":""
-                        }, 
-                        {
-                         "name":"hidingdepth",
-                         "type":"int",
-                         "value":350
                         }, 
                         {
                          "name":"music_chase",
@@ -488,11 +478,6 @@
                  "name":"Spawnpoint enemy 1",
                  "point":true,
                  "properties":[
-                        {
-                         "name":"depth",
-                         "type":"int",
-                         "value":475
-                        }, 
                         {
                          "name":"object_type",
                          "type":"string",
@@ -541,11 +526,6 @@
                  "name":"Spawnpoint enemy 2",
                  "point":true,
                  "properties":[
-                        {
-                         "name":"depth",
-                         "type":"int",
-                         "value":475
-                        }, 
                         {
                          "name":"object_type",
                          "type":"string",
@@ -672,6 +652,34 @@
                  "width":205.333,
                  "x":4270.67,
                  "y":1117.33
+                }, 
+                {
+                 "height":0,
+                 "id":94,
+                 "name":"Player 2 Spawn Point",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"music_chase",
+                         "type":"string",
+                         "value":"run-or-die"
+                        }, 
+                        {
+                         "name":"object_type",
+                         "type":"string",
+                         "value":"playercharacter"
+                        }, 
+                        {
+                         "name":"spawn_object",
+                         "type":"string",
+                         "value":"pc2"
+                        }],
+                 "rotation":0,
+                 "type":"spawnpoint",
+                 "visible":true,
+                 "width":0,
+                 "x":576,
+                 "y":960
                 }],
          "opacity":1,
          "type":"objectgroup",

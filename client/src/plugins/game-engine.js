@@ -69,7 +69,9 @@
   GameEngine.prototype.changePlayerCharacters = function() {
     var pc = this.playerCharacter;
     var brother = this.brotherCharacter;
-    this.setPlayerCharacter(brother, pc);
+    if(brother !== undefined) {
+      this.setPlayerCharacter(brother, pc);
+    }
   }
 
   GameEngine.prototype.setPlayerCharacter = function(pc1, pc2) {
@@ -78,10 +80,12 @@
     this.playerCharacter.setLantern(true);
     this.playerCharacter.setFollowTarget(undefined);
 
-    this.brotherCharacter = pc2;
-    this.brotherCharacter.setCurrentCharacter(false);
-    this.brotherCharacter.setLantern(false);
-    this.brotherCharacter.setFollowTarget(this.playerCharacter);
+    if(pc2 !== undefined) {
+      this.brotherCharacter = pc2;
+      this.brotherCharacter.setCurrentCharacter(false);
+      this.brotherCharacter.setLantern(false);
+      this.brotherCharacter.setFollowTarget(this.playerCharacter);
+    }
   }
 
   GameEngine.prototype.indicateEnemiesPath = function (){
@@ -134,7 +138,7 @@
     switch(object._tiledObject.type) {
       case 'hideout':
         if(player.hideout === undefined) {
-          this.sendUpdate({ type: 'hideoutcollision', is_colliding: true, player: player, object: object });
+          this.sendUpdate({ type: 'spotcollision', is_colliding: true, player: player, object: object });
           player.hideout = object;
         }
         break;
@@ -142,7 +146,13 @@
       case 'stairs_bottom':
         if(player.stairs_spot === undefined) {
           player.stairs_spot = object;
-          console.log("Settings stairs_spot for player " + player.id);
+          this.sendUpdate({ type: 'spotcollision', is_colliding: true, player: player, object: object });
+        }
+        break;
+      case 'tunnel':
+        if(player.tunnel_spot === undefined) {
+          player.tunnel_spot = object;
+          this.sendUpdate({ type: 'spotcollision', is_colliding: true, player: player, object: object });
         }
         break;
     }
@@ -154,21 +164,31 @@
 
       // Check hideouts
       if(pc.hideout !== undefined) {
-        if (!this.scene.physics.world.overlap(pc, this.playerCharacter.hideout)) {
+        if (!this.scene.physics.world.overlap(pc, pc.hideout)) {
           if (pc === this.playerCharacter) {
-            this.sendUpdate({type: 'hideoutcollision', is_colliding: false, player: pc, object: pc.hideout});
+            this.sendUpdate({type: 'spotcollision', is_colliding: false, player: pc, object: pc.hideout});
           }
           pc.hideout = undefined;
-          pc.isHiding = undefined;
+          pc.setHiding(false);
         }
       }
 
       // Check stairs spots
       if(pc.stairs_spot !== undefined) {
         if(!this.scene.physics.world.overlap(pc, pc.stairs_spot)) {
+          this.sendUpdate({type: 'spotcollision', is_colliding: false, player: pc, object: pc.stairs_spot});
           pc.stairs_spot = undefined;
         }
       }
+
+      // Check stairs spots
+      if(pc.tunnel_spot !== undefined) {
+        if(!this.scene.physics.world.overlap(pc, pc.tunnel_spot)) {
+          this.sendUpdate({type: 'spotcollision', is_colliding: false, player: pc, object: pc.tunnel_spot});
+          pc.tunnel_spot = undefined;
+        }
+      }
+
     }
   }
 
@@ -269,8 +289,9 @@
           data = [ 2, update.object.id, update.object.x, update.object.y, 0 ];
         }
         break;
-      case 'hideoutcollision':
-        data = [ 3, update.is_colliding, update.object.id ];
+      case 'spotcollision':
+        data = [ 3, update.is_colliding, update.object.id, update.object.x, update.object.y,
+          update.object.width, update.object.height ];
         break;
     }
 
