@@ -20,7 +20,7 @@
                 {
                  "name":"depth",
                  "type":"int",
-                 "value":1
+                 "value":100
                 }],
          "type":"tilelayer",
          "visible":true,
@@ -38,7 +38,7 @@
                 {
                  "name":"depth",
                  "type":"int",
-                 "value":2
+                 "value":200
                 }],
          "type":"tilelayer",
          "visible":true,
@@ -56,7 +56,7 @@
                 {
                  "name":"depth",
                  "type":"int",
-                 "value":3
+                 "value":300
                 }],
          "type":"tilelayer",
          "visible":true,
@@ -264,6 +264,11 @@
                          "name":"opened",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"trigger",
+                         "type":"int",
+                         "value":108
                         }],
                  "rotation":0,
                  "type":"",
@@ -287,6 +292,11 @@
                          "name":"opened",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"trigger",
+                         "type":"int",
+                         "value":107
                         }],
                  "rotation":0,
                  "type":"",
@@ -300,7 +310,7 @@
                 {
                  "name":"depth",
                  "type":"int",
-                 "value":4
+                 "value":400
                 }],
          "type":"objectgroup",
          "visible":true,
@@ -492,9 +502,14 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"headline",
-                         "type":"string",
-                         "value":""
+                         "name":"depth",
+                         "type":"int",
+                         "value":550
+                        }, 
+                        {
+                         "name":"hidingdepth",
+                         "type":"int",
+                         "value":350
                         }, 
                         {
                          "name":"music_chase",
@@ -510,6 +525,11 @@
                          "name":"spawn_object",
                          "type":"string",
                          "value":"pc1"
+                        }, 
+                        {
+                         "name":"stairsdepth",
+                         "type":"int",
+                         "value":350
                         }],
                  "rotation":0,
                  "type":"spawnpoint",
@@ -524,6 +544,11 @@
                  "name":"Spawnpoint enemy 1",
                  "point":true,
                  "properties":[
+                        {
+                         "name":"depth",
+                         "type":"int",
+                         "value":650
+                        }, 
                         {
                          "name":"object_type",
                          "type":"string",
@@ -572,6 +597,11 @@
                  "name":"Spawnpoint enemy 2",
                  "point":true,
                  "properties":[
+                        {
+                         "name":"depth",
+                         "type":"int",
+                         "value":650
+                        }, 
                         {
                          "name":"object_type",
                          "type":"string",
@@ -632,71 +662,26 @@
                  "y":1117.33
                 }, 
                 {
-                 "height":0,
-                 "id":99,
-                 "name":"Player 2 Spawn Point",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"headline",
-                         "type":"string",
-                         "value":""
-                        }, 
-                        {
-                         "name":"music_chase",
-                         "type":"string",
-                         "value":"run-or-die"
-                        }, 
-                        {
-                         "name":"object_type",
-                         "type":"string",
-                         "value":"playercharacter"
-                        }, 
-                        {
-                         "name":"spawn_object",
-                         "type":"string",
-                         "value":"pc2"
-                        }],
+                 "height":233,
+                 "id":107,
+                 "name":"",
                  "rotation":0,
-                 "type":"spawnpoint",
+                 "type":"door_trigger",
                  "visible":true,
-                 "width":0,
-                 "x":636,
-                 "y":956
+                 "width":362,
+                 "x":2547,
+                 "y":744.833333333333
                 }, 
                 {
-                 "height":392,
-                 "id":104,
-                 "name":"door",
-                 "properties":[
-                        {
-                         "name":"key",
-                         "type":"int",
-                         "value":103
-                        }],
+                 "height":233,
+                 "id":108,
+                 "name":"",
                  "rotation":0,
-                 "type":"door",
+                 "type":"door_trigger",
                  "visible":true,
-                 "width":46,
-                 "x":2704,
-                 "y":578
-                }, 
-                {
-                 "height":380,
-                 "id":106,
-                 "name":"exit door",
-                 "properties":[
-                        {
-                         "name":"key",
-                         "type":"int",
-                         "value":100
-                        }],
-                 "rotation":0,
-                 "type":"door",
-                 "visible":true,
-                 "width":58,
-                 "x":4178,
-                 "y":1130
+                 "width":362,
+                 "x":4003,
+                 "y":1276.83333333333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -718,8 +703,8 @@
                  "type":"key",
                  "visible":true,
                  "width":54.3333,
-                 "x":4134.83,
-                 "y":939.167
+                 "x":4128,
+                 "y":960
                 }, 
                 {
                  "gid":1698,
@@ -730,17 +715,23 @@
                  "type":"key",
                  "visible":true,
                  "width":54.2457,
-                 "x":542.833,
-                 "y":1476.5
+                 "x":544,
+                 "y":1504
                 }],
          "opacity":1,
+         "properties":[
+                {
+                 "name":"depth",
+                 "type":"int",
+                 "value":500
+                }],
          "type":"objectgroup",
          "visible":true,
          "x":0,
          "y":0
         }],
  "nextlayerid":18,
- "nextobjectid":107,
+ "nextobjectid":109,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.2",
