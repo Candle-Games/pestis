@@ -2,11 +2,38 @@
     function Door(scene,tiledObject){
         ns.BaseTiledObject.call(this,scene,tiledObject.type, tiledObject);
         this.setOrigin(0.5,1);
-        this.setSize(50, 400);
+
+        this._trigger;
+        this._key;
+
+        this.opened = this._tiledProperties.opened;
     }
 
     Door.prototype = Object.create(ns.BaseTiledObject.prototype);
     Door.prototype.constructor = Door;
+
+    /**
+     * Sets this door trigger
+     * @param trigger
+     */
+    Door.prototype.setTrigger = function(trigger) {
+        if(trigger !== undefined) {
+            this._trigger = trigger;
+            trigger._door = this;
+        }
+    }
+
+    /**
+     * Sets this door key
+     * @param key
+     */
+    Door.prototype.setKey = function(key) {
+        if(key !== undefined) {
+            this._key = key;
+            key._door = this;
+        }
+    }
+
 
     ns.Door = Door;
 

@@ -27,7 +27,9 @@
     this.load.image('logo-1600', 'resources/images/logo-candlegames-1600.jpeg');
     this.load.image('main-menu-background', 'resources/images/main-menu-background.png');
 
-    this.load.image('select-arrow','resources/sprites/select-arrow.png')
+    this.load.image('select-arrow','resources/sprites/select-arrow.png');
+    this.load.image('has-key','resources/sprites/goldenkey.png');
+    this.load.image('hasnot-key','resources/sprites/no_goldenkey.png');
 
     this.music.loadMusic(this.load);
   }

@@ -22,6 +22,8 @@
     this._textures;
 
     this.highlightArrow;
+
+    this.doorKey;
   }
 
   Game.prototype = Object.create(Phaser.Scene.prototype);
@@ -90,6 +92,33 @@
       case 3: // hideout collision
         this.highlightSpot(update[1], update[2], update[3], update[4], update[5], update[6]);
         break;
+      case 4:
+        this.highlightDoor(update[1], update[2], update[3], update[4], update[5]);
+        break;
+      case 5:
+        this.closeDoor(update[1]);
+        break;
+    }
+  }
+
+  Game.prototype.closeDoor = function(doorId) {
+    var door = this.spawnedObjects[doorId];
+    if(door) { door.setVisible(false) }
+    if(this.doorKey) { this.doorKey.destroy(); }
+  }
+
+  Game.prototype.highlightDoor = function(isColliding, trigger, door, key, playerHasKey) {
+    var door = this.spawnedObjects[door];
+
+    if(door) {
+      if(isColliding) {
+        this.doorKey = this.add.image(game.canvas.width-100, 100, playerHasKey ? 'has-key' : 'hasnot-key');
+        this.doorKey.setScrollFactor(0, 0);
+        this.doorKey.setOrigin(1,0);
+        this.doorKey.setDepth(1000);
+      } else {
+        this.doorKey.destroy();
+      }
     }
   }
 
