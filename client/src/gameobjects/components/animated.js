@@ -16,6 +16,8 @@
      */
     _animations: undefined,
 
+    _frameRateOffset: 0,
+
     /**
      * Animation anchors for this gameobject
      */
@@ -63,7 +65,7 @@
           var animation = this.scene.anims.create({
             key: key + '-' + anim.key,
             frames: frames,
-            frameRate: anim.frameRate,
+            frameRate: anim.frameRate + this._frameRateOffset,
             repeat: anim.repeat
           })
 

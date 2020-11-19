@@ -28,6 +28,8 @@
 
     this.initUpdateData();
 
+    // this.walkVelocity = 210 + Math.trunc(Math.random() * 20);   // Initialize in map
+
     /**
      * Hideout the player is stepping on
      * @type {Phaser.GameObjects.GameObject}
