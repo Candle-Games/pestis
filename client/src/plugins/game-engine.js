@@ -127,12 +127,6 @@
     if(object._tiledObject.polygon) {
       SAT.pointInPolygon(new SAT.Vector(player.x, player.y), object.__satPolygon);
     }
-    if(object._tiledObject.type === 'door'){
-      var doorkey = object._tiledProperties.key;
-      if(player.hasKey(doorkey)){
-        object.destroy();
-      }
-    }
   }
 
   /**
@@ -165,6 +159,13 @@
         if(player.key === undefined){
           player.key = object;
           this.sendUpdate({ type: 'spotcollision', is_colliding: true, player: player, object: object });
+        }
+      case 'door_trigger':
+        if(!object._door.opened) {
+          if(player.door_trigger === undefined){
+            player.door_trigger = object;
+            this.sendUpdate({ type: 'doorcollision', is_colliding: true, player: player, object: object });
+          }
         }
     }
   }
@@ -200,13 +201,19 @@
         }
       }
 
-
       //Check key
       if(pc.key !== undefined){
-        if(!this.scene.physics.world.overlap(pc,pc.key)){
+        if(!this.scene.physics.world.overlap(pc, pc.key)){
           this.sendUpdate({type: 'spotcollision', is_colliding: false, player: pc, object: pc.key});
-          this.sendUpdate({type: 'spotcollision', object: pc.key});
           pc.key = undefined;
+        }
+      }
+
+      //Check key
+      if(pc.door_trigger !== undefined){
+        if(!this.scene.physics.world.overlap(pc, pc.door_trigger)){
+          this.sendUpdate({type: 'doorcollision', is_colliding: false, player: pc, object: pc.door_trigger});
+          pc.door_trigger = undefined;
         }
       }
     }
@@ -224,11 +231,20 @@
       this.action2Pressed = false;
     }
 
-    if(this.keyPressed.ACTION1 && this.playerCharacter.key !== undefined){
-      var key = this.playerCharacter.key;
-      this.playerCharacter.keys.push(key);
-      key.setPosition(-100,-100);
-      this.sendUpdate({type: 'position', object: key});
+    if(this.keyPressed.ACTION1) {
+      if(this.playerCharacter.key !== undefined) {
+        var key = this.playerCharacter.key;
+        this.playerCharacter.keys.push(key.id);
+      } else if(this.playerCharacter.door_trigger != undefined) {
+        if(!this.playerCharacter.door_trigger._door.opened) {
+          var doorKeyId = this.playerCharacter.door_trigger._door._key.id;
+          if(_.includes(this.playerCharacter.keys, doorKeyId)) {
+            this.playerCharacter.door_trigger._door.body.enable = false;
+            this.playerCharacter.door_trigger._door.opened = true;
+            this.sendUpdate({type: 'dooropened', door: this.playerCharacter.door_trigger._door.id });
+          }
+        }
+      }
     }
 
     if(this.keyPressed.UP) {
@@ -320,6 +336,15 @@
         data = [ 3, update.is_colliding, update.object.id, update.object.x, update.object.y,
           update.object.width, update.object.height ];
         break;
+      case 'doorcollision':
+        var doortrigger = update.object;
+        var door = doortrigger._door;
+        var key = door._key;
+        var hasKey = _.includes(this.playerCharacter.keys, key.id);
+        data = [ 4, update.is_colliding, doortrigger.id, door.id, key.id, hasKey ];
+        break;
+      case 'dooropened':
+        data = [ 5, update.door ];
     }
 
     var bdata = new Int32Array(data);

@@ -315,9 +315,9 @@
                  "gid":1073743743,
                  "height":193,
                  "id":236,
-                 "name":"iKey",
+                 "name":"",
                  "rotation":270.014,
-                 "type":"key",
+                 "type":"",
                  "visible":true,
                  "width":73.9599,
                  "x":720,
@@ -342,7 +342,7 @@
                         {
                          "name":"trigger",
                          "type":"int",
-                         "value":255
+                         "value":253
                         }],
                  "rotation":0,
                  "type":"door",
@@ -368,6 +368,39 @@
                  "width":48,
                  "x":10900,
                  "y":524.667
+                }, 
+                {
+                 "height":233,
+                 "id":252,
+                 "name":"",
+                 "rotation":0,
+                 "type":"door_trigger",
+                 "visible":true,
+                 "width":362,
+                 "x":9151,
+                 "y":415
+                }, 
+                {
+                 "height":233,
+                 "id":253,
+                 "name":"",
+                 "rotation":0,
+                 "type":"door_trigger",
+                 "visible":true,
+                 "width":362,
+                 "x":4671,
+                 "y":2135.5
+                }, 
+                {
+                 "height":233,
+                 "id":254,
+                 "name":"",
+                 "rotation":0,
+                 "type":"door_trigger",
+                 "visible":true,
+                 "width":362,
+                 "x":11424,
+                 "y":989.5
                 }],
          "opacity":1,
          "properties":[
@@ -1155,8 +1188,8 @@
                  "type":"spawnpoint",
                  "visible":true,
                  "width":0,
-                 "x":4128,
-                 "y":2352
+                 "x":1824,
+                 "y":1200
                 }, 
                 {
                  "height":96,
@@ -1480,39 +1513,6 @@
                  "width":0,
                  "x":4048,
                  "y":528
-                }, 
-                {
-                 "height":233,
-                 "id":252,
-                 "name":"",
-                 "rotation":0,
-                 "type":"door_trigger",
-                 "visible":true,
-                 "width":368,
-                 "x":9144,
-                 "y":416
-                }, 
-                {
-                 "height":233,
-                 "id":254,
-                 "name":"",
-                 "rotation":0,
-                 "type":"door_trigger",
-                 "visible":true,
-                 "width":362,
-                 "x":11424,
-                 "y":989.5
-                }, 
-                {
-                 "height":288,
-                 "id":255,
-                 "name":"",
-                 "rotation":0,
-                 "type":"door_trigger",
-                 "visible":true,
-                 "width":400,
-                 "x":4656,
-                 "y":2096
                 }],
          "opacity":1,
          "properties":[
@@ -1527,10 +1527,10 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":257,
+ "nextobjectid":255,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"2020.09.22",
+ "tiledversion":"1.4.2",
  "tileheight":16,
  "tilesets":[
         {
@@ -1688,6 +1688,19 @@
         {
          "columns":90,
          "firstgid":1923,
+         "image":"images\/wall-vines.png",
+         "imageheight":726,
+         "imagewidth":1440,
+         "margin":0,
+         "name":"wall-vines",
+         "spacing":0,
+         "tilecount":4050,
+         "tileheight":16,
+         "tilewidth":16
+        }, 
+        {
+         "columns":90,
+         "firstgid":5973,
          "image":"images\/wall-vines.png",
          "imageheight":726,
          "imagewidth":1440,

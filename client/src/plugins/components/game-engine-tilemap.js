@@ -12,7 +12,8 @@
       PATH: 'path',
       TUNNEL: 'tunnel',
       PATH: 'path',
-      KEY: 'key'
+      KEY: 'key',
+      DOOR_TRIGGER: 'door_trigger'
     },
 
     map: undefined,
@@ -53,15 +54,18 @@
       this.map = this.scene.make.tilemap({ key: map });
       this.objects = {};
       this._createObjects();
-      this._processTunnels();
+      this._processLinks();
     },
 
-    _processTunnels: function() {
+    _processLinks: function() {
       var keys = _.keys(this.objects);
       for(var i=0, length = keys.length; i < length; ++i) {
         var object = this.objects[keys[i]];
         if(object.type===this.objectTypes.TUNNEL) {
           object.setEnd(this.objects[object._tiledProperties.end]);
+        } else if(object.type===this.objectTypes.DOOR) {
+          object.setTrigger(this.objects[object._tiledProperties.trigger]);
+          object.setKey(this.objects[object._tiledProperties.key]);
         }
       }
     },
@@ -132,6 +136,13 @@
 
               case this.objectTypes.DOOR:
                 phaserObject = this.scene.add.door(object);
+                this.colliders.add(phaserObject);
+                break;
+
+              case this.objectTypes.DOOR_TRIGGER:
+                phaserObject = this.scene.add.door_trigger(object);
+                this.overspots.add(phaserObject);
+                break;
             }
 
             if(phaserObject !== undefined) {
