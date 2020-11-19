@@ -1,0 +1,521 @@
+{
+	"textures": [
+		{
+			"image": "plaguedr.png",
+			"normalMap": "plaguedr_n.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1848,
+				"h": 1176
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "plaguedr/plaguedr0001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 262,
+						"h": 390
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 390
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 262,
+						"h": 390
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "plaguedr/plaguedr0020.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 262,
+						"h": 390
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 390
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 262,
+						"h": 390
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "plaguedr/plaguedr0002.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 262,
+						"h": 390
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 390
+					},
+					"frame": {
+						"x": 265,
+						"y": 1,
+						"w": 262,
+						"h": 390
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "plaguedr/plaguedr0003.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 262,
+						"h": 390
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 390
+					},
+					"frame": {
+						"x": 529,
+						"y": 1,
+						"w": 262,
+						"h": 390
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "plaguedr/plaguedr0004.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 262,
+						"h": 390
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 390
+					},
+					"frame": {
+						"x": 793,
+						"y": 1,
+						"w": 262,
+						"h": 390
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "plaguedr/plaguedr0005.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 262,
+						"h": 390
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 390
+					},
+					"frame": {
+						"x": 1057,
+						"y": 1,
+						"w": 262,
+						"h": 390
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "plaguedr/plaguedr0006.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 262,
+						"h": 390
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 390
+					},
+					"frame": {
+						"x": 1321,
+						"y": 1,
+						"w": 262,
+						"h": 390
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "plaguedr/plaguedr0007.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 262,
+						"h": 390
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 390
+					},
+					"frame": {
+						"x": 1585,
+						"y": 1,
+						"w": 262,
+						"h": 390
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "plaguedr/plaguedr0008.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 262,
+						"h": 390
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 390
+					},
+					"frame": {
+						"x": 1,
+						"y": 393,
+						"w": 262,
+						"h": 390
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "plaguedr/plaguedr0009.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 262,
+						"h": 390
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 390
+					},
+					"frame": {
+						"x": 265,
+						"y": 393,
+						"w": 262,
+						"h": 390
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "plaguedr/plaguedr0010.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 262,
+						"h": 390
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 390
+					},
+					"frame": {
+						"x": 529,
+						"y": 393,
+						"w": 262,
+						"h": 390
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "plaguedr/plaguedr0011.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 262,
+						"h": 390
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 390
+					},
+					"frame": {
+						"x": 793,
+						"y": 393,
+						"w": 262,
+						"h": 390
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "plaguedr/plaguedr0012.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 262,
+						"h": 390
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 390
+					},
+					"frame": {
+						"x": 1057,
+						"y": 393,
+						"w": 262,
+						"h": 390
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "plaguedr/plaguedr0013.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 262,
+						"h": 390
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 390
+					},
+					"frame": {
+						"x": 1321,
+						"y": 393,
+						"w": 262,
+						"h": 390
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "plaguedr/plaguedr0014.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 262,
+						"h": 390
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 390
+					},
+					"frame": {
+						"x": 1585,
+						"y": 393,
+						"w": 262,
+						"h": 390
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "plaguedr/plaguedr0015.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 262,
+						"h": 390
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 390
+					},
+					"frame": {
+						"x": 1,
+						"y": 785,
+						"w": 262,
+						"h": 390
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "plaguedr/plaguedr0016.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 262,
+						"h": 390
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 390
+					},
+					"frame": {
+						"x": 265,
+						"y": 785,
+						"w": 262,
+						"h": 390
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "plaguedr/plaguedr0017.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 262,
+						"h": 390
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 390
+					},
+					"frame": {
+						"x": 529,
+						"y": 785,
+						"w": 262,
+						"h": 390
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "plaguedr/plaguedr0018.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 262,
+						"h": 390
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 390
+					},
+					"frame": {
+						"x": 793,
+						"y": 785,
+						"w": 262,
+						"h": 390
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "plaguedr/plaguedr0019.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 262,
+						"h": 390
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 390
+					},
+					"frame": {
+						"x": 1057,
+						"y": 785,
+						"w": 262,
+						"h": 390
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:f74f3f7ac515a427a18ef93c4687c536:9d3c7eb506f99c655de522c84553628d:034f4363104848f939f38bb546ad20bf$"
+	}
+}
