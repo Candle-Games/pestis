@@ -11,6 +11,7 @@
     this.setDepth(100);
 
     this.setOriginFromFrame();
+    this._frameRateOffset = Math.random() * 5;
     this.generateAnimations(this._tiledProperties.spawn_object);
 
     this.createStateMachine({

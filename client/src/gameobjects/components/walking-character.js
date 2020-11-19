@@ -88,23 +88,25 @@
       if(this.stairs !== undefined) {
         var n_pixels = -this.walkVelocity * delta * 0.001;
         var stepDown = this.stairs.step(new Phaser.Math.Vector2(this.x, this.y), n_pixels);
+        this.emit('stairs-up', this.stairs, stepDown);
         this.setPosition(stepDown.x, stepDown.y);
         this.canJump = false;
         this.stairsUp = true;
         this.stairsDown = false;
 
         if(this.stairs.inStartPoint(stepDown)) {
+          this.emit('stairs-exit', this.stairs, this.stairs_spot);
           this.stairs_p = undefined;
           this.stairs = undefined;
           this.stairsUp = false;
           this._setBodyEnabled(true);
-          console.log("End of stairs up");
         }
       } else if(this.stairs_spot && this.stairs_spot.type === 'stairs_bottom') {
         this._setBodyEnabled(false);
         this.stairs = this.scene.game_engine.objects[this.stairs_spot._tiledProperties.stairs];
         this.setPosition(this.stairs.endPoint.x, this.stairs.endPoint.y);
         this.stairsUp = true;
+        this.emit('stairs-enter', this.stairs, this.stairs_spot);
       } else {
         this.jump();
       }
@@ -115,24 +117,26 @@
       if(this.stairs !== undefined) {
         var n_pixels = this.walkVelocity * delta * 0.001;
         var stepDown = this.stairs.step(new Phaser.Math.Vector2(this.x, this.y), n_pixels);
+        this.emit('stairs-up', this.stairs, stepDown);
         this.setPosition(stepDown.x, stepDown.y);
         this.canJump = false;
         this.stairsDown = true;
         this.stairsUp = false;
 
         if(this.stairs.inEndPoint(stepDown)) {
+          this.emit('stairs-exit', this.stairs, this.stairs_spot);
           this.stairs_p = undefined;
           this.stairs = undefined;
           this.stairsDown = false;
           this.canJump = true;
           this._setBodyEnabled(true);
-          console.log("End of stairs down");
         }
       } else if(this.stairs_spot && this.stairs_spot.type === 'stairs_top') {
         this._setBodyEnabled(false);
         this.stairs = this.scene.game_engine.objects[this.stairs_spot._tiledProperties.stairs];
         this.setPosition(this.stairs.startPoint.x, this.stairs.startPoint.y);
         this.stairsDown = true;
+        this.emit('stairs-enter', this.stairs, this.stairs_spot);
       } else if(this.hideout) {
         this.isHiding = true;
       }
