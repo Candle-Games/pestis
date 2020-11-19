@@ -56,7 +56,6 @@
   }
 
   UserSettings.prototype.sendUpdateEvent = function() {
-    console.log("Sending settings update");
     this.game.events.emit('settings-update', this._settings);
   }
 

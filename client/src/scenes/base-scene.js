@@ -3,23 +3,6 @@
     Phaser.Scene.call(this, {
       key: 'BaseScene'
     });
-
-    this.menus = {
-      main: [
-        {id: 'PLAY_MENU', label: 'Play Pestis'},
-        {id: 'SETTINGS', label: 'Settings'},
-        {id: 'CREDITS', label: 'Credits'}
-      ],
-      play: [
-        {id: 'NEW_GAME', label: 'New Game'},
-        {id: 'LOAD_GAME', label: 'Continue Game', disabled: true },
-        {id: 'JOIN_GAME', label: 'Join Game'},
-        {id: 'RETURN_TO_MAIN', label: 'Return'},
-      ],
-      return: [
-        {id: 'RETURN_TO_MAIN', label: 'Return'}
-      ]
-    };
   }
 
   BaseScene.prototype = Object.create(Phaser.Scene.prototype);
@@ -35,6 +18,23 @@
   }
 
   BaseScene.prototype.create = function () {
+    this.menus = {
+      main: [
+        {id: 'PLAY_MENU', label: 'menu_play'},
+        {id: 'SETTINGS', label: 'menu_settings'},
+        {id: 'CREDITS', label: 'menu_credits'}
+      ],
+      play: [
+        {id: 'NEW_GAME', label: 'menu_new_game'},
+        {id: 'LOAD_GAME', label: 'menu_load_game', disabled: true },
+        {id: 'JOIN_GAME', label: 'menu_join_game'},
+        {id: 'RETURN_TO_MAIN', label: 'menu_return'},
+      ],
+      return: [
+        {id: 'RETURN_TO_MAIN', label: 'menu_return'}
+      ]
+    };
+
     if(this.savedgames.getNumberOfSaves() > 0) {
       this.menus.play[1].disabled = false;
     }
@@ -173,7 +173,6 @@
   }
 
   BaseScene.prototype.joinGame = function () {
-    console.log("Launching game joining");
     this.sendStateEvent('RETURN_TO_PLAYMENU');
   }
 

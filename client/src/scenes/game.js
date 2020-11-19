@@ -42,7 +42,6 @@
   }
 
   Game.prototype.preload = function() {
-    console.log('Game Scene preloading');
     this.loadingprogressbar.show();
 
     this.load.off('complete');
@@ -62,12 +61,10 @@
   }
 
   Game.prototype.onLoadComplete = function(value) {
-    console.log('Game Scene loaded');
     this.loadingprogressbar.hide();
   }
 
   Game.prototype.create = function(data) {
-    console.log('Game Scene created');
     this.comms.on('gameplay-update', this.updateScene, this);
 
     this.buildMap();
@@ -223,7 +220,6 @@
   }
 
   Game.prototype.destroy = function() {
-    console.log("Shutdown game scene");
     this.music.stopGameMusic();
 
     this.highlightArrow.destroy();

@@ -38,7 +38,6 @@
     this.music.initMusic();
 
     // Create is called when preload completes, now all loading is done
-    console.log("Load completed");
     this.events.emit('loadcompleted');
   }
 
