@@ -57,13 +57,13 @@
     }
 
     Enemy.prototype.searchCharacters = function(time) {
-        this.visionLine.setTo(this.body.x, this.body.y  -264 * 0.5, this.body.x + this.vision * this.currentDirection, this.body.y - 264 * 0.5)
+        this.visionLine.setTo(this.body.x, this.body.y  + 264 * 0.5, this.body.x + this.vision * this.currentDirection, this.body.y + 264 * 0.5)
         this.currentPlayer = undefined;
 
         var pcs = this.scene.game_engine.pcs.getChildren()
         for(var i=0; i<pcs.length; i++){
             var pc=pcs[i];
-            var pcRect =  new Phaser.Geom.Rectangle(pc.body.x - (pc.body.width * 0.5), pc.body.y - (264 * 0.5), pc.body.width, 264);
+            var pcRect =  new Phaser.Geom.Rectangle(pc.x - (pc.body.width * 0.5), pc.body.y - 264 * 0.5, pc.body.width, 264);
             var intersection = Phaser.Geom.Intersects.LineToRectangle(this.visionLine, pcRect);
             if(intersection) {
                 if(!pc.isHiding && pc.stairs === undefined) {
@@ -77,6 +77,9 @@
                         if (Math.abs(this.body.x - this.currentPlayer.body.x) < this.distanceToKill) {
                             this.scene.game_engine.sendUpdate({ type: 'game-over' });
                         }
+                    }
+                    else{
+                        this.currentPlayer = undefined;
                     }
                 }
             }
