@@ -1048,7 +1048,7 @@
                  "y":1211.71
                 }, 
                 {
-                 "height":48,
+                 "height":32,
                  "id":106,
                  "name":"tunnel",
                  "properties":[
@@ -1062,10 +1062,10 @@
                  "visible":true,
                  "width":112,
                  "x":2752,
-                 "y":1168
+                 "y":1184
                 }, 
                 {
-                 "height":48,
+                 "height":32,
                  "id":107,
                  "name":"tunnel",
                  "properties":[
@@ -1079,7 +1079,7 @@
                  "visible":true,
                  "width":128,
                  "x":3840,
-                 "y":1168
+                 "y":1184
                 }, 
                 {
                  "height":48,
@@ -1274,7 +1274,7 @@
                          "value":"enemy"
                         }, 
                         {
-                         "name":"path_id",
+                         "name":"path",
                          "type":"int",
                          "value":229
                         }, 
@@ -1307,7 +1307,7 @@
                          "value":"enemy"
                         }, 
                         {
-                         "name":"path_id",
+                         "name":"path",
                          "type":"int",
                          "value":226
                         }, 
@@ -1340,7 +1340,7 @@
                          "value":"enemy"
                         }, 
                         {
-                         "name":"path_id",
+                         "name":"path",
                          "type":"int",
                          "value":224
                         }, 
@@ -1373,7 +1373,7 @@
                          "value":"enemy"
                         }, 
                         {
-                         "name":"path_id",
+                         "name":"path",
                          "type":"int",
                          "value":225
                         }, 
@@ -1460,12 +1460,12 @@
                  "name":"path",
                  "polyline":[
                         {
-                         "x":0,
-                         "y":0
+                         "x":-18,
+                         "y":4
                         }, 
                         {
-                         "x":2854,
-                         "y":4
+                         "x":2864,
+                         "y":6
                         }],
                  "rotation":0,
                  "type":"path",
@@ -1480,7 +1480,7 @@
                  "name":"path",
                  "polyline":[
                         {
-                         "x":0,
+                         "x":14,
                          "y":0
                         }, 
                         {
@@ -1500,8 +1500,8 @@
                  "name":"path",
                  "polyline":[
                         {
-                         "x":0,
-                         "y":0
+                         "x":-16,
+                         "y":-2
                         }, 
                         {
                          "x":4416,
@@ -1527,7 +1527,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":255,
+ "nextobjectid":257,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.2",

@@ -1110,7 +1110,7 @@
                          "value":"enemy"
                         }, 
                         {
-                         "name":"path_id",
+                         "name":"path",
                          "type":"int",
                          "value":233
                         }, 
@@ -1143,7 +1143,7 @@
                          "value":"enemy"
                         }, 
                         {
-                         "name":"path_id",
+                         "name":"path",
                          "type":"int",
                          "value":231
                         }, 
@@ -1176,7 +1176,7 @@
                          "value":"enemy"
                         }, 
                         {
-                         "name":"path_id",
+                         "name":"path",
                          "type":"int",
                          "value":232
                         }, 
@@ -1198,8 +1198,8 @@
                  "name":"path",
                  "polyline":[
                         {
-                         "x":9.09090909090901,
-                         "y":6.06060606060623
+                         "x":9.09091,
+                         "y":6.06061
                         }, 
                         {
                          "x":3258,
@@ -1218,8 +1218,8 @@
                  "name":"path",
                  "polyline":[
                         {
-                         "x":-3.030303030303,
-                         "y":3.03030303030323
+                         "x":-3.0303,
+                         "y":3.0303
                         }, 
                         {
                          "x":5030,
@@ -1238,12 +1238,12 @@
                  "name":"path",
                  "polyline":[
                         {
-                         "x":66.6666666666667,
+                         "x":66.6667,
                          "y":0
                         }, 
                         {
-                         "x":4425.09090909091,
-                         "y":3.030303030303
+                         "x":4425.09,
+                         "y":3.0303
                         }],
                  "rotation":0,
                  "type":"path",
@@ -1269,7 +1269,7 @@
                          "value":"enemy"
                         }, 
                         {
-                         "name":"path_id",
+                         "name":"path",
                          "type":"int",
                          "value":235
                         }, 
@@ -1291,7 +1291,7 @@
                  "name":"path",
                  "polyline":[
                         {
-                         "x":-15.151515151515,
+                         "x":-15.1515,
                          "y":0
                         }, 
                         {
@@ -1322,7 +1322,7 @@
                          "value":"enemy"
                         }, 
                         {
-                         "name":"path_id",
+                         "name":"path",
                          "type":"int",
                          "value":239
                         }, 
