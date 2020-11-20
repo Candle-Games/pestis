@@ -65,7 +65,8 @@
       "lantern",
       "sombra",
       "caras",
-      "ninio"
+      "ninio",
+      "plaguedr"
     ]
   },
   "level2": {
@@ -101,7 +102,9 @@
       "lantern",
       "sombra",
       "caras",
-      "ninio"
+      "ninio",
+      "esqueleto",
+      "plaguedr"
     ]
   }
 }

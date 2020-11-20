@@ -1,4 +1,12 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"level2.json"
+        }
+    },
  "height":150,
  "infinite":false,
  "layers":[
@@ -133,27 +141,27 @@
                 }, 
                 {
                  "gid":6369,
-                 "height":350,
+                 "height":288,
                  "id":186,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":651,
-                 "x":2592,
+                 "width":619,
+                 "x":2624,
                  "y":1216
                 }, 
                 {
                  "gid":6368,
-                 "height":350,
+                 "height":304.333,
                  "id":192,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":652,
-                 "x":5748.67,
-                 "y":640.333
+                 "width":592.67,
+                 "x":5792,
+                 "y":640
                 }, 
                 {
                  "gid":6380,
@@ -240,7 +248,7 @@
                  "y":640
                 }, 
                 {
-                 "height":233,
+                 "height":238.5,
                  "id":240,
                  "name":"",
                  "rotation":0,
@@ -336,15 +344,15 @@
                 }, 
                 {
                  "gid":6374,
-                 "height":174.838095238095,
+                 "height":174.838,
                  "id":246,
                  "name":"gKey",
                  "rotation":270,
                  "type":"key",
                  "visible":true,
-                 "width":67,
-                 "x":895.004761904762,
-                 "y":641.833333333333
+                 "width":64,
+                 "x":895.005,
+                 "y":640
                 }, 
                 {
                  "height":233,
@@ -555,15 +563,15 @@
                 }, 
                 {
                  "gid":6376,
-                 "height":164.771428571429,
+                 "height":164.771,
                  "id":242,
                  "name":"rKey",
                  "rotation":270,
                  "type":"key",
                  "visible":true,
-                 "width":63.1423357664233,
-                 "x":4551.27142857143,
-                 "y":1794.5
+                 "width":64,
+                 "x":4551.27,
+                 "y":1792
                 }],
          "opacity":1,
          "properties":[
@@ -895,18 +903,18 @@
                  "y":1290.67
                 }, 
                 {
-                 "height":160,
+                 "height":112,
                  "id":209,
                  "name":"ground",
                  "rotation":0,
                  "type":"ground",
                  "visible":true,
-                 "width":144,
-                 "x":2592,
-                 "y":1056
+                 "width":112,
+                 "x":2624,
+                 "y":1104
                 }, 
                 {
-                 "height":240,
+                 "height":176,
                  "id":210,
                  "name":"ground",
                  "rotation":0,
@@ -914,10 +922,10 @@
                  "visible":true,
                  "width":160,
                  "x":2736,
-                 "y":976
+                 "y":1040
                 }, 
                 {
-                 "height":352,
+                 "height":272,
                  "id":211,
                  "name":"ground",
                  "rotation":0,
@@ -925,32 +933,32 @@
                  "visible":true,
                  "width":336,
                  "x":2896,
-                 "y":864
+                 "y":944
                 }, 
                 {
-                 "height":160,
+                 "height":128,
                  "id":212,
                  "name":"ground",
                  "rotation":0,
                  "type":"ground",
                  "visible":true,
                  "width":144,
-                 "x":6256,
-                 "y":480
+                 "x":6240,
+                 "y":512
                 }, 
                 {
-                 "height":240,
+                 "height":208,
                  "id":213,
                  "name":"ground",
                  "rotation":0,
                  "type":"ground",
                  "visible":true,
-                 "width":160,
+                 "width":144,
                  "x":6096,
-                 "y":400
+                 "y":432
                 }, 
                 {
-                 "height":352,
+                 "height":304,
                  "id":214,
                  "name":"ground",
                  "rotation":0,
@@ -958,10 +966,10 @@
                  "visible":true,
                  "width":304,
                  "x":5792,
-                 "y":288
+                 "y":336
                 }, 
                 {
-                 "height":160,
+                 "height":32,
                  "id":215,
                  "name":"tunnel",
                  "properties":[
@@ -973,12 +981,12 @@
                  "rotation":0,
                  "type":"tunnel",
                  "visible":true,
-                 "width":144,
+                 "width":160,
                  "x":144,
-                 "y":480
+                 "y":608
                 }, 
                 {
-                 "height":160,
+                 "height":32,
                  "id":216,
                  "name":"tunnel",
                  "properties":[
@@ -992,7 +1000,7 @@
                  "visible":true,
                  "width":160,
                  "x":192,
-                 "y":1632
+                 "y":1760
                 }, 
                 {
                  "height":0,
@@ -1190,8 +1198,8 @@
                  "name":"path",
                  "polyline":[
                         {
-                         "x":0,
-                         "y":0
+                         "x":9.09090909090901,
+                         "y":6.06060606060623
                         }, 
                         {
                          "x":3258,
@@ -1210,8 +1218,8 @@
                  "name":"path",
                  "polyline":[
                         {
-                         "x":0,
-                         "y":0
+                         "x":-3.030303030303,
+                         "y":3.03030303030323
                         }, 
                         {
                          "x":5030,
@@ -1230,12 +1238,12 @@
                  "name":"path",
                  "polyline":[
                         {
-                         "x":0,
+                         "x":66.6666666666667,
                          "y":0
                         }, 
                         {
-                         "x":4416,
-                         "y":0
+                         "x":4425.09090909091,
+                         "y":3.030303030303
                         }],
                  "rotation":0,
                  "type":"path",
@@ -1283,7 +1291,7 @@
                  "name":"path",
                  "polyline":[
                         {
-                         "x":0,
+                         "x":-15.151515151515,
                          "y":0
                         }, 
                         {
@@ -1376,7 +1384,7 @@
          "imageheight":726,
          "imagewidth":1440,
          "margin":0,
-         "name":"MedievalWall",
+         "name":"medievalwall",
          "spacing":0,
          "tilecount":4050,
          "tileheight":16,
@@ -1402,7 +1410,7 @@
          "imageheight":288,
          "imagewidth":352,
          "margin":0,
-         "name":"TutorialRoof",
+         "name":"tutorialroof",
          "spacing":0,
          "tilecount":396,
          "tileheight":16,
@@ -1444,7 +1452,7 @@
              "width":1
             },
          "margin":0,
-         "name":"Non-tiled-elements",
+         "name":"non-tiled-elements",
          "spacing":0,
          "tilecount":15,
          "tileheight":417,
