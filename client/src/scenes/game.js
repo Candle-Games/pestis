@@ -95,6 +95,9 @@
       case 5:
         this.closeDoor(update[1]);
         break;
+      case 6:
+        this.events.emit('game-over');
+        break;
     }
   }
 

@@ -4,7 +4,7 @@
      "export":
         {
          "format":"json",
-         "target":"..\/..\/Downloads\/tutorial-room\/tutorial-room.json"
+         "target":"tutorial-room.json"
         }
     },
  "height":100,
@@ -56,7 +56,7 @@
                 {
                  "name":"depth",
                  "type":"int",
-                 "value":300
+                 "value":600
                 }],
          "type":"tilelayer",
          "visible":true,
@@ -73,9 +73,9 @@
                  "gid":1677,
                  "height":352,
                  "id":8,
-                 "name":"",
+                 "name":"hideout",
                  "rotation":0,
-                 "type":"",
+                 "type":"hideout",
                  "visible":true,
                  "width":608,
                  "x":539,
@@ -253,7 +253,7 @@
                  "gid":1695,
                  "height":388,
                  "id":101,
-                 "name":"",
+                 "name":"gDoor",
                  "properties":[
                         {
                          "name":"key",
@@ -268,41 +268,42 @@
                         {
                          "name":"trigger",
                          "type":"int",
-                         "value":108
+                         "value":105
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"door",
                  "visible":true,
                  "width":59,
                  "x":4173.67,
                  "y":1508
-                }, 
+                }],
+         "opacity":1,
+         "properties":[
                 {
-                 "gid":1697,
-                 "height":389.333,
-                 "id":102,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"key",
-                         "type":"int",
-                         "value":103
-                        }, 
-                        {
-                         "name":"opened",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"trigger",
-                         "type":"int",
-                         "value":107
-                        }],
-                 "rotation":0,
-                 "type":"",
+                 "name":"depth",
+                 "type":"int",
+                 "value":300
+                }],
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":15,
+         "name":"keys",
+         "objects":[
+                {
+                 "gid":1696,
+                 "height":141.784,
+                 "id":100,
+                 "name":"gDoor",
+                 "rotation":270,
+                 "type":"key",
                  "visible":true,
-                 "width":51,
-                 "x":2699,
+                 "width":54.3333,
+                 "x":4128,
                  "y":960
                 }],
          "opacity":1,
@@ -509,7 +510,7 @@
                         {
                          "name":"hidingdepth",
                          "type":"int",
-                         "value":350
+                         "value":450
                         }, 
                         {
                          "name":"music_chase",
@@ -662,76 +663,75 @@
                  "y":1117.33
                 }, 
                 {
-                 "height":233,
-                 "id":107,
-                 "name":"",
+                 "gid":1697,
+                 "height":389.333,
+                 "id":102,
+                 "name":"rDoor",
+                 "properties":[
+                        {
+                         "name":"key",
+                         "type":"int",
+                         "value":103
+                        }, 
+                        {
+                         "name":"opened",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"trigger",
+                         "type":"int",
+                         "value":104
+                        }],
                  "rotation":0,
-                 "type":"door_trigger",
+                 "type":"door",
                  "visible":true,
-                 "width":362,
-                 "x":2547,
-                 "y":744.833333333333
-                }, 
-                {
-                 "height":233,
-                 "id":108,
-                 "name":"",
-                 "rotation":0,
-                 "type":"door_trigger",
-                 "visible":true,
-                 "width":362,
-                 "x":4003,
-                 "y":1276.83333333333
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
-         "id":17,
-         "name":"keys",
-         "objects":[
-                {
-                 "gid":1696,
-                 "height":141.784,
-                 "id":100,
-                 "name":"exitkey",
-                 "rotation":270,
-                 "type":"key",
-                 "visible":true,
-                 "width":54.3333,
-                 "x":4128,
+                 "width":51,
+                 "x":2699,
                  "y":960
                 }, 
                 {
                  "gid":1698,
                  "height":141.556,
                  "id":103,
-                 "name":"key",
+                 "name":"rKey",
                  "rotation":270,
                  "type":"key",
                  "visible":true,
                  "width":54.2457,
-                 "x":544,
+                 "x":528,
                  "y":1504
+                }, 
+                {
+                 "height":233,
+                 "id":104,
+                 "name":"",
+                 "rotation":0,
+                 "type":"door_trigger",
+                 "visible":true,
+                 "width":362,
+                 "x":2549,
+                 "y":727.5
+                }, 
+                {
+                 "height":233,
+                 "id":105,
+                 "name":"",
+                 "rotation":0,
+                 "type":"door_trigger",
+                 "visible":true,
+                 "width":362,
+                 "x":4007,
+                 "y":1269.5
                 }],
          "opacity":1,
-         "properties":[
-                {
-                 "name":"depth",
-                 "type":"int",
-                 "value":500
-                }],
          "type":"objectgroup",
          "visible":true,
          "x":0,
          "y":0
         }],
- "nextlayerid":18,
- "nextobjectid":109,
+ "nextlayerid":16,
+ "nextobjectid":106,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.2",
