@@ -345,6 +345,10 @@
         break;
       case 'dooropened':
         data = [ 5, update.door ];
+        break;
+      case 'game-over':
+        data = [ 6 ];
+        break;
     }
 
     var bdata = new Int32Array(data);

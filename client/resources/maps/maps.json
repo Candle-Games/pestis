@@ -67,5 +67,41 @@
       "caras",
       "ninio"
     ]
+  },
+  "level2": {
+    "name": "level2",
+    "description": "Nivel 2",
+    "images": [
+      "barrel.png",
+      "box-stack-2.png",
+      "box-stack.png",
+      "box.png",
+      "downstreet-wall.png",
+      "goldendoor.png",
+      "goldenkey.png",
+      "Lantern.png",
+      "oxidedoor.png",
+      "oxidekey.png",
+      "PlaguedrStaff.png",
+      "silverdoor.png",
+      "silverkey.png",
+      "stairs.png",
+      "stall01.png",
+      "stall02.png",
+      "stall03.png",
+      "stalldrplague.png",
+      "street-wall.png",
+      "Tilemap muralla.png",
+      "TutorialRoof.png",
+      "firewood.png"
+    ],
+    "characters": [
+      "pc1",
+      "pc2",
+      "lantern",
+      "sombra",
+      "caras",
+      "ninio"
+    ]
   }
 }
