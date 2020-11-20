@@ -1,6 +1,7 @@
 {
 	"animations": [
 		{
+			"direction":-1,
 			"key": "attack",
 			"prefix": "attack/esqueleto",
 			"suffix": ".png",
@@ -11,6 +12,7 @@
 			"end": 82
 		},
 		{
+			"direction":-1,
 			"key": "idle",
 			"prefix": "idle/esqueleto",
 			"suffix": ".png",
@@ -21,6 +23,7 @@
 			"end": 91
 		},
 		{
+			"direction":-1,
 			"key": "walk",
 			"prefix": "walk/esqueleto",
 			"suffix": ".png",

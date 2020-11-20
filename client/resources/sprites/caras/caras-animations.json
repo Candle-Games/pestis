@@ -1,6 +1,7 @@
 {
 	"animations": [
 		{
+			"direction":-1,
 			"key": "run",
 			"prefix": "run/caras",
 			"suffix": ".png",
@@ -69,6 +70,7 @@
 			]
 		},
 		{
+			"direction":-1,
 			"key": "transform",
 			"prefix": "transform/caras",
 			"suffix": ".png",
@@ -113,6 +115,7 @@
 			]
 		},
 		{
+			"direction":-1,
 			"key": "transformB",
 			"prefix": "transformB/caras",
 			"suffix": ".png",
@@ -157,6 +160,7 @@
 			]
 		},
 		{
+			"direction":-1,
 			"key": "walk",
 			"prefix": "walk/caras",
 			"suffix": ".png",

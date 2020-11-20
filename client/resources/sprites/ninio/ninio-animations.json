@@ -1,6 +1,7 @@
 {
 	"animations": [
 		{
+			"direction":-1,
 			"key": "idle",
 			"prefix": "idle/ninio",
 			"suffix": ".png",
@@ -11,6 +12,7 @@
 			"end": 57
 		},
 		{
+			"direction":-1,
 			"key": "walk",
 			"prefix": "walk/ninio",
 			"suffix": ".png",

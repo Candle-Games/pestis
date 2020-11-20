@@ -1,6 +1,7 @@
 {
 	"animations": [
 		{
+			"direction":-1,
 			"key": "plaguedr",
 			"prefix": "plaguedr/plaguedr",
 			"suffix": ".png",
