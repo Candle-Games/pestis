@@ -57,7 +57,7 @@
     }
 
     Enemy.prototype.searchCharacters = function(time) {
-        this.visionLine.setTo(this.body.x, this.body.y  + 264 * 0.5, this.body.x + this.vision * this.currentDirection, this.body.y + 264 * 0.5)
+        this.visionLine.setTo(this.body.x, this.body.y  + (this.body.height) * 0.5, this.body.x + this.vision * this.currentDirection, this.body.y + this.body.height * 0.5)
         this.currentPlayer = undefined;
 
         var pcs = this.scene.game_engine.pcs.getChildren()
