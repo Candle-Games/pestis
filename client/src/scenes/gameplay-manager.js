@@ -32,7 +32,11 @@
     var levelConfig = mapsConfig[levelName];
 
     this.scene.add('Game', candlegames.pestis.client.scenes.Game);
-    this.scene.launch('Game', { levelConfig: levelConfig, input: 'keyboard' });
+    if(this.browserchecker.isMobileBrowser()){
+      this.scene.launch('Game', { levelConfig: levelConfig, input: 'virtualjoystick' });
+    }else{
+      this.scene.launch('Game', { levelConfig: levelConfig, input: 'keyboard' });
+    }
 
     this.scene.get('Game').events.once('game-scene-created', function() {
       if(this.comms.online) {
