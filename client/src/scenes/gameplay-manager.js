@@ -13,7 +13,6 @@
   GameplayManager.prototype.constructor = GameplayManager;
 
   GameplayManager.prototype.preload = function(data) {
-    this.load.json('maps-config', 'resources/maps/maps.json');
   }
 
   GameplayManager.prototype.create = function(data) {
@@ -42,6 +41,22 @@
         this.scene.launch('GameEngineScene', { level: levelConfig.name });
       }
     }.bind(this));
+
+    this.scene.get('Game').events.once('game-over', this.gameOver.bind(this));
+  }
+
+  GameplayManager.prototype.gameOver = function() {
+    this.stopLevel();
+
+    window.setTimeout(function() {
+      this.startLevel('level1');
+    }.bind(this), 1000);
+
+    /*
+    this.time.delayedCall(1000, function() {
+      this.startLevel('level1');
+    }, [], this);
+    */
   }
 
   GameplayManager.prototype.stopLevel = function() {

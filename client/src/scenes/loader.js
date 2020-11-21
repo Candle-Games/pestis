@@ -32,6 +32,8 @@
     this.load.image('hasnot-key','resources/sprites/no_goldenkey.png');
 
     this.music.loadMusic(this.load);
+
+    this.load.json('maps-config', 'resources/maps/maps.json');
   }
 
   Loader.prototype.create = function() {
