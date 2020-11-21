@@ -163,6 +163,7 @@
           player.key = object;
           this.sendUpdate({ type: 'spotcollision', is_colliding: true, player: player, object: object });
         }
+        break;
       case 'door_trigger':
         if(!object._door.opened) {
           if(player.door_trigger === undefined){
@@ -170,7 +171,7 @@
             this.sendUpdate({ type: 'doorcollision', is_colliding: true, player: player, object: object });
           }
         }
-
+        break;
     }
   }
 
@@ -239,6 +240,10 @@
       if(this.playerCharacter.key !== undefined) {
         var key = this.playerCharacter.key;
         this.playerCharacter.keys.push(key.id);
+
+        this.sendUpdate({ type: 'keypicked', object: key });
+        key.body.enable = false;
+        this.playerCharacter.key = undefined;
       } else if(this.playerCharacter.door_trigger != undefined) {
         if(!this.playerCharacter.door_trigger._door.opened) {
           var doorKeyId = this.playerCharacter.door_trigger._door._key.id;
@@ -353,13 +358,15 @@
       case 'game-over':
         data = [ 6 ];
         break;
-      case 'pass-level':
-        data = [ 7 ];
+      case 'keypicked':
+        data = [ 7, update.object.id ];
         break;
       case 'enemy-chase':
         data = [ 8, update.isChasing, update.object.id];
         break;
-
+      case 'pass-level':
+        data = [ 9 ];
+        break;
     }
 
     var bdata = new Int32Array(data);

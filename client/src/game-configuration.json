@@ -9,6 +9,7 @@
   "credits": {
     "creditBoxMarginTop": 0,
     "creditBoxMarginBottom": 70,
+    "duration": 30000,
     "logoSize": {
       "width": 300,
       "height": 423

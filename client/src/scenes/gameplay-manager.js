@@ -43,7 +43,7 @@
     this._levelBanner = this.add.container(game.canvas.width / 2, game.canvas.height / 2);
     this._levelBanner.setDepth(1000);
 
-    var levelTitle = this.add.text(0, 0, this.i18n.get('level_banner') + ' ' + this._currentMap + 1,
+    var levelTitle = this.add.text(0, 0, this.i18n.get('level_banner') + ' ' + (this._currentMap + 1),
       { fontSize: 50, fontFamily: 'MedievalSharp'});
     levelTitle.setOrigin(0.5, 0.5);
     this._levelBanner.add(levelTitle);
@@ -91,25 +91,25 @@
 
   GameplayManager.prototype.gameOver = function(reason) {
     var gotoCredits = false;
+
     if(reason==='dead') {
       this.showEndBanner('dead-message');
     } else {
-      this.showEndBanner('escape-message');
       this._currentMap = this._currentMap + 1;
       gotoCredits = (this._currentMap >= this._maps.length);
+      this.showEndBanner(gotoCredits ? 'end-game-message' : 'escape-message');
     }
 
     this.stopLevel();
 
     window.setTimeout(function() {
-      window.setTimeout(function() {
-        this.destroyLevelBanner();
-        if(!gotoCredits) {
-          this.startLevel();
-        } else {
-          this.events.emit('game-finished', true);
-        }
-      }.bind(this), 1000);
+      this.destroyLevelBanner();
+      gotoCredits = (this._currentMap >= this._maps.length);
+      if(!gotoCredits) {
+        this.startLevel();
+      } else {
+        this.events.emit('game-finished', true);
+      }
     }.bind(this), 5000)
   }
 
