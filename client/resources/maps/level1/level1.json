@@ -366,8 +366,8 @@
                  "type":"light",
                  "visible":true,
                  "width":48,
-                 "x":10900,
-                 "y":524.667
+                 "x":10448,
+                 "y":416
                 }, 
                 {
                  "height":233,
@@ -604,8 +604,8 @@
                  "type":"",
                  "visible":true,
                  "width":1054,
-                 "x":10238.3,
-                 "y":642.667
+                 "x":10240,
+                 "y":640
                 }, 
                 {
                  "gid":1921,
@@ -1552,7 +1552,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":258,
+ "nextobjectid":259,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.2",
