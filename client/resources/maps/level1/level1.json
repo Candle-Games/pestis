@@ -604,7 +604,7 @@
                  "type":"",
                  "visible":true,
                  "width":1054,
-                 "x":10240,
+                 "x":10256,
                  "y":640
                 }, 
                 {
@@ -1692,13 +1692,13 @@
                 }, 
                 {
                  "id":14,
-                 "image":"images\/Lantern.png",
+                 "image":"images\/candle.png",
                  "imageheight":92,
                  "imagewidth":48
                 }, 
                 {
                  "id":15,
-                 "image":"images\/PlaguedrStaff.png",
+                 "image":"images\/plaguedrstaff.png",
                  "imageheight":36,
                  "imagewidth":87
                 }, 
