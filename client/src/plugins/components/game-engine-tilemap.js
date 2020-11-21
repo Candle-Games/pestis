@@ -107,7 +107,6 @@
 
               case this.objectTypes.STAIRS:
                 phaserObject = this.scene.add.stairs(object);
-                this.colliders.add(phaserObject);
                 break;
 
               case this.objectTypes.GROUND:
