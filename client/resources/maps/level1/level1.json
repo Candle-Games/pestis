@@ -240,7 +240,7 @@
                  "type":"key",
                  "visible":true,
                  "width":61,
-                 "x":8400,
+                 "x":8160,
                  "y":2368
                 }, 
                 {
@@ -366,8 +366,8 @@
                  "type":"light",
                  "visible":true,
                  "width":48,
-                 "x":10900,
-                 "y":524.667
+                 "x":10448,
+                 "y":416
                 }, 
                 {
                  "height":233,
@@ -604,8 +604,8 @@
                  "type":"",
                  "visible":true,
                  "width":1054,
-                 "x":10238.3,
-                 "y":642.667
+                 "x":10256,
+                 "y":640
                 }, 
                 {
                  "gid":1921,
@@ -1390,34 +1390,6 @@
                  "y":1200
                 }, 
                 {
-                 "height":0,
-                 "id":221,
-                 "name":"spawn_doc",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"depth",
-                         "type":"int",
-                         "value":525
-                        }, 
-                        {
-                         "name":"object_type",
-                         "type":"string",
-                         "value":"doctor"
-                        }, 
-                        {
-                         "name":"spawn_object",
-                         "type":"string",
-                         "value":"plaguedr"
-                        }],
-                 "rotation":0,
-                 "type":"spawnpoint",
-                 "visible":true,
-                 "width":0,
-                 "x":10752,
-                 "y":624
-                }, 
-                {
                  "height":496,
                  "id":222,
                  "name":"exit",
@@ -1527,7 +1499,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":257,
+ "nextobjectid":259,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.2",
@@ -1667,13 +1639,13 @@
                 }, 
                 {
                  "id":14,
-                 "image":"images\/Lantern.png",
+                 "image":"images\/candle.png",
                  "imageheight":92,
                  "imagewidth":48
                 }, 
                 {
                  "id":15,
-                 "image":"images\/PlaguedrStaff.png",
+                 "image":"images\/plaguedrstaff.png",
                  "imageheight":36,
                  "imagewidth":87
                 }, 

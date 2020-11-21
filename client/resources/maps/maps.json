@@ -45,10 +45,10 @@
       "downstreet-wall.png",
       "goldendoor.png",
       "goldenkey.png",
-      "Lantern.png",
+      "candle.png",
       "oxidedoor.png",
       "oxidekey.png",
-      "PlaguedrStaff.png",
+      "plaguedrstaff.png",
       "silverdoor.png",
       "silverkey.png",
       "stairs.png",
@@ -64,7 +64,8 @@
       "lantern",
       "sombra",
       "caras",
-      "ninio"
+      "ninio",
+      "plaguedr"
     ]
   },
   "level2": {
@@ -89,7 +90,7 @@
       "stall03.png",
       "stalldrplague.png",
       "street-wall.png",
-      "tilemapmuralla.png",
+      "wall-vines.png",
       "tutorialroof.png"
     ],
     "characters": [

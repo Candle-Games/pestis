@@ -113,7 +113,7 @@
         {
          "draworder":"topdown",
          "id":12,
-         "name":"objetos",
+         "name":"Capa de Objetos 2",
          "objects":[
                 {
                  "gid":6371,
@@ -141,26 +141,26 @@
                 }, 
                 {
                  "gid":6369,
-                 "height":288,
+                 "height":256,
                  "id":186,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":619,
+                 "width":587,
                  "x":2624,
                  "y":1216
                 }, 
                 {
                  "gid":6368,
-                 "height":304.333,
+                 "height":272,
                  "id":192,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":592.67,
-                 "x":5792,
+                 "width":544,
+                 "x":5824,
                  "y":640
                 }, 
                 {
@@ -236,31 +236,9 @@
                  "y":1217
                 }, 
                 {
-                 "height":233,
-                 "id":248,
-                 "name":"door-trigger-248",
-                 "rotation":0,
-                 "type":"door_trigger",
-                 "visible":true,
-                 "width":362,
-                 "x":10029,
-                 "y":985.5
-                }, 
-                {
-                 "height":233,
-                 "id":247,
-                 "name":"door-trigger-247",
-                 "rotation":0,
-                 "type":"door_trigger",
-                 "visible":true,
-                 "width":362,
-                 "x":10033,
-                 "y":1565.5
-                }, 
-                {
                  "height":238.5,
                  "id":240,
-                 "name":"door-trigger-240",
+                 "name":"",
                  "rotation":0,
                  "type":"door_trigger",
                  "visible":true,
@@ -272,7 +250,7 @@
                  "gid":6375,
                  "height":388,
                  "id":243,
-                 "name":"door-244",
+                 "name":"rDoor",
                  "properties":[
                         {
                          "name":"key",
@@ -300,7 +278,7 @@
                  "gid":6373,
                  "height":384,
                  "id":244,
-                 "name":"door-244",
+                 "name":"gDoor2",
                  "properties":[
                         {
                          "name":"key",
@@ -328,7 +306,7 @@
                  "gid":6373,
                  "height":384,
                  "id":245,
-                 "name":"door-245",
+                 "name":"gDoor1",
                  "properties":[
                         {
                          "name":"key",
@@ -353,28 +331,38 @@
                  "y":1798
                 }, 
                 {
-                 "gid":6376,
-                 "height":164.771,
-                 "id":242,
-                 "name":"key-242",
-                 "rotation":270,
-                 "type":"key",
-                 "visible":true,
-                 "width":64,
-                 "x":4551.27,
-                 "y":1792
-                }, 
-                {
                  "gid":6374,
                  "height":174.838,
                  "id":246,
-                 "name":"key-246",
+                 "name":"gKey",
                  "rotation":270,
                  "type":"key",
                  "visible":true,
                  "width":64,
                  "x":895.005,
                  "y":640
+                }, 
+                {
+                 "height":233,
+                 "id":247,
+                 "name":"",
+                 "rotation":0,
+                 "type":"door_trigger",
+                 "visible":true,
+                 "width":362,
+                 "x":10033,
+                 "y":1565.5
+                }, 
+                {
+                 "height":233,
+                 "id":248,
+                 "name":"",
+                 "rotation":0,
+                 "type":"door_trigger",
+                 "visible":true,
+                 "width":362,
+                 "x":10029,
+                 "y":985.5
                 }, 
                 {
                  "gid":6372,
@@ -588,6 +576,18 @@
                  "y":640
                 }, 
                 {
+                 "gid":6376,
+                 "height":164.771,
+                 "id":242,
+                 "name":"rKey",
+                 "rotation":270,
+                 "type":"key",
+                 "visible":true,
+                 "width":64,
+                 "x":4551.27,
+                 "y":1792
+                }, 
+                {
                  "gid":6367,
                  "height":244,
                  "id":236,
@@ -617,169 +617,396 @@
          "name":"collisions",
          "objects":[
                 {
-                 "height":0,
-                 "id":228,
-                 "name":"spawn_Ene",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"depth",
-                         "type":"int",
-                         "value":775
-                        }, 
-                        {
-                         "name":"object_type",
-                         "type":"string",
-                         "value":"enemy"
-                        }, 
-                        {
-                         "name":"path",
-                         "type":"int",
-                         "value":233
-                        }, 
-                        {
-                         "name":"spawn_object",
-                         "type":"string",
-                         "value":"caras"
-                        }],
+                 "height":2400,
+                 "id":6,
+                 "name":"ground",
                  "rotation":0,
-                 "type":"spawnpoint",
+                 "type":"ground",
                  "visible":true,
-                 "width":0,
-                 "x":3504,
-                 "y":624
+                 "width":32,
+                 "x":0,
+                 "y":0
                 }, 
                 {
-                 "height":0,
-                 "id":230,
-                 "name":"spawn_Ene",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"depth",
-                         "type":"int",
-                         "value":775
-                        }, 
-                        {
-                         "name":"object_type",
-                         "type":"string",
-                         "value":"enemy"
-                        }, 
-                        {
-                         "name":"path",
-                         "type":"int",
-                         "value":232
-                        }, 
-                        {
-                         "name":"spawn_object",
-                         "type":"string",
-                         "value":"ninio"
-                        }],
+                 "height":32,
+                 "id":14,
+                 "name":"ground",
                  "rotation":0,
-                 "type":"spawnpoint",
+                 "type":"ground",
                  "visible":true,
-                 "width":0,
-                 "x":5888,
-                 "y":1200
+                 "width":11984,
+                 "x":16,
+                 "y":2368
                 }, 
                 {
-                 "height":0,
-                 "id":229,
-                 "name":"spawn_Ene",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"depth",
-                         "type":"int",
-                         "value":775
-                        }, 
-                        {
-                         "name":"object_type",
-                         "type":"string",
-                         "value":"enemy"
-                        }, 
-                        {
-                         "name":"path",
-                         "type":"int",
-                         "value":231
-                        }, 
-                        {
-                         "name":"spawn_object",
-                         "type":"string",
-                         "value":"sombra"
-                        }],
+                 "height":32,
+                 "id":17,
+                 "name":"ground",
                  "rotation":0,
-                 "type":"spawnpoint",
+                 "type":"ground",
                  "visible":true,
-                 "width":0,
-                 "x":7602,
-                 "y":1766
+                 "width":11968,
+                 "x":16,
+                 "y":1792
                 }, 
                 {
-                 "height":0,
-                 "id":234,
-                 "name":"spawn_Ene",
-                 "point":true,
+                 "height":544,
+                 "id":20,
+                 "name":"ground",
+                 "rotation":0,
+                 "type":"ground",
+                 "visible":true,
+                 "width":2656,
+                 "x":9349.33333333333,
+                 "y":1824
+                }, 
+                {
+                 "height":32,
+                 "id":22,
+                 "name":"ground",
+                 "rotation":0,
+                 "type":"ground",
+                 "visible":true,
+                 "width":11980,
+                 "x":10,
+                 "y":1216
+                }, 
+                {
+                 "height":1824,
+                 "id":24,
+                 "name":"ground",
+                 "rotation":0,
+                 "type":"ground",
+                 "visible":true,
+                 "width":32,
+                 "x":11968,
+                 "y":0
+                }, 
+                {
+                 "height":544,
+                 "id":81,
+                 "name":"ground",
+                 "rotation":0,
+                 "type":"ground",
+                 "visible":true,
+                 "width":2448,
+                 "x":32,
+                 "y":1824
+                }, 
+                {
+                 "height":48,
+                 "id":138,
+                 "name":"stairs_bottom",
                  "properties":[
                         {
-                         "name":"depth",
+                         "name":"stairs",
                          "type":"int",
-                         "value":775
-                        }, 
-                        {
-                         "name":"object_type",
-                         "type":"string",
-                         "value":"enemy"
-                        }, 
-                        {
-                         "name":"path",
-                         "type":"int",
-                         "value":235
-                        }, 
-                        {
-                         "name":"spawn_object",
-                         "type":"string",
-                         "value":"esqueleto"
+                         "value":254
                         }],
                  "rotation":0,
-                 "type":"spawnpoint",
+                 "type":"stairs_bottom",
                  "visible":true,
-                 "width":0,
-                 "x":5828,
+                 "width":144,
+                 "x":4000,
                  "y":2352
                 }, 
                 {
-                 "height":0,
-                 "id":238,
-                 "name":"spawn_Ene",
-                 "point":true,
+                 "height":48,
+                 "id":139,
+                 "name":"stairs_top",
                  "properties":[
                         {
-                         "name":"depth",
+                         "name":"stairs",
                          "type":"int",
-                         "value":775
-                        }, 
-                        {
-                         "name":"object_type",
-                         "type":"string",
-                         "value":"enemy"
-                        }, 
-                        {
-                         "name":"path",
-                         "type":"int",
-                         "value":239
-                        }, 
-                        {
-                         "name":"spawn_object",
-                         "type":"string",
-                         "value":"sombra"
+                         "value":254
                         }],
                  "rotation":0,
-                 "type":"spawnpoint",
+                 "type":"stairs_top",
+                 "visible":true,
+                 "width":141.21,
+                 "x":2418.79,
+                 "y":1777.09
+                }, 
+                {
+                 "height":544,
+                 "id":144,
+                 "name":"ground",
+                 "rotation":0,
+                 "type":"ground",
+                 "visible":true,
+                 "width":192,
+                 "x":4688,
+                 "y":1248
+                }, 
+                {
+                 "height":0,
+                 "id":145,
+                 "name":"stairs",
+                 "polyline":[
+                        {
+                         "x":462.05,
+                         "y":-186.788
+                        }, 
+                        {
+                         "x":-885.95,
+                         "y":393.879
+                        }],
+                 "rotation":0,
+                 "type":"stairs",
                  "visible":true,
                  "width":0,
-                 "x":9006.76,
-                 "y":585.062
+                 "x":11432.2,
+                 "y":820.788
+                }, 
+                {
+                 "height":48,
+                 "id":148,
+                 "name":"stairs_top",
+                 "properties":[
+                        {
+                         "name":"stairs",
+                         "type":"int",
+                         "value":145
+                        }],
+                 "rotation":0,
+                 "type":"stairs_top",
+                 "visible":true,
+                 "width":192,
+                 "x":11776,
+                 "y":624
+                }, 
+                {
+                 "height":48,
+                 "id":149,
+                 "name":"stairs_bottom",
+                 "properties":[
+                        {
+                         "name":"stairs",
+                         "type":"int",
+                         "value":145
+                        }],
+                 "rotation":0,
+                 "type":"stairs_bottom",
+                 "visible":true,
+                 "width":144,
+                 "x":10498,
+                 "y":1198
+                }, 
+                {
+                 "height":0,
+                 "id":150,
+                 "name":"stairs",
+                 "polyline":[
+                        {
+                         "x":616.372,
+                         "y":-260.297
+                        }, 
+                        {
+                         "x":-770.465,
+                         "y":324.37
+                        }],
+                 "rotation":0,
+                 "type":"stairs",
+                 "visible":true,
+                 "width":0,
+                 "x":8773.63,
+                 "y":2042.3
+                }, 
+                {
+                 "height":48,
+                 "id":151,
+                 "name":"stairs_top",
+                 "properties":[
+                        {
+                         "name":"stairs",
+                         "type":"int",
+                         "value":150
+                        }],
+                 "rotation":0,
+                 "type":"stairs_top",
+                 "visible":true,
+                 "width":112,
+                 "x":9312,
+                 "y":1778
+                }, 
+                {
+                 "height":48,
+                 "id":153,
+                 "name":"stairs_bottom",
+                 "properties":[
+                        {
+                         "name":"stairs",
+                         "type":"int",
+                         "value":150
+                        }],
+                 "rotation":0,
+                 "type":"stairs_bottom",
+                 "visible":true,
+                 "width":144,
+                 "x":7920,
+                 "y":2352
+                }, 
+                {
+                 "height":32,
+                 "id":158,
+                 "name":"ground",
+                 "rotation":0,
+                 "type":"ground",
+                 "visible":true,
+                 "width":11980,
+                 "x":10,
+                 "y":640
+                }, 
+                {
+                 "height":48,
+                 "id":162,
+                 "name":"stairs_bottom",
+                 "properties":[
+                        {
+                         "name":"stairs",
+                         "type":"int",
+                         "value":255
+                        }],
+                 "rotation":0,
+                 "type":"stairs_bottom",
+                 "visible":true,
+                 "width":144,
+                 "x":5376,
+                 "y":1776
+                }, 
+                {
+                 "height":48,
+                 "id":163,
+                 "name":"stairs_top",
+                 "properties":[
+                        {
+                         "name":"stairs",
+                         "type":"int",
+                         "value":255
+                        }],
+                 "rotation":0,
+                 "type":"stairs_top",
+                 "visible":true,
+                 "width":144,
+                 "x":6752,
+                 "y":1200
+                }, 
+                {
+                 "height":532,
+                 "id":173,
+                 "name":"exit",
+                 "properties":[
+                        {
+                         "name":"to_scene",
+                         "type":"string",
+                         "value":"end"
+                        }],
+                 "rotation":0,
+                 "type":"exit",
+                 "visible":true,
+                 "width":944,
+                 "x":11026.7,
+                 "y":1290.67
+                }, 
+                {
+                 "height":96,
+                 "id":209,
+                 "name":"ground",
+                 "rotation":0,
+                 "type":"ground",
+                 "visible":true,
+                 "width":128,
+                 "x":2624,
+                 "y":1120
+                }, 
+                {
+                 "height":160,
+                 "id":210,
+                 "name":"ground",
+                 "rotation":0,
+                 "type":"ground",
+                 "visible":true,
+                 "width":144,
+                 "x":2752,
+                 "y":1056
+                }, 
+                {
+                 "height":240,
+                 "id":211,
+                 "name":"ground",
+                 "rotation":0,
+                 "type":"ground",
+                 "visible":true,
+                 "width":304,
+                 "x":2896,
+                 "y":976
+                }, 
+                {
+                 "height":112,
+                 "id":212,
+                 "name":"ground",
+                 "rotation":0,
+                 "type":"ground",
+                 "visible":true,
+                 "width":128,
+                 "x":6240,
+                 "y":528
+                }, 
+                {
+                 "height":176,
+                 "id":213,
+                 "name":"ground",
+                 "rotation":0,
+                 "type":"ground",
+                 "visible":true,
+                 "width":144,
+                 "x":6096,
+                 "y":464
+                }, 
+                {
+                 "height":256,
+                 "id":214,
+                 "name":"ground",
+                 "rotation":0,
+                 "type":"ground",
+                 "visible":true,
+                 "width":272,
+                 "x":5824,
+                 "y":384
+                }, 
+                {
+                 "height":32,
+                 "id":215,
+                 "name":"tunnel",
+                 "properties":[
+                        {
+                         "name":"end",
+                         "type":"int",
+                         "value":216
+                        }],
+                 "rotation":0,
+                 "type":"tunnel",
+                 "visible":true,
+                 "width":160,
+                 "x":144,
+                 "y":608
+                }, 
+                {
+                 "height":32,
+                 "id":216,
+                 "name":"tunnel",
+                 "properties":[
+                        {
+                         "name":"end",
+                         "type":"int",
+                         "value":215
+                        }],
+                 "rotation":0,
+                 "type":"tunnel",
+                 "visible":true,
+                 "width":160,
+                 "x":192,
+                 "y":1760
                 }, 
                 {
                  "height":0,
@@ -826,468 +1053,102 @@
                 }, 
                 {
                  "height":0,
-                 "id":221,
-                 "name":"spawn_doc",
+                 "id":228,
+                 "name":"spawn_Ene",
                  "point":true,
                  "properties":[
                         {
                          "name":"depth",
                          "type":"int",
-                         "value":625
+                         "value":775
                         }, 
                         {
                          "name":"object_type",
                          "type":"string",
-                         "value":"doctor"
+                         "value":"enemy"
                         }, 
                         {
                          "name":"path",
                          "type":"int",
-                         "value":249
+                         "value":233
                         }, 
                         {
                          "name":"spawn_object",
                          "type":"string",
-                         "value":"plaguedr"
+                         "value":"caras"
                         }],
                  "rotation":0,
                  "type":"spawnpoint",
                  "visible":true,
                  "width":0,
-                 "x":1388,
-                 "y":1766
-                }, 
-                {
-                 "height":2400,
-                 "id":6,
-                 "name":"ground",
-                 "rotation":0,
-                 "type":"ground",
-                 "visible":true,
-                 "width":32,
-                 "x":0,
-                 "y":0
-                }, 
-                {
-                 "height":32,
-                 "id":14,
-                 "name":"ground",
-                 "rotation":0,
-                 "type":"ground",
-                 "visible":true,
-                 "width":11984,
-                 "x":16,
-                 "y":2368
-                }, 
-                {
-                 "height":32,
-                 "id":17,
-                 "name":"ground",
-                 "rotation":0,
-                 "type":"ground",
-                 "visible":true,
-                 "width":11968,
-                 "x":16,
-                 "y":1792
-                }, 
-                {
-                 "height":544,
-                 "id":20,
-                 "name":"ground",
-                 "rotation":0,
-                 "type":"ground",
-                 "visible":true,
-                 "width":2656,
-                 "x":9344,
-                 "y":1824
-                }, 
-                {
-                 "height":32,
-                 "id":22,
-                 "name":"ground",
-                 "rotation":0,
-                 "type":"ground",
-                 "visible":true,
-                 "width":11980,
-                 "x":10,
-                 "y":1216
-                }, 
-                {
-                 "height":1824,
-                 "id":24,
-                 "name":"ground",
-                 "rotation":0,
-                 "type":"ground",
-                 "visible":true,
-                 "width":32,
-                 "x":11968,
-                 "y":0
-                }, 
-                {
-                 "height":544,
-                 "id":81,
-                 "name":"ground",
-                 "rotation":0,
-                 "type":"ground",
-                 "visible":true,
-                 "width":2448,
-                 "x":32,
-                 "y":1824
-                }, 
-                {
-                 "height":32,
-                 "id":158,
-                 "name":"ground",
-                 "rotation":0,
-                 "type":"ground",
-                 "visible":true,
-                 "width":11980,
-                 "x":10,
-                 "y":640
-                }, 
-                {
-                 "height":112,
-                 "id":209,
-                 "name":"ground",
-                 "rotation":0,
-                 "type":"ground",
-                 "visible":true,
-                 "width":112,
-                 "x":2624,
-                 "y":1104
-                }, 
-                {
-                 "height":176,
-                 "id":210,
-                 "name":"ground",
-                 "rotation":0,
-                 "type":"ground",
-                 "visible":true,
-                 "width":160,
-                 "x":2736,
-                 "y":1040
-                }, 
-                {
-                 "height":272,
-                 "id":211,
-                 "name":"ground",
-                 "rotation":0,
-                 "type":"ground",
-                 "visible":true,
-                 "width":336,
-                 "x":2896,
-                 "y":944
-                }, 
-                {
-                 "height":128,
-                 "id":212,
-                 "name":"ground",
-                 "rotation":0,
-                 "type":"ground",
-                 "visible":true,
-                 "width":144,
-                 "x":6240,
-                 "y":512
-                }, 
-                {
-                 "height":208,
-                 "id":213,
-                 "name":"ground",
-                 "rotation":0,
-                 "type":"ground",
-                 "visible":true,
-                 "width":144,
-                 "x":6096,
-                 "y":432
-                }, 
-                {
-                 "height":304,
-                 "id":214,
-                 "name":"ground",
-                 "rotation":0,
-                 "type":"ground",
-                 "visible":true,
-                 "width":304,
-                 "x":5792,
-                 "y":336
-                }, 
-                {
-                 "height":32,
-                 "id":215,
-                 "name":"tunnel",
-                 "properties":[
-                        {
-                         "name":"end",
-                         "type":"int",
-                         "value":216
-                        }],
-                 "rotation":0,
-                 "type":"tunnel",
-                 "visible":true,
-                 "width":160,
-                 "x":144,
-                 "y":608
-                }, 
-                {
-                 "height":32,
-                 "id":216,
-                 "name":"tunnel",
-                 "properties":[
-                        {
-                         "name":"end",
-                         "type":"int",
-                         "value":215
-                        }],
-                 "rotation":0,
-                 "type":"tunnel",
-                 "visible":true,
-                 "width":160,
-                 "x":192,
-                 "y":1760
-                }, 
-                {
-                 "height":532,
-                 "id":173,
-                 "name":"exit",
-                 "properties":[
-                        {
-                         "name":"to_scene",
-                         "type":"string",
-                         "value":"end"
-                        }],
-                 "rotation":0,
-                 "type":"exit",
-                 "visible":true,
-                 "width":944,
-                 "x":11026.7,
-                 "y":1290.67
-                }, 
-                {
-                 "height":544,
-                 "id":144,
-                 "name":"ground",
-                 "rotation":0,
-                 "type":"ground",
-                 "visible":true,
-                 "width":192,
-                 "x":4688,
-                 "y":1248
-                }, 
-                {
-                 "height":48,
-                 "id":149,
-                 "name":"stairs_bottom",
-                 "properties":[
-                        {
-                         "name":"stairs",
-                         "type":"int",
-                         "value":145
-                        }],
-                 "rotation":0,
-                 "type":"stairs_bottom",
-                 "visible":true,
-                 "width":144,
-                 "x":10498,
-                 "y":1198
-                }, 
-                {
-                 "height":48,
-                 "id":148,
-                 "name":"stairs_top",
-                 "properties":[
-                        {
-                         "name":"stairs",
-                         "type":"int",
-                         "value":145
-                        }],
-                 "rotation":0,
-                 "type":"stairs_top",
-                 "visible":true,
-                 "width":192,
-                 "x":11776,
+                 "x":3504,
                  "y":624
                 }, 
                 {
                  "height":0,
-                 "id":145,
-                 "name":"stairs",
-                 "polyline":[
+                 "id":229,
+                 "name":"spawn_Ene",
+                 "point":true,
+                 "properties":[
                         {
-                         "x":462.05,
-                         "y":-186.788
+                         "name":"depth",
+                         "type":"int",
+                         "value":775
                         }, 
                         {
-                         "x":-885.95,
-                         "y":393.879
+                         "name":"object_type",
+                         "type":"string",
+                         "value":"enemy"
+                        }, 
+                        {
+                         "name":"path",
+                         "type":"int",
+                         "value":231
+                        }, 
+                        {
+                         "name":"spawn_object",
+                         "type":"string",
+                         "value":"sombra"
                         }],
                  "rotation":0,
-                 "type":"stairs",
+                 "type":"spawnpoint",
                  "visible":true,
                  "width":0,
-                 "x":11432.2,
-                 "y":820.788
-                }, 
-                {
-                 "height":48,
-                 "id":153,
-                 "name":"stairs_bottom",
-                 "properties":[
-                        {
-                         "name":"stairs",
-                         "type":"int",
-                         "value":150
-                        }],
-                 "rotation":0,
-                 "type":"stairs_bottom",
-                 "visible":true,
-                 "width":144,
-                 "x":7920,
-                 "y":2352
-                }, 
-                {
-                 "height":48,
-                 "id":151,
-                 "name":"stairs_top",
-                 "properties":[
-                        {
-                         "name":"stairs",
-                         "type":"int",
-                         "value":150
-                        }],
-                 "rotation":0,
-                 "type":"stairs_top",
-                 "visible":true,
-                 "width":160,
-                 "x":9296,
-                 "y":1778
+                 "x":7602,
+                 "y":1766
                 }, 
                 {
                  "height":0,
-                 "id":150,
-                 "name":"stairs",
-                 "polyline":[
+                 "id":230,
+                 "name":"spawn_Ene",
+                 "point":true,
+                 "properties":[
                         {
-                         "x":616.372,
-                         "y":-260.297
+                         "name":"depth",
+                         "type":"int",
+                         "value":775
                         }, 
                         {
-                         "x":-770.465,
-                         "y":324.37
-                        }],
-                 "rotation":0,
-                 "type":"stairs",
-                 "visible":true,
-                 "width":0,
-                 "x":8773.63,
-                 "y":2042.3
-                }, 
-                {
-                 "height":48,
-                 "id":162,
-                 "name":"stairs_bottom",
-                 "properties":[
-                        {
-                         "name":"stairs",
-                         "type":"int",
-                         "value":161
-                        }],
-                 "rotation":0,
-                 "type":"stairs_bottom",
-                 "visible":true,
-                 "width":144,
-                 "x":5374.67,
-                 "y":1772.24
-                }, 
-                {
-                 "height":48,
-                 "id":163,
-                 "name":"stairs_top",
-                 "properties":[
-                        {
-                         "name":"stairs",
-                         "type":"int",
-                         "value":161
-                        }],
-                 "rotation":0,
-                 "type":"stairs_top",
-                 "visible":true,
-                 "width":160,
-                 "x":6752,
-                 "y":1195.57
-                }, 
-                {
-                 "height":0,
-                 "id":161,
-                 "name":"stairs",
-                 "polyline":[
-                        {
-                         "x":263.514,
-                         "y":489.955
+                         "name":"object_type",
+                         "type":"string",
+                         "value":"enemy"
                         }, 
                         {
-                         "x":1660.43,
-                         "y":-92.7123
-                        }],
-                 "rotation":180,
-                 "type":"stairs",
-                 "visible":true,
-                 "width":0,
-                 "x":7116.43,
-                 "y":1699.29
-                }, 
-                {
-                 "height":48,
-                 "id":138,
-                 "name":"stairs_bottom",
-                 "properties":[
-                        {
-                         "name":"stairs",
+                         "name":"path",
                          "type":"int",
-                         "value":223
-                        }],
-                 "rotation":0,
-                 "type":"stairs_bottom",
-                 "visible":true,
-                 "width":144,
-                 "x":4000,
-                 "y":2352
-                }, 
-                {
-                 "height":48,
-                 "id":139,
-                 "name":"stairs_top",
-                 "properties":[
-                        {
-                         "name":"stairs",
-                         "type":"int",
-                         "value":223
-                        }],
-                 "rotation":0,
-                 "type":"stairs_top",
-                 "visible":true,
-                 "width":141.21,
-                 "x":2418.79,
-                 "y":1777.09
-                }, 
-                {
-                 "height":0,
-                 "id":223,
-                 "name":"stairs",
-                 "polyline":[
-                        {
-                         "x":0,
-                         "y":0
+                         "value":232
                         }, 
                         {
-                         "x":-1627.61,
-                         "y":-580.139
+                         "name":"spawn_object",
+                         "type":"string",
+                         "value":"ninio"
                         }],
                  "rotation":0,
-                 "type":"stairs",
+                 "type":"spawnpoint",
                  "visible":true,
                  "width":0,
-                 "x":4080,
-                 "y":2368
+                 "x":5888,
+                 "y":1200
                 }, 
                 {
                  "height":0,
@@ -1295,18 +1156,18 @@
                  "name":"path",
                  "polyline":[
                         {
-                         "x":9.09091,
+                         "x":10.0534709561147,
                          "y":6.06061
                         }, 
                         {
-                         "x":3258,
+                         "x":3602.96256095611,
                          "y":4
                         }],
                  "rotation":0,
                  "type":"path",
                  "visible":true,
                  "width":0,
-                 "x":6094,
+                 "x":6093.03743904389,
                  "y":1702
                 }, 
                 {
@@ -1351,6 +1212,39 @@
                 }, 
                 {
                  "height":0,
+                 "id":234,
+                 "name":"spawn_Ene",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"depth",
+                         "type":"int",
+                         "value":775
+                        }, 
+                        {
+                         "name":"object_type",
+                         "type":"string",
+                         "value":"enemy"
+                        }, 
+                        {
+                         "name":"path",
+                         "type":"int",
+                         "value":235
+                        }, 
+                        {
+                         "name":"spawn_object",
+                         "type":"string",
+                         "value":"esqueleto"
+                        }],
+                 "rotation":0,
+                 "type":"spawnpoint",
+                 "visible":true,
+                 "width":0,
+                 "x":5828,
+                 "y":2352
+                }, 
+                {
+                 "height":0,
                  "id":235,
                  "name":"path",
                  "polyline":[
@@ -1368,6 +1262,39 @@
                  "width":0,
                  "x":4320,
                  "y":2288
+                }, 
+                {
+                 "height":0,
+                 "id":238,
+                 "name":"spawn_Ene",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"depth",
+                         "type":"int",
+                         "value":775
+                        }, 
+                        {
+                         "name":"object_type",
+                         "type":"string",
+                         "value":"enemy"
+                        }, 
+                        {
+                         "name":"path",
+                         "type":"int",
+                         "value":239
+                        }, 
+                        {
+                         "name":"spawn_object",
+                         "type":"string",
+                         "value":"sombra"
+                        }],
+                 "rotation":0,
+                 "type":"spawnpoint",
+                 "visible":true,
+                 "width":0,
+                 "x":9006.76,
+                 "y":585.062
                 }, 
                 {
                  "height":0,
@@ -1391,23 +1318,43 @@
                 }, 
                 {
                  "height":0,
-                 "id":249,
-                 "name":"path",
+                 "id":254,
+                 "name":"stairs",
                  "polyline":[
                         {
-                         "x":0,
-                         "y":0
+                         "x":-5,
+                         "y":-2
                         }, 
                         {
-                         "x":-32,
-                         "y":0
+                         "x":1572,
+                         "y":575
                         }],
                  "rotation":0,
-                 "type":"path",
+                 "type":"stairs",
                  "visible":true,
                  "width":0,
-                 "x":1344,
-                 "y":1728
+                 "x":2496,
+                 "y":1792
+                }, 
+                {
+                 "height":0,
+                 "id":255,
+                 "name":"stairs",
+                 "polyline":[
+                        {
+                         "x":8.25,
+                         "y":-2.25
+                        }, 
+                        {
+                         "x":-1333,
+                         "y":574.75
+                        }],
+                 "rotation":0,
+                 "type":"stairs",
+                 "visible":true,
+                 "width":0,
+                 "x":6800,
+                 "y":1216
                 }],
          "opacity":1,
          "properties":[
@@ -1422,26 +1369,20 @@
          "y":0
         }],
  "nextlayerid":15,
- "nextobjectid":254,
+ "nextobjectid":256,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"2020.09.22",
+ "tiledversion":"1.4.2",
  "tileheight":16,
  "tilesets":[
         {
          "columns":90,
          "firstgid":1,
-         "grid":
-            {
-             "height":1,
-             "orientation":"orthogonal",
-             "width":1
-            },
-         "image":"Images\/tilemapmuralla.png",
+         "image":"Images\/wall-vines.png",
          "imageheight":726,
          "imagewidth":1440,
          "margin":0,
-         "name":"tilemapmuralla",
+         "name":"wall-vines",
          "spacing":0,
          "tilecount":4050,
          "tileheight":16,
