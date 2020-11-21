@@ -155,6 +155,9 @@
           this.sendUpdate({ type: 'spotcollision', is_colliding: true, player: player, object: object });
         }
         break;
+      case 'exit':
+        this.sendUpdate({type: 'pass-level'});
+        break;
       case 'key':
         if(player.key === undefined){
           player.key = object;
@@ -357,6 +360,12 @@
         break;
       case 'keypicked':
         data = [ 7, update.object.id ];
+        break;
+      case 'enemy-chase':
+        data = [ 8, update.isChasing, update.object.id];
+        break;
+      case 'pass-level':
+        data = [ 9 ];
         break;
     }
 

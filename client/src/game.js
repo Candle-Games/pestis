@@ -57,6 +57,7 @@ var game = new Phaser.Game({
       { key: 'KeyPlugin', plugin: candlegames.pestis.gameobjects.engine.KeyPlugin, start: true},
       { key: 'DoorTriggerPlugin', plugin: candlegames.pestis.gameobjects.engine.DoorTriggerPlugin, start: true},
       { key: 'TunnelPlugin', plugin: candlegames.pestis.gameobjects.engine.TunnelPlugin, start: true},
+      { key: 'ExitLevelPlugin', plugin: candlegames.pestis.gameobjects.engine.ExitLevelPlugin, start: true},
 
       { key: 'PlayerCharacterPlugin', plugin: candlegames.pestis.gameobjects.client.PlayerCharacterPlugin, start: true },
       { key: 'DefaultEnemyPlugin', plugin: candlegames.pestis.gameobjects.client.DefaultEnemyPlugin, start: true },
