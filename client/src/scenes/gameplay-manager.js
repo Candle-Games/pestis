@@ -39,19 +39,41 @@
     }
   }
 
+  GameplayManager.prototype.showLevelBanner = function(description) {
+    this._levelBanner = this.add.container(game.canvas.width / 2, game.canvas.height / 2);
+    this._levelBanner.setDepth(1000);
+
+    var levelTitle = this.add.text(0, 0, this.i18n.get('level_banner') + ' ' + this._currentMap + 1,
+      { fontSize: 50, fontFamily: 'MedievalSharp'});
+    levelTitle.setOrigin(0.5, 0.5);
+    this._levelBanner.add(levelTitle);
+
+    var subTitle = this.add.text(0, 37, this.i18n.get(description), { fontSize: 30, fontFamily: 'MedievalSharp'});
+    subTitle.setOrigin(0.5, 0.5);
+    this._levelBanner.add(subTitle);
+  }
+
+  GameplayManager.prototype.showEndBanner = function(message) {
+    this._levelBanner = this.add.container(game.canvas.width / 2, game.canvas.height / 2);
+    this._levelBanner.setDepth(1000);
+
+    var message = this.add.text(0, 0, this.i18n.get(message), { fontSize: 75, fontFamily: 'MedievalSharp'});
+    message.setOrigin(0.5, 0.5);
+    this._levelBanner.add(message);
+  }
+
+  GameplayManager.prototype.destroyLevelBanner = function() {
+    this._levelBanner.destroy();
+  }
+
   GameplayManager.prototype.startLevel = function() {
-    this._levelBanner = this.add.text(game.canvas.width / 2, game.canvas.height / 2,
-      this.i18n.get('level_banner') + this._currentMap, { fontSize: 50, fontFamily: 'MedievalSharp'});
-    this._levelBanner.setOrigin(0.5, 0.5);
-
     var levelConfig = this.getCurrentMapConfig();
-    this.scene.add('Game', candlegames.pestis.client.scenes.Game);
-    if(this.browserchecker.isMobileBrowser()){
-      this.scene.launch('Game', { levelConfig: levelConfig, input: 'virtualjoystick' });
-    }else{
-      this.scene.launch('Game', { levelConfig: levelConfig, input: 'keyboard' });
-    }
 
+    this.showLevelBanner(levelConfig.description);
+    this.scene.add('Game', candlegames.pestis.client.scenes.Game);
+
+    var controller = this.browserchecker.isMobileBrowser() ? 'virtualjoystick' : 'keyboard';
+    this.scene.launch('Game', { levelConfig: levelConfig, input: controller });
     this.scene.get('Game').events.once('game-scene-created', this.gameSceneCreated, this);
     this.scene.get('Game').events.once('game-over', this.gameOver.bind(this));
   }
@@ -63,22 +85,32 @@
     } else {
       this.scene.add('GameEngineScene', candlegames.pestis.server.scenes.GameEngineScene);
       this.scene.launch('GameEngineScene', { level: levelConfig.name });
+      this.destroyLevelBanner();
     }
   }
 
-  GameplayManager.prototype.gameOver = function() {
-    this.stopLevel();
-    this._currentMap = (this._currentMap + 1) % this._maps.length;
-    window.setTimeout(function() {
-      this.startLevel('level1');
-    }.bind(this), 1000);
+  GameplayManager.prototype.gameOver = function(reason) {
+    var gotoCredits = false;
+    if(reason==='dead') {
+      this.showEndBanner('dead-message');
+    } else {
+      this.showEndBanner('escape-message');
+      this._currentMap = this._currentMap + 1;
+      gotoCredits = (this._currentMap >= this._maps.length);
+    }
 
-    /*
-    TODO: It doesn't work like this, check it out...
-    this.time.delayedCall(1000, function() {
-      this.startLevel('level1');
-    }, [], this);
-    */
+    this.stopLevel();
+
+    window.setTimeout(function() {
+      window.setTimeout(function() {
+        this.destroyLevelBanner();
+        if(!gotoCredits) {
+          this.startLevel();
+        } else {
+          this.events.emit('game-finished', true);
+        }
+      }.bind(this), 1000);
+    }.bind(this), 5000)
   }
 
   GameplayManager.prototype.stopLevel = function() {
@@ -131,7 +163,7 @@
 
   GameplayManager.prototype.returnToMainMenu = function() {
     this.stopLevel();
-    this.events.emit('game-finished')
+    this.events.emit('game-finished', false);
   }
 
   GameplayManager.prototype.shutdown = function() {
