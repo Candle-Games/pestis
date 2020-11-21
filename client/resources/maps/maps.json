@@ -79,10 +79,10 @@
       "downstreet-wall.png",
       "goldendoor.png",
       "goldenkey.png",
-      "Lantern.png",
+      "lantern.png",
       "oxidedoor.png",
       "oxidekey.png",
-      "PlaguedrStaff.png",
+      "plaguedrstaff.png",
       "silverdoor.png",
       "silverkey.png",
       "stairs.png",
@@ -91,9 +91,8 @@
       "stall03.png",
       "stalldrplague.png",
       "street-wall.png",
-      "Tilemap muralla.png",
-      "TutorialRoof.png",
-      "firewood.png"
+      "tilemap muralla.png",
+      "tutorialroof.png"
     ],
     "characters": [
       "pc1",
@@ -101,7 +100,8 @@
       "lantern",
       "sombra",
       "caras",
-      "ninio"
+      "ninio",
+      "esqueleto"	
     ]
   }
 }
