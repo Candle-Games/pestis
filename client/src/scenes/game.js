@@ -96,8 +96,10 @@
         this.closeDoor(update[1]);
         break;
       case 6:
-        this.events.emit('game-over');
+        this.events.emit('game-over', 'dead');
         break;
+      case 7:
+        this.events.emit('game-over', 'escape')
     }
   }
 

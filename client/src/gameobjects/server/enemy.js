@@ -63,7 +63,7 @@
         var pcs = this.scene.game_engine.pcs.getChildren()
         for(var i=0; i<pcs.length; i++){
             var pc=pcs[i];
-            var pcRect =  new Phaser.Geom.Rectangle(pc.x - (pc.body.width * 0.5), pc.body.y - 264 * 0.5, pc.body.width, 264);
+            var pcRect =  new Phaser.Geom.Rectangle(pc.x - (pc.body.height * 0.5), pc.body.y - 264 * 0.5, pc.body.height, 264);
             var intersection = Phaser.Geom.Intersects.LineToRectangle(this.visionLine, pcRect);
             if(intersection) {
                 if(!pc.isHiding && pc.stairs === undefined) {

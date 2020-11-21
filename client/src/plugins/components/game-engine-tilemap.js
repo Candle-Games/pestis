@@ -13,7 +13,8 @@
       TUNNEL: 'tunnel',
       PATH: 'path',
       KEY: 'key',
-      DOOR_TRIGGER: 'door_trigger'
+      DOOR_TRIGGER: 'door_trigger',
+      EXITLEVEL: 'exit',
     },
 
     map: undefined,
@@ -93,6 +94,11 @@
                 this.overspots.add(phaserObject);
                 break;
 
+              case this.objectTypes.EXITLEVEL:
+                phaserObject = this.scene.add.exitlevel(object);
+                this.overspots.add(phaserObject);
+                break;
+
               case this.objectTypes.STAIRS_TOP:
               case this.objectTypes.STAIRS_BOTTOM:
                 phaserObject = this.scene.add.stairs_spot(object);
@@ -101,6 +107,7 @@
 
               case this.objectTypes.STAIRS:
                 phaserObject = this.scene.add.stairs(object);
+                this.colliders.add(phaserObject);
                 break;
 
               case this.objectTypes.GROUND:
@@ -129,7 +136,7 @@
                 this.overspots.add(phaserObject);
                 break;
 
-              case this.objectTypes.KEY:
+             case this.objectTypes.KEY:
                 phaserObject = this.scene.add.doorkey(object);
                 this.overspots.add(phaserObject);
                 break;
