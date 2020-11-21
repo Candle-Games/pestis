@@ -50,10 +50,12 @@
         this.vjoystick.maxDistance = this.vjoystick.base.width *0.5;
         this.vjoystick.base.setScrollFactor(0, 0);
         this.vjoystick.initPos = [this.vjoystick.base.x , this.vjoystick.base.y];
+        this.vjoystick.base.setDepth(99999999);
 
         this.vjoystick.joystick=scene.add.sprite(this.xOffset , camera.height - this.yOffset,'joystick');
         this.vjoystick.joystick.anchor = [0.5,0.5];
         this.vjoystick.joystick.setScrollFactor(0, 0);
+        this.vjoystick.joystick.setDepth(999999999);
 
         /*
         * Inspired by https://www.youtube.com/watch?v=t56DvozbZX4
@@ -66,10 +68,12 @@
         this.buttonAction1.sprite = scene.add.sprite(camera.width - this.xOffset, camera.height - this.yOffset, 'joystick-base');
         this.buttonAction1.sprite.setInteractive().on('pointerdown', this.pressInputAction1, this);
         this.buttonAction1.sprite.setScrollFactor(0, 0);
+        this.buttonAction1.sprite.setDepth(99999999);
 
         this.buttonAction2.sprite = scene.add.sprite(this.buttonAction1.sprite.x - this.buttonAction2.offset - this.buttonAction1.sprite.width, camera.height - this.yOffset, 'joystick-base');
         this.buttonAction2.sprite.setInteractive().on('pointerdown', this.pressInputAction2, this);
         this.buttonAction2.sprite.setScrollFactor(0, 0);
+        this.buttonAction2.sprite.setDepth(99999999);
 
     }
 

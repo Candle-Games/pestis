@@ -1,7 +1,7 @@
 {
   "tutorial-room": {
     "name": "tutorial-room",
-    "description": "Tutorial",
+    "description": "tutorial_room_description",
     "images": [
       "bedchild.png",
       "bedparents.png",
@@ -36,7 +36,7 @@
   },
   "level1": {
     "name": "level1",
-    "description": "Nivel 1",
+    "description": "level1_description",
     "images": [
       "barrel.png",
       "box-stack-2.png",
@@ -70,7 +70,7 @@
   },
   "level2": {
     "name": "level2",
-    "description": "Nivel 2",
+    "description": "level2_description",
     "images": [
       "barrel.png",
       "box-stack-2.png",

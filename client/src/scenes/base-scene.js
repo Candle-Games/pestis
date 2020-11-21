@@ -60,6 +60,7 @@
         play_menu: {
           entry: 'launchPlayMenu',
           on: {
+            CREDITS: 'credits',
             RETURN_TO_MAIN: 'main_menu',
             NEW_GAME: 'play_game',
             LOAD_GAME: 'load_game',
@@ -156,11 +157,15 @@
   }
 
   BaseScene.prototype.playGame = function () {
-    this.scene.launch('GameplayManager', {new: true, level: 'level1'});
+    this.scene.launch('GameplayManager', {new: true, level: 'tutorial-room'});
 
-    this.scene.get('GameplayManager').events.once('game-finished', function () {
+    this.scene.get('GameplayManager').events.once('game-finished', function (gotoCredits) {
       this.scene.stop('GameplayManager');
-      this.sendStateEvent('RETURN_TO_PLAYMENU');
+      if(!gotoCredits) {
+        this.sendStateEvent('RETURN_TO_PLAYMENU');
+      } else {
+        this.sendStateEvent('CREDITS');
+      }
     }, this);
   }
 

@@ -217,10 +217,13 @@
 
   PlayerCharacter.prototype.setLantern = function(lantern) {
     if(lantern !== undefined) {
-      this.lantern = lantern;
-      this.lantern.setOrigin(this.originX, this.originY);
-      this.lantern.setPosition(this.x, this.y);
-      this.lantern.setDepth(this.depth);
+      if(this.lantern===undefined) {
+        this.lantern = lantern;
+        this.lantern.setOrigin(this.originX, this.originY);
+        this.lantern.setPosition(this.x, this.y);
+        this.lantern.setDepth(this.depth);
+        this.lantern.play(this.lantern._animations.idle);
+      }
     } else {
       this.lantern = undefined;
     }

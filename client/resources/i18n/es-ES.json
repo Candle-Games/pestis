@@ -15,5 +15,11 @@
   "settings_left": "Izquierda",
   "settings_right": "Derecha",
   "settings_action1": "Acción 1",
-  "settings_action2": "Acción 2"
+  "settings_action2": "Acción 2",
+  "level_banner": "Nivel",
+  "tutorial_room_description": "Escapa de los monstruos y sal de la casa",
+  "level1_description": "Busca la salida a lo largo del pueblo",
+  "level2_description": "Corre y escondeté",
+  "dead-message": "¡Estás muerto!",
+  "escape-message": "¡Has conseguido escapar!"
 }

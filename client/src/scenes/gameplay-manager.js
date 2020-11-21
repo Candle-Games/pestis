@@ -7,41 +7,110 @@
     this.key;
 
     this._inGameMenu;
+
+    this._mapsConfig;
+
+    this._currentMap;
   }
 
   GameplayManager.prototype = Object.create(Phaser.Scene.prototype);
   GameplayManager.prototype.constructor = GameplayManager;
 
+  GameplayManager.prototype.getCurrentMapConfig = function() {
+    var key = this._maps[this._currentMap];
+    return this._mapsConfig[key];
+  }
+
   GameplayManager.prototype.preload = function(data) {
-    this.load.json('maps-config', 'resources/maps/maps.json');
   }
 
   GameplayManager.prototype.create = function(data) {
     this.events.once('shutdown', this.shutdown, this);
 
+    this._mapsConfig = this.cache.json.get('maps-config');
+    this._maps = _.keys(this._mapsConfig);
+    this._currentMap = 0;
+
     this.key = this.input.keyboard.addKey('ESC');
     this.key.once('down', this.escapePressed, this);
 
     if(data.new) {
-      this.startLevel(data.level);
+      this.startLevel();
     }
   }
 
-  GameplayManager.prototype.startLevel = function(levelName) {
-    var mapsConfig = this.cache.json.get('maps-config');
-    var levelConfig = mapsConfig[levelName];
+  GameplayManager.prototype.showLevelBanner = function(description) {
+    this._levelBanner = this.add.container(game.canvas.width / 2, game.canvas.height / 2);
+    this._levelBanner.setDepth(1000);
 
+    var levelTitle = this.add.text(0, 0, this.i18n.get('level_banner') + ' ' + this._currentMap + 1,
+      { fontSize: 50, fontFamily: 'MedievalSharp'});
+    levelTitle.setOrigin(0.5, 0.5);
+    this._levelBanner.add(levelTitle);
+
+    var subTitle = this.add.text(0, 37, this.i18n.get(description), { fontSize: 30, fontFamily: 'MedievalSharp'});
+    subTitle.setOrigin(0.5, 0.5);
+    this._levelBanner.add(subTitle);
+  }
+
+  GameplayManager.prototype.showEndBanner = function(message) {
+    this._levelBanner = this.add.container(game.canvas.width / 2, game.canvas.height / 2);
+    this._levelBanner.setDepth(1000);
+
+    var message = this.add.text(0, 0, this.i18n.get(message), { fontSize: 75, fontFamily: 'MedievalSharp'});
+    message.setOrigin(0.5, 0.5);
+    this._levelBanner.add(message);
+  }
+
+  GameplayManager.prototype.destroyLevelBanner = function() {
+    this._levelBanner.destroy();
+  }
+
+  GameplayManager.prototype.startLevel = function() {
+    var levelConfig = this.getCurrentMapConfig();
+
+    this.showLevelBanner(levelConfig.description);
     this.scene.add('Game', candlegames.pestis.client.scenes.Game);
-    this.scene.launch('Game', { levelConfig: levelConfig, input: 'keyboard' });
 
-    this.scene.get('Game').events.once('game-scene-created', function() {
-      if(this.comms.online) {
-        this.comms.emit('start-level', {level: levelConfig.name});
-      } else {
-        this.scene.add('GameEngineScene', candlegames.pestis.server.scenes.GameEngineScene);
-        this.scene.launch('GameEngineScene', { level: levelConfig.name });
-      }
-    }.bind(this));
+    var controller = this.browserchecker.isMobileBrowser() ? 'virtualjoystick' : 'keyboard';
+    this.scene.launch('Game', { levelConfig: levelConfig, input: controller });
+    this.scene.get('Game').events.once('game-scene-created', this.gameSceneCreated, this);
+    this.scene.get('Game').events.once('game-over', this.gameOver.bind(this));
+  }
+
+  GameplayManager.prototype.gameSceneCreated = function() {
+    var levelConfig = this.getCurrentMapConfig();
+    if(this.comms.online) {
+      this.comms.emit('start-level', {level: levelConfig.name});
+    } else {
+      this.scene.add('GameEngineScene', candlegames.pestis.server.scenes.GameEngineScene);
+      this.scene.launch('GameEngineScene', { level: levelConfig.name });
+      this.destroyLevelBanner();
+    }
+  }
+
+  GameplayManager.prototype.gameOver = function(reason) {
+    var gotoCredits = false;
+    if(reason==='dead') {
+      this.showEndBanner('dead-message');
+    } else {
+      this.showEndBanner('escape-message');
+      this._currentMap = this._currentMap + 1;
+      gotoCredits = (this._currentMap >= this._maps.length);
+    }
+
+    this.stopLevel();
+
+    window.setTimeout(function() {
+      window.setTimeout(function() {
+        this.destroyLevelBanner();
+        if(!gotoCredits) {
+          this.startLevel();
+        } else {
+          this.events.emit('game-finished', true);
+        }
+      }.bind(this), 1000);
+    }.bind(this), 5000)
   }
 
   GameplayManager.prototype.stopLevel = function() {
@@ -94,7 +163,7 @@
 
   GameplayManager.prototype.returnToMainMenu = function() {
     this.stopLevel();
-    this.events.emit('game-finished')
+    this.events.emit('game-finished', false);
   }
 
   GameplayManager.prototype.shutdown = function() {

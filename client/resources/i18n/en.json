@@ -15,5 +15,11 @@
   "settings_left": "Left",
   "settings_right": " Right",
   "settings_action1": "Action 1",
-  "settings_action2": "Action 2"
+  "settings_action2": "Action 2",
+  "level_banner": "Level",
+  "tutorial_room_description": "Escape from the monsters and get out of the house",
+  "level1_description": "Search the exit of the village",
+  "level2_description": "Run and hide",
+  "dead-message": "You are dead!",
+  "escape-message": "Got to scape!"
 }
