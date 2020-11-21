@@ -657,7 +657,7 @@
                  "type":"ground",
                  "visible":true,
                  "width":2656,
-                 "x":9349.33333333333,
+                 "x":9349.33,
                  "y":1824
                 }, 
                 {
@@ -1156,18 +1156,18 @@
                  "name":"path",
                  "polyline":[
                         {
-                         "x":10.0534709561147,
+                         "x":10.0535,
                          "y":6.06061
                         }, 
                         {
-                         "x":3602.96256095611,
+                         "x":3602.96,
                          "y":4
                         }],
                  "rotation":0,
                  "type":"path",
                  "visible":true,
                  "width":0,
-                 "x":6093.03743904389,
+                 "x":6093.04,
                  "y":1702
                 }, 
                 {
@@ -1404,11 +1404,11 @@
         {
          "columns":22,
          "firstgid":5235,
-         "image":"Images\/tutorialroof.png",
+         "image":"Images\/tutorial-roof.png",
          "imageheight":288,
          "imagewidth":352,
          "margin":0,
-         "name":"tutorialroof",
+         "name":"tutorial-roof",
          "spacing":0,
          "tilecount":396,
          "tileheight":16,
