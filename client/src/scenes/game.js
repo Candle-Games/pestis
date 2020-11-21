@@ -98,12 +98,29 @@
       case 6:
         this.events.emit('game-over');
         break;
+      case 7:
+        this.pickKey(update[1]);
+        break;
+    }
+  }
+
+  Game.prototype.pickKey = function(keyId) {
+    var key = this.spawnedObjects[keyId];
+
+    if(key) {
+      key.destroy();
+      this.music.playEffect('key-pick');
+      if(this.highlightArrow) { this.highlightArrow.setVisible(false); }
     }
   }
 
   Game.prototype.closeDoor = function(doorId) {
     var door = this.spawnedObjects[doorId];
-    if(door) { door.setVisible(false) }
+    if(door) {
+      door.setVisible(false);
+      this.music.playEffect('door');
+      if(this.highlightArrow) { this.highlightArrow.setVisible(false); }
+    }
     if(this.doorKey) { this.doorKey.destroy(); }
   }
 

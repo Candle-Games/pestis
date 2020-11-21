@@ -148,11 +148,18 @@
     // console.log("Playing hide: " + this.name);
     this.play(this._animations.hide);
     this.setDepth(this._tiledProperties.hidingdepth);
-    if(this.lantern !== undefined) { this.lantern.play(this.lantern._animations.hide); }
+
+    if(this.lantern !== undefined) {
+      this.lantern.setDepth(this.depth);
+      this.lantern.play(this.lantern._animations.hide);
+    }
   }
 
   PlayerCharacter.prototype._hideEnd = function(context, event) {
     this.setDepth(this._tiledProperties.depth);
+    if(this.lantern !== undefined) {
+      this.lantern.setDepth(this.depth);
+    }
   }
 
   /**
