@@ -375,6 +375,24 @@
                  "width":362,
                  "x":10029,
                  "y":985.5
+                }, 
+                {
+                 "gid":6372,
+                 "height":92,
+                 "id":253,
+                 "name":"light",
+                 "properties":[
+                        {
+                         "name":"on",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"light",
+                 "visible":true,
+                 "width":48,
+                 "x":1664,
+                 "y":1568
                 }],
          "opacity":1,
          "properties":[
@@ -580,24 +598,6 @@
                  "width":64,
                  "x":4551.27,
                  "y":1792
-                }, 
-                {
-                 "gid":6395,
-                 "height":92,
-                 "id":250,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"on",
-                         "type":"bool",
-                         "value":true
-                        }],
-                 "rotation":0,
-                 "type":"light",
-                 "visible":true,
-                 "width":48,
-                 "x":1632,
-                 "y":1568
                 }],
          "opacity":1,
          "properties":[
@@ -1095,7 +1095,7 @@
                         {
                          "name":"spawn_object",
                          "type":"string",
-                         "value":"plagedr"
+                         "value":"plaguedr"
                         }],
                  "rotation":0,
                  "type":"spawnpoint",
@@ -1422,7 +1422,7 @@
          "y":0
         }],
  "nextlayerid":15,
- "nextobjectid":251,
+ "nextobjectid":254,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.2",
@@ -1431,7 +1431,7 @@
         {
          "columns":90,
          "firstgid":1,
-         "image":"Images\/Tilemap muralla.png",
+         "image":"Images\/tilemapmuralla.png",
          "imageheight":726,
          "imagewidth":1440,
          "margin":0,
@@ -1457,7 +1457,7 @@
         {
          "columns":22,
          "firstgid":5235,
-         "image":"Images\/TutorialRoof.png",
+         "image":"Images\/tutorialroof.png",
          "imageheight":288,
          "imagewidth":352,
          "margin":0,
@@ -1534,7 +1534,7 @@
                 }, 
                 {
                  "id":18,
-                 "image":"Images\/PlaguedrStaff.png",
+                 "image":"Images\/plaguedrstaff.png",
                  "imageheight":36,
                  "imagewidth":87
                 }, 
@@ -1546,7 +1546,7 @@
                 }, 
                 {
                  "id":20,
-                 "image":"Images\/Lantern.png",
+                 "image":"Images\/lantern.png",
                  "imageheight":92,
                  "imagewidth":48
                 }, 
@@ -1597,119 +1597,6 @@
                  "image":"Images\/stall03.png",
                  "imageheight":417,
                  "imagewidth":535
-                }],
-         "tilewidth":1054
-        }, 
-        {
-         "columns":0,
-         "firstgid":6381,
-         "grid":
-            {
-             "height":1,
-             "orientation":"orthogonal",
-             "width":1
-            },
-         "margin":0,
-         "name":"non-tiled-elements",
-         "spacing":0,
-         "tilecount":16,
-         "tileheight":423,
-         "tiles":[
-                {
-                 "id":0,
-                 "image":"..\/level1\/images\/stall01.png",
-                 "imageheight":423,
-                 "imagewidth":540
-                }, 
-                {
-                 "id":1,
-                 "image":"..\/level1\/images\/stall02.png",
-                 "imageheight":417,
-                 "imagewidth":535
-                }, 
-                {
-                 "id":2,
-                 "image":"..\/level1\/images\/box.png",
-                 "imageheight":244,
-                 "imagewidth":244
-                }, 
-                {
-                 "id":3,
-                 "image":"..\/level1\/images\/barrel.png",
-                 "imageheight":382,
-                 "imagewidth":290
-                }, 
-                {
-                 "id":5,
-                 "image":"..\/level1\/images\/box-stack.png",
-                 "imageheight":350,
-                 "imagewidth":652
-                }, 
-                {
-                 "id":6,
-                 "image":"..\/level1\/images\/box-stack-2.png",
-                 "imageheight":350,
-                 "imagewidth":651
-                }, 
-                {
-                 "id":7,
-                 "image":"..\/level1\/images\/stall03.png",
-                 "imageheight":417,
-                 "imagewidth":535
-                }, 
-                {
-                 "id":8,
-                 "image":"..\/level1\/images\/goldendoor.png",
-                 "imageheight":368,
-                 "imagewidth":59
-                }, 
-                {
-                 "id":9,
-                 "image":"..\/level1\/images\/goldenkey.png",
-                 "imageheight":274,
-                 "imagewidth":105
-                }, 
-                {
-                 "id":10,
-                 "image":"..\/level1\/images\/oxidedoor.png",
-                 "imageheight":368,
-                 "imagewidth":59
-                }, 
-                {
-                 "id":11,
-                 "image":"..\/level1\/images\/oxidekey.png",
-                 "imageheight":274,
-                 "imagewidth":105
-                }, 
-                {
-                 "id":12,
-                 "image":"..\/level1\/images\/silverdoor.png",
-                 "imageheight":368,
-                 "imagewidth":59
-                }, 
-                {
-                 "id":13,
-                 "image":"..\/level1\/images\/silverkey.png",
-                 "imageheight":274,
-                 "imagewidth":105
-                }, 
-                {
-                 "id":14,
-                 "image":"..\/level1\/images\/Lantern.png",
-                 "imageheight":92,
-                 "imagewidth":48
-                }, 
-                {
-                 "id":15,
-                 "image":"..\/level1\/images\/PlaguedrStaff.png",
-                 "imageheight":36,
-                 "imagewidth":87
-                }, 
-                {
-                 "id":16,
-                 "image":"..\/level1\/images\/stalldrplague.png",
-                 "imageheight":416,
-                 "imagewidth":1054
                 }],
          "tilewidth":1054
         }],

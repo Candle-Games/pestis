@@ -61,11 +61,11 @@
     ],
     "characters": [
       "pc1",
-      "pc2",
       "lantern",
       "sombra",
       "caras",
-      "ninio"
+      "ninio",
+      "plaguedr"
     ]
   },
   "level2": {
@@ -73,9 +73,9 @@
     "description": "level2_description",
     "images": [
       "barrel.png",
-      "box-stack-2.png",
-      "box-stack.png",
       "box.png",
+      "box-stack.png",
+      "box-stack-2.png",
       "downstreet-wall.png",
       "goldendoor.png",
       "goldenkey.png",
@@ -86,22 +86,21 @@
       "silverdoor.png",
       "silverkey.png",
       "stairs.png",
-      "stall01.png",
       "stall02.png",
       "stall03.png",
       "stalldrplague.png",
       "street-wall.png",
-      "tilemap muralla.png",
+      "tilemapmuralla.png",
       "tutorialroof.png"
     ],
     "characters": [
       "pc1",
-      "pc2",
       "lantern",
       "sombra",
       "caras",
       "ninio",
-      "esqueleto"	
+      "esqueleto",
+      "plaguedr"
     ]
   }
 }
