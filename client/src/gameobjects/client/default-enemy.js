@@ -85,7 +85,7 @@
     DefaultEnemy.prototype.setPosition = function(x, y, z, w) {
         if (Math.abs(this.x - x) > 0) {
             this.sendStateEvent('WALK');
-            this.setFlipX(x < this.x);
+            this.setFlipX(x > this.x);
         }else {
             this.sendStateEvent('STOP');
         }
