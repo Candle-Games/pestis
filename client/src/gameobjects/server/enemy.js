@@ -75,6 +75,7 @@
                             this.scene.music.playEffect(this.currentMusic);
                         }
                         if (Math.abs(this.body.x - this.currentPlayer.body.x) < this.distanceToKill) {
+                            this.scene.music.stopAllEffects();
                             this.scene.game_engine.sendUpdate({ type: 'game-over' });
                         }
                     }
