@@ -7,6 +7,7 @@
         this._key;
 
         this.opened = this._tiledProperties.opened;
+        this.rectangle = new Phaser.Geom.Rectangle(this.x - (this.width * 0.5), this.y - this.height, this.width, this.height);
     }
 
     Door.prototype = Object.create(ns.BaseTiledObject.prototype);
