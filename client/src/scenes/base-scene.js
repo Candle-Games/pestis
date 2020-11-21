@@ -60,7 +60,6 @@
         play_menu: {
           entry: 'launchPlayMenu',
           on: {
-            CREDITS: 'credits',
             RETURN_TO_MAIN: 'main_menu',
             NEW_GAME: 'play_game',
             LOAD_GAME: 'load_game',
@@ -70,6 +69,7 @@
         play_game: {
           entry: 'playGame',
           on: {
+            CREDITS: 'credits',
             RETURN_TO_PLAYMENU: 'play_menu'
           }
         },

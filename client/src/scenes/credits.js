@@ -32,7 +32,7 @@
 
   Credits.prototype.create = function(data) {
     this.add.image(0, 0, 'main-menu-background').setOrigin(0, 0);
-
+    this.duration = parseInt(this.creditsConfiguration.duration);
     candlegames.pestis.client.scenes.MenuScene.prototype.create.call(this, data);
     this.createCredits();
   }
