@@ -27,7 +27,7 @@
 
         this.currentMusic=undefined;
 
-        this.timeWaiting = -1;
+        this.loockingfor = true;
     }
 
     Enemy.prototype = Object.create(Phaser.GameObjects.Container.prototype);
@@ -40,13 +40,8 @@
     ]);
 
     Enemy.prototype.preUpdate = function(time, delta) {
-        if(this.timeWaiting<0){
-            this.searchCharacters(time);
-        }else{
-            if(time-this.timeWaiting > 5000){ //5 segundos
-                this.timeWaiting = -1;
-                this.lastCharacterPosition = -1;
-            }
+        if(this.loockingfor) {
+            this.searchCharacters();
         }
         this.walk();
 
@@ -56,7 +51,7 @@
         }
     }
 
-    Enemy.prototype.searchCharacters = function(time) {
+    Enemy.prototype.searchCharacters = function() {
         this.visionLine.setTo(this.x, this.body.y - 132, this.x + this.vision * this.currentDirection, this.y - 132)
         this.currentPlayer = undefined;
 
@@ -74,7 +69,7 @@
                             this.currentMusic = pc._tiledProperties.music_chase;
                             this.scene.music.playEffect(this.currentMusic);
                         }
-                        if (Math.abs(this.body.x - this.currentPlayer.body.x) < this.distanceToKill) {
+                        if (Math.abs(this.x - this.currentPlayer.x) < this.distanceToKill) {
                             this.scene.music.stopAllEffects();
                             this.scene.game_engine.sendUpdate({ type: 'game-over' });
                         }
@@ -88,8 +83,12 @@
         }
         if(this.currentPlayer === undefined && this.currentMusic !== undefined){
             this.scene.music.stopEffect(this.currentMusic)
+            this.loockingfor = false;
+            window.setTimeout(function() {
+                this.loockingfor = true;
+                this.lastCharacterPosition = -1;
+            }.bind(this), 5000);
             this.currentMusic=undefined;
-            this.timeWaiting = time;
         }
     }
 

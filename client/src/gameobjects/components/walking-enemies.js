@@ -54,10 +54,10 @@
                     this.currentDirection = this.currentDirection * -1;
                 }
             }else{
-                if(this.lastCharacterPosition + this.distanceToKill < this.body.x){
+                if(this.lastCharacterPosition + this.distanceToKill < this.x){
                     this.currentDirection = -1;
                     speed = speed * this.runMultiplier;
-                }else if (this.lastCharacterPosition - this.distanceToKill > this.body.x){
+                }else if (this.lastCharacterPosition - this.distanceToKill > this.x){
                     this.currentDirection = 1;
                     speed = speed * this.runMultiplier;
                 }else{
