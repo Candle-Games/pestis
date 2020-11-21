@@ -43,10 +43,15 @@
     this._levelBanner = this.add.text(game.canvas.width / 2, game.canvas.height / 2,
       this.i18n.get('level_banner') + this._currentMap, { fontSize: 50, fontFamily: 'MedievalSharp'});
     this._levelBanner.setOrigin(0.5, 0.5);
-    
+
     var levelConfig = this.getCurrentMapConfig();
     this.scene.add('Game', candlegames.pestis.client.scenes.Game);
-    this.scene.launch('Game', { levelConfig: levelConfig, input: 'keyboard' });
+    if(this.browserchecker.isMobileBrowser()){
+      this.scene.launch('Game', { levelConfig: levelConfig, input: 'virtualjoystick' });
+    }else{
+      this.scene.launch('Game', { levelConfig: levelConfig, input: 'keyboard' });
+    }
+
     this.scene.get('Game').events.once('game-scene-created', this.gameSceneCreated, this);
     this.scene.get('Game').events.once('game-over', this.gameOver.bind(this));
   }
