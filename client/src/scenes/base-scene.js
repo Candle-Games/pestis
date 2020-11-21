@@ -156,7 +156,7 @@
   }
 
   BaseScene.prototype.playGame = function () {
-    this.scene.launch('GameplayManager', {new: true, level: 'level1'});
+    this.scene.launch('GameplayManager', {new: true, level: 'tutorial-room'});
 
     this.scene.get('GameplayManager').events.once('game-finished', function () {
       this.scene.stop('GameplayManager');
