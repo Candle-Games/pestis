@@ -67,10 +67,9 @@
                         this.lastCharacterPosition = pc.x;
                         if (this.currentMusic === undefined) {
                             this.currentMusic = pc._tiledProperties.music_chase;
-                            this.scene.music.playEffect(this.currentMusic);
+                            this.scene.game_engine.sendUpdate({type: 'enemy-chase', isChasing : true , object: this});
                         }
                         if (Math.abs(this.x - this.currentPlayer.x) < this.distanceToKill) {
-                            this.scene.music.stopAllEffects();
                             this.scene.game_engine.sendUpdate({ type: 'game-over' });
                         }
                     }
@@ -82,7 +81,7 @@
             break;
         }
         if(this.currentPlayer === undefined && this.currentMusic !== undefined){
-            this.scene.music.stopEffect(this.currentMusic)
+            this.scene.game_engine.sendUpdate({type: 'enemy-chase', isChasing : false , object: this});
             this.loockingfor = false;
             window.setTimeout(function() {
                 this.loockingfor = true;

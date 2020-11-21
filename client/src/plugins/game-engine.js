@@ -356,6 +356,10 @@
       case 'pass-level':
         data = [ 7 ];
         break;
+      case 'enemy-chase':
+        data = [ 8, update.isChasing, update.object.id];
+        break;
+
     }
 
     var bdata = new Int32Array(data);

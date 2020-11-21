@@ -99,7 +99,20 @@
         this.events.emit('game-over', 'dead');
         break;
       case 7:
-        this.events.emit('game-over', 'escape')
+        this.events.emit('game-over', 'escape');
+        break;
+      case 8:
+        this.enemyChase(update[1], update[2]);
+        break;
+
+    }
+  }
+
+  Game.prototype.enemyChase = function(isChasing, enemyId){
+    if(isChasing){
+      this.music.playEffect(this.currentCharacter._tiledProperties.music_chase)
+    }else{
+      this.music.stopEffect(this.currentCharacter._tiledProperties.music_chase);
     }
   }
 
@@ -226,6 +239,7 @@
 
   Game.prototype.destroy = function() {
     this.music.stopGameMusic();
+    this.music.stopAllEffects();
 
     this.highlightArrow.destroy();
 
