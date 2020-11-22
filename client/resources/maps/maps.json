@@ -51,7 +51,7 @@
       "plaguedrstaff.png",
       "silverdoor.png",
       "silverkey.png",
-      "stairs.png",
+      "stairs-level1.png",
       "stall01.png",
       "stall02.png",
       "stall03.png",
@@ -85,13 +85,13 @@
       "plaguedrstaff.png",
       "silverdoor.png",
       "silverkey.png",
-      "stairs.png",
+      "stairs-level2.png",
       "stall02.png",
       "stall03.png",
       "stalldrplague.png",
       "street-wall.png",
       "wall-vines.png",
-      "tutorial-roof.png"
+      "tutorialroof.png"
     ],
     "characters": [
       "pc1",
