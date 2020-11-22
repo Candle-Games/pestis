@@ -426,10 +426,10 @@
                 {
                  "name":"depth",
                  "type":"int",
-                 "value":600
+                 "value":500
                 }],
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":750,
          "x":0,
          "y":0
@@ -1162,7 +1162,7 @@
                         {
                          "name":"hidingdepth",
                          "type":"int",
-                         "value":450
+                         "value":350
                         }, 
                         {
                          "name":"music_chase",
@@ -1182,7 +1182,7 @@
                         {
                          "name":"stairsdepth",
                          "type":"int",
-                         "value":350
+                         "value":250
                         }],
                  "rotation":0,
                  "type":"spawnpoint",
@@ -1494,7 +1494,7 @@
                  "value":0
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }],
